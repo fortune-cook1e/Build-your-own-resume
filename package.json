@@ -1,0 +1,12 @@
+{
+  "name": "resume-generator",
+  "version": "1.0.0",
+  "description": "Resume Generator build by NestJs and NextJs",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
