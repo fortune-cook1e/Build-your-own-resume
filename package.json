@@ -4,9 +4,12 @@
   "description": "Resume Generator build by NestJs and NextJs",
   "private": true,
   "scripts": {
+    "dev": "pnpm run -r dev",
+    "dev:server": "pnpm --filter server run dev",
+    "build": "pnpm run -r build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "fortune cookie",
   "license": "ISC"
 }

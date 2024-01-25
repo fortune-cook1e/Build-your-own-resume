@@ -6,13 +6,14 @@
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": true,
+    "strict": true,
     "noImplicitAny": true,
     "strictBindCallApply": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
       "@/server/*": ["./apps/server/src/*"],
-      "@/web/*": ["./apps/web/*"]
-    }
-  }
+      "@/web/*": ["./apps/web/*"],
+    },
+  },
 }
