@@ -7,6 +7,10 @@
     "dev": "pnpm run -r dev",
     "dev:server": "pnpm --filter server run dev",
     "build": "pnpm run -r build",
+    "prisma:seed": "pnpm --filter server run prisma:seed",
+    "prisma:generate": "pnpm --filter server prisma:generate",
+    "prisma:migrate:prod": "pnpm --filter server prisma:migrate:prod",
+    "prisma:migrate:dev": "pnpm --filter server prisma:migrate:dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

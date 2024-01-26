@@ -1,15 +1,15 @@
 
 version: '3.8'
 services:
-  # postgres:
-  #   image: postgres:15.5
-  #   restart: always
-  #   volumes:
-  #     - postgres:/var/lib/postgresql/15/data
-  #   ports:
-  #     - '5432:5432'
-  #   env_file:
-  #     - ./apps/server/.env
+  postgres:
+    image: postgres:15.5
+    restart: always
+    volumes:
+      - postgres:/var/lib/postgresql/15/data
+    ports:
+      - '5432:5432'
+    env_file:
+      - ./apps/server/.env
 
   # Redis (for cache & server session management)
   redis:

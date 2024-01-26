@@ -14,7 +14,7 @@ export class UtilsService {
   async getCacheOrSet<T>(
     key: string,
     callback: () => Promise<T> | T,
-    ttl: number = this.configService.getOrThrow('REDIS_DEFAULT_TTL'),
+    ttl: number = +this.configService.getOrThrow('REDIS_DEFAULT_TTL'),
     type: 'json' | 'string' = 'json',
   ): Promise<T> {
     const start = performance.now();
@@ -38,7 +38,7 @@ export class UtilsService {
     const valueToCache = isString ? value : JSON.stringify(value);
 
     // store
-    // FixBug: fix the bug that could not change ttl
+    // FixBug: fix the bug that could not change redis ttl
     await this.cacheManager.set(key, valueToCache, { ttl } as any);
 
     return value;
