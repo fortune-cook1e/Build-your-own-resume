@@ -3,6 +3,7 @@ import { Module } from '@nestjs/common';
 import { redisStore } from 'cache-manager-redis-store';
 import { CacheModule as CacheManager } from '@nestjs/cache-manager';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { REDIS_DEFAULT_TTL } from '../constants';
 
 @Module({
   imports: [
@@ -15,7 +16,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       ): Promise<any> => {
         const store = await redisStore({
           url: configService.getOrThrow('REDIS_URL'),
-          ttl: configService.getOrThrow('REDIS_DEFAULT_TTL'),
+          ttl: REDIS_DEFAULT_TTL,
         });
         return {
           store: () => store,

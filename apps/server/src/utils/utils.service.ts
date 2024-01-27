@@ -2,6 +2,7 @@ import { CACHE_MANAGER, Cache } from '@nestjs/cache-manager';
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Config } from '../config/schema';
+import { REDIS_DEFAULT_TTL } from '../constants';
 
 @Injectable()
 export class UtilsService {
@@ -14,7 +15,7 @@ export class UtilsService {
   async getCacheOrSet<T>(
     key: string,
     callback: () => Promise<T> | T,
-    ttl: number = +this.configService.getOrThrow('REDIS_DEFAULT_TTL'),
+    ttl: number = REDIS_DEFAULT_TTL,
     type: 'json' | 'string' = 'json',
   ): Promise<T> {
     const start = performance.now();

@@ -18,8 +18,11 @@ model User {
   emailVerified Boolean  @default(false)
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
-  Secrets       Secrets?
+  password      String
+  salt          String
+  refreshToken  String?
   Resume        Resume[]
+  // Secrets       Secrets? @relation(fields: [secretsId], references: [id])
 }
 
 model Secrets {
@@ -32,7 +35,8 @@ model Secrets {
   refreshToken      String?
   resetToken        String?   @unique // Todo: 待补充
   userId            String    @unique
-  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade) // Todo: 待补充
+  // user              User      @relation(fields: [userId], references: [id], onDelete: Cascade) // Todo: 待补充
+  // User              User[]
 }
 
 model Resume {

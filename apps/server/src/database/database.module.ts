@@ -9,7 +9,6 @@ import {
 import { Config } from '../config/schema';
 
 @Module({
-  providers: [providePrismaClientExceptionFilter()],
   imports: [
     PrismaModule.forRootAsync({
       isGlobal: true,
@@ -29,5 +28,6 @@ import { Config } from '../config/schema';
       }),
     }),
   ],
+  providers: [providePrismaClientExceptionFilter()],
 })
 export class DatabaseModule {}

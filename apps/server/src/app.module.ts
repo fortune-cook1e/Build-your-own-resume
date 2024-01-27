@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { ConfigModule } from './config/config.module';
 import { CacheModule } from './cache/cache.module';
 import { UtilsModule } from './utils/utils.module';
+import { AuthModule } from './auth/auth.module';
+import { DatabaseModule } from './database/database.module';
 
 @Module({
   imports: [
@@ -11,6 +13,10 @@ import { UtilsModule } from './utils/utils.module';
     ConfigModule,
     CacheModule,
     UtilsModule,
+    DatabaseModule,
+
+    // Features
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
