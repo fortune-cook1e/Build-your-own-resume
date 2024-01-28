@@ -13,7 +13,6 @@ export const usernameSchema = z
   });
 
 export const userSchema = z.object({
-  id: idSchema,
   name: z.string().min(1).max(50).describe('User name'),
   username: usernameSchema,
   email: z.string().email(),
@@ -22,6 +21,7 @@ export const userSchema = z.object({
 });
 
 export const privateInfoSchema = z.object({
+  id: idSchema,
   password: z.string().nullable(),
   salt: z.string().nullable(),
   refreshToken: z.string().nullable(),

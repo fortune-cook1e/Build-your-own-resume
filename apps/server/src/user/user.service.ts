@@ -29,4 +29,23 @@ export class UserService {
       data,
     });
   }
+
+  // find user by email or username
+  async findOneByIdentifier(identifier: string) {
+    let user = null;
+    user = await this.prismaService.user.findUnique({
+      where: { email: identifier },
+    });
+
+    if (user) return user;
+
+    user = await this.prismaService.user.findUnique({
+      where: { username: identifier },
+    });
+
+    if (!user)
+      throw new InternalServerErrorException(ErrorMessage.UserNotFound);
+
+    return user;
+  }
 }

@@ -16,6 +16,10 @@ async function bootstrap() {
         : ['error', 'warn', 'log'],
   });
 
+  const env = process.env.NODE_ENV;
+
+  console.log('current NODE_ENV', { env });
+
   const configService = app.get(ConfigService<Config>);
 
   const globalApiPrefix = 'resume-api';

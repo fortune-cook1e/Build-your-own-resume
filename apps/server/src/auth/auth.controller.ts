@@ -5,6 +5,7 @@ import {
   Logger,
   Post,
   Res,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { RegisterDto } from './dto/register.dto';
@@ -13,7 +14,9 @@ import { UserWithPrivateDto } from '../user/dto/user.dto';
 import { Response } from 'express';
 import { authorizationSchema, payloadSchema } from './dto/auth.dto';
 import { COOKIE_ACCESS_FIELD, COOKIE_REFRESH_FIELD } from '../constants';
-import { getCookieOptions } from './utls/cookie';
+import { getCookieOptions } from './utils/cookie';
+import { LocalGuard } from './guards/local.guard';
+import { User } from '../user/decorators/user.decorator';
 
 @Controller('auth')
 @ApiTags('auth')
@@ -68,6 +71,15 @@ export class AuthController {
     });
 
     response.status(200).send(responseData);
+  }
+
+  @Post('login')
+  @UseGuards(LocalGuard)
+  login(
+    @User() user: UserWithPrivateDto,
+    @Res({ passthrough: true }) response: Response,
+  ) {
+    return this.handleAuthorization(user, response);
   }
 
   @Post('register')

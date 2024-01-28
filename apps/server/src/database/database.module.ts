@@ -1,25 +1,26 @@
 import { Module, Logger } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import {
-  providePrismaClientExceptionFilter,
   PrismaModule,
+  providePrismaClientExceptionFilter,
   loggingMiddleware,
   PrismaService,
 } from 'nestjs-prisma';
-import { Config } from '../config/schema';
+import { ConfigService } from '@nestjs/config';
 
 @Module({
+  providers: [providePrismaClientExceptionFilter()],
   imports: [
     PrismaModule.forRootAsync({
       isGlobal: true,
       inject: [ConfigService],
-      useFactory: async (configService: ConfigService<Config>) => ({
+      useFactory: async (configService: ConfigService<any>) => ({
         prismaOptions: {
           datasourceUrl: configService.get('DATABASE_URL'),
+          log: ['warn', 'error'],
         },
         middlewares: [
           loggingMiddleware({
-            logLevel: 'debug',
+            logLevel: 'debug', // only in development
             logger: new Logger(PrismaService.name),
             logMessage: (query) =>
               `[Query] ${query.model}.${query.action} - ${query.executionTime}ms`,
@@ -28,6 +29,5 @@ import { Config } from '../config/schema';
       }),
     }),
   ],
-  providers: [providePrismaClientExceptionFilter()],
 })
 export class DatabaseModule {}

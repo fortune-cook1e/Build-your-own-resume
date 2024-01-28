@@ -5,6 +5,7 @@ export enum ErrorMessage {
   UserAlreadyExists = 'User already exists',
   InvalidPassword = 'Invalid password',
   InvalidPayload = 'Invalid Payload',
+  InvalidCredentials = 'Invalid credentials',
 }
 
 export const COOKIE_ACCESS_EXPIRE = new Date(Date.now() + 1000 * 60 * 15); // 15 minutes

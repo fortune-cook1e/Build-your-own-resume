@@ -8,7 +8,7 @@ import { UserService } from '../user/user.service';
 import { JwtService } from '@nestjs/jwt';
 import { RegisterDto } from './dto/register.dto';
 import { ErrorMessage } from '../constants';
-import { Payload } from './dto/auth.dto';
+import { LoginDto, Payload } from './dto/auth.dto';
 import { ConfigService } from '@nestjs/config';
 import { Config } from '../config/schema';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
@@ -36,15 +36,11 @@ export class AuthService {
     return bcrypt.compare(password, hashedPassword);
   }
 
-  private async checkPassword(
-    password: string,
-    hashedPassword: string,
-  ): Promise<boolean> {
-    const validation = this.compare(password, hashedPassword);
-    if (!validation) {
-      throw new BadRequestException(ErrorMessage.InvalidPassword);
+  private async checkPassword(password: string, hashedPassword: string) {
+    const isValid = await this.compare(password, hashedPassword);
+    if (!isValid) {
+      throw new BadRequestException(ErrorMessage.InvalidCredentials);
     }
-    return true;
   }
 
   generateToken(type: 'access' | 'refresh', payload?: Payload) {
@@ -97,9 +93,26 @@ export class AuthService {
     }
   }
 
+  // check user
+  async authenticate({ identifier, password }: LoginDto) {
+    try {
+      const user = await this.userService.findOneByIdentifier(identifier);
+      if (!user) {
+        throw new BadRequestException(ErrorMessage.InvalidCredentials);
+      }
+
+      await this.checkPassword(password, user.password);
+
+      return user;
+    } catch (e) {
+      throw new BadRequestException(ErrorMessage.InvalidCredentials);
+    }
+  }
+
   async updateRefreshToken(email: string, token: string) {
     return this.userService.updateByEmail(email, {
       refreshToken: token,
+      lastSignedIn: token ? new Date() : undefined,
     });
   }
 }

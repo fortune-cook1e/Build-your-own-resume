@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ConfigModule } from './config/config.module';
 import { CacheModule } from './cache/cache.module';
 import { UtilsModule } from './utils/utils.module';
@@ -20,9 +18,7 @@ import { ZodValidationPipe } from 'nestjs-zod';
     // Features
     AuthModule,
   ],
-  controllers: [AppController],
   providers: [
-    AppService,
     {
       provide: APP_PIPE,
       useClass: ZodValidationPipe,
