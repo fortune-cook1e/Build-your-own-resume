@@ -96,4 +96,10 @@ export class AuthService {
       throw new InternalServerErrorException();
     }
   }
+
+  async updateRefreshToken(email: string, token: string) {
+    return this.userService.updateByEmail(email, {
+      refreshToken: token,
+    });
+  }
 }

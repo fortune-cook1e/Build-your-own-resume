@@ -1,4 +1,5 @@
-import { z } from 'zod';
+import { createZodDto } from 'nestjs-zod';
+import { z } from 'nestjs-zod/z';
 
 export const idSchema = z.string().cuid2().describe('Unique id');
 
@@ -16,12 +17,20 @@ export const userSchema = z.object({
   name: z.string().min(1).max(50).describe('User name'),
   username: usernameSchema,
   email: z.string().email(),
-  emailVerified: z.boolean().default(false),
   createdAt: z.date(),
   updatedAt: z.date(),
-  password: z.string().min(6),
-  salt: z.string(),
-  refreshToken: z.string().optional(),
 });
 
-export type UserDto = z.infer<typeof userSchema>;
+export const privateInfoSchema = z.object({
+  password: z.string().nullable(),
+  salt: z.string().nullable(),
+  refreshToken: z.string().nullable(),
+  emailVerified: z.boolean().default(false),
+  lastSignedIn: z.date().nullable(),
+});
+
+export const userWithPrivateSchema = userSchema.merge(privateInfoSchema);
+
+export class UserDto extends createZodDto(userSchema) {}
+export class PrivateInfoDto extends createZodDto(privateInfoSchema) {}
+export class UserWithPrivateDto extends createZodDto(userWithPrivateSchema) {}

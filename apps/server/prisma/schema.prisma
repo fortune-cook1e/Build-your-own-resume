@@ -11,16 +11,17 @@ datasource db {
 }
 
 model User {
-  id            String   @id @default(cuid())
+  id            String    @id @default(cuid())
   name          String
-  username      String   @unique
-  email         String   @unique
-  emailVerified Boolean  @default(false)
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  username      String    @unique
+  email         String    @unique
+  emailVerified Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
   password      String
-  salt          String
+  salt          String    @unique
   refreshToken  String?
+  lastSignedIn  DateTime? // for refresh token
   Resume        Resume[]
   // Secrets       Secrets? @relation(fields: [secretsId], references: [id])
 }
