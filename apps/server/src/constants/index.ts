@@ -15,3 +15,8 @@ export const COOKIE_REFRESH_EXPIRE = new Date(
 
 export const COOKIE_ACCESS_FIELD = 'Authorization';
 export const COOKIE_REFRESH_FIELD = 'Refresh';
+
+export enum ResponseCode {
+  Success = 0,
+  Error = 2,
+}
