@@ -4,9 +4,11 @@ import { CacheModule } from './cache/cache.module';
 import { UtilsModule } from './utils/utils.module';
 import { AuthModule } from './auth/auth.module';
 import { DatabaseModule } from './database/database.module';
-import { APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
+import { APP_FILTER, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { ZodValidationPipe } from 'nestjs-zod';
 import { ResponseInterceptor } from './interceptors/response';
+import { MailModule } from './mail/mail.module';
+import { AllExceptionsFilter } from './filters/exception.filter';
 
 @Module({
   imports: [
@@ -15,6 +17,7 @@ import { ResponseInterceptor } from './interceptors/response';
     CacheModule,
     UtilsModule,
     DatabaseModule,
+    MailModule,
 
     // Features
     AuthModule,
@@ -27,6 +30,10 @@ import { ResponseInterceptor } from './interceptors/response';
     {
       provide: APP_INTERCEPTOR,
       useClass: ResponseInterceptor,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: AllExceptionsFilter,
     },
   ],
 })

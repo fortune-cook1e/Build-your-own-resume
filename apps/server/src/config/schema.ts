@@ -14,6 +14,9 @@ export const configSchema = z.object({
 
   ACCESS_TOKEN_SECRET: z.string(),
   REFRESH_TOKEN_SECRET: z.string(),
+
+  MAIL_FROM: z.string(),
+  SMTP_URL: z.string().startsWith('smtp://').optional(),
 });
 
 export type Config = z.infer<typeof configSchema>;
