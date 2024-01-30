@@ -17,6 +17,7 @@ import { COOKIE_ACCESS_FIELD, COOKIE_REFRESH_FIELD } from '../constants';
 import { getCookieOptions } from './utils/cookie';
 import { LocalGuard } from './guards/local.guard';
 import { User } from '../user/decorators/user.decorator';
+import { JwtGuard } from './guards/jwt.guard';
 
 @Controller('auth')
 @ApiTags('auth')
@@ -70,16 +71,16 @@ export class AuthController {
       user,
     });
 
-    response.status(200).send(responseData);
+    return responseData;
   }
 
   @Post('login')
   @UseGuards(LocalGuard)
-  login(
+  async login(
     @User() user: UserWithPrivateDto,
     @Res({ passthrough: true }) response: Response,
   ) {
-    return this.handleAuthorization(user, response);
+    return await this.handleAuthorization(user, response);
   }
 
   @Post('register')
@@ -88,6 +89,19 @@ export class AuthController {
     @Res({ passthrough: true }) response: Response,
   ) {
     const user = await this.authService.register(data);
-    return this.handleAuthorization(user, response);
+    return await this.handleAuthorization(user, response);
+  }
+
+  @Post('logout')
+  @UseGuards(JwtGuard)
+  async logout(
+    @User() user: UserWithPrivateDto,
+    @Res({ passthrough: true }) response: Response,
+  ) {
+    await this.authService.updateRefreshToken(user.email, null);
+    response.clearCookie(COOKIE_ACCESS_FIELD);
+    response.clearCookie(COOKIE_REFRESH_FIELD);
+
+    return 'Logged out successfully';
   }
 }

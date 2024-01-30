@@ -32,7 +32,7 @@ export class ResponseInterceptor<T>
     );
   }
 
-  responseHandler(data: T) {
+  responseHandler(data: T | null) {
     return {
       code: ResponseCode.Success,
       message: 'success',
@@ -48,9 +48,10 @@ export class ResponseInterceptor<T>
         ? exception.getStatus()
         : HttpStatus.INTERNAL_SERVER_ERROR;
 
+    // Todo: 这里要区分 Invalid Credentials 情况
     response.status(status).json({
       code: ResponseCode.Error,
-      message: exception.message || 'request failed',
+      message: exception.message || 'Request failed',
       data: null,
     });
   }

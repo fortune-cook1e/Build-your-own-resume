@@ -109,7 +109,7 @@ export class AuthService {
     }
   }
 
-  async updateRefreshToken(email: string, token: string) {
+  async updateRefreshToken(email: string, token: string | null) {
     return this.userService.updateByEmail(email, {
       refreshToken: token,
       lastSignedIn: token ? new Date() : undefined,
