@@ -18,6 +18,7 @@ import { getCookieOptions } from './utils/cookie';
 import { LocalGuard } from './guards/local.guard';
 import { User } from '../user/decorators/user.decorator';
 import { JwtGuard } from './guards/jwt.guard';
+import { RefreshGuard } from './guards/refresh.guard';
 
 @Controller('auth')
 @ApiTags('auth')
@@ -103,5 +104,14 @@ export class AuthController {
     response.clearCookie(COOKIE_REFRESH_FIELD);
 
     return 'Logged out successfully';
+  }
+
+  @Post('refresh')
+  @UseGuards(RefreshGuard)
+  async refresh(
+    @User() user: UserWithPrivateDto,
+    @Res({ passthrough: true }) response: Response,
+  ) {
+    return this.handleAuthorization(user, response);
   }
 }

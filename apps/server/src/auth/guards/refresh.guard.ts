@@ -8,22 +8,21 @@ import { AuthGuard } from '@nestjs/passport';
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class JwtGuard extends AuthGuard('jwt') {
+export class RefreshGuard extends AuthGuard('refresh') {
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
     return super.canActivate(context);
   }
 
-  // custom error
   handleRequest(err: any, user: any, info: any) {
     if (err || !user) {
       if (err instanceof TokenExpiredError) {
-        throw new UnauthorizedException('Authorization Token expired');
+        throw new UnauthorizedException('Refresh Token expired');
       }
       throw (
         err ||
-        new UnauthorizedException(info.message || 'Invalid Authorization Token')
+        new UnauthorizedException(info.message || 'Invalid Refresh Token')
       );
     }
     return user;

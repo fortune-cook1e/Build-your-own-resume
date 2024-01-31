@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  ForbiddenException,
   Injectable,
   InternalServerErrorException,
   Logger,
@@ -114,5 +115,15 @@ export class AuthService {
       refreshToken: token,
       lastSignedIn: token ? new Date() : undefined,
     });
+  }
+
+  async validateRefreshToken(payload: Payload, token: string) {
+    const user = await this.userService.findOneById(payload.id);
+    const userToken = user.refreshToken;
+
+    if (!userToken || userToken !== token) {
+      throw new ForbiddenException();
+    }
+    return user;
   }
 }
