@@ -1,11 +1,12 @@
 {
   "name": "resume-generator",
   "version": "1.0.0",
-  "description": "Resume Generator build by NestJs and NextJs",
+  "description": "Resume Generator built by NestJs and NextJs",
   "private": true,
   "scripts": {
     "dev": "pnpm run -r dev",
     "dev:server": "pnpm --filter server run dev",
+    "format": "prettier --write \"apps/**/src/**/*.{ts,tsx}\" \"apps/**/test/*.{ts,tsx}\"",
     "build": "pnpm run -r build",
     "prisma:seed": "pnpm --filter server run prisma:seed",
     "prisma:generate": "pnpm --filter server prisma:generate",
@@ -14,7 +15,13 @@
     "prisma:studio": "pnpm --filter server prisma:studio",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "Resume Generator",
+    "Resume"
+  ],
   "author": "fortune cookie",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "prettier": "^3.0.0"
+  }
 }
