@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev -p 8080",
     "build": "next build",
-    "start": "next start -p 8080",
+    "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
@@ -13,12 +13,15 @@
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
+    "@tanstack/react-query": "^5.18.1",
+    "@tanstack/react-query-devtools": "^5.18.1",
     "framer-motion": "^11.0.3",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.18.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

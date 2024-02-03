@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "pnpm run -r dev",
     "dev:server": "pnpm --filter server run dev",
+    "dev:web": "pnpm --filter web run dev",
     "format": "prettier --write \"apps/**/src/**/*.{ts,tsx}\" \"apps/**/test/*.{ts,tsx}\"",
     "build": "pnpm run -r build",
     "prisma:seed": "pnpm --filter server run prisma:seed",
