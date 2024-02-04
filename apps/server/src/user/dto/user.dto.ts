@@ -19,13 +19,13 @@ export const userSchema = z.object({
   email: z.string().email(),
   createdAt: z.date(),
   updatedAt: z.date(),
+  emailVerified: z.boolean().default(false),
 });
 
 export const privateInfoSchema = z.object({
   password: z.string().nullable(),
   salt: z.string().nullable(),
   refreshToken: z.string().nullable(),
-  emailVerified: z.boolean().default(false),
   lastSignedIn: z.date().nullable(),
 });
 
