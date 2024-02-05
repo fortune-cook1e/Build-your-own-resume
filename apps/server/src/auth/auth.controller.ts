@@ -81,6 +81,7 @@ export class AuthController {
     @User() user: UserWithPrivateDto,
     @Res({ passthrough: true }) response: Response,
   ) {
+    console.log('login....');
     return await this.handleAuthorization(user, response);
   }
 

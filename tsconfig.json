@@ -11,9 +11,11 @@
     "strictBindCallApply": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
+    "declaration": true,
+    "declarationMap": true,
     "paths": {
       "@/server/*": ["./apps/server/src/*"],
-      "@/web/*": ["./apps/web/*"],
+      "@/web/*": ["./apps/web/src/*"],
     },
   },
 }

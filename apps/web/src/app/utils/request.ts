@@ -1,15 +1,11 @@
-import axios, {
-  AxiosRequestConfig,
-  AxiosResponse,
-  InternalAxiosRequestConfig,
-} from 'axios';
+import axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
-const instance = axios.create({
+const request = axios.create({
   baseURL: '/api',
   timeout: 1000 * 10, // 10s,
 });
 
-instance.interceptors.request.use(
+request.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     return config;
   },
@@ -18,7 +14,7 @@ instance.interceptors.request.use(
   },
 );
 
-instance.interceptors.response.use(
+request.interceptors.response.use(
   function (response: AxiosResponse) {
     console.log({ response });
     // Any status code that lie within the range of 2xx cause this function to trigger
@@ -32,4 +28,4 @@ instance.interceptors.response.use(
   },
 );
 
-export default instance;
+export default request;
