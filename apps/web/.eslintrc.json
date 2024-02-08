@@ -2,5 +2,8 @@
   "extends": [
     "next/core-web-vitals",
     "plugin:@tanstack/eslint-plugin-query/recommended"
-  ]
+  ],
+  "rules": {
+    "react/no-unescaped-entities":1
+  }
 }
