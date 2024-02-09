@@ -10,12 +10,28 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { FC } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 interface Props {
   onRegisterClick: () => void;
 }
 
+type FormInputs = {
+  username: string;
+  password: string;
+};
+
 const LoginForm: FC<Props> = ({ onRegisterClick }) => {
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm<FormInputs>();
+
+  const onSubmit: SubmitHandler<FormInputs> = (data) => {
+    console.log({ data });
+  };
+
   return (
     <Box>
       <header className="mb-12">
@@ -23,12 +39,37 @@ const LoginForm: FC<Props> = ({ onRegisterClick }) => {
         <p>Lorem Ipsum is simply </p>
       </header>
 
-      <FormControl>
-        <FormLabel>User name</FormLabel>
-        <Input type="text" className="mb-6" />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <FormControl isInvalid={Boolean(errors.username)} className="mb-6">
+          <FormLabel htmlFor="username">User name</FormLabel>
+          <Input
+            id="username"
+            type="text"
+            placeholder="Enter your username"
+            {...register('username', {
+              required: 'Username is required',
+            })}
+          />
+          <FormErrorMessage>
+            {errors.username && errors.username.message}
+          </FormErrorMessage>
+        </FormControl>
 
-        <FormLabel>Password</FormLabel>
-        <Input placeholder="Your password" type="text" className="mb-[23px]" />
+        <FormControl isInvalid={Boolean(errors.password)} className="mb-6">
+          <FormLabel htmlFor="password">Password</FormLabel>
+          <Input
+            id="password"
+            placeholder="Your password"
+            type="password"
+            {...register('password', {
+              required: 'Password is required',
+            })}
+          />
+
+          <FormErrorMessage>
+            {errors.password && errors.password.message}
+          </FormErrorMessage>
+        </FormControl>
 
         <Flex justify="space-between" className="mb-6">
           <Box>
@@ -37,17 +78,22 @@ const LoginForm: FC<Props> = ({ onRegisterClick }) => {
           <p className="text-[#4D4D4D]">Forgot Password?</p>
         </Flex>
 
-        <Button className="mb-[55px] w-full" color="white" bg="black">
+        <Button
+          className="mb-[55px] w-full"
+          color="white"
+          bg="black"
+          type="submit"
+        >
           Login
         </Button>
 
-        <p className="text-[#7D7D7D] text-center cursor-pointer">
+        <p className="text-[#7D7D7D] text-center">
           Don’y have an Account ?{' '}
-          <span className="text-black" onClick={onRegisterClick}>
+          <span className="text-black cursor-pointer" onClick={onRegisterClick}>
             Register
           </span>
         </p>
-      </FormControl>
+      </form>
     </Box>
   );
 };
