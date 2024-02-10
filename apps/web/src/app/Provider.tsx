@@ -14,7 +14,9 @@ const Provider: FC<Props> = ({ children }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools buttonPosition="top-right" />
-      <ChakraProvider>{children}</ChakraProvider>
+      <ChakraProvider toastOptions={{ defaultOptions: { position: 'top' } }}>
+        {children}
+      </ChakraProvider>
     </QueryClientProvider>
   );
 };

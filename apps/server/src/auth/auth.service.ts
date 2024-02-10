@@ -99,14 +99,16 @@ export class AuthService {
     try {
       const user = await this.userService.findOneByIdentifier(identifier);
       if (!user) {
-        throw new BadRequestException(ErrorMessage.InvalidCredentials);
+        throw new BadRequestException(ErrorMessage.UserNotFound);
       }
 
       await this.checkPassword(password, user.password);
 
       return user;
-    } catch (e) {
-      throw new BadRequestException(ErrorMessage.InvalidCredentials);
+    } catch (e: any) {
+      throw new BadRequestException(
+        e.message || ErrorMessage.InvalidCredentials,
+      );
     }
   }
 

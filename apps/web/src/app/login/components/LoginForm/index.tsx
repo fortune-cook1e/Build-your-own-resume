@@ -1,3 +1,5 @@
+import { login } from '@/web/app/apis/auth.api';
+import { LoginDto } from '@/web/app/types/dto/auth.dto';
 import {
   FormControl,
   FormLabel,
@@ -9,6 +11,7 @@ import {
   Checkbox,
   Button,
 } from '@chakra-ui/react';
+import { useMutation } from '@tanstack/react-query';
 import { FC } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
@@ -16,20 +19,23 @@ interface Props {
   onRegisterClick: () => void;
 }
 
-type FormInputs = {
-  username: string;
-  password: string;
-};
-
 const LoginForm: FC<Props> = ({ onRegisterClick }) => {
   const {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<FormInputs>();
+  } = useForm<LoginDto>();
 
-  const onSubmit: SubmitHandler<FormInputs> = (data) => {
-    console.log({ data });
+  const { mutateAsync: loginFn, isPending } = useMutation({
+    mutationFn: login,
+    onSuccess: (data) => {
+      // Todo: set data in store
+      console.log({ data });
+    },
+  });
+
+  const onSubmit: SubmitHandler<LoginDto> = async (data) => {
+    await loginFn(data);
   };
 
   return (
@@ -40,18 +46,18 @@ const LoginForm: FC<Props> = ({ onRegisterClick }) => {
       </header>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <FormControl isInvalid={Boolean(errors.username)} className="mb-6">
-          <FormLabel htmlFor="username">User name</FormLabel>
+        <FormControl isInvalid={Boolean(errors.identifier)} className="mb-6">
+          <FormLabel htmlFor="identifier">User name</FormLabel>
           <Input
-            id="username"
+            id="identifier"
             type="text"
             placeholder="Enter your username"
-            {...register('username', {
+            {...register('identifier', {
               required: 'Username is required',
             })}
           />
           <FormErrorMessage>
-            {errors.username && errors.username.message}
+            {errors.identifier && errors.identifier.message}
           </FormErrorMessage>
         </FormControl>
 
@@ -83,6 +89,7 @@ const LoginForm: FC<Props> = ({ onRegisterClick }) => {
           color="white"
           bg="black"
           type="submit"
+          isLoading={isPending}
         >
           Login
         </Button>

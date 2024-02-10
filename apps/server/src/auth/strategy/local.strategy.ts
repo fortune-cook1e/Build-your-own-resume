@@ -2,7 +2,6 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { IStrategyOptions, Strategy } from 'passport-local';
 import { AuthService } from '../auth.service';
-import { ErrorMessage } from '@/server/constants';
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
@@ -15,7 +14,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     try {
       return await this.authService.authenticate({ identifier, password });
     } catch (e) {
-      throw new BadRequestException(ErrorMessage.InvalidCredentials);
+      throw new BadRequestException(e);
     }
   }
 }
