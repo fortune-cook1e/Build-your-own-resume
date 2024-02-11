@@ -9,15 +9,18 @@ import {
   Box,
   Checkbox,
   Button,
+  useToast,
 } from '@chakra-ui/react';
+import { useMutation } from '@tanstack/react-query';
 import { FC } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-
+import { register as registerApi } from '@/web/app/apis/auth.api';
 interface Props {
   onLoginClick: () => void;
 }
 
 type FormInputs = {
+  name: string;
   email: string;
   username: string;
   password: string;
@@ -25,14 +28,28 @@ type FormInputs = {
 };
 
 const RegisterForm: FC<Props> = ({ onLoginClick }) => {
+  const toast = useToast();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormInputs>();
 
-  const onSubmit: SubmitHandler<FormInputs> = (data) => {
-    console.log(data);
+  const { isPending, mutateAsync: registerFn } = useMutation({
+    mutationFn: registerApi,
+    onSuccess(data) {
+      console.log({ data });
+      toast({
+        title: 'Success',
+        description: 'Register Successfully',
+        status: 'success',
+      });
+    },
+  });
+
+  const onSubmit: SubmitHandler<FormInputs> = async (data) => {
+    const { confirmPassword, ...rest } = data;
+    await registerFn(rest);
   };
 
   return (
@@ -43,6 +60,22 @@ const RegisterForm: FC<Props> = ({ onLoginClick }) => {
       </header>
 
       <form onSubmit={handleSubmit(onSubmit)}>
+        <FormControl isInvalid={Boolean(errors.name)} className="mb-6">
+          <FormLabel htmlFor="name">Name</FormLabel>
+          <Input
+            id="name"
+            placeContent="Enter your name"
+            {...register('name', {
+              required: 'Name is required',
+              minLength: {
+                value: 2,
+                message: 'Name must be at least 2 characters long',
+              },
+            })}
+          />
+          <FormErrorMessage>{errors.name?.message}</FormErrorMessage>
+        </FormControl>
+
         <FormControl isInvalid={Boolean(errors.email)} className="mb-6">
           <FormLabel htmlFor="email">Email</FormLabel>
           <Input
@@ -71,8 +104,8 @@ const RegisterForm: FC<Props> = ({ onLoginClick }) => {
                 message: 'Username must be at least 6 characters',
               },
               maxLength: {
-                value: 10,
-                message: 'Username must be at most 10 characters',
+                value: 12,
+                message: 'Username must be at most 12 characters',
               },
             })}
           />
@@ -120,7 +153,14 @@ const RegisterForm: FC<Props> = ({ onLoginClick }) => {
           <FormErrorMessage>{errors.confirmPassword?.message}</FormErrorMessage>
         </FormControl>
 
-        <Button className="w-full mb-14" color="white" bg="black" type="submit">
+        <Button
+          className="w-full mb-14"
+          color="white"
+          bg="black"
+          type="submit"
+          isLoading={isPending}
+          loadingText="Registering"
+        >
           Register
         </Button>
       </form>

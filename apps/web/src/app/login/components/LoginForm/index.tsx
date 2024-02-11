@@ -1,4 +1,5 @@
 import { login } from '@/web/app/apis/auth.api';
+import { useUserStore } from '@/web/app/store/user';
 import { LoginDto } from '@/web/app/types/dto/auth.dto';
 import {
   FormControl,
@@ -20,6 +21,8 @@ interface Props {
 }
 
 const LoginForm: FC<Props> = ({ onRegisterClick }) => {
+  const setUser = useUserStore((state) => state.setUser);
+
   const {
     handleSubmit,
     register,
@@ -29,7 +32,8 @@ const LoginForm: FC<Props> = ({ onRegisterClick }) => {
   const { mutateAsync: loginFn, isPending } = useMutation({
     mutationFn: login,
     onSuccess: (data) => {
-      // Todo: set data in store
+      // Todo: store data in queryClient
+      setUser(data.user);
       console.log({ data });
     },
   });

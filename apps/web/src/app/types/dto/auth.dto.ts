@@ -1,3 +1,4 @@
+import { userEntitySchema } from '@/web/app/types/entity/user.entity';
 import { z } from 'zod';
 
 export const loginDtoSchema = z.object({
@@ -5,4 +6,15 @@ export const loginDtoSchema = z.object({
   password: z.string().min(6),
 });
 
+export const registerSchema = userEntitySchema
+  .pick({
+    name: true,
+    username: true,
+    email: true,
+  })
+  .extend({
+    password: z.string().min(6),
+  });
+
 export type LoginDto = z.infer<typeof loginDtoSchema>;
+export type RegisterDto = z.infer<typeof registerSchema>;
