@@ -1,3 +1,4 @@
+import { useRegister } from '@/web/app/apis/auth/register';
 import { EMAIL_REGEXP } from '@/web/app/constants';
 import { LoginMode } from '@/web/app/login/page';
 import {
@@ -11,10 +12,8 @@ import {
   Button,
   useToast,
 } from '@chakra-ui/react';
-import { useMutation } from '@tanstack/react-query';
 import { FC } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { register as registerApi } from '@/web/app/apis/auth.api';
 interface Props {
   onLoginClick: () => void;
 }
@@ -35,17 +34,7 @@ const RegisterForm: FC<Props> = ({ onLoginClick }) => {
     formState: { errors },
   } = useForm<FormInputs>();
 
-  const { isPending, mutateAsync: registerFn } = useMutation({
-    mutationFn: registerApi,
-    onSuccess(data) {
-      console.log({ data });
-      toast({
-        title: 'Success',
-        description: 'Register Successfully',
-        status: 'success',
-      });
-    },
-  });
+  const { loading, register: registerFn } = useRegister();
 
   const onSubmit: SubmitHandler<FormInputs> = async (data) => {
     const { confirmPassword, ...rest } = data;
@@ -158,7 +147,7 @@ const RegisterForm: FC<Props> = ({ onLoginClick }) => {
           color="white"
           bg="black"
           type="submit"
-          isLoading={isPending}
+          isLoading={loading}
           loadingText="Registering"
         >
           Register

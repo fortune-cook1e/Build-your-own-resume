@@ -1,18 +1,16 @@
-import { login } from '@/web/app/apis/auth.api';
+import { useLogin } from '@/web/app/apis/auth/login';
 import { useUserStore } from '@/web/app/store/user';
 import { LoginDto } from '@/web/app/types/dto/auth.dto';
 import {
   FormControl,
   FormLabel,
   FormErrorMessage,
-  FormHelperText,
   Input,
   Flex,
   Box,
   Checkbox,
   Button,
 } from '@chakra-ui/react';
-import { useMutation } from '@tanstack/react-query';
 import { FC } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
@@ -22,6 +20,7 @@ interface Props {
 
 const LoginForm: FC<Props> = ({ onRegisterClick }) => {
   const setUser = useUserStore((state) => state.setUser);
+  const { loading, login } = useLogin();
 
   const {
     handleSubmit,
@@ -29,17 +28,8 @@ const LoginForm: FC<Props> = ({ onRegisterClick }) => {
     formState: { errors },
   } = useForm<LoginDto>();
 
-  const { mutateAsync: loginFn, isPending } = useMutation({
-    mutationFn: login,
-    onSuccess: (data) => {
-      // Todo: store data in queryClient
-      setUser(data.user);
-      console.log({ data });
-    },
-  });
-
   const onSubmit: SubmitHandler<LoginDto> = async (data) => {
-    await loginFn(data);
+    await login(data);
   };
 
   return (
@@ -93,7 +83,7 @@ const LoginForm: FC<Props> = ({ onRegisterClick }) => {
           color="white"
           bg="black"
           type="submit"
-          isLoading={isPending}
+          isLoading={loading}
         >
           Login
         </Button>
