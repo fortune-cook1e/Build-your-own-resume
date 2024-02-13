@@ -1,3 +1,4 @@
+import { QUERY_KEYS } from '@/web/app/constants';
 import { useUserStore } from '@/web/app/store/user';
 import { LoginDto } from '@/web/app/types/dto/auth.dto';
 import { LoginEntity } from '@/web/app/types/entity/auth.entity';
@@ -19,7 +20,7 @@ export const useLogin = () => {
     mutationFn: login,
     onSuccess: (data) => {
       setUser(data.user);
-      queryClient.setQueryData(['user'], data.user);
+      queryClient.setQueryData([QUERY_KEYS.user], data.user);
     },
   });
 
