@@ -1,4 +1,4 @@
-import { ResponseCode } from '@/web/app/constants/code';
+import { ResponseCode } from '@/web/constants/code';
 import { createStandaloneToast } from '@chakra-ui/react';
 import axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { redirect } from 'next/navigation';

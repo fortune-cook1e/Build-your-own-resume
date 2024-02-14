@@ -1,5 +1,5 @@
-import { useRegister } from '@/web/app/apis/auth/register';
-import { EMAIL_REGEXP } from '@/web/app/constants';
+import { useRegister } from '@/web/apis/auth/register';
+import { EMAIL_REGEXP } from '@/web/constants';
 import { LoginMode } from '@/web/app/login/page';
 import {
   FormControl,

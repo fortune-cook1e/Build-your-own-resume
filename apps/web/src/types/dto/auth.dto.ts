@@ -1,4 +1,4 @@
-import { userEntitySchema } from '@/web/app/types/entity/user.entity';
+import { userEntitySchema } from '@/web/types/entity/user.entity';
 import { z } from 'zod';
 
 export const loginDtoSchema = z.object({

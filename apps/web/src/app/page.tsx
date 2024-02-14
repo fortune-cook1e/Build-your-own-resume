@@ -1,9 +1,9 @@
 import Image from 'next/image';
-import HomeQuestionImg from '@/web/app/assets/images/home-question.png';
-import HomeLightImg from '@/web/app/assets/images/home-light.png';
-import HomeQuoImg from '@/web/app/assets/images/home-quo.png';
-import HomeStarImg from '@/web/app/assets/images/home-star.png';
-import HomeStringImg from '@/web/app/assets/images/home-string.png';
+import HomeQuestionImg from '@/web/assets/images/home-question.png';
+import HomeLightImg from '@/web/assets/images/home-light.png';
+import HomeQuoImg from '@/web/assets/images/home-quo.png';
+import HomeStarImg from '@/web/assets/images/home-star.png';
+import HomeStringImg from '@/web/assets/images/home-string.png';
 import { Button } from '@chakra-ui/react';
 import Link from 'next/link';
 

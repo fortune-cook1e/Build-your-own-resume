@@ -1,6 +1,6 @@
-import { useLogin } from '@/web/app/apis/auth/login';
-import { useUserStore } from '@/web/app/store/user';
-import { LoginDto } from '@/web/app/types/dto/auth.dto';
+import { useLogin } from '@/web/apis/auth/login';
+import { useUserStore } from '@/web/store/user';
+import { LoginDto } from '@/web/types/dto/auth.dto';
 import {
   FormControl,
   FormLabel,
