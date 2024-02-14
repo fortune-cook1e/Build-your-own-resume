@@ -1,5 +1,7 @@
+import AuthGuard from '@/web/components/AuthGuard';
+
 const Resumes = () => {
-  return <h1>this is resume page</h1>;
+  return <AuthGuard>this is resumes</AuthGuard>;
 };
 
 export default Resumes;
