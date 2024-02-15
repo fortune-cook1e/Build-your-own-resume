@@ -2,6 +2,10 @@ import { ResponseCode } from '@/web/constants/code';
 import { createStandaloneToast } from '@chakra-ui/react';
 import axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { redirect } from 'next/navigation';
+import createAuthRefreshInterceptor from 'axios-auth-refresh';
+import { refresh } from '@/web/apis/auth/refresh';
+import { queryClient } from '@/web/utils/queryClient';
+import { QUERY_KEYS } from '@/web/constants';
 
 interface ApiResponse<T> {
   data: T;
@@ -59,5 +63,35 @@ request.interceptors.response.use(
     return Promise.reject(error);
   },
 );
+
+const requestForRefresh = axios.create({
+  baseURL: '/api',
+  timeout: 1000 * 10, // 10s,
+});
+
+const handleAuthError = async (failedRequest: any) => {
+  try {
+    await refresh(requestForRefresh);
+    return Promise.resolve();
+  } catch (e) {
+    return Promise.reject(e);
+  }
+};
+
+// Interceptor to handle expired refresh token errors
+const handleRefreshFailed = async () => {
+  try {
+    queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.user] });
+    window.history.pushState(null, '', '/login');
+    return Promise.resolve();
+  } catch (e) {
+    return Promise.reject(e);
+  }
+};
+
+createAuthRefreshInterceptor(request, handleAuthError, {
+  statusCodes: [401, 403],
+});
+createAuthRefreshInterceptor(requestForRefresh, handleRefreshFailed);
 
 export default request;

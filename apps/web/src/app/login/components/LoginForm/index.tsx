@@ -1,5 +1,4 @@
 import { useLogin } from '@/web/apis/auth/login';
-import { useUserStore } from '@/web/store/user';
 import { LoginDto } from '@/web/types/dto/auth.dto';
 import {
   FormControl,
@@ -19,7 +18,6 @@ interface Props {
 }
 
 const LoginForm: FC<Props> = ({ onRegisterClick }) => {
-  const setUser = useUserStore((state) => state.setUser);
   const { loading, login } = useLogin();
 
   const {

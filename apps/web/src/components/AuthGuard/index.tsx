@@ -1,5 +1,6 @@
 'use client';
 
+import { useUser } from '@/web/apis/user/user';
 import { useUserStore } from '@/web/store/user';
 import { usePathname, useRouter } from 'next/navigation';
 import { FC, ReactNode } from 'react';
@@ -8,15 +9,20 @@ interface Props {
   children: ReactNode;
 }
 
-const AuthGuard = ({ children }: Props) => {
+const AuthGuard: FC<Props> = ({ children }) => {
   const router = useRouter();
   const pathname = usePathname().replaceAll('/', '');
 
-  const user = useUserStore((state) => state.user);
+  const { user, loading } = useUser();
 
-  if (user) return children;
+  if (loading) return null;
 
-  return router.replace(`/login?redirect=${pathname}`);
+  if (!user) {
+    router.replace(`/login?redirect=${pathname}`);
+    return null;
+  }
+
+  return children;
 };
 
 export default AuthGuard;
