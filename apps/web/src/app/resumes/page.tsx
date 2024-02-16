@@ -1,10 +1,17 @@
 'use client';
 
 import AuthGuard from '@/web/components/AuthGuard';
-import { useUserStore } from '@/web/store/user';
+import { Button } from '@chakra-ui/react';
+import { useRouter } from 'next/navigation';
 
 const Resumes = () => {
-  return <AuthGuard>this is resumes</AuthGuard>;
+  const router = useRouter();
+  return (
+    <AuthGuard>
+      this is resumes
+      <Button onClick={() => router.push('/builder')}>go to builder</Button>
+    </AuthGuard>
+  );
 };
 
 export default Resumes;

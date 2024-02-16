@@ -69,7 +69,7 @@ const requestForRefresh = axios.create({
   timeout: 1000 * 10, // 10s,
 });
 
-const handleAuthError = async (failedRequest: any) => {
+const handleAuthError = async () => {
   try {
     await refresh(requestForRefresh);
     return Promise.resolve();
