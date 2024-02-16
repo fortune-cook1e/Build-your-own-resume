@@ -5,6 +5,7 @@ import { ConfigService } from '@nestjs/config';
 import { Config } from './config/schema';
 import { Logger } from '@nestjs/common';
 import * as cookieParser from 'cookie-parser';
+import helmet from 'helmet';
 
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
@@ -30,6 +31,7 @@ async function bootstrap() {
     .build();
 
   app.use(cookieParser());
+  app.use(helmet());
 
   const document = SwaggerModule.createDocument(app, documentConfig);
   SwaggerModule.setup('api', app, document);
