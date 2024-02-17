@@ -1,16 +1,11 @@
 import { CACHE_MANAGER, Cache } from '@nestjs/cache-manager';
 import { Inject, Injectable, Logger } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { Config } from '../config/schema';
 import { REDIS_DEFAULT_TTL } from '../constants';
 
 @Injectable()
 export class UtilsService {
   logger = new Logger(UtilsService.name);
-  constructor(
-    @Inject(CACHE_MANAGER) private cacheManager: Cache,
-    private configService: ConfigService<Config>,
-  ) {}
+  constructor(@Inject(CACHE_MANAGER) private cacheManager: Cache) {}
 
   async getCacheOrSet<T>(
     key: string,
@@ -38,9 +33,7 @@ export class UtilsService {
     const value = await callback();
     const valueToCache = isString ? value : JSON.stringify(value);
 
-    // store
-    // FixBug: fix the bug that could not change redis ttl
-    await this.cacheManager.set(key, valueToCache, { ttl } as any);
+    await this.cacheManager.set(key, valueToCache, ttl);
 
     return value;
   }

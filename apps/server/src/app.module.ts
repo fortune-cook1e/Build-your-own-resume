@@ -9,6 +9,7 @@ import { ZodValidationPipe } from 'nestjs-zod';
 import { ResponseInterceptor } from './interceptors/response';
 import { MailModule } from './mail/mail.module';
 import { AllExceptionsFilter } from './filters/exception.filter';
+import { HealthModule } from '@/server/health/health.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { AllExceptionsFilter } from './filters/exception.filter';
     UtilsModule,
     DatabaseModule,
     MailModule,
+    HealthModule,
 
     // Features
     AuthModule,
