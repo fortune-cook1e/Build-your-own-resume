@@ -1,14 +1,15 @@
 import { Config } from '@/server/config/schema';
 import { DatabaseHealthIndicator } from '@/server/health/database.health';
 import { UtilsService } from '@/server/utils/utils.service';
-import { CACHE_MANAGER, Cache } from '@nestjs/cache-manager';
-import { Controller, Get, Inject } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { RedisHealthIndicator } from '@songkeys/nestjs-redis-health';
 import {
   HealthCheckService,
   HttpHealthIndicator,
   HealthCheck,
 } from '@nestjs/terminus';
+import { RedisService } from '@songkeys/nestjs-redis';
 
 @Controller('health')
 export class HealthController {
@@ -16,15 +17,24 @@ export class HealthController {
     private readonly health: HealthCheckService,
     private readonly http: HttpHealthIndicator,
     private readonly database: DatabaseHealthIndicator,
-    @Inject(CACHE_MANAGER) private cacheManager: Cache,
     private readonly utils: UtilsService,
+    private readonly redisService: RedisService,
+    private readonly redis: RedisHealthIndicator,
     private readonly config: ConfigService<Config>,
   ) {}
 
   private run() {
     return this.health.check([
-      // Todo: check redis health
       () => this.database.checkHealth(),
+      () => {
+        return this.redis.checkHealth('redis', {
+          type: 'redis',
+          timeout: 1000,
+          client: this.redisService.getClient(
+            this.config.getOrThrow('REDIS_NAMESPACE'),
+          ),
+        });
+      },
     ]);
   }
 

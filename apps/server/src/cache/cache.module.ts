@@ -1,21 +1,19 @@
-import { Config } from './../config/schema';
+import { Config } from '@/server/config/schema';
+import { REDIS_DEFAULT_TTL } from '@/server/constants';
 import { Module } from '@nestjs/common';
-import { CacheModule as CacheManager } from '@nestjs/cache-manager';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { REDIS_DEFAULT_TTL } from '../constants';
-import { redisStore } from 'cache-manager-redis-yet';
+import { ConfigService } from '@nestjs/config';
+import { RedisModule } from '@songkeys/nestjs-redis';
 
 @Module({
   imports: [
-    CacheManager.registerAsync({
-      isGlobal: true,
-      imports: [ConfigModule],
+    RedisModule.forRootAsync({
       inject: [ConfigService],
-      useFactory: async (configService: ConfigService<Config>) => ({
-        store: await redisStore({
+      useFactory: (configService: ConfigService<Config>) => ({
+        config: {
+          namespace: configService.getOrThrow('REDIS_NAMESPACE'),
           url: configService.getOrThrow('REDIS_URL'),
           ttl: REDIS_DEFAULT_TTL,
-        }),
+        },
       }),
     }),
   ],

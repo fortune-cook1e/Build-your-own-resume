@@ -3,6 +3,7 @@ import { z } from 'nestjs-zod/z';
 export const configSchema = z.object({
   REDIS_URL: z.string().url().startsWith('redis://').optional(),
   REDIS_PASSWORD: z.string().default('mypassword'),
+  REDIS_NAMESPACE: z.string().default('resume-generator'),
 
   PORT: z.coerce.number().default(3000),
 

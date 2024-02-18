@@ -1,11 +1,23 @@
-import { CACHE_MANAGER, Cache } from '@nestjs/cache-manager';
-import { Inject, Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { REDIS_DEFAULT_TTL } from '../constants';
+import Redis from 'ioredis';
+import { RedisService } from '@songkeys/nestjs-redis';
+import { ConfigService } from '@nestjs/config';
+import { Config } from '@/server/config/schema';
 
 @Injectable()
 export class UtilsService {
+  private readonly redis: Redis;
   logger = new Logger(UtilsService.name);
-  constructor(@Inject(CACHE_MANAGER) private cacheManager: Cache) {}
+
+  constructor(
+    private readonly redisService: RedisService,
+    private readonly configService: ConfigService<Config>,
+  ) {
+    this.redis = this.redisService.getClient(
+      this.configService.getOrThrow('REDIS_NAMESPACE'),
+    );
+  }
 
   async getCacheOrSet<T>(
     key: string,
@@ -15,7 +27,7 @@ export class UtilsService {
   ): Promise<T> {
     const start = performance.now();
 
-    const cachedValue = (await this.cacheManager.get(key)) as T;
+    const cachedValue = (await this.redis.get(key)) as T;
     const duration = Number(performance.now() - start).toFixed(0);
 
     if (!cachedValue) {
@@ -31,9 +43,12 @@ export class UtilsService {
     }
 
     const value = await callback();
-    const valueToCache = isString ? value : JSON.stringify(value);
+    const valueToCache = (
+      type === 'string' ? value : JSON.stringify(value)
+    ) as string;
 
-    await this.cacheManager.set(key, valueToCache, ttl);
+    // Tip: PX: milliseconds EX:seconds
+    await this.redis.set(key, valueToCache, 'PX', ttl);
 
     return value;
   }
