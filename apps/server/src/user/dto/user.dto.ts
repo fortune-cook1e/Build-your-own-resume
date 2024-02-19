@@ -31,6 +31,7 @@ export const privateInfoSchema = z.object({
 
 export const userWithPrivateSchema = userSchema.merge(privateInfoSchema);
 export const userListSchema = z.array(userSchema);
+export const userWithPrivateListSchema = z.array(userWithPrivateSchema);
 
 export class UserDto extends createZodDto(userSchema) {}
 export class PrivateInfoDto extends createZodDto(privateInfoSchema) {}

@@ -1,23 +1,16 @@
 import { Config } from '@/server/config/schema';
 import { DatabaseHealthIndicator } from '@/server/health/database.health';
-import { UtilsService } from '@/server/utils/utils.service';
 import { Controller, Get } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { RedisHealthIndicator } from '@songkeys/nestjs-redis-health';
-import {
-  HealthCheckService,
-  HttpHealthIndicator,
-  HealthCheck,
-} from '@nestjs/terminus';
+import { HealthCheckService, HealthCheck } from '@nestjs/terminus';
 import { RedisService } from '@songkeys/nestjs-redis';
 
 @Controller('health')
 export class HealthController {
   constructor(
     private readonly health: HealthCheckService,
-    private readonly http: HttpHealthIndicator,
     private readonly database: DatabaseHealthIndicator,
-    private readonly utils: UtilsService,
     private readonly redisService: RedisService,
     private readonly redis: RedisHealthIndicator,
     private readonly config: ConfigService<Config>,
