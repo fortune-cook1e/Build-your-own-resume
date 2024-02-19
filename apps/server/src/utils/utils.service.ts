@@ -7,7 +7,7 @@ import { Config } from '@/server/config/schema';
 
 @Injectable()
 export class UtilsService {
-  private readonly redis: Redis;
+  public readonly redis: Redis;
   logger = new Logger(UtilsService.name);
 
   constructor(
@@ -23,7 +23,7 @@ export class UtilsService {
     key: string,
     callback: () => Promise<T> | T,
     ttl: number = REDIS_DEFAULT_TTL,
-    type: 'json' | 'string' = 'json',
+    type: 'json' | 'string' = 'string',
   ): Promise<T> {
     const start = performance.now();
 
