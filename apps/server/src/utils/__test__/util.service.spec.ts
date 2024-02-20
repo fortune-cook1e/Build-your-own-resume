@@ -45,7 +45,12 @@ describe('UtilsService', () => {
 
     const callback = jest.fn(); // This should not be called since we have a cached value
 
-    const result = await utilsService.getCacheOrSet(key, callback);
+    const result = await utilsService.getCacheOrSet(
+      key,
+      callback,
+      undefined,
+      'string',
+    );
 
     expect(result).toEqual(cachedValue);
     expect(callback).not.toHaveBeenCalled();
@@ -61,7 +66,12 @@ describe('UtilsService', () => {
 
     const callback = jest.fn().mockResolvedValue(callbackValue);
 
-    const result = await utilsService.getCacheOrSet(key, callback);
+    const result = await utilsService.getCacheOrSet(
+      key,
+      callback,
+      undefined,
+      'string',
+    );
 
     expect(result).toEqual(callbackValue);
     expect(callback).toHaveBeenCalled();

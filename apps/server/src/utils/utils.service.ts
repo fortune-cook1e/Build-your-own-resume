@@ -23,11 +23,11 @@ export class UtilsService {
     key: string,
     callback: () => Promise<T> | T,
     ttl: number = REDIS_DEFAULT_TTL,
-    type: 'json' | 'string' = 'string',
+    type: 'json' | 'string' = 'json',
   ): Promise<T> {
     const start = performance.now();
 
-    const cachedValue = (await this.redis.get(key)) as T;
+    const cachedValue = await this.redis.get(key);
     const duration = Number(performance.now() - start).toFixed(0);
 
     if (!cachedValue) {
@@ -39,7 +39,7 @@ export class UtilsService {
     const isString = type === 'string';
 
     if (cachedValue) {
-      return isString ? cachedValue : JSON.parse(cachedValue as string);
+      return isString ? cachedValue : JSON.parse(cachedValue);
     }
 
     const value = await callback();
