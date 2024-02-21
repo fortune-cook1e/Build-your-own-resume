@@ -1,4 +1,4 @@
-import { UserEntity } from '@/web/types/entity/user.entity';
+import { UserEntity } from '@/web/types/entity/user';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 

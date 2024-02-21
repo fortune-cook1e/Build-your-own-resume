@@ -2,7 +2,7 @@
 
 import { QUERY_KEYS } from '@/web/constants';
 import { useUserStore } from '@/web/store/user';
-import { UserEntity } from '@/web/types/entity/user.entity';
+import { UserEntity } from '@/web/types/entity/user';
 import request from '@/web/utils/request';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';

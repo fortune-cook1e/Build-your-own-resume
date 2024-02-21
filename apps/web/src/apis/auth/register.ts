@@ -1,7 +1,7 @@
 import { QUERY_KEYS } from '@/web/constants';
 import { useUserStore } from '@/web/store/user';
 import { RegisterDto } from '@/web/types/dto/auth.dto';
-import { UserEntity } from '@/web/types/entity/user.entity';
+import { UserEntity } from '@/web/types/entity/user';
 import request from '@/web/utils/request';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 

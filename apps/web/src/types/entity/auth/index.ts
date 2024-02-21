@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { userEntitySchema } from './user.entity';
+import { userEntitySchema } from '../user';
 
 export const loginEntitySchema = z.object({
   status: z.enum(['authenticated']),
