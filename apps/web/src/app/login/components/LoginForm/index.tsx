@@ -1,5 +1,5 @@
 import { useLogin } from '@/web/apis/auth/login';
-import { LoginDto } from '@/web/types/dto/auth.dto';
+import { LoginDto } from '@/web/types/dto/auth/index.dto';
 import {
   FormControl,
   FormLabel,

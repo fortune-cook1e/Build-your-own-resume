@@ -1,7 +1,9 @@
 'use client';
 
+import LeftSidebar from '@/web/app/builder/components/Sidebars/left';
+import PanelResizeHandler from '@/web/components/PanelResizeHandler';
 import { FC, ReactNode } from 'react';
-import { PanelGroup, Panel, PanelResizeHandle } from 'react-resizable-panels';
+import { PanelGroup, Panel } from 'react-resizable-panels';
 
 interface Props {
   children: ReactNode;
@@ -12,11 +14,14 @@ const layout: FC<Props> = ({ children }) => {
     <div className="relative h-full w-full overflow-hidden">
       <PanelGroup direction="horizontal">
         <Panel defaultSize={30} minSize={20}>
-          left panel
+          <LeftSidebar />
         </Panel>
-        <PanelResizeHandle></PanelResizeHandle>
+
+        <PanelResizeHandler></PanelResizeHandler>
+
         <Panel minSize={30}>{children}</Panel>
-        <PanelResizeHandle></PanelResizeHandle>
+
+        <PanelResizeHandler></PanelResizeHandler>
         <Panel defaultSize={30} minSize={20}>
           <h1>right panel</h1>
         </Panel>
