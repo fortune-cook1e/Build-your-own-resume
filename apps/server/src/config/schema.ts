@@ -18,6 +18,12 @@ export const configSchema = z.object({
 
   MAIL_FROM: z.string(),
   SMTP_URL: z.string().startsWith('smtp://').optional(),
+
+  QINIU_BUCKET: z.string(),
+  QINIU_ACCESS_KEY: z.string(),
+  QINIU_SECRET_KEY: z.string(),
+  QINIU_ZONE: z.string(),
+  QINIU_DOMAIN: z.string(),
 });
 
 export type Config = z.infer<typeof configSchema>;
