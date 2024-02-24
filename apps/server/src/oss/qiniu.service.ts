@@ -8,14 +8,12 @@ export class QiniuService {
   private bucket: string;
   private accessKey: string;
   private secretKey: string;
-  // private zone: string;
   private domain: string;
 
   constructor(private readonly configService: ConfigService<Config>) {
     this.bucket = this.configService.getOrThrow('QINIU_BUCKET');
     this.accessKey = this.configService.getOrThrow('QINIU_ACCESS_KEY');
     this.secretKey = this.configService.getOrThrow('QINIU_SECRET_KEY');
-    // this.zone = this.configService.getOrThrow('QINIU_ZONE');
     this.domain = this.configService.getOrThrow('QINIU_DOMAIN');
   }
 
@@ -24,7 +22,6 @@ export class QiniuService {
       bucket: this.bucket,
       accessKey: this.accessKey,
       secretKey: this.secretKey,
-      // zone: this.zone,
     };
   }
 

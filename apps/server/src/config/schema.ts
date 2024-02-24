@@ -22,7 +22,6 @@ export const configSchema = z.object({
   QINIU_BUCKET: z.string(),
   QINIU_ACCESS_KEY: z.string(),
   QINIU_SECRET_KEY: z.string(),
-  QINIU_ZONE: z.string(),
   QINIU_DOMAIN: z.string(),
 });
 

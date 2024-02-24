@@ -13,6 +13,7 @@ import { HealthModule } from '@/server/health/health.module';
 import { OssController } from './oss/oss.controller';
 import { OssService } from './oss/oss.service';
 import { OssModule } from './oss/oss.module';
+import { UserModule } from '@/server/user/user.module';
 
 @Module({
   imports: [
@@ -23,11 +24,11 @@ import { OssModule } from './oss/oss.module';
     DatabaseModule,
     MailModule,
     HealthModule,
+    OssModule,
 
     // Features
     AuthModule,
-
-    OssModule,
+    UserModule,
   ],
   providers: [
     {

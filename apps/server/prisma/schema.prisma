@@ -10,6 +10,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Visibility {
+  public
+  private
+}
+
 model User {
   id            String    @id @default(cuid())
   name          String
@@ -21,31 +26,17 @@ model User {
   password      String
   salt          String    @unique
   refreshToken  String?
-  lastSignedIn  DateTime? // for refresh token
+  lastSignedIn  DateTime?
   Resume        Resume[]
-  // Secrets       Secrets? @relation(fields: [secretsId], references: [id])
-}
-
-model Secrets {
-  id                String    @id @default(cuid())
-  password          String?
-  lastSignedIn      DateTime? // Todo: 待补充
-  verificationToken String? // Todo: 待补充
-  // twoFactorSecret      String?
-  // twoFactorBackupCodes String[]  @default([]) 
-  refreshToken      String?
-  resetToken        String?   @unique // Todo: 待补充
-  userId            String    @unique
-  // user              User      @relation(fields: [userId], references: [id], onDelete: Cascade) // Todo: 待补充
-  // User              User[]
 }
 
 model Resume {
-  id        String   @id @default(cuid())
-  title     String
-  data      Json     @default("{}")
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id         String     @id @default(cuid())
+  title      String
+  data       Json       @default("{}")
+  visibility Visibility @default(private)
+  userId     String
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
 }
