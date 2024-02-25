@@ -7,6 +7,8 @@ export const basicsSchema = z.object({
   phone: z.string(),
   location: z.string(),
   url: urlSchema,
+  headline: z.string(),
+  gender: z.enum(['male', 'female', 'other']).default('male'),
   picture: z.object({
     url: z.string(),
     size: z.number().default(32),
@@ -21,6 +23,8 @@ export const defaultBasics: Basics = {
   phone: '',
   location: '',
   url: defaultUrl,
+  gender: 'female',
+  headline: '',
   picture: {
     url: '',
     size: 64,

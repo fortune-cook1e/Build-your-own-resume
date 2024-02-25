@@ -7,6 +7,7 @@
     "plugin:@tanstack/eslint-plugin-query/recommended"
   ],
   "rules": {
-    "react/no-unescaped-entities":1
+    "react/no-unescaped-entities":1,
+    "react/display-name":0
   }
 }

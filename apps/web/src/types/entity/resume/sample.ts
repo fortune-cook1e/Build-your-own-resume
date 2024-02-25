@@ -6,6 +6,8 @@ export const sampleResume: ResumeData = {
     email: 'john.doe@gmail.com',
     phone: '(555) 123-4567',
     location: 'Pleasantville, CA 94588',
+    headline: 'Creative Front-End Developer',
+    gender: 'female',
     url: {
       label: '',
       link: 'https://johndoe.me/',
