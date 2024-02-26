@@ -1,11 +1,11 @@
-import { getSectionIcon } from '@/web/app/builder/components/Sidebars/left/sections/common/IconSection';
+import { getSectionIcon } from '@/web/app/builder/components/Sidebars/left/sections/common/SectionIcon';
 import UrlInput from '@/web/app/builder/components/Sidebars/left/sections/common/UrlInput';
 import { useResumeStore } from '@/web/store/resume';
 import { basicsSchema } from '@/web/types/entity/resume/basic';
 import { FormControl, Input, FormLabel } from '@chakra-ui/react';
 import { FC } from 'react';
 
-const BasicsSection: FC = () => {
+const Basics: FC = () => {
   const setResume = useResumeStore((state) => state.setResume);
   const basics = useResumeStore((state) => state.resume.data.basics);
 
@@ -101,4 +101,4 @@ const BasicsSection: FC = () => {
   );
 };
 
-export default BasicsSection;
+export default Basics;

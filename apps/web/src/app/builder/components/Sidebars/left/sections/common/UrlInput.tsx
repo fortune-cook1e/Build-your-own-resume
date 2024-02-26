@@ -42,16 +42,16 @@ const UrlInput = forwardRef<any, Props>(
           />
         </FormControl>
         <Popover>
-          <Tooltip label="Url label">
-            <PopoverTrigger>
+          <PopoverTrigger>
+            <Tooltip label="Url label" aria-label="tooltip">
               <IconButton
                 ref={ref}
                 variant="ghost"
                 aria-label="Url label"
                 icon={<Tag></Tag>}
               ></IconButton>
-            </PopoverTrigger>
-          </Tooltip>
+            </Tooltip>
+          </PopoverTrigger>
 
           <PopoverContent width="150px">
             <PopoverBody>

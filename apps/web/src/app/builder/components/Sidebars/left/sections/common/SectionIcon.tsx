@@ -1,5 +1,5 @@
 import { SectionKey } from '@/web/types/entity/resume/sections';
-import { IconProps } from '@phosphor-icons/react';
+import { IconProps, ShareNetwork } from '@phosphor-icons/react';
 import { User } from '@phosphor-icons/react';
 
 export const getSectionIcon = (id: SectionKey, props?: IconProps) => {
@@ -7,6 +7,8 @@ export const getSectionIcon = (id: SectionKey, props?: IconProps) => {
     case 'basics':
       return <User size={18} {...props} />;
     // Todo: add more icons
+    case 'profiles':
+      return <ShareNetwork size={18} {...props} />;
     default:
       return null;
   }

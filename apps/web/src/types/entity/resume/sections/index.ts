@@ -1,3 +1,4 @@
+import { FilterKeys } from '@/web/types/common';
 import { profileSchema } from '@/web/types/entity/resume/sections/profile';
 import { z } from 'zod';
 
@@ -14,10 +15,14 @@ export const sectionsSchema = z.object({
   }),
 });
 
-// Detailed Types
 export type Section = z.infer<typeof sectionSchema>;
 export type Sections = z.infer<typeof sectionsSchema>;
 
+export type SectionWithItem<T = unknown> = Sections[FilterKeys<
+  Sections,
+  { items: T[] }
+>];
+export type SectionItem = SectionWithItem['items'][number];
 export type SectionKey = 'basics' | keyof Sections;
 
 // Defaults
