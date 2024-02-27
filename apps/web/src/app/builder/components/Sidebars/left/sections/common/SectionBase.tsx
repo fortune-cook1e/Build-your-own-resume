@@ -1,3 +1,8 @@
+import RenderSectionModal from '@/web/app/builder/components/Sidebars/left/sections/common/RenderSectionModal';
+import {
+  SectionProvider,
+  useSectionContext,
+} from '@/web/app/builder/components/Sidebars/left/sections/common/SectionContext';
 import { getSectionIcon } from '@/web/app/builder/components/Sidebars/left/sections/common/SectionIcon';
 import SectionOptions from '@/web/app/builder/components/Sidebars/left/sections/common/SectionOptions';
 import { useResumeStore } from '@/web/store/resume';
@@ -6,38 +11,49 @@ import {
   SectionKey,
   SectionWithItem,
 } from '@/web/types/entity/resume/sections';
-import { Flex, useBoolean } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import get from 'lodash-es/get';
-import { ReactNode } from 'react';
+import { useEffect } from 'react';
 
 interface Props<T> {
   id: SectionKey;
   title: (item: T) => string;
 }
 
-export type Mode = 'create' | 'update';
-
-// Todo: 这里需要注意的是 所有的 open id 等state 都要从这里根部传过去
 const SectionBase = <T extends SectionItem>({ id, title }: Props<T>) => {
-  const [open, setOpen] = useBoolean();
-
+  const { setOpen, setCreateMode, setUpdateMode, setId } = useSectionContext();
   const section = useResumeStore((state) =>
     get(state.resume.data.sections, id),
   ) as SectionWithItem<T>;
+
+  const onAddClick = () => {
+    setCreateMode();
+    setOpen.on();
+  };
+
+  useEffect(() => {
+    setId(id);
+  }, [id, setId]);
 
   if (!section) return null;
 
   return (
     <div id={id} className="animate-fade-right animate-once">
       <Flex align="center" justifyContent="space-between">
-        {getSectionIcon('profiles')}
+        {getSectionIcon(id)}
         <h2 className="text-3xl font-bold">{section.name}</h2>
-        <SectionOptions id={id} onAddClick={setOpen.on} />
+        <SectionOptions onAddClick={onAddClick} />
       </Flex>
 
-      {/* Todo: 这里注册所有的Modal 并且传递props */}
+      <RenderSectionModal />
     </div>
   );
 };
 
-export default SectionBase;
+const SectionBaseWithProvider = <T extends SectionItem>(props: Props<T>) => (
+  <SectionProvider>
+    <SectionBase {...props} />
+  </SectionProvider>
+);
+
+export default SectionBaseWithProvider;

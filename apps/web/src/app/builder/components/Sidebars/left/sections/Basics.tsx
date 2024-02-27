@@ -91,11 +91,14 @@ const Basics: FC = () => {
           />
         </FormControl>
 
-        <UrlInput
-          value={basics.url}
-          onChange={(value) => setResume('basics.url', value)}
-          placeholder="Your website URL"
-        />
+        <FormControl>
+          <FormLabel>Website</FormLabel>
+          <UrlInput
+            value={basics.url}
+            onChange={(value) => setResume('basics.url', value)}
+            placeholder="Your website URL"
+          />
+        </FormControl>
       </main>
     </section>
   );

@@ -1,34 +1,30 @@
-import ProfileModal from '@/web/app/builder/components/Sidebars/left/sections/Modals/Profiles';
 import {
   Section,
   SectionItem,
   SectionKey,
   SectionWithItem,
 } from '@/web/types/entity/resume/sections';
-import { FC, ReactNode } from 'react';
 
 import {
   Button,
-  Flex,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
   ModalHeader,
   ModalOverlay,
-  useBoolean,
   ModalFooter,
 } from '@chakra-ui/react';
 import { useResumeStore } from '@/web/store/resume';
 import { get } from 'lodash-es';
-import { UseFormReturn } from 'react-hook-form';
+import { FormProvider, UseFormReturn } from 'react-hook-form';
+import { useSectionContext } from '@/web/app/builder/components/Sidebars/left/sections/common/SectionContext';
+import { useEffect } from 'react';
+import { createId } from '@paralleldrive/cuid2';
 
 type Props<T extends SectionItem> = {
-  id: SectionKey;
   form: UseFormReturn<T>;
   defaultValues: T;
-  open: boolean;
-  onClose: () => void;
   children: React.ReactNode;
 };
 
@@ -37,32 +33,56 @@ type Props<T extends SectionItem> = {
 // 2. 并且管理Modal 的展示和关闭
 // 3. 这里的 Modal 用于渲染所有 模块的表单数据
 
-const SectionModal = <T extends SectionItem>({
-  open,
-  onClose,
-  id,
-  form,
-  children,
-}: Props<T>) => {
+const SectionModal = <T extends SectionItem>({ form, children }: Props<T>) => {
+  const { id, mode, open, setOpen } = useSectionContext();
+
   const section = useResumeStore((state) =>
     get(state.resume.data.sections, id),
   ) as SectionWithItem<T>;
 
-  const onSave = () => {};
+  const isCreate = mode === 'create';
+  const isUpdate = mode === 'update';
+
+  const onSubmit = async (values: T) => {
+    console.log('ssss', values);
+    // Todo: handle form values for create update
+  };
+
+  const onReset = () => {
+    if (isCreate) {
+      form.reset({
+        ...form.getValues(),
+        id: createId(),
+      });
+    }
+  };
+
+  useEffect(() => {
+    open && onReset();
+  }, [open, form]);
 
   return (
-    <Modal isOpen={open} onClose={onClose}>
+    <Modal isOpen={open} onClose={setOpen.off}>
       <ModalOverlay />
 
       <ModalContent>
-        <ModalHeader>{section.name}</ModalHeader>
+        <ModalHeader>
+          {isCreate && `Create an item of ${section.name}`}
+        </ModalHeader>
         <ModalCloseButton></ModalCloseButton>
-        <ModalBody>{children}</ModalBody>
+        <ModalBody>
+          <form id="section-form" onSubmit={form.handleSubmit(onSubmit)}>
+            {children}
+          </form>
+        </ModalBody>
         <ModalFooter>
-          <Button colorScheme="blue" mr={3}>
+          <Button variant="ghost" mr={3} onClick={setOpen.off}>
             Close
           </Button>
-          <Button variant="ghost">Save</Button>
+          <Button colorScheme="blue" type="submit" form="section-form">
+            {isCreate && 'Create an item'}
+            {isUpdate && 'Update item'}
+          </Button>
         </ModalFooter>
       </ModalContent>
     </Modal>

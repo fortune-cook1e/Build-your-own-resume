@@ -1,7 +1,6 @@
 import { URL, urlSchema } from '@/web/types/entity/resume/common/url';
 import {
   Flex,
-  FormControl,
   IconButton,
   Input,
   Popover,
@@ -10,6 +9,7 @@ import {
   PopoverTrigger,
   Tooltip,
   FormLabel,
+  Box,
 } from '@chakra-ui/react';
 import { Tag } from '@phosphor-icons/react';
 import { forwardRef } from 'react';
@@ -24,36 +24,35 @@ interface Props {
 const UrlInput = forwardRef<any, Props>(
   ({ value, onChange, domId, placeholder }, ref) => {
     const isInvalid = urlSchema.safeParse(value).success === false;
-
     return (
       <Flex gap="2" alignItems="end">
-        <FormControl isInvalid={isInvalid}>
-          <FormLabel id={domId}>Website</FormLabel>
-          <Input
-            id={domId}
-            value={value.link}
-            placeholder={placeholder || 'Your url link'}
-            onChange={(event) =>
-              onChange({
-                ...value,
-                link: event.target.value,
-              })
-            }
-          />
-        </FormControl>
+        <Input
+          id={domId}
+          value={value.link}
+          isInvalid={isInvalid}
+          placeholder={placeholder || 'Your url link'}
+          onChange={(event) =>
+            onChange({
+              ...value,
+              link: event.target.value,
+            })
+          }
+        />
         <Popover>
-          <PopoverTrigger>
-            <Tooltip label="Url label" aria-label="tooltip">
-              <IconButton
-                ref={ref}
-                variant="ghost"
-                aria-label="Url label"
-                icon={<Tag></Tag>}
-              ></IconButton>
-            </Tooltip>
-          </PopoverTrigger>
+          <Tooltip label="Url label" aria-label="tooltip">
+            <Box>
+              <PopoverTrigger>
+                <IconButton
+                  ref={ref}
+                  variant="ghost"
+                  aria-label="Url label"
+                  icon={<Tag></Tag>}
+                ></IconButton>
+              </PopoverTrigger>
+            </Box>
+          </Tooltip>
 
-          <PopoverContent width="150px">
+          <PopoverContent>
             <PopoverBody>
               <Input
                 value={value.label}

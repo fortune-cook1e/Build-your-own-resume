@@ -18,6 +18,7 @@ export type Profile = z.infer<typeof profileSchema>;
 
 export const defaultProfile: Profile = {
   ...defaultItem,
+  id: '',
   network: '',
   username: '',
   icon: '',
