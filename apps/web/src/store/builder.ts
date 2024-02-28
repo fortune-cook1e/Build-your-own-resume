@@ -5,8 +5,6 @@ import { immer } from 'zustand/middleware/immer';
 interface Panel {
   size: number;
   setSize: PanelOnResize;
-  onCollapse: PanelOnCollapse;
-  collapsible: boolean;
   handler: Hanlder;
 }
 
@@ -32,12 +30,6 @@ export const useBuilderStore = create<BuilderStore>()(
             state.panel.left.size = size;
           });
         },
-        collapsible: false,
-        onCollapse() {
-          set((state) => {
-            state.panel.left.collapsible = true;
-          });
-        },
         handler: {
           isDragging: false,
           setDragging(dragging) {
@@ -52,12 +44,6 @@ export const useBuilderStore = create<BuilderStore>()(
         setSize(size) {
           set((state) => {
             state.panel.right.size = size;
-          });
-        },
-        collapsible: false,
-        onCollapse() {
-          set((state) => {
-            state.panel.right.collapsible = true;
           });
         },
         handler: {

@@ -1,6 +1,17 @@
+import { useResumeStore } from '@/web/store/resume';
 import { SectionKey } from '@/web/types/entity/resume/sections';
-import { IconProps, ShareNetwork } from '@phosphor-icons/react';
+import { IconButton, Tooltip } from '@chakra-ui/react';
+import { IconProps, ShareNetwork, Alien } from '@phosphor-icons/react';
 import { User } from '@phosphor-icons/react';
+import { get } from 'lodash-es';
+import { FC, ReactElement } from 'react';
+
+interface SectionIconProps {
+  id: SectionKey;
+  name?: string;
+  onClick?: () => void;
+  icon?: ReactElement;
+}
 
 export const getSectionIcon = (id: SectionKey, props?: IconProps) => {
   switch (id) {
@@ -13,3 +24,31 @@ export const getSectionIcon = (id: SectionKey, props?: IconProps) => {
       return null;
   }
 };
+
+export const SectionIcon: FC<SectionIconProps> = ({
+  id,
+  onClick,
+  icon,
+  name,
+}) => {
+  const section = useResumeStore((state) =>
+    get(state.resume.data.sections, id),
+  );
+
+  const _name = section ? section.name : name ? name : '';
+
+  const _icon = icon ? icon : getSectionIcon(id) ?? <Alien></Alien>;
+
+  return (
+    <Tooltip label={_name}>
+      <IconButton
+        isRound
+        aria-label="icon button"
+        onClick={onClick}
+        icon={_icon}
+      ></IconButton>
+    </Tooltip>
+  );
+};
+
+export default SectionIcon;

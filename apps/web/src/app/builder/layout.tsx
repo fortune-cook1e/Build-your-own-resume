@@ -16,13 +16,7 @@ const Layout: FC<Props> = ({ children }) => {
   return (
     <div className="relative h-full w-full overflow-hidden">
       <PanelGroup direction="horizontal">
-        <Panel
-          defaultSize={30}
-          minSize={25}
-          collapsible={left.collapsible}
-          onCollapse={left.onCollapse}
-          onResize={left.setSize}
-        >
+        <Panel defaultSize={30} minSize={25} onResize={left.setSize}>
           <LeftSidebar />
         </Panel>
 
@@ -37,13 +31,7 @@ const Layout: FC<Props> = ({ children }) => {
           onDragging={right.handler.setDragging}
           isDragging={right.handler.isDragging}
         ></PanelResizeHandler>
-        <Panel
-          defaultSize={30}
-          minSize={25}
-          collapsible={right.collapsible}
-          onCollapse={right.onCollapse}
-          onResize={right.setSize}
-        >
+        <Panel defaultSize={30} minSize={25} onResize={right.setSize}>
           <h1>right panel</h1>
         </Panel>
       </PanelGroup>
