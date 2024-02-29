@@ -28,16 +28,13 @@ export const useResumeStore = create<ResumeStore>()(
       resume: defaultResumeData,
 
       setResume: (path, value) => {
-        set(
-          (state) => {
-            // Tip: lodashset https://lodash.com/docs/4.17.15#set
-            state.resume.data = lodashSet(state.resume.data, path, value);
+        set((state) => {
+          // Tip: lodashset https://lodash.com/docs/4.17.15#set
+          console.log({ path, value });
+          state.resume.data = lodashSet(state.resume.data, path, value);
 
-            // Todo: update resume and postmessage to iframe
-          },
-          false,
-          'resume/setResume',
-        );
+          // Todo: update resume and postmessage to iframe
+        });
       },
 
       resetResume: () => {

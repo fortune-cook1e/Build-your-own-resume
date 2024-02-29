@@ -45,7 +45,8 @@ const SectionBase = <T extends SectionItem>({
   description,
 }: Props<T>) => {
   const dndContextId = useId();
-  const { setOpen, setCreateMode, setUpdateMode, setId } = useSectionContext();
+  const { setOpen, setCreateMode, setUpdateMode, setId, setPayload } =
+    useSectionContext();
   const section = useResumeStore((state) =>
     get(state.resume.data.sections, id),
   ) as SectionWithItem<T>;
@@ -72,6 +73,22 @@ const SectionBase = <T extends SectionItem>({
       const sortedList = arrayMove(section.items, oldIndex, newIndex);
       setResume(`sections.${id}.items`, sortedList);
     }
+  };
+
+  const onEdit = (item: T) => {
+    setUpdateMode();
+    setOpen.on();
+    setPayload(item);
+  };
+
+  const onVisible = (index: number) => {
+    const visible = get(section, `items.${index}.visible`, true);
+    setResume(`sections.${id}.items[${index}].visible`, !visible);
+  };
+
+  const onDelete = (itemId: string) => {
+    const newItems = section.items.filter((item) => item.id !== itemId);
+    setResume(`sections.${id}.items`, newItems);
   };
 
   useEffect(() => {
@@ -102,12 +119,16 @@ const SectionBase = <T extends SectionItem>({
           strategy={verticalListSortingStrategy}
         >
           <div className="animate-fade-right animate-once">
-            {section.items.map((item) => (
+            {section.items.map((item, index) => (
               <SectionListItem
                 key={item.id}
                 id={item.id}
                 title={title(item as T)}
+                visible={item.visible}
                 description={description(item as T)}
+                onEdit={() => onEdit(item as T)}
+                onVisible={() => onVisible(index)}
+                onDelete={() => onDelete(item.id)}
               />
             ))}
           </div>

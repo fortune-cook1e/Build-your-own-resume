@@ -1,20 +1,30 @@
+import { ContextMenu } from '@/web/components/ContextMenu';
 import { mergeTailwindCss } from '@/web/utils/styles';
-import { Flex } from '@chakra-ui/react';
+import { Flex, MenuItem, MenuList } from '@chakra-ui/react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { DotsSix } from '@phosphor-icons/react';
+import { DotsSix, Eye, EyeClosed, TrashSimple } from '@phosphor-icons/react';
+import { PencilSimple } from '@phosphor-icons/react/dist/ssr';
 import { FC } from 'react';
 
 interface SectionListItemProps {
   id: string;
   title: string;
   description: string;
+  visible: boolean;
+  onEdit: () => void;
+  onVisible: () => void;
+  onDelete: () => void;
 }
 
 const SectionListItem: FC<SectionListItemProps> = ({
   id,
   title,
   description,
+  visible,
+  onEdit,
+  onVisible,
+  onDelete,
 }) => {
   const {
     setNodeRef,
@@ -51,12 +61,34 @@ const SectionListItem: FC<SectionListItemProps> = ({
         <DotsSix weight="bold" size={12} />
       </div>
 
-      <div className="flex-1 p-4 hover:bg-secondary-accent cursor-pointer">
-        <h4 className="font-medium leading-relaxed">{title}</h4>
-        {description && (
-          <p className="text-xs leading-relaxed opacity-50">{description}</p>
+      <ContextMenu
+        renderMenu={() => (
+          <MenuList>
+            <MenuItem
+              onClick={onVisible}
+              icon={visible ? <EyeClosed /> : <Eye />}
+            >
+              Visible
+            </MenuItem>
+            <MenuItem onClick={onEdit} icon={<PencilSimple />}>
+              Edit
+            </MenuItem>
+            <MenuItem onClick={onDelete} icon={<TrashSimple />} textColor="red">
+              Delete
+            </MenuItem>
+          </MenuList>
         )}
-      </div>
+      >
+        <div
+          className="flex-1 p-4 hover:bg-secondary-accent cursor-pointer"
+          onClick={onEdit}
+        >
+          <h4 className="font-medium leading-relaxed">{title}</h4>
+          {description && (
+            <p className="text-xs leading-relaxed opacity-50">{description}</p>
+          )}
+        </div>
+      </ContextMenu>
     </Flex>
   );
 };

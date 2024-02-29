@@ -1,7 +1,5 @@
 import {
-  Section,
   SectionItem,
-  SectionKey,
   SectionWithItem,
 } from '@/web/types/entity/resume/sections';
 
@@ -21,6 +19,7 @@ import { FormProvider, UseFormReturn } from 'react-hook-form';
 import { useSectionContext } from '@/web/app/builder/components/Sidebars/left/sections/common/SectionContext';
 import { useEffect } from 'react';
 import { createId } from '@paralleldrive/cuid2';
+import { produce } from 'immer';
 
 type Props<T extends SectionItem> = {
   form: UseFormReturn<T>;
@@ -34,11 +33,12 @@ type Props<T extends SectionItem> = {
 // 3. 这里的 Modal 用于渲染所有 模块的表单数据
 
 const SectionModal = <T extends SectionItem>({ form, children }: Props<T>) => {
-  const { id, mode, open, setOpen } = useSectionContext();
+  const { id, mode, open, setOpen, payload } = useSectionContext();
 
   const section = useResumeStore((state) =>
     get(state.resume.data.sections, id),
   ) as SectionWithItem<T>;
+  const setResume = useResumeStore((state) => state.setResume);
 
   const isCreate = mode === 'create';
   const isUpdate = mode === 'update';
@@ -46,6 +46,28 @@ const SectionModal = <T extends SectionItem>({ form, children }: Props<T>) => {
   const onSubmit = async (values: T) => {
     console.log('ssss', values);
     // Todo: handle form values for create update
+
+    if (isCreate) {
+      setResume(
+        `sections.${id}.items`,
+        produce(section.items, (draft: T[]): void => {
+          draft.push(values);
+        }),
+      );
+    }
+
+    if (isUpdate && payload) {
+      setResume(
+        `sections.${id}.items`,
+        produce(section.items, (draft: T[]): void => {
+          const index = draft.findIndex((item) => item.id === payload.id);
+          if (index === -1) return;
+          draft[index] = values;
+        }),
+      );
+    }
+
+    setOpen.off();
   };
 
   const onReset = () => {
@@ -53,6 +75,12 @@ const SectionModal = <T extends SectionItem>({ form, children }: Props<T>) => {
       form.reset({
         ...form.getValues(),
         id: createId(),
+      });
+    }
+    if (isUpdate) {
+      form.reset({
+        ...form.getValues(),
+        ...payload,
       });
     }
   };
@@ -68,6 +96,7 @@ const SectionModal = <T extends SectionItem>({ form, children }: Props<T>) => {
       <ModalContent>
         <ModalHeader>
           {isCreate && `Create an item of ${section.name}`}
+          {isUpdate && `Update an item of ${section.name}`}
         </ModalHeader>
         <ModalCloseButton></ModalCloseButton>
         <ModalBody>

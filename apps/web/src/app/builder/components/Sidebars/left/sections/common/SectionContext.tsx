@@ -1,14 +1,17 @@
 'use client';
 
-import { SectionKey } from '@/web/types/entity/resume/sections';
+import { SectionItem, SectionKey } from '@/web/types/entity/resume/sections';
 import { ReactNode, createContext, useContext, useRef } from 'react';
 import { StoreApi, createStore, useStore } from 'zustand';
 
 export type Mode = 'create' | 'update';
+
+export type Payload = null | SectionItem;
 interface SectionState {
   open: boolean;
   id: SectionKey;
   mode: Mode;
+  payload: Payload;
 }
 
 interface SectionActions {
@@ -20,6 +23,7 @@ interface SectionActions {
   setUpdateMode: () => void;
   setMode: (mode: Mode) => void;
   setId: (id: SectionKey) => void;
+  setPayload: (item: null | Payload) => void;
 }
 
 type SectionStore = SectionState & SectionActions;
@@ -30,6 +34,7 @@ const createSectionStore = () =>
       open: false,
       id: 'profiles',
       mode: 'create',
+      payload: null,
 
       setOpen: {
         on: () => set((state) => ({ ...state, open: true })),
@@ -40,6 +45,8 @@ const createSectionStore = () =>
       setUpdateMode: () => set((state) => ({ ...state, mode: 'update' })),
       setMode: (mode) => set((state) => ({ ...state, mode })),
       setId: (id) => set((state) => ({ ...state, id })),
+
+      setPayload: (payload) => set((state) => ({ ...state, payload })),
     };
   });
 

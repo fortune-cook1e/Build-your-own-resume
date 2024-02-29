@@ -16,7 +16,7 @@ const Layout: FC<Props> = ({ children }) => {
   return (
     <div className="relative h-full w-full overflow-hidden">
       <PanelGroup direction="horizontal">
-        <Panel defaultSize={30} minSize={25} onResize={left.setSize}>
+        <Panel defaultSize={30} minSize={30} onResize={left.setSize}>
           <LeftSidebar />
         </Panel>
 
