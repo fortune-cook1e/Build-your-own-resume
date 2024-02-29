@@ -14,6 +14,7 @@ import { OssController } from './oss/oss.controller';
 import { OssService } from './oss/oss.service';
 import { OssModule } from './oss/oss.module';
 import { UserModule } from '@/server/user/user.module';
+import { ResumeModule } from './resume/resume.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { UserModule } from '@/server/user/user.module';
     // Features
     AuthModule,
     UserModule,
+    ResumeModule,
   ],
   providers: [
     {

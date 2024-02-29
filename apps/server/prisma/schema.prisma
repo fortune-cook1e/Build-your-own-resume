@@ -31,12 +31,16 @@ model User {
 }
 
 model Resume {
-  id         String     @id @default(cuid())
-  title      String
-  data       Json       @default("{}")
-  visibility Visibility @default(private)
-  userId     String
-  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
+  id          String     @id @default(cuid())
+  title       String
+  description String
+  data        Json       @default("{}")
+  visibility  Visibility @default(private)
+  userId      String
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@unique([userId, id])
+  @@index(fields: [userId])
 }
