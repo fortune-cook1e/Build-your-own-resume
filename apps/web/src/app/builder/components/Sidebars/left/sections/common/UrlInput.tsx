@@ -1,4 +1,3 @@
-import { URL, urlSchema } from '@/types/entity/resume/common/url';
 import {
   Flex,
   IconButton,
@@ -11,6 +10,7 @@ import {
   FormLabel,
   Box,
 } from '@chakra-ui/react';
+import { urlSchema, URL } from '@fe-cookie/resume-generator-utils';
 import { Tag } from '@phosphor-icons/react';
 import { forwardRef } from 'react';
 

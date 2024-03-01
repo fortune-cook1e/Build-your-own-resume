@@ -2,10 +2,10 @@
 import Basics from '@/app/builder/components/Sidebars/left/sections/Basics';
 import SectionBase from '@/app/builder/components/Sidebars/left/sections/common/SectionBase';
 import SectionIcon from '@/app/builder/components/Sidebars/left/sections/common/SectionIcon';
-import { Profile } from '@/types/entity/resume/sections/profile';
 import { Divider, Flex, IconButton } from '@chakra-ui/react';
 import { HourglassMedium } from '@phosphor-icons/react';
 import { FC, useRef } from 'react';
+import { Profile } from '@fe-cookie/resume-generator-utils';
 
 const LeftSidebar: FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);

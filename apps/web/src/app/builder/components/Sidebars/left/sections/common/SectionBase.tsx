@@ -10,7 +10,7 @@ import {
   SectionItem,
   SectionKey,
   SectionWithItem,
-} from '@/types/entity/resume/sections';
+} from '@fe-cookie/resume-generator-utils';
 import { Flex } from '@chakra-ui/react';
 import get from 'lodash-es/get';
 import { useEffect, useId } from 'react';

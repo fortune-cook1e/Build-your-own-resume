@@ -1,6 +1,6 @@
 import Profiles from '@/app/builder/components/Sidebars/left/sections/Modals/Profiles';
 import { useSectionContext } from '@/app/builder/components/Sidebars/left/sections/common/SectionContext';
-import { SectionKey } from '@/types/entity/resume/sections';
+import { SectionKey } from '@fe-cookie/resume-generator-utils';
 import { FC } from 'react';
 
 const RenderSectionModal: FC = () => {

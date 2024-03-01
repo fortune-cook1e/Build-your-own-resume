@@ -1,4 +1,7 @@
-import { SectionItem, SectionWithItem } from '@/types/entity/resume/sections';
+import {
+  SectionItem,
+  SectionWithItem,
+} from '@fe-cookie/resume-generator-utils';
 
 import {
   Button,

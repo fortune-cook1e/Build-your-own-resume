@@ -1,8 +1,8 @@
-import { idSchema } from '@/types/entity/resume/common/id';
 import {
   defaultResumeData,
   resumeDataSchema,
-} from '@/types/entity/resume/resume';
+  idSchema,
+} from '@fe-cookie/resume-generator-utils';
 import { userEntitySchema } from '@/types/entity/user';
 import { z } from 'zod';
 
