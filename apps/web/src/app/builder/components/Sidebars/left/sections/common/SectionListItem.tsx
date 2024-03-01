@@ -1,5 +1,5 @@
-import { ContextMenu } from '@/web/components/ContextMenu';
-import { mergeTailwindCss } from '@/web/utils/styles';
+import { ContextMenu } from '@/components/ContextMenu';
+import { mergeTailwindCss } from '@/utils/styles';
 import { Flex, MenuItem, MenuList } from '@chakra-ui/react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';

@@ -1,6 +1,6 @@
 'use client';
 
-import AuthGuard from '@/web/components/AuthGuard';
+import AuthGuard from '@/components/AuthGuard';
 import { Button } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 

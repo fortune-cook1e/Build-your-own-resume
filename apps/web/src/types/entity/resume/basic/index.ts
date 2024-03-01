@@ -1,4 +1,4 @@
-import { defaultUrl, urlSchema } from '@/web/types/entity/resume/common/url';
+import { defaultUrl, urlSchema } from '@/types/entity/resume/common/url';
 import { z } from 'zod';
 
 export const basicsSchema = z.object({

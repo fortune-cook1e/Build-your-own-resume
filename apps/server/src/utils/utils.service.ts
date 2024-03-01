@@ -3,7 +3,7 @@ import { REDIS_DEFAULT_TTL } from '../constants';
 import Redis from 'ioredis';
 import { RedisService } from '@songkeys/nestjs-redis';
 import { ConfigService } from '@nestjs/config';
-import { Config } from '@/server/config/schema';
+import { Config } from '@/config/schema';
 
 @Injectable()
 export class UtilsService {

@@ -1,9 +1,9 @@
-import { ResumeDto } from '@/web/types/dto/resume';
+import { ResumeDto } from '@/types/dto/resume';
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 import { devtools } from 'zustand/middleware';
 import { set as lodashSet } from 'lodash-es';
-import { sampleResume } from '@/web/types/entity/resume/sample';
+import { sampleResume } from '@/types/entity/resume/sample';
 import { createId } from '@paralleldrive/cuid2';
 interface ResumeStore {
   resume: ResumeDto;

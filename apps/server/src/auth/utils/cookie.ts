@@ -1,7 +1,4 @@
-import {
-  COOKIE_ACCESS_EXPIRE,
-  COOKIE_REFRESH_EXPIRE,
-} from '@/server/constants';
+import { COOKIE_ACCESS_EXPIRE, COOKIE_REFRESH_EXPIRE } from '@/constants';
 import { CookieOptions } from 'express';
 
 export const getCookieOptions = (type: 'access' | 'refresh'): CookieOptions => {

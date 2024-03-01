@@ -1,11 +1,11 @@
-import { Config } from '@/server/config/schema';
-import { UserService } from '@/server/user/user.service';
+import { Config } from '@/config/schema';
+import { UserService } from '@/user/user.service';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { Payload } from '../dto/auth.dto';
-import { COOKIE_ACCESS_FIELD } from '@/server/constants';
+import { COOKIE_ACCESS_FIELD } from '@/constants';
 import { Request } from 'express';
 
 @Injectable()

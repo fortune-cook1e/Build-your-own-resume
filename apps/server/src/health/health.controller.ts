@@ -1,5 +1,5 @@
-import { Config } from '@/server/config/schema';
-import { DatabaseHealthIndicator } from '@/server/health/database.health';
+import { Config } from '@/config/schema';
+import { DatabaseHealthIndicator } from '@/health/database.health';
 import { Controller, Get } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { RedisHealthIndicator } from '@songkeys/nestjs-redis-health';

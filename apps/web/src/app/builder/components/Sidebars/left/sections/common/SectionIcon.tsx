@@ -1,5 +1,5 @@
-import { useResumeStore } from '@/web/store/resume';
-import { SectionKey } from '@/web/types/entity/resume/sections';
+import { useResumeStore } from '@/store/resume';
+import { SectionKey } from '@/types/entity/resume/sections';
 import { IconButton, Tooltip } from '@chakra-ui/react';
 import { IconProps, ShareNetwork, Alien } from '@phosphor-icons/react';
 import { User } from '@phosphor-icons/react';

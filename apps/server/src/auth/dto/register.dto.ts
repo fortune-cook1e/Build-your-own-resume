@@ -1,4 +1,4 @@
-import { userSchema } from '@/server/user/dto/user.dto';
+import { userSchema } from '@/user/dto/user.dto';
 import { createZodDto } from 'nestjs-zod';
 import { z } from 'zod';
 

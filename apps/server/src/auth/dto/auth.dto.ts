@@ -1,7 +1,7 @@
 import { z } from 'nestjs-zod/z';
 import { userSchema, usernameSchema } from './../../user/dto/user.dto';
 import { createZodDto } from 'nestjs-zod';
-import { ErrorMessage } from '@/server/constants';
+import { ErrorMessage } from '@/constants';
 
 export const payloadSchema = userSchema.pick({
   id: true,

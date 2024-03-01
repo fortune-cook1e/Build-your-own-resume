@@ -1,4 +1,4 @@
-import { ResumeService } from '@/server/resume/resume.service';
+import { ResumeService } from '@/resume/resume.service';
 import { Controller } from '@nestjs/common';
 
 @Controller('resume')

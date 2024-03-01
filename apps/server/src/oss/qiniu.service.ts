@@ -1,4 +1,4 @@
-import { Config } from '@/server/config/schema';
+import { Config } from '@/config/schema';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as qiniu from 'qiniu';

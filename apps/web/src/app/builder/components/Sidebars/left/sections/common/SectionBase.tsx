@@ -1,16 +1,16 @@
-import RenderSectionModal from '@/web/app/builder/components/Sidebars/left/sections/common/RenderSectionModal';
+import RenderSectionModal from '@/app/builder/components/Sidebars/left/sections/common/RenderSectionModal';
 import {
   SectionProvider,
   useSectionContext,
-} from '@/web/app/builder/components/Sidebars/left/sections/common/SectionContext';
-import { getSectionIcon } from '@/web/app/builder/components/Sidebars/left/sections/common/SectionIcon';
-import SectionOptions from '@/web/app/builder/components/Sidebars/left/sections/common/SectionOptions';
-import { useResumeStore } from '@/web/store/resume';
+} from '@/app/builder/components/Sidebars/left/sections/common/SectionContext';
+import { getSectionIcon } from '@/app/builder/components/Sidebars/left/sections/common/SectionIcon';
+import SectionOptions from '@/app/builder/components/Sidebars/left/sections/common/SectionOptions';
+import { useResumeStore } from '@/store/resume';
 import {
   SectionItem,
   SectionKey,
   SectionWithItem,
-} from '@/web/types/entity/resume/sections';
+} from '@/types/entity/resume/sections';
 import { Flex } from '@chakra-ui/react';
 import get from 'lodash-es/get';
 import { useEffect, useId } from 'react';
@@ -31,7 +31,7 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
-import SectionListItem from '@/web/app/builder/components/Sidebars/left/sections/common/SectionListItem';
+import SectionListItem from '@/app/builder/components/Sidebars/left/sections/common/SectionListItem';
 
 interface Props<T> {
   id: SectionKey;

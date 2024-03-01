@@ -2,8 +2,8 @@ import { Controller, Get, Param, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { UserService } from './user.service';
 import { UserWithPrivateDto, userListSchema, userSchema } from './dto/user.dto';
-import { User } from '@/server/user/decorators/user.decorator';
-import { JwtGuard } from '@/server/auth/guards/jwt.guard';
+import { User } from '@/user/decorators/user.decorator';
+import { JwtGuard } from '@/auth/guards/jwt.guard';
 
 @Controller('user')
 @ApiTags('user')

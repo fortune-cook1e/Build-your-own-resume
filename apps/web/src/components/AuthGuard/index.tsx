@@ -1,7 +1,7 @@
 'use client';
 
-import { useUser } from '@/web/apis/user/user';
-import { useUserStore } from '@/web/store/user';
+import { useUser } from '@/apis/user/user';
+import { useUserStore } from '@/store/user';
 import { usePathname, useRouter } from 'next/navigation';
 import { FC, ReactNode } from 'react';
 

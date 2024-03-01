@@ -2,9 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy, StrategyOptions } from 'passport-jwt';
 import { AuthService } from '../auth.service';
-import { COOKIE_REFRESH_FIELD } from '@/server/constants';
+import { COOKIE_REFRESH_FIELD } from '@/constants';
 import { ConfigService } from '@nestjs/config';
-import { Config } from '@/server/config/schema';
+import { Config } from '@/config/schema';
 import { Request } from 'express';
 import { Payload } from '../dto/auth.dto';
 

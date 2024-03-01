@@ -1,9 +1,9 @@
 'use client';
 
-import { QUERY_KEYS } from '@/web/constants';
-import { useUserStore } from '@/web/store/user';
-import { UserEntity } from '@/web/types/entity/user';
-import request from '@/web/utils/request';
+import { QUERY_KEYS } from '@/constants';
+import { useUserStore } from '@/store/user';
+import { UserEntity } from '@/types/entity/user';
+import request from '@/utils/request';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 

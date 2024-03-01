@@ -1,4 +1,4 @@
-import { mergeTailwindCss } from '@/web/utils/styles';
+import { mergeTailwindCss } from '@/utils/styles';
 import React, { FC } from 'react';
 import * as PanelPrimitive from 'react-resizable-panels';
 import { DotsSixVertical } from '@phosphor-icons/react';

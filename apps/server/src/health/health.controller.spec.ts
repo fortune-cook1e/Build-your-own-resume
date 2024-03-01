@@ -6,11 +6,11 @@ import {
   RedisHealthIndicator,
   RedisHealthModule,
 } from '@songkeys/nestjs-redis-health';
-import { DatabaseHealthIndicator } from '@/server/health/database.health';
-import { DatabaseModule } from '@/server/database/database.module';
+import { DatabaseHealthIndicator } from '@/health/database.health';
+import { DatabaseModule } from '@/database/database.module';
 
-import { ConfigModule } from '@/server/config/config.module';
-import { CacheModule } from '@/server/cache/cache.module';
+import { ConfigModule } from '@/config/config.module';
+import { CacheModule } from '@/cache/cache.module';
 describe('HealthController', () => {
   let controller: HealthController;
 

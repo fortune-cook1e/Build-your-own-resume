@@ -1,4 +1,4 @@
-import { mergeTailwindCss } from '@/web/utils/styles';
+import { mergeTailwindCss } from '@/utils/styles';
 
 describe('Test Merge TailwindCss', () => {
   it('add different classname', () => {

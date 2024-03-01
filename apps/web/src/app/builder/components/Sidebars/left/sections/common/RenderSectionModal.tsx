@@ -1,6 +1,6 @@
-import Profiles from '@/web/app/builder/components/Sidebars/left/sections/Modals/Profiles';
-import { useSectionContext } from '@/web/app/builder/components/Sidebars/left/sections/common/SectionContext';
-import { SectionKey } from '@/web/types/entity/resume/sections';
+import Profiles from '@/app/builder/components/Sidebars/left/sections/Modals/Profiles';
+import { useSectionContext } from '@/app/builder/components/Sidebars/left/sections/common/SectionContext';
+import { SectionKey } from '@/types/entity/resume/sections';
 import { FC } from 'react';
 
 const RenderSectionModal: FC = () => {

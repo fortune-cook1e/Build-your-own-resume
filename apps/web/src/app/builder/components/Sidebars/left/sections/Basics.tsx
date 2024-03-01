@@ -1,7 +1,7 @@
-import { getSectionIcon } from '@/web/app/builder/components/Sidebars/left/sections/common/SectionIcon';
-import UrlInput from '@/web/app/builder/components/Sidebars/left/sections/common/UrlInput';
-import { useResumeStore } from '@/web/store/resume';
-import { basicsSchema } from '@/web/types/entity/resume/basic';
+import { getSectionIcon } from '@/app/builder/components/Sidebars/left/sections/common/SectionIcon';
+import UrlInput from '@/app/builder/components/Sidebars/left/sections/common/UrlInput';
+import { useResumeStore } from '@/store/resume';
+import { basicsSchema } from '@/types/entity/resume/basic';
 import { FormControl, Input, FormLabel } from '@chakra-ui/react';
 import { FC } from 'react';
 

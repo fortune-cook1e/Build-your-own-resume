@@ -1,8 +1,8 @@
-import { QUERY_KEYS } from '@/web/constants';
-import { useUserStore } from '@/web/store/user';
-import { RegisterDto } from '@/web/types/dto/auth/index.dto';
-import { UserEntity } from '@/web/types/entity/user';
-import request from '@/web/utils/request';
+import { QUERY_KEYS } from '@/constants';
+import { useUserStore } from '@/store/user';
+import { RegisterDto } from '@/types/dto/auth/index.dto';
+import { UserEntity } from '@/types/entity/user';
+import request from '@/utils/request';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const register = (data: RegisterDto): Promise<UserEntity> =>

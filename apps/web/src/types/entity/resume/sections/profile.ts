@@ -1,6 +1,6 @@
 import { defaultItem } from './../common/item';
-import { itemSchema } from '@/web/types/entity/resume/common/item';
-import { defaultUrl, urlSchema } from '@/web/types/entity/resume/common/url';
+import { itemSchema } from '@/types/entity/resume/common/item';
+import { defaultUrl, urlSchema } from '@/types/entity/resume/common/url';
 import { z } from 'zod';
 
 export const profileSchema = itemSchema.extend({

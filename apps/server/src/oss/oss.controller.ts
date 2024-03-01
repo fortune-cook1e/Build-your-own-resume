@@ -1,4 +1,4 @@
-import { OssService } from '@/server/oss/oss.service';
+import { OssService } from '@/oss/oss.service';
 import {
   Controller,
   Post,

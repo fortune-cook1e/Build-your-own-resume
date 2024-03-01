@@ -1,10 +1,10 @@
-import IconInput from '@/web/app/builder/components/Sidebars/left/sections/common/IconInput';
-import SectionModal from '@/web/app/builder/components/Sidebars/left/sections/common/SectionModal';
-import UrlInput from '@/web/app/builder/components/Sidebars/left/sections/common/UrlInput';
+import IconInput from '@/app/builder/components/Sidebars/left/sections/common/IconInput';
+import SectionModal from '@/app/builder/components/Sidebars/left/sections/common/SectionModal';
+import UrlInput from '@/app/builder/components/Sidebars/left/sections/common/UrlInput';
 import {
   defaultProfile,
   profileSchema,
-} from '@/web/types/entity/resume/sections/profile';
+} from '@/types/entity/resume/sections/profile';
 import { FormControl, FormLabel, Input } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, Controller } from 'react-hook-form';

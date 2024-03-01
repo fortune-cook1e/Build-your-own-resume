@@ -1,5 +1,5 @@
-import { FilterKeys } from '@/web/types/common';
-import { profileSchema } from '@/web/types/entity/resume/sections/profile';
+import { FilterKeys } from '@/types/common';
+import { profileSchema } from '@/types/entity/resume/sections/profile';
 import { z } from 'zod';
 
 export const sectionSchema = z.object({

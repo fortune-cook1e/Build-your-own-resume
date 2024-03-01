@@ -9,6 +9,7 @@
     "dev:web": "pnpm --filter web run dev",
     "format": "prettier --write \"apps/**/src/**/*.{ts,tsx}\" \"apps/**/test/*.{ts,tsx}\"",
     "build": "pnpm run -r build",
+    "publish": "pnpm publish -r",
     "prisma:seed": "pnpm --filter server run prisma:seed",
     "prisma:generate": "pnpm --filter server prisma:generate",
     "prisma:migrate:prod": "pnpm --filter server prisma:migrate:prod",
@@ -25,12 +26,13 @@
   "author": "fortune cookie",
   "license": "ISC",
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
+    "@changesets/cli": "^2.27.1",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
     "eslint": "^8.57.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.0",
-    "prettier": "^3.2.3",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "prettier": "^3.2.5",
     "typescript": "^5.3.3"
   }
 }

@@ -1,8 +1,8 @@
-import { basicsSchema, defaultBasics } from '@/web/types/entity/resume/basic';
+import { basicsSchema, defaultBasics } from '@/types/entity/resume/basic';
 import {
   defaultSections,
   sectionsSchema,
-} from '@/web/types/entity/resume/sections';
+} from '@/types/entity/resume/sections';
 import { z } from 'zod';
 
 export const resumeDataSchema = z.object({

@@ -1,5 +1,5 @@
-import { Config } from '@/server/config/schema';
-import { REDIS_DEFAULT_TTL } from '@/server/constants';
+import { Config } from '@/config/schema';
+import { REDIS_DEFAULT_TTL } from '@/constants';
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { RedisModule } from '@songkeys/nestjs-redis';

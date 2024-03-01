@@ -1,11 +1,11 @@
-import { ResponseCode } from '@/web/constants/code';
+import { ResponseCode } from '@/constants/code';
 import { createStandaloneToast } from '@chakra-ui/react';
 import axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { redirect } from 'next/navigation';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
-import { refresh } from '@/web/apis/auth/refresh';
-import { queryClient } from '@/web/utils/queryClient';
-import { QUERY_KEYS } from '@/web/constants';
+import { refresh } from '@/apis/auth/refresh';
+import { queryClient } from '@/utils/queryClient';
+import { QUERY_KEYS } from '@/constants';
 
 interface ApiResponse<T> {
   data: T;

@@ -1,6 +1,6 @@
-import { OssController } from '@/server/oss/oss.controller';
-import { OssService } from '@/server/oss/oss.service';
-import { QiniuService } from '@/server/oss/qiniu.service';
+import { OssController } from '@/oss/oss.controller';
+import { OssService } from '@/oss/oss.service';
+import { QiniuService } from '@/oss/qiniu.service';
 import { Module } from '@nestjs/common';
 
 @Module({

@@ -1,6 +1,6 @@
 'use client';
 
-import { useResumeStore } from '@/web/store/resume';
+import { useResumeStore } from '@/store/resume';
 import { useEffect, useState } from 'react';
 import ReactJson from 'react-json-view';
 

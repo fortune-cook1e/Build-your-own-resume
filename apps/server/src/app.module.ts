@@ -9,11 +9,11 @@ import { ZodValidationPipe } from 'nestjs-zod';
 import { ResponseInterceptor } from './interceptors/response';
 import { MailModule } from './mail/mail.module';
 import { AllExceptionsFilter } from './filters/exception.filter';
-import { HealthModule } from '@/server/health/health.module';
+import { HealthModule } from '@/health/health.module';
 import { OssController } from './oss/oss.controller';
 import { OssService } from './oss/oss.service';
 import { OssModule } from './oss/oss.module';
-import { UserModule } from '@/server/user/user.module';
+import { UserModule } from '@/user/user.module';
 import { ResumeModule } from './resume/resume.module';
 
 @Module({

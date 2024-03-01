@@ -1,8 +1,8 @@
 'use client';
 
-import LoginDiscussImg from '@/web/assets/images/login-discuss.png';
-import LoginForm from '@/web/app/login/components/LoginForm';
-import RegisterForm from '@/web/app/login/components/RegisterForm';
+import LoginDiscussImg from '@/assets/images/login-discuss.png';
+import LoginForm from '@/app/login/components/LoginForm';
+import RegisterForm from '@/app/login/components/RegisterForm';
 import { Box, Flex } from '@chakra-ui/react';
 import Image from 'next/image';
 import { useState } from 'react';

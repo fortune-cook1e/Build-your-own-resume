@@ -1,7 +1,4 @@
-import {
-  SectionItem,
-  SectionWithItem,
-} from '@/web/types/entity/resume/sections';
+import { SectionItem, SectionWithItem } from '@/types/entity/resume/sections';
 
 import {
   Button,
@@ -13,10 +10,10 @@ import {
   ModalOverlay,
   ModalFooter,
 } from '@chakra-ui/react';
-import { useResumeStore } from '@/web/store/resume';
+import { useResumeStore } from '@/store/resume';
 import { get } from 'lodash-es';
 import { FormProvider, UseFormReturn } from 'react-hook-form';
-import { useSectionContext } from '@/web/app/builder/components/Sidebars/left/sections/common/SectionContext';
+import { useSectionContext } from '@/app/builder/components/Sidebars/left/sections/common/SectionContext';
 import { useEffect } from 'react';
 import { createId } from '@paralleldrive/cuid2';
 import { produce } from 'immer';

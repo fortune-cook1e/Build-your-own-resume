@@ -1,8 +1,8 @@
-import { ConfigModule } from '@/server/config/config.module';
-import { DatabaseModule } from '@/server/database/database.module';
-import { userListSchema } from '@/server/user/dto/user.dto';
-import { UserController } from '@/server/user/user.controller';
-import { UserService } from '@/server/user/user.service';
+import { ConfigModule } from '@/config/config.module';
+import { DatabaseModule } from '@/database/database.module';
+import { userListSchema } from '@/user/dto/user.dto';
+import { UserController } from '@/user/user.controller';
+import { UserService } from '@/user/user.service';
 import { Test, TestingModule } from '@nestjs/testing';
 import { createId } from '@paralleldrive/cuid2';
 import * as bcrypt from 'bcryptjs';

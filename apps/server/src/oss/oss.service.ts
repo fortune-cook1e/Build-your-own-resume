@@ -1,5 +1,5 @@
-import { Config } from '@/server/config/schema';
-import { QiniuService } from '@/server/oss/qiniu.service';
+import { Config } from '@/config/schema';
+import { QiniuService } from '@/oss/qiniu.service';
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { callback } from 'qiniu';

@@ -1,8 +1,8 @@
 'use client';
 
-import LeftSidebar from '@/web/app/builder/components/Sidebars/left';
-import PanelResizeHandler from '@/web/components/PanelResizeHandler';
-import { useBuilderStore } from '@/web/store/builder';
+import LeftSidebar from '@/app/builder/components/Sidebars/left';
+import PanelResizeHandler from '@/components/PanelResizeHandler';
+import { useBuilderStore } from '@/store/builder';
 import { FC, ReactNode } from 'react';
 import { PanelGroup, Panel } from 'react-resizable-panels';
 

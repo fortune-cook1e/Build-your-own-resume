@@ -1,4 +1,4 @@
-import { URL, urlSchema } from '@/web/types/entity/resume/common/url';
+import { URL, urlSchema } from '@/types/entity/resume/common/url';
 import {
   Flex,
   IconButton,

@@ -1,10 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { MailController } from './mail.controller';
-import { MailService } from '@/server/mail/mail.service';
+import { MailService } from '@/mail/mail.service';
 import { MailerModule } from '@nestjs-modules/mailer';
-import { ConfigModule } from '@/server/config/config.module';
+import { ConfigModule } from '@/config/config.module';
 import { ConfigService } from '@nestjs/config';
-import { Config } from '@/server/config/schema';
+import { Config } from '@/config/schema';
 import { Logger } from '@nestjs/common';
 import * as nodemailer from 'nodemailer';
 

@@ -13,9 +13,5 @@
     "noFallthroughCasesInSwitch": true,
     "declaration": true,
     "declarationMap": true,
-    "paths": {
-      "@/server/*": ["./apps/server/src/*"],
-      "@/web/*": ["./apps/web/src/*"],
-    },
   },
 }

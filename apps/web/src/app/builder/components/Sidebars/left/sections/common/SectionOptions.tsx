@@ -1,5 +1,5 @@
-import { useSectionContext } from '@/web/app/builder/components/Sidebars/left/sections/common/SectionContext';
-import { useResumeStore } from '@/web/store/resume';
+import { useSectionContext } from '@/app/builder/components/Sidebars/left/sections/common/SectionContext';
+import { useResumeStore } from '@/store/resume';
 import {
   Menu,
   MenuButton,
