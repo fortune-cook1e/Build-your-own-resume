@@ -1,5 +1,5 @@
-import { defaultUrl, urlSchema } from '@/web/types/entity/resume/common/url';
 import { z } from 'zod';
+import { defaultUrl, urlSchema } from '@/schema/resume/common/url';
 
 export const basicsSchema = z.object({
   name: z.string(),

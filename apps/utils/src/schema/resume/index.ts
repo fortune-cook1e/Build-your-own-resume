@@ -1,9 +1,7 @@
-import { basicsSchema, defaultBasics } from '@/web/types/entity/resume/basic';
-import {
-  defaultSections,
-  sectionsSchema,
-} from '@/web/types/entity/resume/sections';
 import { z } from 'zod';
+
+import { defaultSections, sectionsSchema } from '@/schema/resume/sections';
+import { basicsSchema, defaultBasics } from '@/schema/resume/basics';
 
 export const resumeDataSchema = z.object({
   basics: basicsSchema,
@@ -18,3 +16,7 @@ export const defaultResumeData: ResumeData = {
   basics: defaultBasics,
   sections: defaultSections,
 };
+
+export * from './basics';
+export * from './common';
+export * from './sections';

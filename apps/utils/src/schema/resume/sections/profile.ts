@@ -1,8 +1,7 @@
 import { defaultItem } from './../common/item';
-import { itemSchema } from '@/web/types/entity/resume/common/item';
-import { defaultUrl, urlSchema } from '@/web/types/entity/resume/common/url';
 import { z } from 'zod';
-
+import { itemSchema } from './../common/item';
+import { defaultUrl, urlSchema } from '@/schema/resume/common';
 export const profileSchema = itemSchema.extend({
   network: z.string().min(1),
   username: z.string().min(1),

@@ -1,6 +1,6 @@
-import { FilterKeys } from '@/web/types/common';
-import { profileSchema } from '@/web/types/entity/resume/sections/profile';
 import { z } from 'zod';
+import { FilterKeys } from '@/types';
+import { profileSchema } from '@/schema/resume/sections/profile';
 
 export const sectionSchema = z.object({
   name: z.string(),
@@ -34,3 +34,5 @@ export const defaultSection: Section = {
 export const defaultSections: Sections = {
   profiles: { ...defaultSection, id: 'profiles', name: 'Profiles', items: [] },
 };
+
+export * from './profile';
