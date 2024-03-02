@@ -3,7 +3,7 @@ import {
   ExecutionContext,
   createParamDecorator,
 } from '@nestjs/common';
-import { UserWithPrivateDto } from '@fe-cookie/resume-generator-utils';
+import { UserWithPrivateDto } from '@fe-cookie/resume-generator-shared';
 
 export const User = createParamDecorator(
   (data: keyof UserWithPrivateDto, ctx: ExecutionContext) => {

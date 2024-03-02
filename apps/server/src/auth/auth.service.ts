@@ -12,7 +12,7 @@ import {
   ErrorMessage,
   LoginDto,
   JwtPayload,
-} from '@fe-cookie/resume-generator-utils';
+} from '@fe-cookie/resume-generator-shared';
 import { ConfigService } from '@nestjs/config';
 import { Config } from '../config/schema';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
@@ -122,7 +122,7 @@ export class AuthService {
     });
   }
 
-  async validateRefreshToken(payload: Payload, token: string) {
+  async validateRefreshToken(payload: JwtPayload, token: string) {
     const user = await this.userService.findOneById(payload.id);
     const userToken = user.refreshToken;
 

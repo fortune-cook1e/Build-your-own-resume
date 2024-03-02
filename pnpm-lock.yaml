@@ -35,7 +35,7 @@ importers:
 
   apps/server:
     dependencies:
-      '@fe-cookie/resume-generator-utils':
+      '@fe-cookie/resume-generator-shared':
         specifier: workspace:^
         version: link:../shared
       '@nestjs-modules/mailer':
@@ -287,7 +287,7 @@ importers:
       '@emotion/styled':
         specifier: ^11.11.0
         version: 11.11.0(@emotion/react@11.11.4)(@types/react@18.2.61)(react@18.2.0)
-      '@fe-cookie/resume-generator-utils':
+      '@fe-cookie/resume-generator-shared':
         specifier: workspace:^
         version: link:../shared
       '@hookform/resolvers':

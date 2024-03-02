@@ -2,7 +2,7 @@ import {
   defaultResumeData,
   resumeDataSchema,
   idSchema,
-} from '@fe-cookie/resume-generator-utils';
+} from '@fe-cookie/resume-generator-shared';
 import { userEntitySchema } from '@/types/entity/user';
 import { z } from 'zod';
 

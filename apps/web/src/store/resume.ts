@@ -3,7 +3,7 @@ import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 import { devtools } from 'zustand/middleware';
 import { set as lodashSet } from 'lodash-es';
-import { sampleResume } from '@fe-cookie/resume-generator-utils';
+import { sampleResume } from '@fe-cookie/resume-generator-shared';
 import { createId } from '@paralleldrive/cuid2';
 interface ResumeStore {
   resume: ResumeDto;

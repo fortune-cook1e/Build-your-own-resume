@@ -4,7 +4,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import { Payload } from '../dto/auth.dto';
+import { JwtPayload } from '@fe-cookie/resume-generator-shared';
 import { COOKIE_ACCESS_FIELD } from '@/constants';
 import { Request } from 'express';
 
@@ -25,7 +25,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
     });
   }
 
-  async validate(payload: Payload) {
+  async validate(payload: JwtPayload) {
     return this.userService.findOneById(payload.id);
   }
 }

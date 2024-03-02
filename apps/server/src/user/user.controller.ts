@@ -5,7 +5,7 @@ import {
   UserWithPrivateDto,
   userListSchema,
   userSchema,
-} from '@fe-cookie/resume-generator-utils';
+} from '@fe-cookie/resume-generator-shared';
 import { User } from '@/user/decorators/user.decorator';
 import { JwtGuard } from '@/auth/guards/jwt.guard';
 

@@ -10,7 +10,7 @@ import {
   FormLabel,
   Box,
 } from '@chakra-ui/react';
-import { urlSchema, URL } from '@fe-cookie/resume-generator-utils';
+import { urlSchema, URL } from '@fe-cookie/resume-generator-shared';
 import { Tag } from '@phosphor-icons/react';
 import { forwardRef } from 'react';
 

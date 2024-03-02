@@ -1,7 +1,7 @@
 import { getSectionIcon } from '@/app/builder/components/Sidebars/left/sections/common/SectionIcon';
 import UrlInput from '@/app/builder/components/Sidebars/left/sections/common/UrlInput';
 import { useResumeStore } from '@/store/resume';
-import { basicsSchema } from '@fe-cookie/resume-generator-utils';
+import { basicsSchema } from '@fe-cookie/resume-generator-shared';
 import { FormControl, Input, FormLabel } from '@chakra-ui/react';
 import { FC } from 'react';
 

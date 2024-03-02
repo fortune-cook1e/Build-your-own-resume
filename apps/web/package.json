@@ -20,7 +20,7 @@
     "@dnd-kit/utilities": "^3.2.2",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
-    "@fe-cookie/resume-generator-utils": "workspace:^",
+    "@fe-cookie/resume-generator-shared": "workspace:^",
     "@hookform/resolvers": "^3.3.4",
     "@paralleldrive/cuid2": "^2.2.2",
     "@phosphor-icons/react": "^2.0.15",

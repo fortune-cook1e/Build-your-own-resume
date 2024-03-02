@@ -4,7 +4,7 @@ import UrlInput from '@/app/builder/components/Sidebars/left/sections/common/Url
 import {
   defaultProfile,
   profileSchema,
-} from '@fe-cookie/resume-generator-utils';
+} from '@fe-cookie/resume-generator-shared';
 import { FormControl, FormLabel, Input } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, Controller } from 'react-hook-form';

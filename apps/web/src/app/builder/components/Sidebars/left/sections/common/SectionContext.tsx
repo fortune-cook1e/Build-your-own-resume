@@ -1,6 +1,6 @@
 'use client';
 
-import { SectionItem, SectionKey } from '@fe-cookie/resume-generator-utils';
+import { SectionItem, SectionKey } from '@fe-cookie/resume-generator-shared';
 import { ReactNode, createContext, useContext, useRef } from 'react';
 import { StoreApi, createStore, useStore } from 'zustand';
 

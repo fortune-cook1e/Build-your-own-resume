@@ -1,7 +1,7 @@
 import {
   SectionItem,
   SectionWithItem,
-} from '@fe-cookie/resume-generator-utils';
+} from '@fe-cookie/resume-generator-shared';
 
 import {
   Button,

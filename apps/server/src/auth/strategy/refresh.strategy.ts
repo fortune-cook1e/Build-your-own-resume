@@ -6,7 +6,7 @@ import { COOKIE_REFRESH_FIELD } from '@/constants';
 import { ConfigService } from '@nestjs/config';
 import { Config } from '@/config/schema';
 import { Request } from 'express';
-import { Payload } from '../dto/auth.dto';
+import { JwtPayload } from '@fe-cookie/resume-generator-shared';
 
 @Injectable()
 export class RefreshStrategy extends PassportStrategy(Strategy, 'refresh') {
@@ -25,7 +25,7 @@ export class RefreshStrategy extends PassportStrategy(Strategy, 'refresh') {
     } as StrategyOptions);
   }
 
-  async validate(request: Request, payload: Payload) {
+  async validate(request: Request, payload: JwtPayload) {
     const refreshToken = request?.cookies?.[COOKIE_REFRESH_FIELD];
     return await this.authService.validateRefreshToken(payload, refreshToken);
   }

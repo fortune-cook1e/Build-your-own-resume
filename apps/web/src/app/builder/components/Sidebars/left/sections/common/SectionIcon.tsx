@@ -1,5 +1,5 @@
 import { useResumeStore } from '@/store/resume';
-import { SectionKey } from '@fe-cookie/resume-generator-utils';
+import { SectionKey } from '@fe-cookie/resume-generator-shared';
 import { IconButton, Tooltip } from '@chakra-ui/react';
 import { IconProps, ShareNetwork, Alien } from '@phosphor-icons/react';
 import { User } from '@phosphor-icons/react';

@@ -5,7 +5,7 @@ import SectionIcon from '@/app/builder/components/Sidebars/left/sections/common/
 import { Divider, Flex, IconButton } from '@chakra-ui/react';
 import { HourglassMedium } from '@phosphor-icons/react';
 import { FC, useRef } from 'react';
-import { Profile } from '@fe-cookie/resume-generator-utils';
+import { Profile } from '@fe-cookie/resume-generator-shared';
 
 const LeftSidebar: FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
