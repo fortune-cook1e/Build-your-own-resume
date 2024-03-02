@@ -10,7 +10,7 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 import { RegisterDto } from './dto/register.dto';
 import { AuthService } from './auth.service';
-import { UserWithPrivateDto } from '../user/dto/user.dto';
+import { UserWithPrivateDto } from '@fe-cookie/resume-generator-utils';
 import { Response } from 'express';
 import { authorizationSchema, payloadSchema } from './dto/auth.dto';
 import { COOKIE_ACCESS_FIELD, COOKIE_REFRESH_FIELD } from '../constants';

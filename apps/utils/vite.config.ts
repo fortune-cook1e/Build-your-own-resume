@@ -2,6 +2,8 @@
 import path from 'path';
 import { defineConfig } from 'vite';
 import packageJson from './package.json';
+import dts from 'vite-plugin-dts';
+import { nodePolyfills } from 'vite-plugin-node-polyfills';
 
 const getPackageName = () => {
   return packageJson.name;
@@ -10,12 +12,18 @@ const getPackageName = () => {
 const fileName = {
   es: `index.mjs`,
   cjs: `index.cjs`,
-  iife: `index.iife.js`,
 };
 
 const formats = Object.keys(fileName) as Array<keyof typeof fileName>;
 
-module.exports = defineConfig({
+const config = defineConfig({
+  plugins: [
+    nodePolyfills(),
+    dts({
+      entryRoot: 'src',
+      tsconfigPath: 'tsconfig.json',
+    }),
+  ],
   base: './',
   build: {
     outDir: './dist',
@@ -30,3 +38,5 @@ module.exports = defineConfig({
     alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
   },
 });
+
+export default config;
