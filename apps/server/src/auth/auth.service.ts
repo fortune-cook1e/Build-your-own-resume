@@ -7,9 +7,12 @@ import {
 } from '@nestjs/common';
 import { UserService } from '../user/user.service';
 import { JwtService } from '@nestjs/jwt';
-import { RegisterDto } from './dto/register.dto';
-import { ErrorMessage } from '../constants';
-import { LoginDto, Payload } from './dto/auth.dto';
+import {
+  RegisterDto,
+  ErrorMessage,
+  LoginDto,
+  JwtPayload,
+} from '@fe-cookie/resume-generator-utils';
 import { ConfigService } from '@nestjs/config';
 import { Config } from '../config/schema';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
@@ -44,7 +47,7 @@ export class AuthService {
     }
   }
 
-  generateToken(type: 'access' | 'refresh', payload?: Payload) {
+  generateToken(type: 'access' | 'refresh', payload?: JwtPayload) {
     switch (type) {
       case 'access':
         if (!payload)

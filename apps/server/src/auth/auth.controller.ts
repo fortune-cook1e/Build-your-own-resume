@@ -8,11 +8,14 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { RegisterDto } from './dto/register.dto';
 import { AuthService } from './auth.service';
 import { UserWithPrivateDto } from '@fe-cookie/resume-generator-utils';
 import { Response } from 'express';
-import { authorizationSchema, payloadSchema } from './dto/auth.dto';
+import {
+  authorizationSchema,
+  payloadSchema,
+  RegisterDto,
+} from '@fe-cookie/resume-generator-utils';
 import { COOKIE_ACCESS_FIELD, COOKIE_REFRESH_FIELD } from '../constants';
 import { getCookieOptions } from './utils/cookie';
 import { LocalGuard } from './guards/local.guard';

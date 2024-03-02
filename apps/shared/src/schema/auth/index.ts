@@ -1,14 +1,14 @@
 import { z } from 'nestjs-zod/z';
-import { userSchema, usernameSchema } from '@fe-cookie/resume-generator-utils';
 import { createZodDto } from 'nestjs-zod';
-import { ErrorMessage } from '@/constants';
+import { ErrorMessage } from '@/constant';
+import { userSchema, usernameSchema } from '@/schema/user';
 
-export const payloadSchema = userSchema.pick({
+export const jwtPayloadSchema = userSchema.pick({
   id: true,
   email: true,
 });
 
-export type Payload = z.infer<typeof payloadSchema>;
+export type JwtPayload = z.infer<typeof jwtPayloadSchema>;
 
 export const authorizationSchema = z.object({
   status: z.enum(['authenticated']),
@@ -34,3 +34,6 @@ export const loginSchema = z
   );
 
 export class LoginDto extends createZodDto(loginSchema) {}
+
+export * from './register';
+export * from './message';

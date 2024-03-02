@@ -1,5 +1,5 @@
-import { userSchema } from '@fe-cookie/resume-generator-utils';
 import { createZodDto } from 'nestjs-zod';
+import { userSchema } from '@/schema/user';
 import { z } from 'zod';
 
 export const registerSchema = userSchema
