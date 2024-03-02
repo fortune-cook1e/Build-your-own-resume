@@ -9,10 +9,10 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
-import { UserWithPrivateDto } from '@fe-cookie/resume-generator-shared';
+import { UserWithPrivateInfo } from '@fe-cookie/resume-generator-shared';
 import { Response } from 'express';
 import {
-  authorizationSchema,
+  loginResSchema,
   jwtPayloadSchema,
   RegisterDto,
 } from '@fe-cookie/resume-generator-shared';
@@ -50,7 +50,7 @@ export class AuthController {
   }
 
   private async handleAuthorization(
-    user: UserWithPrivateDto,
+    user: UserWithPrivateInfo,
     response: Response,
   ) {
     const { accessToken, refreshToken } = await this.exchangeToken(
@@ -70,7 +70,7 @@ export class AuthController {
       getCookieOptions('refresh'),
     );
 
-    const responseData = authorizationSchema.parse({
+    const responseData = loginResSchema.parse({
       status: 'authenticated',
       user,
     });
@@ -81,7 +81,7 @@ export class AuthController {
   @Post('login')
   @UseGuards(LocalGuard)
   async login(
-    @User() user: UserWithPrivateDto,
+    @User() user: UserWithPrivateInfo,
     @Res({ passthrough: true }) response: Response,
   ) {
     return await this.handleAuthorization(user, response);
@@ -99,7 +99,7 @@ export class AuthController {
   @Post('logout')
   @UseGuards(JwtGuard)
   async logout(
-    @User() user: UserWithPrivateDto,
+    @User() user: UserWithPrivateInfo,
     @Res({ passthrough: true }) response: Response,
   ) {
     await this.authService.updateRefreshToken(user.email, null);
@@ -112,7 +112,7 @@ export class AuthController {
   @Post('refresh')
   @UseGuards(RefreshGuard)
   async refresh(
-    @User() user: UserWithPrivateDto,
+    @User() user: UserWithPrivateInfo,
     @Res({ passthrough: true }) response: Response,
   ) {
     return this.handleAuthorization(user, response);

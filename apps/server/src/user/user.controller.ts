@@ -2,7 +2,7 @@ import { Controller, Get, Param, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { UserService } from './user.service';
 import {
-  UserWithPrivateDto,
+  UserWithPrivateInfo,
   userListSchema,
   userSchema,
 } from '@fe-cookie/resume-generator-shared';
@@ -23,7 +23,7 @@ export class UserController {
 
   @Get('me')
   @UseGuards(JwtGuard)
-  async getMe(@User() user: UserWithPrivateDto) {
+  async getMe(@User() user: UserWithPrivateInfo) {
     return userSchema.parse(user);
   }
 

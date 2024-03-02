@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'nestjs-zod/z';
 import { FilterKeys } from '@/types';
 import { profileSchema } from '@/schema/resume/sections/profile';
 

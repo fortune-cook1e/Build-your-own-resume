@@ -1,13 +1,13 @@
-import { UserEntity } from '@/types/entity/user';
+import { User } from '@fe-cookie/resume-generator-shared';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 interface UserState {
-  user: UserEntity | null;
+  user: User | null;
 }
 
 interface UserActions {
-  setUser: (user: UserEntity | null) => void;
+  setUser: (user: User | null) => void;
 }
 
 export const useUserStore = create<UserState & UserActions>()(

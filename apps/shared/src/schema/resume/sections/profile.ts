@@ -1,5 +1,5 @@
 import { defaultItem } from '../common/item';
-import { z } from 'zod';
+import { z } from 'nestjs-zod/z';
 import { itemSchema } from '../common/item';
 import { defaultUrl, urlSchema } from '@/schema/resume/common';
 export const profileSchema = itemSchema.extend({

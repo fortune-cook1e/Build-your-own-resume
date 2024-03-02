@@ -1,11 +1,11 @@
 import { QUERY_KEYS } from '@/constants';
 import { useUserStore } from '@/store/user';
-import { RegisterDto } from '@/types/dto/auth/index.dto';
-import { UserEntity } from '@/types/entity/user';
+import { RegisterDto } from '@fe-cookie/resume-generator-shared';
+import { User } from '@fe-cookie/resume-generator-shared';
 import request from '@/utils/request';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-export const register = (data: RegisterDto): Promise<UserEntity> =>
+export const register = (data: RegisterDto): Promise<User> =>
   request.post('/auth/register', data);
 
 export const useRegister = () => {

@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'nestjs-zod/z';
 
 // Schema
 export const urlSchema = z.object({

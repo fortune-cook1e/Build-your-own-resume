@@ -1,12 +1,11 @@
 import { QUERY_KEYS } from '@/constants';
 import { useUserStore } from '@/store/user';
-import { LoginDto } from '@/types/dto/auth/index.dto';
-import { LoginEntity } from '@/types/entity/auth';
+import { LoginDto, LoginRes } from '@fe-cookie/resume-generator-shared';
 import request from '@/utils/request';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
-export const login = (data: LoginDto): Promise<LoginEntity> =>
+export const login = (data: LoginDto): Promise<LoginRes> =>
   request.post('/auth/login', data);
 
 export const useLogin = () => {

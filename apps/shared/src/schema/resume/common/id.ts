@@ -1,5 +1,5 @@
 import { createId } from '@paralleldrive/cuid2';
-import { z } from 'zod';
+import { z } from 'nestjs-zod/z';
 
 export const idSchema = z
   .string()

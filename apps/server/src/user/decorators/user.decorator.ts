@@ -3,12 +3,12 @@ import {
   ExecutionContext,
   createParamDecorator,
 } from '@nestjs/common';
-import { UserWithPrivateDto } from '@fe-cookie/resume-generator-shared';
+import { UserWithPrivateInfo } from '@fe-cookie/resume-generator-shared';
 
 export const User = createParamDecorator(
-  (data: keyof UserWithPrivateDto, ctx: ExecutionContext) => {
+  (data: keyof UserWithPrivateInfo, ctx: ExecutionContext) => {
     const request = ctx.switchToHttp().getRequest();
-    const user = request.user as UserWithPrivateDto;
+    const user = request.user as UserWithPrivateInfo;
     if (!user) throw new BadRequestException('Decorator Error');
     return data ? user[data] : user; // 返回指定字段或整个用户对象
   },
