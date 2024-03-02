@@ -1,7 +1,11 @@
 import { Controller, Get, Param, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { UserService } from './user.service';
-import { UserWithPrivateDto, userListSchema, userSchema } from './dto/user.dto';
+import {
+  UserWithPrivateDto,
+  userListSchema,
+  userSchema,
+} from '@fe-cookie/resume-generator-utils';
 import { User } from '@/user/decorators/user.decorator';
 import { JwtGuard } from '@/auth/guards/jwt.guard';
 

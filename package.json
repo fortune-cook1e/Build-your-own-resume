@@ -7,6 +7,7 @@
     "dev": "pnpm run -r dev",
     "dev:server": "pnpm --filter server run dev",
     "dev:web": "pnpm --filter web run dev",
+    "tsc": "pnpm run -r tsc",
     "format": "prettier --write \"apps/**/src/**/*.{ts,tsx}\" \"apps/**/test/*.{ts,tsx}\"",
     "build": "pnpm run -r build",
     "publish:before": "pnpm run changeset",

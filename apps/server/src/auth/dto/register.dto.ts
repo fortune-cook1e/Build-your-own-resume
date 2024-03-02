@@ -1,4 +1,4 @@
-import { userSchema } from '@/user/dto/user.dto';
+import { userSchema } from '@fe-cookie/resume-generator-utils';
 import { createZodDto } from 'nestjs-zod';
 import { z } from 'zod';
 

@@ -1,5 +1,5 @@
 import { z } from 'nestjs-zod/z';
-import { userSchema, usernameSchema } from './../../user/dto/user.dto';
+import { userSchema, usernameSchema } from '@fe-cookie/resume-generator-utils';
 import { createZodDto } from 'nestjs-zod';
 import { ErrorMessage } from '@/constants';
 

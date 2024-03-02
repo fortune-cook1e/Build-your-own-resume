@@ -32,17 +32,6 @@ export const userWithPrivateSchema = userSchema.merge(privateInfoSchema);
 export const userListSchema = z.array(userSchema);
 export const userWithPrivateListSchema = z.array(userWithPrivateSchema);
 
-console.log({ createZodDto });
-// export { createZodDto };
-
-// export class UserDto extends createZodDto(userSchema) {}
-// export class PrivateInfoDto extends createZodDto(privateInfoSchema) {}
-// export class UserWithPrivateDto extends createZodDto(userWithPrivateSchema) {}
-
-// const CredentialsSchema = z.object({
-//   username: z.string(),
-//   password: z.string(),
-// });
-
-// class is required for using DTO as a type
-// export class CredentialsDto extends createZodDto(CredentialsSchema) {}
+export class UserDto extends createZodDto(userSchema) {}
+export class PrivateInfoDto extends createZodDto(privateInfoSchema) {}
+export class UserWithPrivateDto extends createZodDto(userWithPrivateSchema) {}
