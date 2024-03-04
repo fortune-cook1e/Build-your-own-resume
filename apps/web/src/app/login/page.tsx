@@ -6,11 +6,7 @@ import RegisterForm from '@/app/login/components/RegisterForm';
 import { Box, Flex } from '@chakra-ui/react';
 import Image from 'next/image';
 import { useState } from 'react';
-
-export enum LoginMode {
-  Login = 'login',
-  Register = 'register',
-}
+import { LoginMode } from '@/app/login/shared';
 
 const Login = () => {
   const [mode, setMode] = useState<LoginMode>(LoginMode.Login);
