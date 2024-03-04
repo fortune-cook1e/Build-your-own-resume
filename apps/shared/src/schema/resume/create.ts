@@ -1,10 +1,9 @@
+import { resumeSchema } from '@/schema/resume';
 import { createZodDto } from '@/utils';
-import { z } from 'zod';
 
-export const createResumeSchema = z.object({
-  title: z.string().min(1),
-  description: z.string().min(1),
-  visibility: z.enum(['public', 'private']).default('private'),
+export const createResumeSchema = resumeSchema.pick({
+  title: true,
+  description: true,
+  visibility: true,
 });
-
 export class CreateResumeDto extends createZodDto(createResumeSchema) {}

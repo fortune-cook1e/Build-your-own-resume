@@ -6,7 +6,7 @@ import {
   userListSchema,
   userSchema,
 } from '@fe-cookie/resume-generator-shared';
-import { User } from '@/user/decorators/user.decorator';
+import { UseUser } from '@/user/decorators/user.decorator';
 import { JwtGuard } from '@/auth/guards/jwt.guard';
 
 @Controller('user')
@@ -23,7 +23,7 @@ export class UserController {
 
   @Get('me')
   @UseGuards(JwtGuard)
-  async getMe(@User() user: UserWithPrivateInfo) {
+  async getMe(@UseUser() user: UserWithPrivateInfo) {
     return userSchema.parse(user);
   }
 

@@ -19,7 +19,7 @@ import {
 import { COOKIE_ACCESS_FIELD, COOKIE_REFRESH_FIELD } from '../constants';
 import { getCookieOptions } from './utils/cookie';
 import { LocalGuard } from './guards/local.guard';
-import { User } from '../user/decorators/user.decorator';
+import { UseUser } from '../user/decorators/user.decorator';
 import { JwtGuard } from './guards/jwt.guard';
 import { RefreshGuard } from './guards/refresh.guard';
 
@@ -81,7 +81,7 @@ export class AuthController {
   @Post('login')
   @UseGuards(LocalGuard)
   async login(
-    @User() user: UserWithPrivateInfo,
+    @UseUser() user: UserWithPrivateInfo,
     @Res({ passthrough: true }) response: Response,
   ) {
     return await this.handleAuthorization(user, response);
@@ -99,7 +99,7 @@ export class AuthController {
   @Post('logout')
   @UseGuards(JwtGuard)
   async logout(
-    @User() user: UserWithPrivateInfo,
+    @UseUser() user: UserWithPrivateInfo,
     @Res({ passthrough: true }) response: Response,
   ) {
     await this.authService.updateRefreshToken(user.email, null);
@@ -112,7 +112,7 @@ export class AuthController {
   @Post('refresh')
   @UseGuards(RefreshGuard)
   async refresh(
-    @User() user: UserWithPrivateInfo,
+    @UseUser() user: UserWithPrivateInfo,
     @Res({ passthrough: true }) response: Response,
   ) {
     return this.handleAuthorization(user, response);

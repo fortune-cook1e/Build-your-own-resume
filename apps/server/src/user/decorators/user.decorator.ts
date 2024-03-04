@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { UserWithPrivateInfo } from '@fe-cookie/resume-generator-shared';
 
-export const User = createParamDecorator(
+export const UseUser = createParamDecorator(
   (data: keyof UserWithPrivateInfo, ctx: ExecutionContext) => {
     const request = ctx.switchToHttp().getRequest();
     const user = request.user as UserWithPrivateInfo;
