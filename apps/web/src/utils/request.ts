@@ -30,7 +30,7 @@ request.interceptors.request.use(
 
 request.interceptors.response.use(
   function (response: AxiosResponse<ApiResponse<any>>) {
-    const { data } = response;
+    const { data, status } = response;
     switch (data.code) {
       case ResponseCode.Success: {
         return data.data;
@@ -50,6 +50,11 @@ request.interceptors.response.use(
   },
   // Tip: handle status code >= 400
   function (error) {
+    const statusCode = error.response.status;
+    if (statusCode === 401) {
+      return Promise.reject(error);
+    }
+
     const errorMsg =
       error.response?.data?.message || error.message || 'Request Failed';
     toast({
