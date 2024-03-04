@@ -6,7 +6,7 @@ import { FormControl, Input, FormLabel } from '@chakra-ui/react';
 import { FC } from 'react';
 
 const Basics: FC = () => {
-  const setResume = useResumeStore((state) => state.setResume);
+  const setValue = useResumeStore((state) => state.setValue);
   const basics = useResumeStore((state) => state.resume.data.basics);
 
   return (
@@ -29,7 +29,7 @@ const Basics: FC = () => {
                 .pick({ name: true })
                 .safeParse({ name: basics.name }).success
             }
-            onChange={(event) => setResume('basics.name', event.target.value)}
+            onChange={(event) => setValue('basics.name', event.target.value)}
           />
         </FormControl>
 
@@ -39,7 +39,7 @@ const Basics: FC = () => {
             id="basics.headline"
             value={basics.headline}
             onChange={(event) =>
-              setResume('basics.headline', event.target.value)
+              setValue('basics.headline', event.target.value)
             }
           />
         </FormControl>
@@ -55,7 +55,7 @@ const Basics: FC = () => {
                 .pick({ email: true })
                 .safeParse({ email: basics.email }).success
             }
-            onChange={(event) => setResume('basics.email', event.target.value)}
+            onChange={(event) => setValue('basics.email', event.target.value)}
           />
         </FormControl>
 
@@ -70,7 +70,7 @@ const Basics: FC = () => {
                 .pick({ phone: true })
                 .safeParse({ phone: basics.phone }).success
             }
-            onChange={(event) => setResume('basics.phone', event.target.value)}
+            onChange={(event) => setValue('basics.phone', event.target.value)}
           />
         </FormControl>
 
@@ -86,7 +86,7 @@ const Basics: FC = () => {
                 .safeParse({ location: basics.location }).success
             }
             onChange={(event) =>
-              setResume('basics.location', event.target.value)
+              setValue('basics.location', event.target.value)
             }
           />
         </FormControl>
@@ -95,7 +95,7 @@ const Basics: FC = () => {
           <FormLabel>Website</FormLabel>
           <UrlInput
             value={basics.url}
-            onChange={(value) => setResume('basics.url', value)}
+            onChange={(value) => setValue('basics.url', value)}
             placeholder="Your website URL"
           />
         </FormControl>

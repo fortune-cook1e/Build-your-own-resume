@@ -21,14 +21,14 @@ interface Props {
 const SectionOptions: FC<Props> = ({ onAddClick }) => {
   const { id } = useSectionContext();
 
-  const setResume = useResumeStore((state) => state.setResume);
+  const setValue = useResumeStore((state) => state.setValue);
   const section = useResumeStore((state) =>
     get(state.resume.data.sections, id),
   );
 
   const toggleVisible = () => {
     const visible = section?.visible;
-    setResume(`sections.${id}.visible`, !visible);
+    setValue(`sections.${id}.visible`, !visible);
   };
 
   if (!section) return null;

@@ -1,34 +1,33 @@
-import { ResumeDto } from '@fe-cookie/resume-generator-shared';
+import { Resume } from '@fe-cookie/resume-generator-shared';
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 import { devtools } from 'zustand/middleware';
 import { set as lodashSet } from 'lodash-es';
-import { sampleResume } from '@fe-cookie/resume-generator-shared';
-import { createId } from '@paralleldrive/cuid2';
+import { produce } from 'immer';
 interface ResumeStore {
-  resume: ResumeDto;
+  resume: Resume;
 
-  setResume: (path: string, value: unknown) => void;
-
+  setResume: (resume: Resume) => void;
+  setValue: (path: string, value: unknown) => void;
   resetResume: () => void;
 }
-
-const defaultResumeData: ResumeDto = {
-  id: createId(),
-  title: 'sampleResume',
-  createdAt: new Date(),
-  updatedAt: new Date(),
-  visibility: 'public',
-  data: sampleResume,
-};
 
 export const useResumeStore = create<ResumeStore>()(
   devtools(
     immer((set) => ({
-      resume: defaultResumeData,
+      resume: {} as Resume,
 
-      setResume: (path, value) => {
+      setResume: (data: Resume) => {
+        set(
+          produce((state: ResumeStore) => {
+            state.resume = data;
+          }),
+        );
+      },
+
+      setValue: (path, value) => {
         set((state) => {
+          if (!state.resume) return;
           // Tip: lodashset https://lodash.com/docs/4.17.15#set
           console.log({ path, value });
           state.resume.data = lodashSet(state.resume.data, path, value);

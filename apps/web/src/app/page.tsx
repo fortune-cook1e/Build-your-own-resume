@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import HomeQuestionImg from '@/assets/images/home-question.png';
 import HomeLightImg from '@/assets/images/home-light.png';
@@ -6,8 +8,11 @@ import HomeStarImg from '@/assets/images/home-star.png';
 import HomeStringImg from '@/assets/images/home-string.png';
 import { Button } from '@chakra-ui/react';
 import Link from 'next/link';
+import { useUserStore } from '@/store/user';
 
 export default function Home() {
+  const isLogin = useUserStore((state) => !!state.user);
+
   return (
     <main className="min-h-screen p-[140px]">
       <header className="text-6xl mb-[100px] animate-fade-down animate-duration-1000">
@@ -58,9 +63,15 @@ export default function Home() {
       </section>
 
       <section className="flex justify-center">
-        <Button colorScheme="gray">
-          <Link href="/login">Login</Link>
-        </Button>
+        {isLogin ? (
+          <Button colorScheme="gray">
+            <Link href="/resumes">resumes</Link>
+          </Button>
+        ) : (
+          <Button colorScheme="gray">
+            <Link href="/login">Login</Link>
+          </Button>
+        )}
       </section>
     </main>
   );

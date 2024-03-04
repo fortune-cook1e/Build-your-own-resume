@@ -50,7 +50,7 @@ const SectionBase = <T extends SectionItem>({
   const section = useResumeStore((state) =>
     get(state.resume.data.sections, id),
   ) as SectionWithItem<T>;
-  const setResume = useResumeStore((state) => state.setResume);
+  const setValue = useResumeStore((state) => state.setValue);
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -71,7 +71,7 @@ const SectionBase = <T extends SectionItem>({
       const oldIndex = section.items.findIndex((item) => item.id === active.id);
       const newIndex = section.items.findIndex((item) => item.id === over.id);
       const sortedList = arrayMove(section.items, oldIndex, newIndex);
-      setResume(`sections.${id}.items`, sortedList);
+      setValue(`sections.${id}.items`, sortedList);
     }
   };
 
@@ -83,12 +83,12 @@ const SectionBase = <T extends SectionItem>({
 
   const onVisible = (index: number) => {
     const visible = get(section, `items.${index}.visible`, true);
-    setResume(`sections.${id}.items[${index}].visible`, !visible);
+    setValue(`sections.${id}.items[${index}].visible`, !visible);
   };
 
   const onDelete = (itemId: string) => {
     const newItems = section.items.filter((item) => item.id !== itemId);
-    setResume(`sections.${id}.items`, newItems);
+    setValue(`sections.${id}.items`, newItems);
   };
 
   useEffect(() => {

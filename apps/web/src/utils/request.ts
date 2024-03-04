@@ -71,6 +71,7 @@ const requestForRefresh = axios.create({
 
 const handleAuthError = async () => {
   try {
+    console.log('auth errro');
     await refresh(requestForRefresh);
     return Promise.resolve();
   } catch (e) {

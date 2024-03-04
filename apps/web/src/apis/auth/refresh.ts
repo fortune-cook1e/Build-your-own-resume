@@ -1,3 +1,3 @@
-import { Axios } from 'axios';
+import { AxiosInstance } from 'axios';
 
-export const refresh = (axios: Axios) => axios.post('/auth/refresh');
+export const refresh = (axios: AxiosInstance) => axios.post('/auth/refresh');

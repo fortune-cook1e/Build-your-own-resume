@@ -4,11 +4,13 @@ import { RegisterDto } from '@fe-cookie/resume-generator-shared';
 import { User } from '@fe-cookie/resume-generator-shared';
 import request from '@/utils/request';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 
 export const register = (data: RegisterDto): Promise<User> =>
   request.post('/auth/register', data);
 
 export const useRegister = () => {
+  const router = useRouter();
   const queryClient = useQueryClient();
   const setUser = useUserStore((state) => state.setUser);
 
@@ -21,6 +23,7 @@ export const useRegister = () => {
     onSuccess: (data) => {
       setUser(data);
       queryClient.setQueryData([QUERY_KEYS.user], data);
+      router.push('/resumes');
     },
   });
 

@@ -38,17 +38,16 @@ const SectionModal = <T extends SectionItem>({ form, children }: Props<T>) => {
   const section = useResumeStore((state) =>
     get(state.resume.data.sections, id),
   ) as SectionWithItem<T>;
-  const setResume = useResumeStore((state) => state.setResume);
+  const setValue = useResumeStore((state) => state.setValue);
 
   const isCreate = mode === 'create';
   const isUpdate = mode === 'update';
 
   const onSubmit = async (values: T) => {
-    console.log('ssss', values);
     // Todo: handle form values for create update
 
     if (isCreate) {
-      setResume(
+      setValue(
         `sections.${id}.items`,
         produce(section.items, (draft: T[]): void => {
           draft.push(values);
@@ -57,7 +56,7 @@ const SectionModal = <T extends SectionItem>({ form, children }: Props<T>) => {
     }
 
     if (isUpdate && payload) {
-      setResume(
+      setValue(
         `sections.${id}.items`,
         produce(section.items, (draft: T[]): void => {
           const index = draft.findIndex((item) => item.id === payload.id);

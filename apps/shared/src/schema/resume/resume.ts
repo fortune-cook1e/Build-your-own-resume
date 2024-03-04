@@ -30,4 +30,4 @@ export const resumeSchema = z.object({
   updatedAt: z.date(),
 });
 
-export type ResumeDto = z.infer<typeof resumeSchema>;
+export type Resume = z.infer<typeof resumeSchema>;

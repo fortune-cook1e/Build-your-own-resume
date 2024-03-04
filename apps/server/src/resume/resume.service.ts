@@ -9,7 +9,7 @@ import {
   Logger,
 } from '@nestjs/common';
 import { PrismaService } from 'nestjs-prisma';
-import deepmerge from 'deepmerge';
+import * as deepmerge from 'deepmerge';
 
 @Injectable()
 export class ResumeService {

@@ -23,13 +23,12 @@ const Login = () => {
 
       <Flex paddingLeft={111}>
         <Box
-          w={505}
           padding="36px"
           borderRadius="lg"
           borderWidth="1px"
-          className="animate-fade-right animate-once"
+          className="animate-fade-right animate-once min-w-[505px]"
         >
-          <section>
+          <section className="w-full">
             <h3 className="text-xl mb-[29px]">Welcome!</h3>
             {mode === LoginMode.Login ? (
               <LoginForm
