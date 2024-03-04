@@ -9,7 +9,7 @@
     "allowSyntheticDefaultImports": true,
     "target": "ES2021",
     "sourceMap": true,
-    "outDir": "./dist",
+    "outDir": "../../dist/server",
     "baseUrl": "./",
     // "incremental": true,
     // "skipLibCheck": true,
@@ -19,7 +19,7 @@
     // "forceConsistentCasingInFileNames": true,
     // "noFallthroughCasesInSwitch": true,
     "paths": {
-      "@/*": ["./src/*"],
-    },
-  },
+      "@/*": ["./src/*"]
+    }
+  }
 }

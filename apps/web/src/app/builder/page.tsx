@@ -2,7 +2,9 @@
 
 import { useResumeStore } from '@/store/resume';
 import { useEffect, useState } from 'react';
-import ReactJson from 'react-json-view';
+import dynamic from 'next/dynamic';
+
+const ReactJsonView = dynamic(() => import('react-json-view'));
 
 const Builder = () => {
   const resume = useResumeStore((state) => state.resume);
@@ -22,7 +24,7 @@ const Builder = () => {
       <h1>this is builder page</h1>
 
       <div>
-        <ReactJson src={resume.data.sections} />
+        <ReactJsonView src={resume.data.sections} />
       </div>
     </div>
   );

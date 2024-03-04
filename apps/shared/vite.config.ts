@@ -17,26 +17,6 @@ const formats = Object.keys(fileName) as Array<keyof typeof fileName>;
 
 const config = defineConfig({
   plugins: [
-    // nodePolyfills(),
-
-    // FixBug: fix require keyword reassigned by lazy-cache
-    //  https://github.com/rollup/rollup-plugin-commonjs/issues/166
-    // replaceCodePlugin({
-    //   replacements: [
-    //     {
-    //       from: 'var fn = require',
-    //       to: '',
-    //     },
-    //     {
-    //       from: 'require = utils',
-    //       to: '',
-    //     },
-    //     {
-    //       from: 'require = fn',
-    //       to: '',
-    //     },
-    //   ],
-    // }),
     dts({
       entryRoot: 'src',
       tsconfigPath: 'tsconfig.json',
@@ -44,7 +24,7 @@ const config = defineConfig({
   ],
   base: './',
   build: {
-    outDir: './dist',
+    outDir: '../../dist/shared',
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'resumeGeneratorUtils',
