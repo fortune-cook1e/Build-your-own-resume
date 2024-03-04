@@ -24,7 +24,7 @@ const config = defineConfig({
   ],
   base: './',
   build: {
-    outDir: '../../dist/shared',
+    outDir: './dist',
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'resumeGeneratorUtils',
