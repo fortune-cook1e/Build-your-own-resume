@@ -1,6 +1,6 @@
-import { idSchema } from '@/schema/resume';
-import { z } from 'nestjs-zod/z';
-import { createZodDto } from 'nestjs-zod';
+import { idSchema } from '../resume';
+import { z } from 'zod';
+import { createZodDto } from '@/utils';
 
 export const usernameSchema = z
   .string()

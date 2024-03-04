@@ -1,5 +1,5 @@
-import { z } from 'nestjs-zod/z';
-import { defaultUrl, urlSchema } from '@/schema/resume/common/url';
+import { z } from 'zod';
+import { defaultUrl, urlSchema } from '../common';
 
 export const basicsSchema = z.object({
   name: z.string(),

@@ -1,5 +1,5 @@
-import { z } from 'nestjs-zod/z';
-import { userSchema } from '@/schema/user';
+import { z } from 'zod';
+import { userSchema } from '../user';
 
 export const jwtPayloadSchema = userSchema.pick({
   id: true,

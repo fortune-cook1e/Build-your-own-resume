@@ -1,5 +1,5 @@
-import { createZodDto } from 'nestjs-zod';
-import { z } from 'nestjs-zod/z';
+import { createZodDto } from '@/utils';
+import { z } from 'zod';
 
 export const createResumeSchema = z.object({
   title: z.string().min(1),

@@ -1,6 +1,6 @@
-import { createZodDto } from 'nestjs-zod';
-import { userSchema } from '@/schema/user';
-import { z } from 'nestjs-zod/z';
+import { createZodDto } from '@/utils';
+import { userSchema } from '../user';
+import { z } from 'zod';
 
 export const registerSchema = userSchema
   .pick({

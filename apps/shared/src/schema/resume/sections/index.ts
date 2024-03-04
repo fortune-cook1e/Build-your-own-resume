@@ -1,6 +1,6 @@
-import { z } from 'nestjs-zod/z';
-import { FilterKeys } from '@/types';
-import { profileSchema } from '@/schema/resume/sections/profile';
+import { z } from 'zod';
+import { FilterKeys } from '../../../types';
+import { profileSchema } from './profile';
 
 export const sectionSchema = z.object({
   name: z.string(),

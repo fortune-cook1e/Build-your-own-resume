@@ -1,8 +1,8 @@
-import { z } from 'nestjs-zod/z';
+import { z } from 'zod';
 
-import { defaultSections, sectionsSchema } from '@/schema/resume/sections';
-import { basicsSchema, defaultBasics } from '@/schema/resume/basics';
-import { idSchema } from '@/schema/resume/common';
+import { defaultSections, sectionsSchema } from './sections';
+import { basicsSchema, defaultBasics } from './basics';
+import { idSchema } from './common';
 
 export const resumeDataSchema = z.object({
   basics: basicsSchema,
