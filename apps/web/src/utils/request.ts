@@ -55,6 +55,15 @@ request.interceptors.response.use(
       return Promise.reject(error);
     }
 
+    if (statusCode === 403) {
+      toast({
+        title: 'Token expired',
+        description: 'Please login again!',
+        status: 'error',
+        position: 'top',
+      });
+    }
+
     const errorMsg =
       error.response?.data?.message || error.message || 'Request Failed';
     toast({

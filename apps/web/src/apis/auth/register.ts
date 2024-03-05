@@ -22,7 +22,7 @@ export const useRegister = () => {
     mutationFn: register,
     onSuccess: (data) => {
       setUser(data);
-      queryClient.setQueryData([QUERY_KEYS.user], data);
+      queryClient.setQueryData(QUERY_KEYS.user, data);
       router.push('/resumes');
     },
   });

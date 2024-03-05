@@ -26,8 +26,8 @@ export const resumeSchema = z.object({
   visibility: z.enum(['public', 'private']).default('public'),
   userId: idSchema,
   user: userSchema.optional(),
-  createdAt: z.date(),
-  updatedAt: z.date(),
+  createdAt: z.date().or(z.string()),
+  updatedAt: z.date().or(z.string()),
 });
 
 export type Resume = z.infer<typeof resumeSchema>;

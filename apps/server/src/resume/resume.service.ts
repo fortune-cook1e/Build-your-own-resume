@@ -64,7 +64,7 @@ export class ResumeService {
     const { title, description, visibility, data, id } = updateResumeDto;
     if (!id) throw new InternalServerErrorException(`Failed to find id ${id}`);
     try {
-      await this.prismaService.resume.update({
+      return await this.prismaService.resume.update({
         data: {
           title,
           description,

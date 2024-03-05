@@ -43,6 +43,8 @@ export class ResponseInterceptor<T>
   errorHandler(exception: HttpException, context: ExecutionContext) {
     const ctx = context.switchToHttp();
     const response = ctx.getResponse();
+
+    console.log('Response Exception Caught:', exception);
     const status =
       exception instanceof HttpException
         ? exception.getStatus()

@@ -7,7 +7,7 @@ import {
   UpdateResumeDto,
   User,
 } from '@fe-cookie/resume-generator-shared';
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
 
 @Controller('resume')
 export class ResumeController {
@@ -16,8 +16,7 @@ export class ResumeController {
   @Post('/create')
   @UseGuards(JwtGuard)
   async createResume(@UseUser() user: User, @Body() data: CreateResumeDto) {
-    await this.resume.create(user.id, data);
-    return null;
+    return await this.resume.create(user.id, data);
   }
 
   @Post('update')
@@ -35,12 +34,13 @@ export class ResumeController {
   @Post('delete')
   @UseGuards(JwtGuard)
   async deleteResume(@UseUser() user: User, @Body() data: DeleteResumeDto) {
-    return await this.resume.delete(user.id, data.id);
+    await this.resume.delete(user.id, data.id);
+    return null;
   }
 
-  @Get(':id')
+  @Get('')
   @UseGuards(JwtGuard)
-  async getResume(@Param('id') id: string) {
+  async getResume(@Query('id') id: string) {
     return await this.resume.findOneById(id);
   }
 }

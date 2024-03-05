@@ -21,7 +21,7 @@ export const useLogin = () => {
     mutationFn: login,
     onSuccess: (data) => {
       setUser(data.user);
-      queryClient.setQueryData([QUERY_KEYS.user], data.user);
+      queryClient.setQueryData(QUERY_KEYS.user, data.user);
       router.push('/resumes');
     },
   });

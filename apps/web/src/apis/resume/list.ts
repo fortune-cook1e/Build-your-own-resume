@@ -8,7 +8,7 @@ export const getResumeList = (): Promise<Resume[]> =>
 
 export const useResumeList = () => {
   const { isPending: loading, data: resumeList } = useQuery({
-    queryKey: [QUERY_KEYS.resume.list],
+    queryKey: QUERY_KEYS.resumeList,
     queryFn: getResumeList,
   });
 

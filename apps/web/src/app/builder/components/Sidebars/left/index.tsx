@@ -6,6 +6,7 @@ import { Divider, Flex, IconButton } from '@chakra-ui/react';
 import { HourglassMedium } from '@phosphor-icons/react';
 import { FC, useRef } from 'react';
 import { Profile } from '@fe-cookie/resume-generator-shared';
+import Link from 'next/link';
 
 const LeftSidebar: FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -27,7 +28,11 @@ const LeftSidebar: FC = () => {
           aria-label="home button"
           variant="ghost"
           size="14"
-          icon={<HourglassMedium />}
+          icon={
+            <Link href="/resumes">
+              <HourglassMedium />
+            </Link>
+          }
         />
 
         <Flex flex="1" flexDir="column" justify="center" gap={2}>

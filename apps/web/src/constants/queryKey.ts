@@ -1,7 +1,6 @@
 export const QUERY_KEYS = {
-  user: 'user',
-  resume: {
-    resume: 'resume',
-    list: 'list',
-  },
+  user: ['user'],
+
+  resume: ['resume'],
+  resumeList: ['resumeList'],
 };
