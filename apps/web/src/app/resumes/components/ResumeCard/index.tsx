@@ -40,13 +40,24 @@ const ResumeCard: FC<Props> = ({ resume }) => {
     setOpen.on();
   };
 
+  const onDeleteClick = () => {
+    setMode('delete');
+    setPayload({
+      ...payload,
+      ...resume,
+    });
+    setOpen.on();
+  };
+
   return (
     <ContextMenu
       renderMenu={() => (
         <MenuList>
           <MenuItem onClick={onRenameClick}>Rename</MenuItem>
           <MenuItem onClick={onResumeClick}>Edit</MenuItem>
-          <MenuItem textColor="red">Delete</MenuItem>
+          <MenuItem textColor="red" onClick={onDeleteClick}>
+            Delete
+          </MenuItem>
         </MenuList>
       )}
     >

@@ -34,8 +34,7 @@ export class ResumeController {
   @Post('delete')
   @UseGuards(JwtGuard)
   async deleteResume(@UseUser() user: User, @Body() data: DeleteResumeDto) {
-    await this.resume.delete(user.id, data.id);
-    return null;
+    return await this.resume.delete(user.id, data.id);
   }
 
   @Get('')

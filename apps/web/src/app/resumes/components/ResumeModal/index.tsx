@@ -1,7 +1,14 @@
 import { useCreateResume } from '@/apis/resume/create';
+import { useDeleteResume } from '@/apis/resume/delete';
 import { useUpdateResume } from '@/apis/resume/update';
 import { FormMode } from '@/types';
 import {
+  AlertDialog,
+  AlertDialogOverlay,
+  AlertDialogContent,
+  AlertDialogBody,
+  AlertDialogHeader,
+  AlertDialogFooter,
   Button,
   FormControl,
   FormLabel,
@@ -19,7 +26,7 @@ import {
   idSchema,
 } from '@fe-cookie/resume-generator-shared';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { forwardRef, useEffect } from 'react';
+import { forwardRef, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -47,15 +54,17 @@ const ResumeModal = forwardRef<any, Props>(
         description: '',
       },
     });
+    const cancelRef = useRef(null);
 
     const { updateResume, loading: updateLoading } = useUpdateResume();
     const { createResume, loading: createLoading } = useCreateResume();
+    const { deleteResume, loading: deleteLoading } = useDeleteResume();
 
     const isCreate = mode === 'create';
     const isUpdate = mode === 'update';
+    const isDelete = mode === 'delete';
 
     const onReset = () => {
-      console.log({ mode, payload });
       if (isCreate) {
         form.reset({
           title: '',
@@ -77,7 +86,9 @@ const ResumeModal = forwardRef<any, Props>(
           title: 'Create Success',
         });
       }
+
       if (isUpdate) {
+        if (!payload.id) return;
         await updateResume({
           ...payload,
           title: data.title,
@@ -85,6 +96,15 @@ const ResumeModal = forwardRef<any, Props>(
         });
         toast({
           title: 'Update Success',
+        });
+      }
+
+      if (isDelete) {
+        console.log({ payload });
+        if (!payload.id) return;
+        await deleteResume(payload?.id);
+        toast({
+          title: 'Delete Success',
         });
       }
 
@@ -96,16 +116,49 @@ const ResumeModal = forwardRef<any, Props>(
       open && onReset();
     }, [open]);
 
+    if (isDelete) {
+      return (
+        <AlertDialog
+          isOpen={open}
+          onClose={onClose}
+          leastDestructiveRef={cancelRef}
+        >
+          <AlertDialogOverlay />
+
+          <AlertDialogContent>
+            <form onSubmit={form.handleSubmit(onSubmit)}>
+              <AlertDialogHeader fontSize="lg" fontWeight="bold">
+                Delete {payload?.title} resume
+              </AlertDialogHeader>
+
+              <AlertDialogBody>
+                Are you sure? You can't undo this action afterwards.
+              </AlertDialogBody>
+
+              <AlertDialogFooter>
+                <Button ref={cancelRef} onClick={onClose}>
+                  Cancel
+                </Button>
+                <Button colorScheme="red" type="submit" ml={3}>
+                  Delete
+                </Button>
+              </AlertDialogFooter>
+            </form>
+          </AlertDialogContent>
+        </AlertDialog>
+      );
+    }
+
     return (
       <Modal isOpen={open} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>
-            {isCreate && 'Create Resume'}
-            {isUpdate && 'Update Resume'}
-          </ModalHeader>
-          <ModalBody>
-            <form id="resume-form" onSubmit={form.handleSubmit(onSubmit)}>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
+            <ModalHeader>
+              {isCreate && 'Create Resume'}
+              {isUpdate && 'Update Resume'}
+            </ModalHeader>
+            <ModalBody>
               <FormControl className="mb-4">
                 <FormLabel>Title</FormLabel>
                 <Input
@@ -121,21 +174,20 @@ const ResumeModal = forwardRef<any, Props>(
                   {...form.register('description')}
                 />
               </FormControl>
-            </form>
-          </ModalBody>
+            </ModalBody>
 
-          <ModalFooter gap={4}>
-            <Button onClick={onClose}>Close</Button>
-            <Button
-              colorScheme="blue"
-              form="resume-form"
-              type="submit"
-              isLoading={updateLoading || createLoading}
-            >
-              {isCreate && 'Create'}
-              {isUpdate && 'Update'}
-            </Button>
-          </ModalFooter>
+            <ModalFooter gap={4}>
+              <Button onClick={onClose}>Close</Button>
+              <Button
+                colorScheme="blue"
+                type="submit"
+                isLoading={updateLoading || createLoading}
+              >
+                {isCreate && 'Create'}
+                {isUpdate && 'Update'}
+              </Button>
+            </ModalFooter>
+          </form>
         </ModalContent>
       </Modal>
     );
