@@ -47,6 +47,36 @@ export const sampleResume: ResumeData = {
         },
       ],
     },
+    experience: {
+      name: 'Experience',
+      visible: true,
+      id: 'experience',
+      items: [
+        {
+          id: 'lhw25d7gf32wgdfpsktf6e0x',
+          visible: true,
+          company: 'Creative Solutions Inc.',
+          position: 'Senior Web Developer',
+          location: 'San Francisco, CA',
+          start: new Date(),
+          end: new Date(),
+          summary:
+            '<ul><li><p>Spearheaded the redesign of the main product website, resulting in a 40% increase in user engagement.</p></li><li><p>Developed and implemented a new responsive framework, improving cross-device compatibility.</p></li><li><p>Mentored a team of four junior developers, fostering a culture of technical excellence.</p></li></ul>',
+        },
+        {
+          id: 'r6543lil53ntrxmvel53gbtm',
+          visible: true,
+          company: 'TechAdvancers',
+          position: 'Web Developer',
+          location: 'San Jose, CA',
+          start: new Date(),
+          end: new Date(),
+          summary:
+            '<ul><li><p>Collaborated in a team of 10 to develop high-quality web applications using React.js and Node.js.</p></li><li><p>Managed the integration of third-party services such as Stripe for payments and Twilio for SMS services.</p></li><li><p>Optimized application performance, achieving a 30% reduction in load times.</p></li></ul>',
+        },
+      ],
+    },
+
     // summary: {
     //   name: 'Summary',
     //   columns: 1,
@@ -112,42 +142,6 @@ export const sampleResume: ResumeData = {
     //       url: {
     //         label: '',
     //         href: '',
-    //       },
-    //     },
-    //   ],
-    // },
-    // experience: {
-    //   name: 'Experience',
-    //   columns: 1,
-    //   visible: true,
-    //   id: 'experience',
-    //   items: [
-    //     {
-    //       id: 'lhw25d7gf32wgdfpsktf6e0x',
-    //       visible: true,
-    //       company: 'Creative Solutions Inc.',
-    //       position: 'Senior Web Developer',
-    //       location: 'San Francisco, CA',
-    //       date: 'January 2019 to Present',
-    //       summary:
-    //         '<ul><li><p>Spearheaded the redesign of the main product website, resulting in a 40% increase in user engagement.</p></li><li><p>Developed and implemented a new responsive framework, improving cross-device compatibility.</p></li><li><p>Mentored a team of four junior developers, fostering a culture of technical excellence.</p></li></ul>',
-    //       url: {
-    //         label: '',
-    //         href: 'https://creativesolutions.inc/',
-    //       },
-    //     },
-    //     {
-    //       id: 'r6543lil53ntrxmvel53gbtm',
-    //       visible: true,
-    //       company: 'TechAdvancers',
-    //       position: 'Web Developer',
-    //       location: 'San Jose, CA',
-    //       date: 'June 2016 to December 2018',
-    //       summary:
-    //         '<ul><li><p>Collaborated in a team of 10 to develop high-quality web applications using React.js and Node.js.</p></li><li><p>Managed the integration of third-party services such as Stripe for payments and Twilio for SMS services.</p></li><li><p>Optimized application performance, achieving a 30% reduction in load times.</p></li></ul>',
-    //       url: {
-    //         label: '',
-    //         href: 'https://techadvancers.com/',
     //       },
     //     },
     //   ],

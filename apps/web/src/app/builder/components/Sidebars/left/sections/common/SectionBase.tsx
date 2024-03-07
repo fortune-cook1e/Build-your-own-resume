@@ -11,7 +11,7 @@ import {
   SectionKey,
   SectionWithItem,
 } from '@fe-cookie/resume-generator-shared';
-import { Flex } from '@chakra-ui/react';
+import { Button, Flex } from '@chakra-ui/react';
 import get from 'lodash-es/get';
 import { useEffect, useId } from 'react';
 
@@ -32,6 +32,7 @@ import {
 } from '@dnd-kit/sortable';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
 import SectionListItem from '@/app/builder/components/Sidebars/left/sections/common/SectionListItem';
+import { Plus } from '@phosphor-icons/react';
 
 interface Props<T> {
   id: SectionKey;
@@ -70,7 +71,7 @@ const SectionBase = <T extends SectionItem>({
     if (active.id !== over.id) {
       const oldIndex = section.items.findIndex((item) => item.id === active.id);
       const newIndex = section.items.findIndex((item) => item.id === over.id);
-      const sortedList = arrayMove(section.items, oldIndex, newIndex);
+      const sortedList = arrayMove(section.items as T[], oldIndex, newIndex);
       setValue(`sections.${id}.items`, sortedList);
     }
   };
@@ -101,11 +102,19 @@ const SectionBase = <T extends SectionItem>({
     <div id={id} className="animate-fade-right animate-once">
       <Flex align="center" justifyContent="space-between" className="mb-5">
         {getSectionIcon(id)}
-        <h2 className="text-3xl font-bold">{section.name}</h2>
+        <h2 className="text-3xl font-bold">{section?.name ?? id}</h2>
         <SectionOptions onAddClick={onAddClick} />
       </Flex>
 
       <RenderSectionModal />
+
+      {!section.items.length && (
+        <Flex justify="right">
+          <Button leftIcon={<Plus />} colorScheme="blue" onClick={onAddClick}>
+            Create an item
+          </Button>
+        </Flex>
+      )}
 
       <DndContext
         id={dndContextId}

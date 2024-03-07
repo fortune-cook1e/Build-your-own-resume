@@ -20,6 +20,10 @@ export const getSectionIcon = (id: SectionKey, props?: IconProps) => {
     // Todo: add more icons
     case 'profiles':
       return <ShareNetwork size={18} {...props} />;
+
+    case 'experience':
+      return <ShareNetwork size={18} {...props} />;
+
     default:
       return null;
   }

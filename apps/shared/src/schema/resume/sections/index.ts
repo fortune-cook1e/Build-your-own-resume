@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { FilterKeys } from '../../../types';
 import { profileSchema } from './profile';
+import { experienceSchema } from '@/schema/resume/sections/experience';
 
 export const sectionSchema = z.object({
   name: z.string(),
@@ -12,6 +13,11 @@ export const sectionsSchema = z.object({
   profiles: sectionSchema.extend({
     id: z.literal('profiles'),
     items: z.array(profileSchema),
+  }),
+
+  experience: sectionSchema.extend({
+    id: z.literal('experience'),
+    items: z.array(experienceSchema),
   }),
 });
 
@@ -33,6 +39,13 @@ export const defaultSection: Section = {
 
 export const defaultSections: Sections = {
   profiles: { ...defaultSection, id: 'profiles', name: 'Profiles', items: [] },
+  experience: {
+    ...defaultSection,
+    id: 'experience',
+    name: 'Experience',
+    items: [],
+  },
 };
 
 export * from './profile';
+export * from './experience';
