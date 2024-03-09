@@ -85,10 +85,11 @@ const requestForRefresh = axios.create({
 
 const handleAuthError = async () => {
   try {
-    console.log('auth errro');
+    // Todo: 这里如果调用 refresh 接口出现403 Forbidden 返回则会进入catch
     await refresh(requestForRefresh);
     return Promise.resolve();
   } catch (e) {
+    console.log('HandleAuth Error:', e);
     return Promise.reject(e);
   }
 };
