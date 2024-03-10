@@ -13,7 +13,7 @@ export const useUser = () => {
   const setUser = useUserStore((state) => state.setUser);
 
   const { isPending: loading, data: user } = useQuery({
-    queryKey: [QUERY_KEYS.user],
+    queryKey: QUERY_KEYS.user,
     queryFn: fetchUser,
   });
 

@@ -11,7 +11,9 @@ export const useDeleteResume = () => {
   const { isPending: loading, mutateAsync: delteResumeFn } = useMutation({
     mutationFn: deleteResume,
     onSuccess(data) {
-      queryClient.removeQueries({ queryKey: [QUERY_KEYS.resume, data.id] });
+      queryClient.removeQueries({
+        queryKey: [QUERY_KEYS.resume, { id: data.id }],
+      });
 
       queryClient.setQueryData<Resume[]>(QUERY_KEYS.resumeList, (cache) => {
         if (!cache) return [];

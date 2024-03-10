@@ -11,7 +11,10 @@ export const useCreateResume = () => {
   const { mutateAsync: createResumeFn, isPending: loading } = useMutation({
     mutationFn: createResume,
     onSuccess(data) {
-      queryClient.setQueryData<Resume>(['resume', { id: data.id }], data);
+      queryClient.setQueryData<Resume>(
+        [QUERY_KEYS.resume, { id: data.id }],
+        data,
+      );
 
       queryClient.setQueryData<Resume[]>(QUERY_KEYS.resumeList, (cache) => {
         if (!cache) return [data];
