@@ -1,12 +1,6 @@
 # Resume Generator
 
-## Web
-
-Built by NextJs
-
-## Server
-
-Built by NestJs
+Build your resume online
 
 ## Get Started
 
@@ -19,11 +13,13 @@ pnpm run prisma:generate
 # run it when prisma schema updates
 pnpm run prisma:migrate:dev
 
+# development
 pnpm run dev
+
+# build
+pnpm run build
 ```
 
-## Document
+## Reference
 
-### backend
-
-1.[Prisma](https://www.prisma.io/docs/getting-started/quickstart)
+Inspired by Reactive-Resume
