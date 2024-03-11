@@ -1,3 +1,4 @@
+import Education from '@/app/builder/components/Sidebars/left/sections/Modals/Education';
 import Experience from '@/app/builder/components/Sidebars/left/sections/Modals/Experience';
 import Profiles from '@/app/builder/components/Sidebars/left/sections/Modals/Profiles';
 import { useSectionContext } from '@/app/builder/components/Sidebars/left/sections/common/SectionContext';
@@ -15,6 +16,9 @@ const RenderSectionModal: FC = () => {
 
       case 'experience':
         return <Experience />;
+
+      case 'education':
+        return <Education />;
       default:
         return null;
     }

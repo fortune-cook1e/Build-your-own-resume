@@ -44,8 +44,6 @@ const SectionModal = <T extends SectionItem>({ form, children }: Props<T>) => {
   const isUpdate = mode === 'update';
 
   const onSubmit = async (values: T) => {
-    // Todo: handle form values for create update
-
     if (isCreate) {
       setValue(
         `sections.${id}.items`,

@@ -1,53 +1,49 @@
 import SectionModal from '@/app/builder/components/Sidebars/left/sections/common/SectionModal';
-import RickEditor from '@/components/RichEditor';
 import { FormControl, FormLabel, Input } from '@chakra-ui/react';
 import {
-  defaultExperience,
-  experienceSchema,
+  defaultEducation,
+  educationSchema,
 } from '@fe-cookie/resume-generator-shared';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-const formSchema = experienceSchema;
-type FormValues = z.infer<typeof formSchema>;
+const formSchema = educationSchema;
+type formValues = z.infer<typeof formSchema>;
 
-const Experience = () => {
-  const form = useForm<FormValues>({
-    defaultValues: defaultExperience,
+const Education = () => {
+  const form = useForm<formValues>({
+    defaultValues: defaultEducation,
     resolver: zodResolver(formSchema),
   });
 
   return (
-    <SectionModal<FormValues> form={form} defaultValues={defaultExperience}>
+    <SectionModal<formValues> form={form} defaultValues={defaultEducation}>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <FormControl>
-          <FormLabel>Position</FormLabel>
-          <Input
-            placeholder="FrontEnd Developer"
-            {...form.register('position')}
-          />
+          <FormLabel>College</FormLabel>
+          <Input placeholder="Your college" {...form.register('college')} />
         </FormControl>
 
         <FormControl>
-          <FormLabel>location</FormLabel>
-          <Input
-            placeholder="Company Location"
-            {...form.register('location')}
-          />
+          <FormLabel>Area</FormLabel>
+          <Input placeholder="Your Area" {...form.register('area')} />
         </FormControl>
 
         <div className="sm:col-span-2">
           <FormControl>
-            <FormLabel>company</FormLabel>
-            <Input placeholder="Company" {...form.register('company')} />
+            <FormLabel>Major</FormLabel>
+            <Input
+              placeholder="computer science"
+              {...form.register('college')}
+            />
           </FormControl>
         </div>
 
         <div className="sm:col-span-2">
           <FormControl>
             <FormLabel>Date</FormLabel>
-            <Input placeholder="Date" {...form.register('date')} />
+            <Input placeholder="Start and end" {...form.register('date')} />
           </FormControl>
         </div>
 
@@ -62,4 +58,4 @@ const Experience = () => {
   );
 };
 
-export default Experience;
+export default Education;

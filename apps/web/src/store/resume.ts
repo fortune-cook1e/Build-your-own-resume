@@ -4,6 +4,7 @@ import { immer } from 'zustand/middleware/immer';
 import { devtools } from 'zustand/middleware';
 import { set as lodashSet } from 'lodash-es';
 import { produce } from 'immer';
+import { debounceUpdateResume } from '@/apis/resume/update';
 interface ResumeStore {
   resume: Resume;
 
@@ -33,6 +34,7 @@ export const useResumeStore = create<ResumeStore>()(
           state.resume.data = lodashSet(state.resume.data, path, value);
 
           // Todo: update resume and postmessage to iframe
+          debounceUpdateResume(JSON.parse(JSON.stringify(state.resume)));
         });
       },
 

@@ -5,7 +5,11 @@ import SectionIcon from '@/app/builder/components/Sidebars/left/sections/common/
 import { Divider, Flex, IconButton } from '@chakra-ui/react';
 import { HourglassMedium } from '@phosphor-icons/react';
 import { FC, useRef } from 'react';
-import { Experience, Profile } from '@fe-cookie/resume-generator-shared';
+import {
+  Education,
+  Experience,
+  Profile,
+} from '@fe-cookie/resume-generator-shared';
 import Link from 'next/link';
 
 const LeftSidebar: FC = () => {
@@ -59,9 +63,17 @@ const LeftSidebar: FC = () => {
 
           <SectionBase<Experience>
             id="experience"
-            title={(item) => item.network}
-            description={(item) => item.username}
+            title={(item) => item.position}
+            description={(item) => item.company}
           ></SectionBase>
+
+          <SectionBase<Education>
+            id="education"
+            title={(item) => item.college}
+            description={(item) => item.major}
+          ></SectionBase>
+
+          <Divider />
         </div>
       </div>
     </Flex>

@@ -24,12 +24,12 @@ const Profiles = () => {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <FormControl>
           <FormLabel>Network</FormLabel>
-          <Input placeContent="Your network" {...form.register('network')} />
+          <Input placeholder="Your network" {...form.register('network')} />
         </FormControl>
 
         <FormControl>
           <FormLabel>Username</FormLabel>
-          <Input placeContent="Your username" {...form.register('username')} />
+          <Input placeholder="Your username" {...form.register('username')} />
         </FormControl>
 
         <div className="sm:col-span-2">

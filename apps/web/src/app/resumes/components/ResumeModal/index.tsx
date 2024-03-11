@@ -41,7 +41,7 @@ interface Props {
   onClose: () => void;
   onSuccess?: () => void;
   mode: FormMode;
-  payload: ResumeModalFormValues;
+  payload?: ResumeModalFormValues;
 }
 
 const ResumeModal = forwardRef<any, Props>(
@@ -88,7 +88,7 @@ const ResumeModal = forwardRef<any, Props>(
       }
 
       if (isUpdate) {
-        if (!payload.id) return;
+        if (!payload?.id) return;
         await updateResume({
           ...payload,
           title: data.title,
@@ -100,9 +100,8 @@ const ResumeModal = forwardRef<any, Props>(
       }
 
       if (isDelete) {
-        console.log({ payload });
-        if (!payload.id) return;
-        await deleteResume(payload?.id);
+        if (!payload?.id) return;
+        await deleteResume(payload.id);
         toast({
           title: 'Delete Success',
         });

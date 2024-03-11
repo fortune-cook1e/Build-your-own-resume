@@ -1,6 +1,7 @@
 'use client';
 
 import { useResumeList } from '@/apis/resume/list';
+import AddResumeCard from '@/app/resumes/components/AddResumeCard';
 import ResumeCard from '@/app/resumes/components/ResumeCard';
 import AuthGuard from '@/components/AuthGuard';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -13,6 +14,8 @@ const Resumes = () => {
   return (
     <AuthGuard>
       <div className="grid grid-cols-3 gap-8 sm:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+        <AddResumeCard />
+
         {resumeList && (
           <AnimatePresence>
             {resumeList.map((resume, index) => (

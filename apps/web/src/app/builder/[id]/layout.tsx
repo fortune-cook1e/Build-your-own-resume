@@ -29,14 +29,14 @@ const Layout: FC<Props> = ({ children }) => {
         <PanelResizeHandler
           onDragging={left.handler.setDragging}
           isDragging={left.handler.isDragging}
-        ></PanelResizeHandler>
+        />
 
         <Panel minSize={30}>{children}</Panel>
 
         <PanelResizeHandler
           onDragging={right.handler.setDragging}
           isDragging={right.handler.isDragging}
-        ></PanelResizeHandler>
+        />
         <Panel defaultSize={30} minSize={25} onResize={right.setSize}>
           <h1>right panel</h1>
         </Panel>
