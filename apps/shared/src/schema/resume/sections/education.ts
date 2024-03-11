@@ -6,8 +6,7 @@ export const educationSchema = itemSchema.extend({
   college: z.string(),
   major: z.string(),
   area: z.string(),
-  start: z.date().or(z.string()),
-  end: z.date().or(z.string()),
+  date: z.string(),
   summary: z.string(),
 });
 export type Education = z.infer<typeof educationSchema>;
@@ -17,7 +16,6 @@ export const defaultEducation: Education = {
   college: '',
   major: '',
   area: '',
-  start: new Date(),
-  end: new Date(),
+  date: '',
   summary: '',
 };

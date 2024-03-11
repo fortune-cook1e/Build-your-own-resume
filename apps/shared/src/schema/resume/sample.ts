@@ -59,8 +59,7 @@ export const sampleResume: ResumeData = {
           company: 'Creative Solutions Inc.',
           position: 'Senior Web Developer',
           location: 'San Francisco, CA',
-          start: new Date(),
-          end: new Date(),
+          date: '',
           summary:
             '<ul><li><p>Spearheaded the redesign of the main product website, resulting in a 40% increase in user engagement.</p></li><li><p>Developed and implemented a new responsive framework, improving cross-device compatibility.</p></li><li><p>Mentored a team of four junior developers, fostering a culture of technical excellence.</p></li></ul>',
         },
@@ -70,8 +69,7 @@ export const sampleResume: ResumeData = {
           company: 'TechAdvancers',
           position: 'Web Developer',
           location: 'San Jose, CA',
-          start: new Date(),
-          end: new Date(),
+          date: '',
           summary:
             '<ul><li><p>Collaborated in a team of 10 to develop high-quality web applications using React.js and Node.js.</p></li><li><p>Managed the integration of third-party services such as Stripe for payments and Twilio for SMS services.</p></li><li><p>Optimized application performance, achieving a 30% reduction in load times.</p></li></ul>',
         },
@@ -89,8 +87,7 @@ export const sampleResume: ResumeData = {
           college: 'Harvard University',
           major: 'B.S. in Computer Science',
           area: 'USA',
-          start: new Date(),
-          end: new Date(),
+          date: '',
           summary:
             '<ul><li><p>Collaborated in a team of 10 to develop high-quality web applications using React.js and Node.js.</p></li><li><p>Managed the integration of third-party services such as Stripe for payments and Twilio for SMS services.</p></li><li><p>Optimized application performance, achieving a 30% reduction in load times.</p></li></ul>',
         },
