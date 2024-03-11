@@ -1,4 +1,5 @@
 import { ResumeData } from './index';
+import { createId } from '@paralleldrive/cuid2';
 
 export const sampleResume: ResumeData = {
   basics: {
@@ -24,7 +25,7 @@ export const sampleResume: ResumeData = {
       id: 'profiles',
       items: [
         {
-          id: 'cnbk5f0aeqvhx69ebk7hktwd',
+          id: createId(),
           visible: true,
           network: 'LinkedIn',
           username: 'johndoe',
@@ -35,7 +36,7 @@ export const sampleResume: ResumeData = {
           },
         },
         {
-          id: 'ukl0uecvzkgm27mlye0wazlb',
+          id: createId(),
           visible: true,
           network: 'GitHub',
           username: 'johndoe',
@@ -53,7 +54,7 @@ export const sampleResume: ResumeData = {
       id: 'experience',
       items: [
         {
-          id: 'lhw25d7gf32wgdfpsktf6e0x',
+          id: createId(),
           visible: true,
           company: 'Creative Solutions Inc.',
           position: 'Senior Web Developer',
@@ -64,11 +65,30 @@ export const sampleResume: ResumeData = {
             '<ul><li><p>Spearheaded the redesign of the main product website, resulting in a 40% increase in user engagement.</p></li><li><p>Developed and implemented a new responsive framework, improving cross-device compatibility.</p></li><li><p>Mentored a team of four junior developers, fostering a culture of technical excellence.</p></li></ul>',
         },
         {
-          id: 'r6543lil53ntrxmvel53gbtm',
+          id: createId(),
           visible: true,
           company: 'TechAdvancers',
           position: 'Web Developer',
           location: 'San Jose, CA',
+          start: new Date(),
+          end: new Date(),
+          summary:
+            '<ul><li><p>Collaborated in a team of 10 to develop high-quality web applications using React.js and Node.js.</p></li><li><p>Managed the integration of third-party services such as Stripe for payments and Twilio for SMS services.</p></li><li><p>Optimized application performance, achieving a 30% reduction in load times.</p></li></ul>',
+        },
+      ],
+    },
+
+    education: {
+      name: 'Education',
+      id: 'education',
+      visible: true,
+      items: [
+        {
+          id: createId(),
+          visible: true,
+          college: 'Harvard University',
+          major: 'B.S. in Computer Science',
+          area: 'USA',
           start: new Date(),
           end: new Date(),
           summary:
@@ -116,28 +136,6 @@ export const sampleResume: ResumeData = {
     //       name: 'AWS Certified Developer',
     //       issuer: 'Amazon Web Services',
     //       date: '2019',
-    //       summary: '',
-    //       url: {
-    //         label: '',
-    //         href: '',
-    //       },
-    //     },
-    //   ],
-    // },
-    // education: {
-    //   name: 'Education',
-    //   columns: 1,
-    //   visible: true,
-    //   id: 'education',
-    //   items: [
-    //     {
-    //       id: 'yo3p200zo45c6cdqc6a2vtt3',
-    //       visible: true,
-    //       institution: 'University of California',
-    //       studyType: "Bachelor's in Computer Science",
-    //       area: 'Berkeley, CA',
-    //       score: '',
-    //       date: 'August 2012 to May 2016',
     //       summary: '',
     //       url: {
     //         label: '',
