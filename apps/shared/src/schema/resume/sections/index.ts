@@ -54,7 +54,7 @@ export const defaultSections: Sections = {
   education: {
     ...defaultSection,
     id: 'education',
-    name: 'Experience',
+    name: 'Education',
     items: [],
   },
 };
