@@ -82,7 +82,7 @@ export class ResumeService {
   }
 
   async delete(userId: string, id: string) {
-    await this.prismaService.resume.delete({
+    return await this.prismaService.resume.delete({
       where: {
         userId_id: { userId, id },
       },
