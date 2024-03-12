@@ -23,7 +23,7 @@ async function bootstrap() {
 
   const configService = app.get(ConfigService<Config>);
 
-  const globalApiPrefix = 'resume-api';
+  const globalApiPrefix = 'resume-generator-api';
   app.setGlobalPrefix(globalApiPrefix);
 
   const documentConfig = new DocumentBuilder()
@@ -39,6 +39,9 @@ async function bootstrap() {
   const port = configService.get<number>('PORT') || 3000;
   await app.listen(port);
 
-  Logger.log(`🚀 Server is up and running on port ${port}`, 'Bootstrap');
+  Logger.log(
+    `🚀 Server is up and running on port ${port}/${globalApiPrefix}`,
+    'Bootstrap',
+  );
 }
 bootstrap();
