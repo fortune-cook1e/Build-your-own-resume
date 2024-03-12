@@ -1,32 +1,22 @@
 'use client';
 
 import { useResumeStore } from '@/store/resume';
-import { useEffect, useState } from 'react';
-import dynamic from 'next/dynamic';
-import { useSearchParams } from 'next/navigation';
+import { FC, useEffect } from 'react';
 
-const ReactJsonView = dynamic(() => import('react-json-view'));
+const Builder: FC = () => {
+  const resume = useResumeStore((state) => state.resume);
 
-const Builder = () => {
-  const searchParams = useSearchParams();
-  // const resume = useResumeStore((state) => state.resume);
-  // console.log({ resume });
+  useEffect(() => {}, []);
 
-  // FixBug: nextjs Text content does not match server-rendered HTML
-  const [hydrated, setHydrated] = useState(false);
-
-  useEffect(() => {
-    setHydrated(true);
-  }, []);
-
-  if (!hydrated) return null;
+  if (!resume) return null;
 
   return (
-    <div>
-      <h1>this is builder page</h1>
-
-      <div>{/* <ReactJsonView src={resume.data.sections} /> */}</div>
-    </div>
+    <iframe
+      title={resume.id}
+      src="/resume-generator-board/builder"
+      className="mt-16 w-screen"
+      style={{ height: `calc(100vh - 64px)` }}
+    />
   );
 };
 
