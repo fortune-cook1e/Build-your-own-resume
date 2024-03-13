@@ -24,7 +24,12 @@ const LoginForm: FC<Props> = ({ onRegisterClick }) => {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<LoginDto>();
+  } = useForm<LoginDto>({
+    defaultValues: {
+      identifier: '767077147@qq.com',
+      password: 'gaoliang199516',
+    },
+  });
 
   const onSubmit: SubmitHandler<LoginDto> = async (data) => {
     await login(data);

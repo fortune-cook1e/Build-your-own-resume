@@ -1,15 +1,7 @@
 import { Outlet } from 'react-router-dom';
 
 const Board = () => {
-  return (
-    <div>
-      <h1>this is board</h1>
-
-      <div>
-        <Outlet />
-      </div>
-    </div>
-  );
+  return <Outlet />;
 };
 
 export default Board;
