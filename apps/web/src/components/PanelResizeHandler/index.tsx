@@ -1,11 +1,12 @@
 import { mergeTailwindCss } from '@/utils/styles';
-import React, { FC } from 'react';
-import * as PanelPrimitive from 'react-resizable-panels';
+import React, { FC, ReactNode } from 'react';
+import {
+  PanelResizeHandle,
+  PanelResizeHandleProps as PrimitivePanelResizeHandleProps,
+} from 'react-resizable-panels';
 import { DotsSixVertical } from '@phosphor-icons/react';
 
-type PanelResizeHandleProps = React.ComponentProps<
-  typeof PanelPrimitive.PanelResizeHandle
-> & {
+type PanelResizeHandleProps = PrimitivePanelResizeHandleProps & {
   isDragging?: boolean;
 };
 
@@ -16,7 +17,7 @@ const PanelResizeHandler: FC<PanelResizeHandleProps> = ({
   ...props
 }: PanelResizeHandleProps) => {
   return (
-    <PanelPrimitive.PanelResizeHandle
+    <PanelResizeHandle
       className={mergeTailwindCss('relative h-screen', className)}
       onDragging={onDragging}
       {...props}
@@ -33,7 +34,7 @@ const PanelResizeHandler: FC<PanelResizeHandleProps> = ({
       <div className="pointer-events-none absolute inset-y-0 left-[-5px] z-50 flex items-center justify-center">
         <DotsSixVertical size={14} opacity={0.75} />
       </div>
-    </PanelPrimitive.PanelResizeHandle>
+    </PanelResizeHandle>
   );
 };
 

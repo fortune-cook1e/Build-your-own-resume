@@ -1,6 +1,5 @@
-import { PanelOnCollapse, PanelOnResize } from 'react-resizable-panels';
+import { PanelOnResize } from 'react-resizable-panels';
 import { create } from 'zustand';
-import { immer } from 'zustand/middleware/immer';
 
 interface Panel {
   size: number;
@@ -14,47 +13,63 @@ interface Hanlder {
 }
 
 interface BuilderStore {
+  iframe: {
+    ref: HTMLIFrameElement | null;
+    setRef: (ref: HTMLIFrameElement | null) => void;
+  };
   panel: {
     left: Panel;
     right: Panel;
   };
 }
 
-export const useBuilderStore = create<BuilderStore>()(
-  immer((set) => ({
-    panel: {
-      left: {
-        size: 0,
-        setSize(size) {
-          set((state) => {
-            state.panel.left.size = size;
-          });
-        },
-        handler: {
-          isDragging: false,
-          setDragging(dragging) {
-            set((state) => {
-              state.panel.left.handler.isDragging = dragging;
-            });
-          },
-        },
-      },
-      right: {
-        size: 0,
-        setSize(size) {
-          set((state) => {
-            state.panel.right.size = size;
-          });
-        },
-        handler: {
-          isDragging: false,
-          setDragging(dragging) {
-            set((state) => {
-              state.panel.right.handler.isDragging = dragging;
-            });
-          },
-        },
+export const useBuilderStore = create<BuilderStore>()((set) => ({
+  iframe: {
+    ref: null,
+    setRef: (ref) => {
+      set((state) => ({ iframe: { ...state.iframe, ref } }));
+    },
+  },
+  panel: {
+    left: {
+      size: 0,
+      setSize: (size: number) =>
+        set((state) => ({
+          panel: { ...state.panel, left: { ...state.panel.left, size } },
+        })),
+      handler: {
+        isDragging: false,
+        setDragging: (dragging) =>
+          set((state) => ({
+            panel: {
+              ...state.panel,
+              left: {
+                ...state.panel.left,
+                handler: { ...state.panel.left.handler, isDragging: dragging },
+              },
+            },
+          })),
       },
     },
-  })),
-);
+    right: {
+      size: 0,
+      setSize: (size: number) =>
+        set((state) => ({
+          panel: { ...state.panel, right: { ...state.panel.right, size } },
+        })),
+      handler: {
+        isDragging: false,
+        setDragging: (dragging) =>
+          set((state) => ({
+            panel: {
+              ...state.panel,
+              right: {
+                ...state.panel.left,
+                handler: { ...state.panel.right.handler, isDragging: dragging },
+              },
+            },
+          })),
+      },
+    },
+  },
+}));
