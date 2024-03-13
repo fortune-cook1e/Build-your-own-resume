@@ -4,16 +4,19 @@ import { defaultSections, sectionsSchema } from './sections';
 import { basicsSchema, defaultBasics } from './basics';
 import { idSchema } from './common';
 import { userSchema } from '@/schema/user';
+import { defaultMetadata, metadataSchema } from '@/schema/resume/metadata';
 
 export const resumeDataSchema = z.object({
   basics: basicsSchema,
   sections: sectionsSchema,
+  metadata: metadataSchema,
 });
 
 // default resume data
 export const defaultResumeData: ResumeData = {
   basics: defaultBasics,
   sections: defaultSections,
+  metadata: defaultMetadata,
 };
 
 export type ResumeData = z.infer<typeof resumeDataSchema>;

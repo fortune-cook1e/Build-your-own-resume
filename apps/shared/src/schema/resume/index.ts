@@ -6,3 +6,5 @@ export * from './sample';
 export * from './create';
 export * from './update';
 export * from './delete';
+export * from './metadata';
+export * from './template';

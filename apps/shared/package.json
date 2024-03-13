@@ -37,6 +37,8 @@
   },
   "dependencies": {
     "@paralleldrive/cuid2": "^2.2.2",
+    "classnames": "^2.5.1",
+    "tailwind-merge": "^2.2.1",
     "zod": "^3.22.4"
   }
 }
