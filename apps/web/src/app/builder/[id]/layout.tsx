@@ -1,6 +1,7 @@
 'use client';
 
 import { useResume } from '@/apis/resume/resume';
+import BuilderHeadBar from '@/app/builder/components/BuilderHeadBar';
 import LeftSidebar from '@/app/builder/components/Sidebars/left';
 import PanelResizeHandler from '@/components/PanelResizeHandler';
 import { useBuilderStore } from '@/store/builder';
@@ -22,7 +23,12 @@ const Layout: FC<Props> = ({ children }) => {
   return (
     <div className="relative h-full w-full overflow-hidden">
       <PanelGroup direction="horizontal">
-        <Panel defaultSize={40} minSize={30} onResize={left.setSize}>
+        <Panel
+          defaultSize={30}
+          minSize={30}
+          onResize={left.setSize}
+          className="z-20 bg-background"
+        >
           <LeftSidebar />
         </Panel>
 
@@ -31,13 +37,23 @@ const Layout: FC<Props> = ({ children }) => {
           isDragging={left.handler.isDragging}
         />
 
-        <Panel minSize={30}>{children}</Panel>
+        <Panel minSize={30}>
+          <>
+            <BuilderHeadBar />
+            <div className="absolute inset-0 z-10">{children}</div>
+          </>
+        </Panel>
 
         <PanelResizeHandler
           onDragging={right.handler.setDragging}
           isDragging={right.handler.isDragging}
         />
-        <Panel defaultSize={30} minSize={25} onResize={right.setSize}>
+        <Panel
+          defaultSize={30}
+          minSize={15}
+          onResize={right.setSize}
+          className="z-20 bg-background"
+        >
           <h1>right panel</h1>
         </Panel>
       </PanelGroup>
