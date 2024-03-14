@@ -1,3 +1,4 @@
+import TemplateWrapper from '@/components/TemplateWrapper';
 import { useBoardStore } from '@/store/board';
 import { getTemplate } from '@/templates';
 import { TemplateLayout } from '@fe-cookie/resume-generator-shared';
@@ -14,9 +15,21 @@ const Builder = () => {
   }, [template]);
 
   return (
-    <TransformWrapper>
-      <TransformComponent wrapperClass="!w-screen !h-screen">
-        <RenderTemplate layout={layout as TemplateLayout} />
+    <TransformWrapper
+      centerOnInit
+      maxScale={2}
+      minScale={0.4}
+      initialScale={0.8}
+      limitToBounds
+    >
+      <TransformComponent
+        wrapperClass="!w-screen !h-screen"
+        contentClass="grid items-start justify-center space-x-12 pointer-events-none"
+        contentStyle={{ width: '835.8px' }}
+      >
+        <TemplateWrapper>
+          <RenderTemplate layout={layout as TemplateLayout} />
+        </TemplateWrapper>
       </TransformComponent>
     </TransformWrapper>
   );

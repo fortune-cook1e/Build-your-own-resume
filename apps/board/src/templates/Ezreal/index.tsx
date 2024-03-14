@@ -20,10 +20,8 @@ const mapStrToComponent = (str: SectionKey) => {
 const Ezreal = ({ layout }: TemplateProps) => {
   const { main, ignore } = layout;
 
-  console.log({ main, ignore });
-
   return (
-    <div className="space-y-4">
+    <div className="p-custom space-y-4">
       <Header />
       {main.map((item) => (
         <Fragment key={item}>{mapStrToComponent(item)}</Fragment>
