@@ -1,21 +1,32 @@
 import { useBuilderStore } from '@/store/builder';
 import { useResumeStore } from '@/store/resume';
 import { IconButton } from '@chakra-ui/react';
+import { mergeTailwindCss } from '@fe-cookie/resume-generator-shared';
 import { HouseSimple, SidebarSimple } from '@phosphor-icons/react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { FC } from 'react';
 
 const BuilderHeadBar: FC = () => {
+  const router = useRouter();
   const leftPanelSize = useBuilderStore((state) => state.panel.left.size);
   const rightPanelSize = useBuilderStore((state) => state.panel.right.size);
   const title = useResumeStore((state) => state.resume.title);
+  const isDragging = useBuilderStore(
+    (state) =>
+      state.panel.left.handler.isDragging ||
+      state.panel.right.handler.isDragging,
+  );
 
   return (
     <div
       style={{ left: `${leftPanelSize}%`, right: `${rightPanelSize}%` }}
-      className="fixed inset-x-0 top-0 z-[60] h-16 bg-secondary-accent/50"
+      className={mergeTailwindCss(
+        'fixed inset-x-0 top-0 z-20 h-16 bg-secondary-accent/50 z-z',
+        isDragging && 'transition-[left,right]',
+      )}
     >
-      <div className="flex items-center justify-between px-4 h-full">
+      <div className="flex h-full items-center justify-between px-4">
         <div className="lg:hidden">
           <IconButton
             aria-label="Toggle left"
@@ -28,11 +39,9 @@ const BuilderHeadBar: FC = () => {
           <IconButton
             aria-label="Home"
             variant="ghost"
-            icon={
-              <Link href="/resumes">
-                <HouseSimple />
-              </Link>
-            }
+            className="cursor-pointer"
+            onClick={() => router.push('/resumes')}
+            icon={<HouseSimple />}
           />
           <span className="mr-2 text-xs opacity-40">/</span>
 
