@@ -1,17 +1,19 @@
 import SectionModal from '@/app/builder/components/Sidebars/left/sections/common/SectionModal';
+import RickEditor from '@/components/RichEditor';
 import { FormControl, FormLabel, Input } from '@chakra-ui/react';
 import {
   defaultEducation,
   educationSchema,
 } from '@fe-cookie/resume-generator-shared';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { FC } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 const formSchema = educationSchema;
 type formValues = z.infer<typeof formSchema>;
 
-const Education = () => {
+const Education: FC = () => {
   const form = useForm<formValues>({
     defaultValues: defaultEducation,
     resolver: zodResolver(formSchema),
@@ -48,10 +50,20 @@ const Education = () => {
         </div>
 
         <div className="sm:col-span-2">
-          <FormControl>
-            <FormLabel>Summary</FormLabel>
-            <Input placeholder="Summary" {...form.register('summary')} />
-          </FormControl>
+          <Controller
+            control={form.control}
+            name="summary"
+            render={({ field }) => (
+              <FormControl>
+                <FormLabel>Summary</FormLabel>
+                <RickEditor
+                  {...field}
+                  content={field.value}
+                  onChange={(val) => field.onChange(val)}
+                />
+              </FormControl>
+            )}
+          />
         </div>
       </div>
     </SectionModal>

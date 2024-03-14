@@ -6,13 +6,15 @@ import {
   experienceSchema,
 } from '@fe-cookie/resume-generator-shared';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { values } from 'lodash-es';
+import { FC } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 const formSchema = experienceSchema;
 type FormValues = z.infer<typeof formSchema>;
 
-const Experience = () => {
+const Experience: FC = () => {
   const form = useForm<FormValues>({
     defaultValues: defaultExperience,
     resolver: zodResolver(formSchema),
@@ -52,10 +54,20 @@ const Experience = () => {
         </div>
 
         <div className="sm:col-span-2">
-          <FormControl>
-            <FormLabel>Summary</FormLabel>
-            <Input placeholder="Summary" {...form.register('summary')} />
-          </FormControl>
+          <Controller
+            control={form.control}
+            name="summary"
+            render={({ field }) => (
+              <FormControl>
+                <FormLabel>Summary</FormLabel>
+                <RickEditor
+                  {...field}
+                  content={field.value}
+                  onChange={(val) => field.onChange(val)}
+                />
+              </FormControl>
+            )}
+          />
         </div>
       </div>
     </SectionModal>

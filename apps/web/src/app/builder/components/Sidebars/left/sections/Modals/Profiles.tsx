@@ -9,11 +9,12 @@ import { FormControl, FormLabel, Input } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, Controller } from 'react-hook-form';
 import { z } from 'zod';
+import { FC } from 'react';
 
 const formSchema = profileSchema;
 type FormValues = z.infer<typeof formSchema>;
 
-const Profiles = () => {
+const Profiles: FC = () => {
   const form = useForm<FormValues>({
     defaultValues: defaultProfile,
     resolver: zodResolver(formSchema),
