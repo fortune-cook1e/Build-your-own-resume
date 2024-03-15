@@ -147,7 +147,9 @@ const SectionBase = <T extends SectionItem>({
   );
 };
 
-const SectionBaseWithProvider = <T extends SectionItem>(props: Props<T>) => (
+const SectionBaseWithProvider = <T extends SectionItem>(
+  props: Props<T>,
+): JSX.Element => (
   <SectionProvider>
     <SectionBase {...props} />
   </SectionProvider>

@@ -50,20 +50,6 @@ request.interceptors.response.use(
   },
   // Tip: handle status code >= 400
   function (error) {
-    const statusCode = error.response.status;
-    if (statusCode === 401) {
-      return Promise.reject(error);
-    }
-
-    if (statusCode === 403) {
-      toast({
-        title: 'Token expired',
-        description: 'Please login again!',
-        status: 'error',
-        position: 'top',
-      });
-    }
-
     const errorMsg =
       error.response?.data?.message || error.message || 'Request Failed';
     toast({

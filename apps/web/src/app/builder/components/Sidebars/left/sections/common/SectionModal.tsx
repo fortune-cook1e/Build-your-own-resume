@@ -32,7 +32,10 @@ type Props<T extends SectionItem> = {
 // 2. 并且管理Modal 的展示和关闭
 // 3. 这里的 Modal 用于渲染所有 模块的表单数据
 
-const SectionModal = <T extends SectionItem>({ form, children }: Props<T>) => {
+const SectionModal = <T extends SectionItem>({
+  form,
+  children,
+}: Props<T>): JSX.Element => {
   const { id, mode, open, setOpen, payload } = useSectionContext();
 
   const section = useResumeStore((state) =>
