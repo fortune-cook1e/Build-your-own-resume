@@ -40,6 +40,7 @@ const UrlInput = forwardRef<any, Props>(
         />
         <Popover>
           <Tooltip label="Url label" aria-label="tooltip">
+            {/* Tip: add Box to fix the bug that tooltip not showing  */}
             <Box>
               <PopoverTrigger>
                 <IconButton

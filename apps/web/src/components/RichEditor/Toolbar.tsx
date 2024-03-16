@@ -5,6 +5,7 @@ import {
   PopoverTrigger,
   PopoverContent,
   Portal,
+  Box,
 } from '@chakra-ui/react';
 import { Editor } from '@tiptap/react';
 import {
@@ -34,10 +35,11 @@ import {
   TextOutdent,
   TextStrikethrough,
 } from '@phosphor-icons/react';
-import { FC, forwardRef, useCallback } from 'react';
+import { FC, forwardRef, useCallback, useEffect, useRef } from 'react';
 import ImageForm from '@/components/RichEditor/ImageForm';
 
 const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
+  const popoverContentRef = useRef<HTMLElement>(null);
   const setLink = useCallback(() => {
     const previousUrl = editor.getAttributes('link').href;
     const url = window.prompt('URL', previousUrl);
@@ -57,7 +59,6 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
     // update link
     editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
   }, [editor]);
-
   return (
     <div className="flex flex-wrap gap-0.5 border p-1">
       <Tooltip label="Bold">
@@ -258,7 +259,7 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
         />
       </Tooltip>
 
-      <Tooltip content="Indent">
+      <Tooltip label="Indent">
         <IconButton
           size="sm"
           variant="ghost"
@@ -268,24 +269,35 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
         />
       </Tooltip>
 
-      {/* // Todo: fix the bug nesting form element, solution: add portal div in SectionModal container */}
-      {/* <Popover>
-        <Tooltip content="Insert Image">
-          <PopoverTrigger>
-            <IconButton
-              size="sm"
-              aria-label="Image Icon"
-              variant="ghost"
-              icon={<ImageIcon />}
-            ></IconButton>
-          </PopoverTrigger>
+      <Popover
+        onOpen={() => {
+          // FixBug: ImageForm covered by previous modal
+          if (popoverContentRef.current?.parentElement) {
+            popoverContentRef.current?.parentElement.classList.add('!z-[1999]');
+          }
+        }}
+      >
+        <Tooltip label="Insert Image">
+          <Box>
+            <PopoverTrigger>
+              <IconButton
+                size="sm"
+                aria-label="Image Icon"
+                variant="ghost"
+                icon={<ImageIcon />}
+              ></IconButton>
+            </PopoverTrigger>
+          </Box>
         </Tooltip>
-        <PopoverContent className="p-6 relative z-20">
-          <ImageForm
-            onInsert={(props) => editor.chain().focus().setImage(props).run()}
-          />
-        </PopoverContent>
-      </Popover> */}
+
+        <Portal appendToParentPortal={false}>
+          <PopoverContent className="p-6" ref={popoverContentRef}>
+            <ImageForm
+              onInsert={(props) => editor.chain().focus().setImage(props).run()}
+            />
+          </PopoverContent>
+        </Portal>
+      </Popover>
 
       <Tooltip label="Insert Break Line">
         <IconButton
@@ -317,7 +329,7 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
         />
       </Tooltip>
 
-      <Tooltip content="Redo">
+      <Tooltip label="Redo">
         <IconButton
           size="sm"
           variant="ghost"
