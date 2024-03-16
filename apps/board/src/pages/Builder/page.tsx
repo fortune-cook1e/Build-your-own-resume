@@ -13,7 +13,6 @@ import {
 } from 'react-zoom-pan-pinch';
 
 const Builder = () => {
-  const resume = useBoardStore((state) => state.resume);
   const template = useBoardStore((state) => state.resume.metadata.template);
   const layout = useBoardStore((state) => state.resume.metadata.layout);
 
@@ -25,6 +24,9 @@ const Builder = () => {
     if (type === POST_MESSAGES.zoomIn) transformRef.current?.zoomIn();
     if (type === POST_MESSAGES.zoomOut) transformRef.current?.zoomOut();
     if (type === POST_MESSAGES.centerView) transformRef.current?.centerView();
+    if (type === POST_MESSAGES.resetView)
+      transformRef.current?.resetTransform(0);
+    setTimeout(() => transformRef.current?.centerView(0.8, 0), 10);
   };
 
   const RenderTemplate = useMemo(() => {

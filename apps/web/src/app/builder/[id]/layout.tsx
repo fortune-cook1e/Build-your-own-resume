@@ -15,7 +15,8 @@ interface Props {
 }
 
 const Layout: FC<Props> = ({ children }) => {
-  const { left, right } = useBuilderStore((state) => state.panel);
+  const left = useBuilderStore((state) => state.panel.left);
+  const right = useBuilderStore((state) => state.panel.right);
   const params = useParams<{ id: string }>();
   const { resume } = useResume(params.id);
 
@@ -27,8 +28,9 @@ const Layout: FC<Props> = ({ children }) => {
         <Panel
           defaultSize={30}
           minSize={30}
+          maxSize={40}
           onResize={left.setSize}
-          className="z-10 bg-background"
+          className="z-[1] bg-background"
         >
           <LeftSidebar />
         </Panel>
@@ -38,10 +40,10 @@ const Layout: FC<Props> = ({ children }) => {
           isDragging={left.handler.isDragging}
         />
 
-        <Panel minSize={30}>
+        <Panel minSize={20}>
           <>
             <BuilderHeadBar />
-            <div className="absolute inset-0">{children}</div>
+            <div className="absolute inset-0 z-0">{children}</div>
             <BuilderToolBar />
           </>
         </Panel>
@@ -52,9 +54,10 @@ const Layout: FC<Props> = ({ children }) => {
         />
         <Panel
           defaultSize={30}
-          minSize={15}
+          minSize={30}
+          maxSize={40}
           onResize={right.setSize}
-          className="z-10 bg-background"
+          className="z-[1] bg-background"
         >
           <h1>right panel</h1>
         </Panel>

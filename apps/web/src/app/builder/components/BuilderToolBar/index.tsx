@@ -4,6 +4,7 @@ import { POST_MESSAGES } from '@fe-cookie/resume-generator-shared';
 import {
   MagnifyingGlassMinus,
   MagnifyingGlassPlus,
+  ClockClockwise,
 } from '@phosphor-icons/react';
 import { CubeFocus } from '@phosphor-icons/react/dist/ssr';
 import { FC } from 'react';
@@ -20,6 +21,13 @@ const BuilderToolBar: FC = () => {
   const onCenter = () => {
     iframeRef?.contentWindow?.postMessage(
       { type: POST_MESSAGES.centerView },
+      '*',
+    );
+  };
+
+  const onReset = () => {
+    iframeRef?.contentWindow?.postMessage(
+      { type: POST_MESSAGES.resetView },
       '*',
     );
   };
@@ -51,6 +59,15 @@ const BuilderToolBar: FC = () => {
             variant="ghost"
             icon={<CubeFocus />}
             onClick={onCenter}
+          />
+        </Tooltip>
+
+        <Tooltip label="Reset">
+          <IconButton
+            aria-label="center"
+            variant="ghost"
+            icon={<ClockClockwise />}
+            onClick={onReset}
           />
         </Tooltip>
       </div>
