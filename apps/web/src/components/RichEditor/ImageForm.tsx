@@ -36,14 +36,20 @@ const ImageForm = forwardRef<any, Props>(({ onInsert }, ref) => {
   };
 
   return (
-    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
+    <form
+      onSubmit={(e) => {
+        e.stopPropagation();
+        form.handleSubmit(onSubmit)(e);
+      }}
+      className="space-y-3"
+    >
       <FormControl>
         <FormLabel>Image Url</FormLabel>
-        <Input placeholder="Image url" />
+        <Input placeholder="Image url" {...form.register('src')} />
       </FormControl>
       <FormControl>
         <FormLabel>Image Alt</FormLabel>
-        <Input placeholder="Image alt" />
+        <Input placeholder="Image alt" {...form.register('alt')} />
       </FormControl>
       <Button type="submit">Insert Image</Button>
     </form>

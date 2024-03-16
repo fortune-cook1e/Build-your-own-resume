@@ -214,8 +214,8 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
           size="sm"
           variant="ghost"
           onClick={() => editor.chain().focus().setTextAlign('right').run()}
-          aria-label="Aligh Left"
-          icon={<TextAlignLeft />}
+          aria-label="Aligh Right"
+          icon={<TextAlignRight />}
         />
       </Tooltip>
 
