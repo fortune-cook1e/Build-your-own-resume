@@ -35,7 +35,10 @@ export const useBuilderStore = create<BuilderStore>()((set) => ({
       size: 0,
       setSize: (size: number) =>
         set((state) => ({
-          panel: { ...state.panel, left: { ...state.panel.left, size } },
+          panel: {
+            right: state.panel.right,
+            left: { ...state.panel.left, size },
+          },
         })),
       handler: {
         isDragging: false,
@@ -53,10 +56,14 @@ export const useBuilderStore = create<BuilderStore>()((set) => ({
     },
     right: {
       size: 0,
-      setSize: (size: number) =>
+      setSize: (size: number) => {
         set((state) => ({
-          panel: { ...state.panel, right: { ...state.panel.right, size } },
-        })),
+          panel: {
+            left: state.panel.left,
+            right: { ...state.panel.right, size },
+          },
+        }));
+      },
       handler: {
         isDragging: false,
         setDragging: (dragging) =>
@@ -64,7 +71,7 @@ export const useBuilderStore = create<BuilderStore>()((set) => ({
             panel: {
               ...state.panel,
               right: {
-                ...state.panel.left,
+                ...state.panel.right,
                 handler: { ...state.panel.right.handler, isDragging: dragging },
               },
             },

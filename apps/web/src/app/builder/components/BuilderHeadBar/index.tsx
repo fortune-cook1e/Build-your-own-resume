@@ -22,7 +22,7 @@ const BuilderHeadBar: FC = () => {
     <div
       style={{ left: `${leftPanelSize}%`, right: `${rightPanelSize}%` }}
       className={mergeTailwindCss(
-        'fixed inset-x-0 top-0 z-20 h-16 bg-secondary-accent/50 z-z',
+        'fixed inset-x-0 top-0 z-0 h-16 bg-secondary-accent/50 backdrop-blur-lg',
         isDragging && 'transition-[left,right]',
       )}
     >

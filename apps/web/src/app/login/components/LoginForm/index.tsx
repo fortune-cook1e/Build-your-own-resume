@@ -26,8 +26,8 @@ const LoginForm: FC<Props> = ({ onRegisterClick }) => {
     formState: { errors },
   } = useForm<LoginDto>({
     defaultValues: {
-      identifier: '767077147@qq.com',
-      password: 'gaoliang199516',
+      identifier: '',
+      password: '',
     },
   });
 
