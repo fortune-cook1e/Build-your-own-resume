@@ -2,6 +2,8 @@ import {
   CreateResumeDto,
   defaultResumeData,
   UpdateResumeDto,
+  ImportResumeDto,
+  sampleResume,
 } from '@fe-cookie/resume-generator-shared';
 import {
   Injectable,
@@ -58,6 +60,19 @@ export class ResumeService {
       where: { userId },
       orderBy: { updatedAt: 'desc' },
     });
+  }
+
+  async import(userId: string, importResumeDto: ImportResumeDto) {
+    const resume = await this.prismaService.resume.create({
+      data: {
+        userId,
+        title: importResumeDto.title || 'Sample Title',
+        description: importResumeDto.description || 'Sample Description',
+        data: sampleResume,
+        visibility: 'public',
+      },
+    });
+    return resume;
   }
 
   async update(userId: string, updateResumeDto: UpdateResumeDto) {

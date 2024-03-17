@@ -4,6 +4,7 @@ import { UseUser } from '@/user/decorators/user.decorator';
 import {
   CreateResumeDto,
   DeleteResumeDto,
+  ImportResumeDto,
   UpdateResumeDto,
   User,
 } from '@fe-cookie/resume-generator-shared';
@@ -13,7 +14,7 @@ import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
 export class ResumeController {
   constructor(private readonly resume: ResumeService) {}
 
-  @Post('/create')
+  @Post('create')
   @UseGuards(JwtGuard)
   async createResume(@UseUser() user: User, @Body() data: CreateResumeDto) {
     return await this.resume.create(user.id, data);
@@ -25,7 +26,13 @@ export class ResumeController {
     return await this.resume.update(user.id, data);
   }
 
-  @Get('/list')
+  @Post('import')
+  @UseGuards(JwtGuard)
+  async importResume(@UseUser() user: User, @Body() data: ImportResumeDto) {
+    return await this.resume.import(user.id, data);
+  }
+
+  @Get('list')
   @UseGuards(JwtGuard)
   async getResumeList(@UseUser() user: User) {
     return await this.resume.findAll(user.id);
