@@ -68,7 +68,7 @@ export class ResumeService {
         userId,
         title: importResumeDto.title || 'Sample Title',
         description: importResumeDto.description || 'Sample Description',
-        data: sampleResume,
+        data: importResumeDto.data || sampleResume,
         visibility: 'public',
       },
     });
