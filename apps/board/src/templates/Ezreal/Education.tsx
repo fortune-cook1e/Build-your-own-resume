@@ -17,7 +17,6 @@ const Education = () => {
           <div className="text-left">
             <div className="font-bold">{item.college}</div>
             <div>{item.area}</div>
-            {/* <div>{item.score}</div> */}
           </div>
 
           <div className="shrink-0 text-right">

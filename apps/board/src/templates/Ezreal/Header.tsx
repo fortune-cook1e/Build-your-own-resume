@@ -68,8 +68,8 @@ const Header = () => {
                   icon={
                     <img
                       className="ph"
-                      // width={fontSize}
-                      // height={fontSize}
+                      width={18}
+                      height={18}
                       alt={item.network}
                       src={`https://cdn.simpleicons.org/${item.icon}`}
                     />

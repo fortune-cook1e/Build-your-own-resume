@@ -12,7 +12,7 @@ const Link: FC<Props> = ({ url, icon, label, classname }) => {
   if (!url.link) return null;
 
   return (
-    <div className="flex items-center gap-x-1 5">
+    <div className="flex items-center gap-x-1.5">
       {icon ?? <i className="ph ph-bold ph-link text-primary" />}
       <a
         href={url.link}
