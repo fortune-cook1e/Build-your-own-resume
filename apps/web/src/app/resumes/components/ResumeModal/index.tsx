@@ -1,5 +1,6 @@
 import { useCreateResume } from '@/apis/resume/create';
 import { useDeleteResume } from '@/apis/resume/delete';
+import { useImportResume } from '@/apis/resume/import';
 import { useUpdateResume } from '@/apis/resume/update';
 import { FormMode } from '@/types';
 import {
@@ -20,12 +21,25 @@ import {
   ModalHeader,
   ModalOverlay,
   useToast,
+  IconButton,
+  ButtonGroup,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
 } from '@chakra-ui/react';
 import {
   createResumeSchema,
   idSchema,
+  sampleResume,
 } from '@fe-cookie/resume-generator-shared';
 import { zodResolver } from '@hookform/resolvers/zod';
+import {
+  ArrowArcRight,
+  ArrowBendDoubleUpLeft,
+  ListBullets,
+  Plus,
+} from '@phosphor-icons/react';
 import { forwardRef, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -59,6 +73,7 @@ const ResumeModal = forwardRef<any, Props>(
     const { updateResume, loading: updateLoading } = useUpdateResume();
     const { createResume, loading: createLoading } = useCreateResume();
     const { deleteResume, loading: deleteLoading } = useDeleteResume();
+    const { importResume, loading: importLoading } = useImportResume();
 
     const isCreate = mode === 'create';
     const isUpdate = mode === 'update';
@@ -107,6 +122,20 @@ const ResumeModal = forwardRef<any, Props>(
         });
       }
 
+      onSuccess?.();
+      onClose();
+    };
+
+    const onCreateFromSample = async () => {
+      await importResume({
+        title: 'Sample Title',
+        description: 'Sample Description',
+        visibility: 'public',
+        data: sampleResume,
+      });
+      toast({
+        title: 'Create Sample Resume Success',
+      });
       onSuccess?.();
       onClose();
     };
@@ -177,14 +206,25 @@ const ResumeModal = forwardRef<any, Props>(
 
             <ModalFooter gap={4}>
               <Button onClick={onClose}>Close</Button>
-              <Button
-                colorScheme="blue"
-                type="submit"
-                isLoading={updateLoading || createLoading}
-              >
-                {isCreate && 'Create'}
-                {isUpdate && 'Update'}
-              </Button>
+              <ButtonGroup isAttached colorScheme="blue">
+                <Button
+                  type="submit"
+                  isLoading={updateLoading || createLoading || importLoading}
+                >
+                  {isCreate && 'Create'}
+                  {isUpdate && 'Update'}
+                </Button>
+                <Menu>
+                  <MenuButton as={IconButton} icon={<ListBullets />}>
+                    Actions
+                  </MenuButton>
+                  <MenuList>
+                    <MenuItem onClick={onCreateFromSample}>
+                      Create from sample
+                    </MenuItem>
+                  </MenuList>
+                </Menu>
+              </ButtonGroup>
             </ModalFooter>
           </form>
         </ModalContent>

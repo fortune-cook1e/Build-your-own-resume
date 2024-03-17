@@ -15,7 +15,7 @@ export const useUpdateResume = () => {
     mutationFn: updateResume,
     onSuccess: (data) => {
       queryClient.setQueryData<Resume>(
-        [QUERY_KEYS.resumeList, { id: data.id }],
+        [QUERY_KEYS.resume, { id: data.id }],
         data,
       );
 
