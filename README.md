@@ -22,4 +22,4 @@ pnpm run build
 
 ## Reference
 
-Inspired by Reactive-Resume
+Inspired by [Reactive-Resume](https://github.com/AmruthPillai/Reactive-Resume)
