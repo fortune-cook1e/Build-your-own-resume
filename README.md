@@ -2,6 +2,10 @@
 
 Build your resume online
 
+## Features
+
+1. Create as many resumes as you like
+
 ## Get Started
 
 ```bash
