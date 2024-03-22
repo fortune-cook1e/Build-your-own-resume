@@ -23,6 +23,7 @@ const config = defineConfig({
     }),
   ],
   base: './',
+  clearScreen: false,
   build: {
     outDir: './dist',
     lib: {

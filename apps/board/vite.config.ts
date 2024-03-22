@@ -7,6 +7,7 @@ export default defineConfig({
   plugins: [react()],
 
   base: '/resume-generator-board',
+  clearScreen: false,
 
   build: {
     sourcemap: true,
