@@ -1,30 +1,30 @@
-import { useSectionContext } from '@/app/builder/components/Sidebars/left/sections/common/SectionContext';
 import { useResumeStore } from '@/store/resume';
 import {
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
   IconButton,
 } from '@chakra-ui/react';
+import {
+  SectionKey,
+  SectionWithItem,
+} from '@fe-cookie/resume-generator-shared';
 import { Eye, List, Plus } from '@phosphor-icons/react';
 import { get } from 'lodash-es';
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 interface Props {
-  onAddClick: () => void;
+  id: SectionKey;
+  onAddClick?: () => void;
 }
 
-const SectionOptions: FC<Props> = ({ onAddClick }) => {
-  const { id } = useSectionContext();
-
+const SectionOptions: FC<Props> = ({ onAddClick, id }) => {
   const setValue = useResumeStore((state) => state.setValue);
   const section = useResumeStore((state) =>
     get(state.resume.data.sections, id),
-  );
+  ) as SectionWithItem;
+
+  const canAddItems = useMemo(() => 'items' in section, [section]);
 
   const toggleVisible = () => {
     const visible = section?.visible;
@@ -42,9 +42,11 @@ const SectionOptions: FC<Props> = ({ onAddClick }) => {
         variant="outline"
       />
       <MenuList>
-        <MenuItem onClick={onAddClick} icon={<Plus />}>
-          Add a new Item
-        </MenuItem>
+        {canAddItems && (
+          <MenuItem onClick={onAddClick} icon={<Plus />}>
+            Add a new Item
+          </MenuItem>
+        )}
         <MenuItem onClick={toggleVisible} icon={<Eye />}>
           {section.visible ? 'Hide' : 'Show'}
         </MenuItem>

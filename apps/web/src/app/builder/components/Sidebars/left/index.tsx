@@ -11,6 +11,7 @@ import {
   Profile,
 } from '@fe-cookie/resume-generator-shared';
 import Link from 'next/link';
+import Summary from '@/app/builder/components/Sidebars/left/sections/Summary';
 
 const LeftSidebar: FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -50,6 +51,10 @@ const LeftSidebar: FC = () => {
       <div className="h-screen pb-16 overflow-scroll">
         <div ref={containerRef} className="grid gap-y-6 p-6">
           <Basics />
+
+          <Divider />
+
+          <Summary />
 
           <Divider />
 

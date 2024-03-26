@@ -94,14 +94,13 @@ export const sampleResume: ResumeData = {
       ],
     },
 
-    // summary: {
-    //   name: 'Summary',
-    //   columns: 1,
-    //   visible: true,
-    //   id: 'summary',
-    //   content:
-    //     '<p>Innovative Web Developer with 5 years of experience in building impactful and user-friendly websites and applications. Specializes in <strong>front-end technologies</strong> and passionate about modern web standards and cutting-edge development techniques. Proven track record of leading successful projects from concept to deployment.</p>',
-    // },
+    summary: {
+      name: 'Summary',
+      visible: true,
+      id: 'summary',
+      content:
+        '<p>Innovative Web Developer with 5 years of experience in building impactful and user-friendly websites and applications. Specializes in <strong>front-end technologies</strong> and passionate about modern web standards and cutting-edge development techniques. Proven track record of leading successful projects from concept to deployment.</p>',
+    },
     // awards: {
     //   name: 'Awards',
     //   columns: 1,

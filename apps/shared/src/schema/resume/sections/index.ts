@@ -25,6 +25,11 @@ export const sectionsSchema = z.object({
     id: z.literal('education'),
     items: z.array(educationSchema),
   }),
+
+  summary: sectionSchema.extend({
+    id: z.literal('summary'),
+    content: z.string().default(''),
+  }),
 });
 
 export type Section = z.infer<typeof sectionSchema>;
@@ -35,7 +40,7 @@ export type SectionWithItem<T = unknown> = Sections[FilterKeys<
   { items: T[] }
 >];
 export type SectionItem = SectionWithItem['items'][number];
-export type SectionKey = 'basics' | keyof Sections;
+export type SectionKey = 'basics' | 'summary' | keyof Sections;
 
 // Defaults
 export const defaultSection: Section = {
@@ -57,8 +62,15 @@ export const defaultSections: Sections = {
     name: 'Education',
     items: [],
   },
+  summary: {
+    ...defaultSection,
+    id: 'summary',
+    name: 'Summary',
+    content: '',
+  },
 };
 
 export * from './profile';
 export * from './experience';
 export * from './education';
+export * from './basics';

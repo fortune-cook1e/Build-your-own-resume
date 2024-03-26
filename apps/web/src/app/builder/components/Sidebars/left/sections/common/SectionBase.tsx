@@ -103,7 +103,7 @@ const SectionBase = <T extends SectionItem>({
       <Flex align="center" justifyContent="space-between" className="mb-5">
         {getSectionIcon(id)}
         <h2 className="text-3xl font-bold">{section?.name ?? id}</h2>
-        <SectionOptions onAddClick={onAddClick} />
+        <SectionOptions id={id} onAddClick={onAddClick} />
       </Flex>
 
       <RenderSectionModal />
