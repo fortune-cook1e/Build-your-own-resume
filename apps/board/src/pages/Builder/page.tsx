@@ -24,9 +24,10 @@ const Builder = () => {
     if (type === POST_MESSAGES.zoomIn) transformRef.current?.zoomIn();
     if (type === POST_MESSAGES.zoomOut) transformRef.current?.zoomOut();
     if (type === POST_MESSAGES.centerView) transformRef.current?.centerView();
-    if (type === POST_MESSAGES.resetView)
+    if (type === POST_MESSAGES.resetView) {
       transformRef.current?.resetTransform(0);
-    setTimeout(() => transformRef.current?.centerView(0.8, 0), 10);
+      setTimeout(() => transformRef.current?.centerView(0.8, 0), 10);
+    }
   };
 
   const RenderTemplate = useMemo(() => {
@@ -42,11 +43,11 @@ const Builder = () => {
 
   return (
     <TransformWrapper
-      ref={transformRef}
       centerOnInit
       maxScale={2}
       minScale={0.4}
       initialScale={0.8}
+      ref={transformRef}
       limitToBounds={false}
     >
       <TransformComponent

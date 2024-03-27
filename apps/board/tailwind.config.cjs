@@ -3,8 +3,11 @@ export default {
   content: ['./src/**/*.{ts,tsx}'],
   theme: {
     extend: {
+      colors: {
+        primary: 'var(--color-primary)',
+      },
       spacing: {
-        custom: 'var(--margin)',
+        custom: 'var(--spacing)',
       },
     },
   },

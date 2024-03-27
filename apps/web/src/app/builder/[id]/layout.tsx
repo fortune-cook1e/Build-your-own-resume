@@ -4,6 +4,7 @@ import { useResume } from '@/apis/resume/resume';
 import BuilderHeadBar from '@/app/builder/components/BuilderHeadBar';
 import BuilderToolBar from '@/app/builder/components/BuilderToolBar';
 import LeftSidebar from '@/app/builder/components/Sidebars/left';
+import RightSidebar from '@/app/builder/components/Sidebars/right';
 import PanelResizeHandler from '@/components/PanelResizeHandler';
 import { useBuilderStore } from '@/store/builder';
 import { useParams } from 'next/navigation';
@@ -41,11 +42,9 @@ const Layout: FC<Props> = ({ children }) => {
         />
 
         <Panel minSize={20}>
-          <>
-            <BuilderHeadBar />
-            <div className="absolute inset-0 z-0">{children}</div>
-            <BuilderToolBar />
-          </>
+          <BuilderHeadBar />
+          <div className="absolute inset-0 z-0">{children}</div>
+          <BuilderToolBar />
         </Panel>
 
         <PanelResizeHandler
@@ -59,7 +58,7 @@ const Layout: FC<Props> = ({ children }) => {
           onResize={right.setSize}
           className="z-[1] bg-background"
         >
-          <h1>right panel</h1>
+          <RightSidebar />
         </Panel>
       </PanelGroup>
     </div>

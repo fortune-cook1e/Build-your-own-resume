@@ -1,4 +1,4 @@
-import { ResumeData, defaultLayout } from './index';
+import { ResumeData, defaultMetadata } from './index';
 import { createId } from '@paralleldrive/cuid2';
 
 export const sampleResume: ResumeData = {
@@ -258,10 +258,7 @@ export const sampleResume: ResumeData = {
     // },
   },
 
-  metadata: {
-    layout: defaultLayout,
-    template: 'Ezreal',
-  },
+  metadata: defaultMetadata,
   // metadata: {
   //   template: 'glalie',
   //   layout: [
