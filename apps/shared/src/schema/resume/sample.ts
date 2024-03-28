@@ -101,6 +101,40 @@ export const sampleResume: ResumeData = {
       content:
         '<p>Innovative Web Developer with 5 years of experience in building impactful and user-friendly websites and applications. Specializes in <strong>front-end technologies</strong> and passionate about modern web standards and cutting-edge development techniques. Proven track record of leading successful projects from concept to deployment.</p>',
     },
+
+    projects: {
+      name: 'Projects',
+      visible: true,
+      id: 'projects',
+      items: [
+        {
+          id: 'yw843emozcth8s1ubi1ubvlf',
+          visible: true,
+          name: 'E-Commerce Platform',
+          description: 'Project Lead',
+          date: '',
+          summary:
+            '<p>Led the development of a full-stack e-commerce platform, improving sales conversion by 25%.</p>',
+          website: {
+            label: '',
+            link: '',
+          },
+        },
+        {
+          id: 'ncxgdjjky54gh59iz2t1xi1v',
+          visible: true,
+          name: 'Interactive Dashboard',
+          description: 'Frontend Developer',
+          date: '',
+          summary:
+            '<p>Created an interactive analytics dashboard for a SaaS application, enhancing data visualization for clients.</p>',
+          website: {
+            label: '',
+            link: '',
+          },
+        },
+      ],
+    },
     // awards: {
     //   name: 'Awards',
     //   columns: 1,
@@ -162,42 +196,6 @@ export const sampleResume: ResumeData = {
     //   items: [],
     // },
 
-    // projects: {
-    //   name: 'Projects',
-    //   columns: 1,
-    //   visible: true,
-    //   id: 'projects',
-    //   items: [
-    //     {
-    //       id: 'yw843emozcth8s1ubi1ubvlf',
-    //       visible: true,
-    //       name: 'E-Commerce Platform',
-    //       description: 'Project Lead',
-    //       date: '',
-    //       summary:
-    //         '<p>Led the development of a full-stack e-commerce platform, improving sales conversion by 25%.</p>',
-    //       keywords: [],
-    //       url: {
-    //         label: '',
-    //         href: '',
-    //       },
-    //     },
-    //     {
-    //       id: 'ncxgdjjky54gh59iz2t1xi1v',
-    //       visible: true,
-    //       name: 'Interactive Dashboard',
-    //       description: 'Frontend Developer',
-    //       date: '',
-    //       summary:
-    //         '<p>Created an interactive analytics dashboard for a SaaS application, enhancing data visualization for clients.</p>',
-    //       keywords: [],
-    //       url: {
-    //         label: '',
-    //         href: '',
-    //       },
-    //     },
-    //   ],
-    // },
     // publications: {
     //   name: 'Publications',
     //   columns: 1,

@@ -9,6 +9,7 @@ import {
   Education,
   Experience,
   Profile,
+  Projects,
 } from '@fe-cookie/resume-generator-shared';
 import Link from 'next/link';
 import Summary from '@/app/builder/components/Sidebars/left/sections/Summary';
@@ -79,6 +80,12 @@ const LeftSidebar: FC = () => {
           ></SectionBase>
 
           <Divider />
+
+          <SectionBase<Projects>
+            id="projects"
+            title={(item) => item.name}
+            description={(item) => item.description}
+          />
         </div>
       </div>
     </Flex>

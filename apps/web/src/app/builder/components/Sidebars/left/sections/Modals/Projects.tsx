@@ -1,50 +1,56 @@
 import SectionModal from '@/app/builder/components/Sidebars/left/sections/common/SectionModal';
+import UrlInput from '@/app/builder/components/Sidebars/left/sections/common/UrlInput';
 import RickEditor from '@/components/RichEditor';
 import { FormControl, FormLabel, Input } from '@chakra-ui/react';
 import {
-  defaultEducation,
-  educationSchema,
+  defaultProjects,
+  projectsSchema,
 } from '@fe-cookie/resume-generator-shared';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FC } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-const formSchema = educationSchema;
-type formValues = z.infer<typeof formSchema>;
+const formSchema = projectsSchema;
+type FormValues = z.infer<typeof formSchema>;
 
-const Education: FC = () => {
-  const form = useForm<formValues>({
-    defaultValues: defaultEducation,
+const Projects: FC = () => {
+  const form = useForm<FormValues>({
+    defaultValues: defaultProjects,
     resolver: zodResolver(formSchema),
   });
 
   return (
-    <SectionModal<formValues> form={form} defaultValues={defaultEducation}>
+    <SectionModal<FormValues> form={form} defaultValues={defaultProjects}>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <FormControl>
-          <FormLabel>College</FormLabel>
-          <Input placeholder="Your college" {...form.register('college')} />
+          <FormLabel>Name</FormLabel>
+          <Input placeholder="Project name" {...form.register('name')} />
         </FormControl>
 
         <FormControl>
-          <FormLabel>Area</FormLabel>
-          <Input placeholder="Your Area" {...form.register('area')} />
+          <FormLabel>Description</FormLabel>
+          <Input
+            placeholder="Project description"
+            {...form.register('description')}
+          />
         </FormControl>
 
-        <div className="sm:col-span-2">
-          <FormControl>
-            <FormLabel>Major</FormLabel>
-            <Input placeholder="computer science" {...form.register('major')} />
-          </FormControl>
-        </div>
+        <FormControl>
+          <FormLabel>Date</FormLabel>
+          <Input placeholder="Date range" {...form.register('date')} />
+        </FormControl>
 
-        <div className="sm:col-span-2">
-          <FormControl>
-            <FormLabel>Date</FormLabel>
-            <Input placeholder="Start and end" {...form.register('date')} />
-          </FormControl>
-        </div>
+        <Controller
+          control={form.control}
+          name="website"
+          render={({ field }) => (
+            <FormControl>
+              <FormLabel>Website</FormLabel>
+              <UrlInput {...field} />
+            </FormControl>
+          )}
+        />
 
         <div className="sm:col-span-2">
           <Controller
@@ -67,4 +73,4 @@ const Education: FC = () => {
   );
 };
 
-export default Education;
+export default Projects;
