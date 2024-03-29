@@ -1,5 +1,6 @@
 import { URL, mergeTailwindCss } from '@fe-cookie/resume-generator-shared';
 import { FC, ReactNode } from 'react';
+import { Link as LinkIcon } from '@phosphor-icons/react';
 
 interface Props {
   url: URL;
@@ -13,7 +14,7 @@ const Link: FC<Props> = ({ url, icon, label, classname }) => {
 
   return (
     <div className="flex items-center gap-x-1.5">
-      {icon ?? <i className="ph ph-bold ph-link text-primary" />}
+      {icon ?? <LinkIcon className="text-primary" />}
       <a
         href={url.link}
         target="_blank"

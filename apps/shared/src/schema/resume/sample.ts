@@ -112,12 +112,12 @@ export const sampleResume: ResumeData = {
           visible: true,
           name: 'E-Commerce Platform',
           description: 'Project Lead',
-          date: '',
+          date: 'Jul 2018 to Present',
           summary:
             '<p>Led the development of a full-stack e-commerce platform, improving sales conversion by 25%.</p>',
           website: {
-            label: '',
-            link: '',
+            label: 'Baidu',
+            link: 'https://www.baidu.com',
           },
         },
         {
@@ -125,12 +125,12 @@ export const sampleResume: ResumeData = {
           visible: true,
           name: 'Interactive Dashboard',
           description: 'Frontend Developer',
-          date: '',
+          date: 'Jul 2018 to Present',
           summary:
             '<p>Created an interactive analytics dashboard for a SaaS application, enhancing data visualization for clients.</p>',
           website: {
-            label: '',
-            link: '',
+            label: 'Baidu',
+            link: 'https://www.baidu.com',
           },
         },
       ],
