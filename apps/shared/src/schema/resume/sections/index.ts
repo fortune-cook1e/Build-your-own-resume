@@ -4,6 +4,7 @@ import { profileSchema } from './profile';
 import { experienceSchema } from '@/schema/resume/sections/experience';
 import { educationSchema } from '@/schema/resume/sections/education';
 import { projectsSchema } from '@/schema/resume/sections/projects';
+import { interestsSchema } from '@/schema/resume/sections/interests';
 
 export const sectionSchema = z.object({
   name: z.string(),
@@ -35,6 +36,11 @@ export const sectionsSchema = z.object({
   projects: sectionSchema.extend({
     id: z.literal('projects'),
     items: z.array(projectsSchema),
+  }),
+
+  interests: sectionSchema.extend({
+    id: z.literal('interests'),
+    items: z.array(interestsSchema),
   }),
 });
 
@@ -80,6 +86,12 @@ export const defaultSections: Sections = {
     name: 'Projects',
     items: [],
   },
+  interests: {
+    ...defaultSection,
+    id: 'interests',
+    name: 'Interests',
+    items: [],
+  },
 };
 
 export * from './profile';
@@ -87,3 +99,4 @@ export * from './experience';
 export * from './education';
 export * from './basics';
 export * from './projects';
+export * from './interests';

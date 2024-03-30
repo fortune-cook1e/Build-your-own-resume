@@ -14,38 +14,71 @@ import { useState } from 'react';
 const Page = () => {
   const pageValue = useResumeStore((state) => state.resume.data.metadata.page);
   const setValue = useResumeStore((state) => state.setValue);
-  const onSliderChange = (value: number) => {
+  const onSpacingChange = (value: number) => {
     setValue('metadata.page.spacing', value);
   };
 
-  const [showTooltip, setShowTooltip] = useState(false);
+  const onLineHeightChange = (value: number) => {
+    setValue('metadata.page.lineHeight', value);
+  };
+
+  const [showSpacingTooltip, setShowSpacingTooltip] = useState(false);
+  const [showLineHeightTooltip, setShowLineHeightTooltip] = useState(false);
 
   return (
     <SectionBase id="page">
-      <FormControl>
-        <FormLabel>Spacing</FormLabel>
-        <Slider
-          value={pageValue.spacing}
-          onChange={onSliderChange}
-          max={50}
-          onMouseEnter={() => setShowTooltip(true)}
-          onMouseLeave={() => setShowTooltip(false)}
-        >
-          <SliderTrack>
-            <SliderFilledTrack />
-          </SliderTrack>
-          <Tooltip
-            hasArrow
-            bg="blue.500"
-            color="white"
-            placement="top"
-            isOpen={showTooltip}
-            label={`${pageValue.spacing}px`}
+      <div className="space-y-4">
+        <FormControl>
+          <FormLabel>Spacing</FormLabel>
+          <Slider
+            value={pageValue.spacing}
+            onChange={onSpacingChange}
+            max={50}
+            onMouseEnter={() => setShowSpacingTooltip(true)}
+            onMouseLeave={() => setShowSpacingTooltip(false)}
           >
-            <SliderThumb />
-          </Tooltip>
-        </Slider>
-      </FormControl>
+            <SliderTrack>
+              <SliderFilledTrack />
+            </SliderTrack>
+            <Tooltip
+              hasArrow
+              bg="blue.500"
+              color="white"
+              placement="top"
+              isOpen={showSpacingTooltip}
+              label={`${pageValue.spacing}px`}
+            >
+              <SliderThumb />
+            </Tooltip>
+          </Slider>
+        </FormControl>
+
+        <FormControl>
+          <FormLabel>Lineheight</FormLabel>
+          <Slider
+            value={pageValue.lineHeight}
+            onChange={onLineHeightChange}
+            max={3}
+            step={0.05}
+            onMouseEnter={() => setShowLineHeightTooltip(true)}
+            onMouseLeave={() => setShowLineHeightTooltip(false)}
+          >
+            <SliderTrack>
+              <SliderFilledTrack />
+            </SliderTrack>
+            <Tooltip
+              hasArrow
+              bg="blue.500"
+              color="white"
+              placement="top"
+              isOpen={showLineHeightTooltip}
+              label={`${pageValue.lineHeight}px`}
+            >
+              <SliderThumb />
+            </Tooltip>
+          </Slider>
+        </FormControl>
+      </div>
     </SectionBase>
   );
 };

@@ -108,7 +108,7 @@ export const sampleResume: ResumeData = {
       id: 'projects',
       items: [
         {
-          id: 'yw843emozcth8s1ubi1ubvlf',
+          id: createId(),
           visible: true,
           name: 'E-Commerce Platform',
           description: 'Project Lead',
@@ -121,7 +121,7 @@ export const sampleResume: ResumeData = {
           },
         },
         {
-          id: 'ncxgdjjky54gh59iz2t1xi1v',
+          id: createId(),
           visible: true,
           name: 'Interactive Dashboard',
           description: 'Frontend Developer',
@@ -132,6 +132,19 @@ export const sampleResume: ResumeData = {
             label: 'Baidu',
             link: 'https://www.baidu.com',
           },
+        },
+      ],
+    },
+    interests: {
+      name: 'Interests',
+      visible: true,
+      id: 'interests',
+      items: [
+        {
+          id: createId(),
+          name: 'tennis',
+          description: 'Tennis Player',
+          visible: true,
         },
       ],
     },
@@ -181,13 +194,7 @@ export const sampleResume: ResumeData = {
     //   id: 'volunteer',
     //   items: [],
     // },
-    // interests: {
-    //   name: 'Interests',
-    //   columns: 1,
-    //   visible: true,
-    //   id: 'interests',
-    //   items: [],
-    // },
+
     // languages: {
     //   name: 'Languages',
     //   columns: 1,

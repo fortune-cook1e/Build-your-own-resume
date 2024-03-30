@@ -7,7 +7,7 @@ export const layoutSchema = z.object({
 });
 export type Layout = z.infer<typeof layoutSchema>;
 export const defaultLayout: Layout = {
-  main: ['summary', 'experience', 'education', 'projects'],
+  main: ['summary', 'experience', 'education', 'projects', 'interests'],
   ignore: ['profiles', 'languages'],
 };
 
@@ -23,10 +23,12 @@ export const defaultTheme: Theme = {
 // page
 export const pageSchema = z.object({
   spacing: z.number().default(10),
+  lineHeight: z.number().default(1.6),
 });
 export type Page = z.infer<typeof pageSchema>;
 export const defaultPage: Page = {
   spacing: 26,
+  lineHeight: 6,
 };
 
 export const metadataSchema = z.object({

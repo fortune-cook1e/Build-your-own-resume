@@ -7,14 +7,28 @@ const Board = () => {
 
   useEffect(() => {
     document.documentElement.style.setProperty(
+      'line-height',
+      `${metadata.page.lineHeight}`,
+    );
+    document.documentElement.style.setProperty(
       '--spacing',
       `${metadata.page.spacing}px`,
+    );
+    document.documentElement.style.setProperty(
+      '--line-height',
+      `${metadata.page.lineHeight}`,
     );
 
     document.documentElement.style.setProperty(
       '--color-primary',
       `${metadata.theme.primaryColor}`,
     );
+  }, [metadata]);
+
+  useEffect(() => {
+    document.querySelectorAll(`[data-page]`).forEach((el) => {
+      el.classList.toggle('underline-links', true);
+    });
   }, [metadata]);
 
   return <Outlet />;

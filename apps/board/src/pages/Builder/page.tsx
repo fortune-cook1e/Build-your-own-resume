@@ -1,4 +1,4 @@
-import TemplateWrapper from '@/components/TemplateWrapper';
+import TemplatePage from '@/components/TemplatePage';
 import { useBoardStore } from '@/store/board';
 import { getTemplate } from '@/templates';
 import {
@@ -55,9 +55,9 @@ const Builder = () => {
         contentClass="grid items-start justify-center space-x-12 pointer-events-none"
         contentStyle={{ width: `${1 * (210 * 3.78 + 42)}px` }}
       >
-        <TemplateWrapper>
+        <TemplatePage>
           <RenderTemplate layout={layout as TemplateLayout} />
-        </TemplateWrapper>
+        </TemplatePage>
       </TransformComponent>
     </TransformWrapper>
   );
