@@ -3,12 +3,12 @@ import { z } from 'zod';
 // layout
 export const layoutSchema = z.object({
   main: z.array(z.string()),
-  ignore: z.array(z.string()),
+  side: z.array(z.string()),
 });
 export type Layout = z.infer<typeof layoutSchema>;
 export const defaultLayout: Layout = {
   main: ['summary', 'experience', 'education', 'projects', 'interests'],
-  ignore: ['profiles', 'languages'],
+  side: ['profiles', 'languages'],
 };
 
 // theme
@@ -28,7 +28,7 @@ export const pageSchema = z.object({
 export type Page = z.infer<typeof pageSchema>;
 export const defaultPage: Page = {
   spacing: 26,
-  lineHeight: 6,
+  lineHeight: 1.5,
 };
 
 export const metadataSchema = z.object({

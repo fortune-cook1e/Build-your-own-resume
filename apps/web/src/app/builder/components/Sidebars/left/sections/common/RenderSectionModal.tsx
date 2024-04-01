@@ -1,5 +1,6 @@
 import Education from '@/app/builder/components/Sidebars/left/sections/Modals/Education';
 import Experience from '@/app/builder/components/Sidebars/left/sections/Modals/Experience';
+import Interests from '@/app/builder/components/Sidebars/left/sections/Modals/Interests';
 import Profiles from '@/app/builder/components/Sidebars/left/sections/Modals/Profiles';
 import Projects from '@/app/builder/components/Sidebars/left/sections/Modals/Projects';
 import { useSectionContext } from '@/app/builder/components/Sidebars/left/sections/common/SectionContext';
@@ -23,6 +24,9 @@ const RenderSectionModal: FC = () => {
 
       case 'projects':
         return <Projects />;
+
+      case 'interests':
+        return <Interests />;
       default:
         return null;
     }

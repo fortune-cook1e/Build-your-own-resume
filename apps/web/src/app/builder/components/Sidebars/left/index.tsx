@@ -8,6 +8,7 @@ import { FC, useRef } from 'react';
 import {
   Education,
   Experience,
+  Interests,
   Profile,
   Projects,
 } from '@fe-cookie/resume-generator-shared';
@@ -83,6 +84,14 @@ const LeftSidebar: FC = () => {
 
           <SectionBase<Projects>
             id="projects"
+            title={(item) => item.name}
+            description={(item) => item.description}
+          />
+
+          <Divider />
+
+          <SectionBase<Interests>
+            id="interests"
             title={(item) => item.name}
             description={(item) => item.description}
           />

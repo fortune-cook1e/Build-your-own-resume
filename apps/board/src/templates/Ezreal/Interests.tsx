@@ -7,7 +7,12 @@ const Interests = () => {
 
   return (
     <Section<InterestsType> data={data} className="space-y-0.5">
-      {(item) => <div className="font-bold">{item.name}</div>}
+      {(item) => (
+        <div>
+          <div className="font-bold">{item.name}</div>
+          <p className="text-sm">{item.description}</p>
+        </div>
+      )}
     </Section>
   );
 };
