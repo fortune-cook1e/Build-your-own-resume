@@ -3,7 +3,7 @@ import { useResumeStore } from '@/store/resume';
 import { FormControl, FormLabel, Input } from '@chakra-ui/react';
 import { FormEvent } from 'react';
 
-const Palette = [
+const Palettes = [
   '#9253a1',
   '#f063a4',
   '#fcee21',
@@ -31,7 +31,7 @@ const Theme = () => {
   return (
     <SectionBase id="theme">
       <div className="grid grid-cols-5 gap-4 mb-4">
-        {Palette.map((item) => {
+        {Palettes.map((item) => {
           return (
             <div
               className="w-10 h-10 rounded-md cursor-pointer"

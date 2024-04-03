@@ -2,7 +2,7 @@ import { SectionKey } from '@/schema/resume/sections';
 
 export interface TemplateLayout {
   main: SectionKey[];
-  ignore: SectionKey[];
+  side: SectionKey[];
 }
 
 export interface TemplateProps {

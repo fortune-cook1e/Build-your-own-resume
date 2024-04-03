@@ -1,3 +1,4 @@
+import Layout from '@/app/builder/components/Sidebars/right/sections/Layout';
 import Page from '@/app/builder/components/Sidebars/right/sections/Page';
 import Theme from '@/app/builder/components/Sidebars/right/sections/Theme';
 import { Divider } from '@chakra-ui/react';
@@ -11,6 +12,10 @@ const RightSidebar = () => {
         <Divider />
 
         <Page />
+
+        <Divider />
+
+        <Layout />
       </div>
     </div>
   );
