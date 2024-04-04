@@ -72,6 +72,7 @@ export class QiniuService {
     });
   }
 
+  // get uploaded token
   getUploadToken(options?: qiniu.rs.PutPolicyOptions): string {
     return this.putPolicy({
       scope: this.bucket,

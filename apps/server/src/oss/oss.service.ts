@@ -18,18 +18,23 @@ export class OssService {
     name?: string,
     callback?: () => callback,
   ) {
-    const uploadToken = this.qiniu.getUploadToken();
+    const uploadToken = this.qiniu.getUploadToken({
+      returnBody:
+        '{"key":"$(key)","hash":"$(etag)","fsize":$(fsize),"bucket":"$(bucket)","name":"$(x:name)"}',
+    });
     const formUploader = this.qiniu.formUploader();
     const _callback = callback
       ? callback
-      : () => this.logger.log(`file ${file.filename} uploaded successfully`);
-    await formUploader.put(
+      : () =>
+          this.logger.log(`file ${file.originalname} uploaded successfully`);
+    const result = await formUploader.put(
       uploadToken,
-      name || file.filename,
+      name || file.originalname,
       file.buffer,
       null,
       _callback,
     );
+    console.log({ result, uploadToken });
     return uploadToken;
   }
 }
