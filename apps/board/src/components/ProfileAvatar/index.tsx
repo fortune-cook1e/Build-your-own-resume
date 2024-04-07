@@ -4,7 +4,7 @@ interface Props {
   classname?: string;
 }
 
-const ProfileAvavar: FC<Props> = ({ classname }) => {
+const ProfileAvavar: FC<Props> = () => {
   return <div></div>;
 };
 

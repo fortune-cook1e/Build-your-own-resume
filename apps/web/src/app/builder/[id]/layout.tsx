@@ -8,14 +8,14 @@ import RightSidebar from '@/app/builder/components/Sidebars/right';
 import PanelResizeHandler from '@/components/PanelResizeHandler';
 import { useBuilderStore } from '@/store/builder';
 import { useParams } from 'next/navigation';
-import { FC, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { PanelGroup, Panel } from 'react-resizable-panels';
 
 interface Props {
   children: ReactNode;
 }
 
-const Layout: FC<Props> = ({ children }) => {
+const Layout = ({ children }: Props) => {
   const left = useBuilderStore((state) => state.panel.left);
   const right = useBuilderStore((state) => state.panel.right);
   const params = useParams<{ id: string }>();

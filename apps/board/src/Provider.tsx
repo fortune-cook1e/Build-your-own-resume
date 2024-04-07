@@ -1,7 +1,7 @@
 import { useBoardStore } from '@/store/board';
 import {
   POST_MESSAGES,
-  sampleResume,
+  // sampleResume,
 } from '@fe-cookie/resume-generator-shared';
 import { useCallback, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';

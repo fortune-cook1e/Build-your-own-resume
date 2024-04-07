@@ -22,7 +22,7 @@ const Section = <T,>({
   className,
   children,
   urlKey,
-  levelKey,
+  // levelKey,
   summaryKey,
   keywordsKey,
 }: Props<T>) => {
@@ -38,9 +38,9 @@ const Section = <T,>({
           .filter((item) => item.visible)
           .map((item) => {
             const url = (urlKey && get(item, urlKey)) as URL | undefined;
-            const level = (levelKey && get(item, levelKey, 0)) as
-              | number
-              | undefined;
+            // const level = (levelKey && get(item, levelKey, 0)) as
+            //   | number
+            //   | undefined;
             const summary = (summaryKey && get(item, summaryKey, '')) as
               | string
               | undefined;
