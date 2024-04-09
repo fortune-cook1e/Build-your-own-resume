@@ -142,7 +142,7 @@ export const sampleResume: ResumeData = {
       items: [
         {
           id: createId(),
-          name: 'tennis',
+          name: 'Tennis',
           description: 'Tennis Player',
           visible: true,
         },
