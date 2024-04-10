@@ -7,7 +7,7 @@
     "dev": "pnpm run --parallel -r dev",
     "tsc": "pnpm run --parallel -r tsc",
     "format": "prettier --write \"apps/**/src/**/*.{ts,tsx}\" \"apps/**/test/*.{ts,tsx}\"",
-    "build": "pnpm run -r build",
+    "build": "pnpm run --parallel -r build",
     "publish:before": "pnpm changeset version",
     "publish": "pnpm publish -r",
     "prisma:seed": "pnpm --filter server run prisma:seed",

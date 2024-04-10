@@ -38,7 +38,7 @@ jobs:
           run_install: false
 
       - name: Install dependencies and build
-        run: pnpm install && pnpm run build
+        run: pnpm install && pnpm run prisma:generate && pnpm run build
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
