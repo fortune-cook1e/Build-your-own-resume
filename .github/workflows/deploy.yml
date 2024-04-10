@@ -13,11 +13,11 @@ jobs:
       POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
       POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
       DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
-      DOCKER_IMAGE: ${{secrets.DOCKER_IMAGE}}
+      DOCKER_SERVER_IMAGE: ${{secrets.DOCKER_SERVER_IMAGE}}
       REDIS_PASSWORD: ${{secrets.REDIS_PASSWORD}}
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       REDIS_URL: ${{ secrets.REDIS_URL }}
-      DOCKER_COMPOSE_PATH: ${{secrets.DOCKER_COMPOSE_PATH}}
+      DOCKER_SERVER_COMPOSE_PATH: ${{secrets.DOCKER_SERVER_COMPOSE_PATH}}
 
     strategy:
       matrix:
@@ -57,25 +57,23 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_IMAGE}}:latest
+          tags: ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_SERVER_IMAGE}}:latest
 
       - name: Deploy to Aliyun ECS
         uses: appleboy/ssh-action@v1.0.3
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_IMAGE: ${{ secrets.DOCKER_IMAGE }}
+          DOCKER_SERVER_IMAGE: ${{ secrets.DOCKER_SERVER_IMAGE }}
           POSTGRES_USER: ${{secrets.POSTGRES_USER}}
           POSTGRES_PASSWORD: ${{secrets.POSTGRES_PASSWORD}}
           POSTGRES_DB: ${{secrets.POSTGRES_DB}}
           REDIS_PASSWORD: ${{secrets.REDIS_PASSWORD}}
-          DATABASE_URL: ${{secrets.DATABASE_URL}}
-          REDIS_URL: ${{secrets.REDIS_URL}}
         with:
           host: ${{ secrets.ECS_HOST }}
           username: ${{ secrets.ECS_USERNAME }}
           password: ${{ secrets.ECS_PASSWORD }}
-          envs: DOCKER_USERNAME,DOCKER_IMAGE,POSTGRES_USER,POSTGRES_PASSWORD,POSTGRES_DB,DATABASE_URL,REDIS_PASSWORD,REDIS_URL
+          envs: DOCKER_USERNAME,DOCKER_SERVER_IMAGE,POSTGRES_USER,POSTGRES_PASSWORD,POSTGRES_DB,REDIS_PASSWORD
           script: |
-            cd ${{secrets.DOCKER_COMPOSE_PATH}}
+            cd ${{secrets.DOCKER_SERVER_COMPOSE_PATH}}
             docker-compose pull
-            docker-compose up -d
+            docker-compose -f server.compose.yml up -d
