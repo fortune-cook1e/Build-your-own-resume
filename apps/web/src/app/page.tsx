@@ -65,7 +65,7 @@ export default function Home() {
       <section className="flex justify-center">
         {isLogin ? (
           <Button colorScheme="gray">
-            <Link href="/resumes">resumes</Link>
+            <Link href="/dashboard/resumes">resumes</Link>
           </Button>
         ) : (
           <Button colorScheme="gray">

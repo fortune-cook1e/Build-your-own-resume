@@ -23,7 +23,7 @@ export const useRegister = () => {
     onSuccess: (data) => {
       setUser(data);
       queryClient.setQueryData(QUERY_KEYS.user, data);
-      router.push('/resumes');
+      router.push('/dashboard/resumes');
     },
   });
 

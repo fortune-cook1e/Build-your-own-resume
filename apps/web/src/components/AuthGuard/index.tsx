@@ -10,7 +10,7 @@ interface Props {
 
 const AuthGuard: FC<Props> = ({ children }) => {
   const router = useRouter();
-  const pathname = usePathname().replaceAll('/', '');
+  const pathname = usePathname().replace('/', '');
 
   const { user, loading } = useUser();
 

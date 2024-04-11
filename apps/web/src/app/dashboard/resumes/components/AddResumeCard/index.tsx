@@ -1,4 +1,4 @@
-import ResumeModal from '@/app/resumes/components/ResumeModal';
+import ResumeModal from '@/app/dashboard/resumes/components/ResumeModal';
 import { useBoolean } from '@chakra-ui/react';
 import { Plus } from '@phosphor-icons/react';
 

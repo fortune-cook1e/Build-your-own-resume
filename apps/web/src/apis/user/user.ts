@@ -1,5 +1,3 @@
-'use client';
-
 import { QUERY_KEYS } from '@/constants';
 import { useUserStore } from '@/store/user';
 import { User } from '@fe-cookie/resume-generator-shared';

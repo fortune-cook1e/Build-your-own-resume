@@ -22,7 +22,7 @@ export const useLogin = () => {
     onSuccess: (data) => {
       setUser(data.user);
       queryClient.setQueryData(QUERY_KEYS.user, data.user);
-      router.push('/resumes');
+      router.push('/dashboard/resumes');
     },
   });
 

@@ -36,7 +36,7 @@ const LeftSidebar: FC = () => {
           variant="ghost"
           size="14"
           icon={
-            <Link href="/resumes">
+            <Link href="/dashboard/resumes">
               <HourglassMedium />
             </Link>
           }

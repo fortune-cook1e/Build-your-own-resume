@@ -8,7 +8,7 @@ import { ContextMenu } from '@/components/ContextMenu';
 import { MenuItem, MenuList, useBoolean } from '@chakra-ui/react';
 import ResumeModal, {
   ResumeModalFormValues,
-} from '@/app/resumes/components/ResumeModal';
+} from '@/app/dashboard/resumes/components/ResumeModal';
 import { FormMode } from '@/types';
 interface Props {
   resume: Resume;

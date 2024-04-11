@@ -84,7 +84,7 @@ const handleAuthError = async () => {
 const handleRefreshFailed = async () => {
   try {
     queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.user] });
-    window.history.pushState(null, '', '/login');
+    window.history.pushState(null, '', '/resume-generator-web/login');
     return Promise.resolve();
   } catch (e) {
     return Promise.reject(e);

@@ -1,8 +1,8 @@
 'use client';
 
 import { useResumeList } from '@/apis/resume/list';
-import AddResumeCard from '@/app/resumes/components/AddResumeCard';
-import ResumeCard from '@/app/resumes/components/ResumeCard';
+import AddResumeCard from '@/app/dashboard/resumes/components/AddResumeCard';
+import ResumeCard from '@/app/dashboard/resumes/components/ResumeCard';
 import AuthGuard from '@/components/AuthGuard';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';

@@ -1,6 +1,6 @@
 import SidebarItem, {
   SidebarItemProps,
-} from '@/app/resumes/components/Sidebar/SidebarItem';
+} from '@/app/dashboard/components/Sidebar/SidebarItem';
 import { Divider, IconButton } from '@chakra-ui/react';
 import { List, Bank } from '@phosphor-icons/react';
 import Link from 'next/link';
@@ -8,8 +8,13 @@ import Link from 'next/link';
 const Sidebar = () => {
   const sidebarItems: SidebarItemProps[] = [
     {
-      path: '/resumes',
+      path: '/dashboard/resumes',
       name: 'Resumes',
+      icon: <List />,
+    },
+    {
+      path: '/dashboard/setting',
+      name: 'Setting',
       icon: <List />,
     },
   ];
@@ -21,7 +26,7 @@ const Sidebar = () => {
           variant="ghost"
           aria-label="home button"
           icon={
-            <Link href="/resumes">
+            <Link href="/dashboard/resumes">
               <Bank />
             </Link>
           }

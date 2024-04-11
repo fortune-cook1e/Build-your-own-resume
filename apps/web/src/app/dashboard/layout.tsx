@@ -2,11 +2,12 @@
 
 import { ReactNode } from 'react';
 import { motion } from 'framer-motion';
-import Sidebar from '@/app/resumes/components/Sidebar';
+import AuthGuard from '@/components/AuthGuard';
+import Sidebar from '@/app/dashboard/components/Sidebar';
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
-    <div>
+    <AuthGuard>
       <motion.div
         initial={{ x: -320 }}
         animate={{ x: 0 }}
@@ -18,7 +19,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
       </motion.div>
 
       <main className="mx-6 my-4 lg:mx-8 lg:pl-[320px]">{children}</main>
-    </div>
+    </AuthGuard>
   );
 };
 
