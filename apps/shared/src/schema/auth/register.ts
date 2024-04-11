@@ -1,5 +1,5 @@
 import { createZodDto } from '@/utils';
-import { userSchema } from '../user';
+import { userSchema } from '../user/user';
 import { z } from 'zod';
 
 export const registerSchema = userSchema

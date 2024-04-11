@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { defaultSections, sectionsSchema } from './sections';
 import { basicsSchema, defaultBasics } from './sections/basics';
 import { idSchema } from './common';
-import { userSchema } from '@/schema/user';
+import { userSchema } from '@/schema/user/user';
 import { defaultMetadata, metadataSchema } from '@/schema/resume/metadata';
 
 export const resumeDataSchema = z.object({

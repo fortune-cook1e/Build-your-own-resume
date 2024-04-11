@@ -1,4 +1,4 @@
-import { userSchema, usernameSchema } from '../user';
+import { userSchema, usernameSchema } from '../user/user';
 import { z } from 'zod';
 import { ErrorMessage } from '../../constant';
 import { createZodDto } from '@/utils';
