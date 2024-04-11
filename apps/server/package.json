@@ -25,7 +25,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@fe-cookie/resume-generator-shared": "^0.0.2",
+    "@fe-cookie/resume-generator-shared": "workspace:^",
     "@nestjs-modules/mailer": "^1.11.2",
     "@nestjs/axios": "^3.0.2",
     "@nestjs/common": "^10.3.3",
