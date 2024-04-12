@@ -15,6 +15,7 @@ export const userSchema = z.object({
   id: idSchema,
   name: z.string().min(1).max(50).describe('User name'),
   username: usernameSchema,
+  avatar: z.string(),
   email: z.string().email(),
   createdAt: z.date(),
   updatedAt: z.date(),

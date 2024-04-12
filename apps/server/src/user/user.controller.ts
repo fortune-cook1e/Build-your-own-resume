@@ -52,14 +52,15 @@ export class UserController {
         await this.userService.updateByEmail(email, {
           emailVerified: false,
           email: data.email,
-        });
-
-        // Todo: send email verfification
-        return await this.userService.updateByEmail(email, {
-          name: data.name,
-          username: data.username,
+          avatar: data.avatar,
         });
       }
+      // Todo: send email verfification
+      return await this.userService.updateByEmail(email, {
+        name: data.name,
+        username: data.username,
+        avatar: data.avatar,
+      });
     } catch (e) {
       if (e instanceof PrismaClientKnownRequestError && e.code === 'P2002') {
         throw new BadRequestException(ErrorMessage.UserAlreadyExists);

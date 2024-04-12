@@ -21,6 +21,6 @@ export const useUpdateUser = () => {
 
   return {
     loading,
-    updateUser,
+    updateUser: updateUserFn,
   };
 };

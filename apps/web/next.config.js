@@ -16,6 +16,14 @@ const nextConfig = {
       },
     ];
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'cdn.fortunecookie.top',
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;

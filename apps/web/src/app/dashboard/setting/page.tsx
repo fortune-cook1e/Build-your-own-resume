@@ -21,15 +21,6 @@ const Setting = () => {
           <div className="space-y-6">
             <AccountSetting />
             <Divider />
-            {/* <AccountSettings />
-          <Separator />
-          <SecuritySettings />
-          <Separator />
-          <ProfileSettings />
-          <Separator />
-          <OpenAISettings />
-          <Separator />
-          <DangerZoneSettings /> */}
           </div>
         </div>
       </div>
