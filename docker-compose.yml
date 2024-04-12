@@ -1,0 +1,29 @@
+
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15.5
+    restart: always
+    volumes:
+      - postgres:/var/lib/postgresql/15/data
+    ports:
+      - '5432:5432'
+    env_file:
+      - ./apps/server/.env
+
+  # Redis (for cache & server session management)
+  redis:
+    image: redis:alpine
+    restart: unless-stopped
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD:-mypassword}
+    ports:
+      - ${REDIS_PORT:-6379}:6379
+    volumes:
+      - redis_data:/data
+    env_file:
+      - ./apps/server/.env
+
+volumes:
+  postgres:
+  redis_data:
