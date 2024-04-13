@@ -7,9 +7,10 @@ import { JwtModule } from '@nestjs/jwt';
 import { LocalStrategy } from './strategy/local.strategy';
 import { JwtStrategy } from './strategy/jwt.strategy';
 import { RefreshStrategy } from './strategy/refresh.strategy';
+import { MailModule } from '@/mail/mail.module';
 
 @Module({
-  imports: [UserModule, PassportModule, JwtModule],
+  imports: [UserModule, PassportModule, JwtModule, MailModule],
   providers: [AuthService, LocalStrategy, JwtStrategy, RefreshStrategy],
   controllers: [AuthController],
   exports: [AuthService],

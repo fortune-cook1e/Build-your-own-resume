@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   InternalServerErrorException,
@@ -9,7 +10,10 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
-import { UserWithPrivateInfo } from '@fe-cookie/resume-generator-shared';
+import {
+  ErrorMessage,
+  UserWithPrivateInfo,
+} from '@fe-cookie/resume-generator-shared';
 import { Response } from 'express';
 import {
   loginResSchema,
@@ -116,5 +120,39 @@ export class AuthController {
     @Res({ passthrough: true }) response: Response,
   ) {
     return this.handleAuthorization(user, response);
+  }
+
+  @Post('verify-email')
+  @UseGuards(JwtGuard)
+  async verifyEmail(
+    @Body('token') token: string,
+    @UseUser('id') id: string,
+    @UseUser('emailVerified') emailVerified: boolean,
+  ) {
+    if (!token) {
+      throw new BadRequestException(ErrorMessage.InvalidVerificationToken);
+    }
+    if (emailVerified) {
+      throw new BadRequestException(ErrorMessage.EmailAlreadyVerified);
+    }
+    await this.authService.verifyEmail(id, token);
+
+    return 'email verified successfully';
+  }
+
+  @Post('verify-email/resend')
+  @UseGuards(JwtGuard)
+  async resendVerificationEmail(
+    @Body('email') email: string,
+    @UseUser('emailVerified') emailVerified: boolean,
+  ) {
+    if (!email) {
+      throw new BadRequestException(ErrorMessage.InvalidEmail);
+    }
+    if (emailVerified) {
+      throw new BadRequestException(ErrorMessage.EmailAlreadyVerified);
+    }
+    await this.authService.sendVerificationEmail(email);
+    return 'verification email sent successfully';
   }
 }

@@ -22,11 +22,15 @@ import { UseUser } from '@/user/decorators/user.decorator';
 import { JwtGuard } from '@/auth/guards/jwt.guard';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import { error } from 'console';
+import { AuthService } from '@/auth/auth.service';
 
 @Controller('user')
 @ApiTags('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly authService: AuthService,
+  ) {}
 
   @Get()
   @UseGuards(JwtGuard)
@@ -55,7 +59,7 @@ export class UserController {
           avatar: data.avatar,
         });
       }
-      // Todo: send email verfification
+      this.authService.sendVerificationEmail(email);
       return await this.userService.updateByEmail(email, {
         name: data.name,
         username: data.username,

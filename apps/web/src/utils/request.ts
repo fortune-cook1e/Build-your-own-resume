@@ -72,10 +72,20 @@ const requestForRefresh = axios.create({
 const handleAuthError = async () => {
   try {
     // Todo: 这里如果调用 refresh 接口出现403 Forbidden 返回则会进入catch
+    // 出现403的情况： cookie中的refresh token 和存储在user中的refreshToken不一样导致，暂时没找到原因
+    // 出现的原因：
+    // 1. 在 Postman Debug 接口的时候需要login 一下，而login的时候会重新设置 refreshToken，此时就会出现 user 的refreshToken与当前浏览器的refreshToken冲突的问题
     await refresh(requestForRefresh);
     return Promise.resolve();
   } catch (e) {
     console.log('HandleAuth Error:', e);
+    console.log(window.location);
+    // FixBug: 这里的跳转由问题 不会自动跳转 需要手动刷新一下
+    window.history.replaceState(
+      null,
+      '',
+      `/resume-generator-web/login?redirect=${window.location.pathname}`,
+    );
     return Promise.reject(e);
   }
 };
@@ -84,7 +94,7 @@ const handleAuthError = async () => {
 const handleRefreshFailed = async () => {
   try {
     queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.user] });
-    window.history.pushState(null, '', '/resume-generator-web/login');
+    window.history.replaceState(null, '', '/resume-generator-web/login');
     return Promise.resolve();
   } catch (e) {
     return Promise.reject(e);

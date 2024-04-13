@@ -29,5 +29,6 @@ const emptyTransporter = nodemailer.createTransport({});
   ],
   providers: [MailService],
   controllers: [MailController],
+  exports: [MailService],
 })
 export class MailModule {}

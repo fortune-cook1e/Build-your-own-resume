@@ -19,6 +19,10 @@ export class UtilsService {
     );
   }
 
+  getWebAppUrl() {
+    return this.configService.getOrThrow('WEB_APP_URL');
+  }
+
   async getCacheOrSet<T>(
     key: string,
     callback: () => Promise<T> | T,

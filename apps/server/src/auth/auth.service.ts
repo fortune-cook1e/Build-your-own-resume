@@ -17,6 +17,9 @@ import { ConfigService } from '@nestjs/config';
 import { Config } from '../config/schema';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import * as bcrypt from 'bcryptjs';
+import { randomBytes } from 'crypto';
+import { UtilsService } from '@/utils/utils.service';
+import { MailService } from '@/mail/mail.service';
 
 @Injectable()
 export class AuthService {
@@ -24,6 +27,8 @@ export class AuthService {
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
     private readonly configService: ConfigService<Config>,
+    private readonly utilsService: UtilsService,
+    private readonly mailService: MailService,
   ) {}
 
   // generate hashed password
@@ -47,7 +52,10 @@ export class AuthService {
     }
   }
 
-  generateToken(type: 'access' | 'refresh', payload?: JwtPayload) {
+  generateToken(
+    type: 'access' | 'refresh' | 'verificationToken',
+    payload?: JwtPayload,
+  ) {
     switch (type) {
       case 'access':
         if (!payload)
@@ -63,6 +71,9 @@ export class AuthService {
           secret: this.configService.getOrThrow('REFRESH_TOKEN_SECRET'),
           expiresIn: '2d', // 2 days
         });
+      case 'verificationToken': {
+        return randomBytes(32).toString('base64url');
+      }
 
       default:
         throw new InternalServerErrorException('InvalidGrantType: ' + type);
@@ -82,7 +93,7 @@ export class AuthService {
         salt,
       });
 
-      // Todo: send check email
+      this.sendVerificationEmail(email);
       return user;
     } catch (error) {
       if (
@@ -127,8 +138,31 @@ export class AuthService {
     const userToken = user.refreshToken;
 
     if (!userToken || userToken !== token) {
-      throw new ForbiddenException();
+      throw new ForbiddenException(ErrorMessage.InvalidRefreshToken);
     }
     return user;
+  }
+
+  async verifyEmail(userId: string, token: string) {
+    const user = await this.userService.findOneById(userId);
+    console.log(user.verificationToken, token);
+    if (user.verificationToken !== token) {
+      throw new BadRequestException(ErrorMessage.InvalidVerificationToken);
+    }
+    await this.userService.updateByEmail(user.email, {
+      emailVerified: true,
+      verificationToken: null,
+    });
+  }
+
+  async sendVerificationEmail(email: string) {
+    const verificationToken = this.generateToken('verificationToken');
+    await this.userService.updateByEmail(email, {
+      verificationToken,
+    });
+    const verificationUrl = `${this.utilsService.getWebAppUrl()}/auth/verify-email?token=${verificationToken}`;
+    const subject = 'Verify your email address';
+    const text = `Please verify your email address by clicking on the link below:\n\n${verificationUrl}`;
+    await this.mailService.sendEmail({ subject, text, to: email });
   }
 }

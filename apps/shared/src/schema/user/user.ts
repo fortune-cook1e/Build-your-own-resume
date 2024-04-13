@@ -26,6 +26,7 @@ export const privateInfoSchema = z.object({
   password: z.string().nullable(),
   salt: z.string().nullable(),
   refreshToken: z.string().nullable(),
+  verificationToken: z.string().nullable(),
   lastSignedIn: z.date().nullable(),
 });
 

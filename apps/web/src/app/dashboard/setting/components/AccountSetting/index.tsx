@@ -22,12 +22,14 @@ import { useUpdateUser } from '@/apis/user/update';
 import UserAvatar from '@/components/UserAvatar';
 import { Check, UploadSimple, Warning } from '@phosphor-icons/react';
 import { useUploadImage } from '@/apis/oss/uploadImage';
+import { useResendEmail } from '@/apis/auth/resend-email';
 
 const AccountSetting = () => {
   const { user } = useUser();
   const toast = useToast();
   const { loading, updateUser } = useUpdateUser();
   const { loading: uploading, uploadImage } = useUploadImage();
+  const { loading: resendLoading, resendEmail } = useResendEmail();
   const form = useForm<UpdateUserDto>({
     resolver: zodResolver(updateUserSchema),
     defaultValues: {
@@ -73,8 +75,15 @@ const AccountSetting = () => {
     });
   };
 
-  // Todo: finish resend email process
-  const onResendEmail = () => {};
+  const onResendEmail = async () => {
+    const email = form.getValues('email');
+    if (!email) return;
+    await resendEmail(email);
+    toast({
+      status: 'success',
+      title: 'Resend email success',
+    });
+  };
 
   return (
     <div className="space-y-6">
@@ -146,7 +155,12 @@ const AccountSetting = () => {
             {user?.emailVerified ? <Check /> : <Warning size={12} />}
             {user?.emailVerified ? 'Verified' : 'Unverified'}
             {!user?.emailVerified && (
-              <Button variant="link" className="h-auto text-xs">
+              <Button
+                disabled={resendLoading}
+                variant="link"
+                className="h-auto text-xs"
+                onClick={onResendEmail}
+              >
                 Resend email confirmation link
               </Button>
             )}
