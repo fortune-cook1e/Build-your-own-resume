@@ -6,6 +6,7 @@ import Projects from '@/app/builder/components/Sidebars/left/sections/Modals/Pro
 import { useSectionContext } from '@/app/builder/components/Sidebars/left/sections/common/SectionContext';
 import { SectionKey } from 'shared';
 import { FC } from 'react';
+import Skills from '@/app/builder/components/Sidebars/left/sections/Modals/Skills';
 
 const RenderSectionModal: FC = () => {
   const { id } = useSectionContext();
@@ -27,6 +28,9 @@ const RenderSectionModal: FC = () => {
 
       case 'interests':
         return <Interests />;
+
+      case 'skills':
+        return <Skills />;
       default:
         return null;
     }

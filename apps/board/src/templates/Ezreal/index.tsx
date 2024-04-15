@@ -5,6 +5,7 @@ import Interests from '@/templates/Ezreal/Interests';
 import Projects from '@/templates/Ezreal/Projects';
 import { SectionKey, TemplateProps } from 'shared';
 import { Fragment } from 'react';
+import Skills from '@/templates/Ezreal/Skills';
 
 const mapStrToComponent = (str: SectionKey) => {
   switch (str) {
@@ -18,6 +19,8 @@ const mapStrToComponent = (str: SectionKey) => {
       return <Projects />;
     case 'interests':
       return <Interests />;
+    case 'skills':
+      return <Skills />;
     default:
       return null;
   }

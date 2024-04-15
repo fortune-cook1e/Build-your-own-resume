@@ -7,7 +7,14 @@ export const layoutSchema = z.object({
 });
 export type Layout = z.infer<typeof layoutSchema>;
 export const defaultLayout: Layout = {
-  main: ['summary', 'experience', 'education', 'projects', 'interests'],
+  main: [
+    'summary',
+    'experience',
+    'education',
+    'projects',
+    'interests',
+    'skills',
+  ],
   side: ['profiles', 'languages'],
 };
 

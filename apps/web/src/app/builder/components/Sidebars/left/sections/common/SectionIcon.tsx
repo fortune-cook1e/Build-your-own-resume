@@ -33,6 +33,9 @@ export const getSectionIcon = (id: SectionKey, props?: IconProps) => {
     case 'interests':
       return <ShareNetwork size={18} {...props} />;
 
+    case 'skills':
+      return <ShareNetwork size={18} {...props} />;
+
     default:
       return null;
   }

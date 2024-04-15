@@ -142,7 +142,6 @@ const Layout = () => {
   const onDragEvent = ({ active, over }: DragOverEvent | DragEndEvent) => {
     if (!over || !active.data.current) return;
     const payload = active.data.current.sortable as SortablePayload;
-    console.log({ payload, active, over });
     // 有以下几种情况：
     // 1. main 或 side 一方没有数据
     //  1.1 会出现 over.data.current 为 undefined 情况
@@ -201,6 +200,8 @@ const Layout = () => {
     onDragEvent(event);
     setActiveId(null);
   };
+
+  console.log({ data });
 
   return (
     <SectionBase id="layout">
