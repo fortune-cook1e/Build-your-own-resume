@@ -7,7 +7,6 @@ interface Props<T> {
   children?: (item: T) => React.ReactNode;
   className?: string;
   urlKey?: keyof T;
-  levelKey?: keyof T;
   summaryKey?: keyof T;
 }
 
@@ -16,7 +15,6 @@ const Section = <T,>({
   className,
   children,
   urlKey,
-  levelKey,
   summaryKey,
 }: Props<T>) => {
   return (
@@ -31,9 +29,7 @@ const Section = <T,>({
           .filter((item) => item.visible)
           .map((item) => {
             const url = (urlKey && get(item, urlKey)) as URL | undefined;
-            const level = (levelKey && get(item, levelKey, 0)) as
-              | string
-              | undefined;
+
             const summary = (summaryKey && get(item, summaryKey, '')) as
               | string
               | undefined;
@@ -54,8 +50,6 @@ const Section = <T,>({
                     dangerouslySetInnerHTML={{ __html: summary }}
                   />
                 )}
-
-                {level !== undefined && level > 0 && <Rating level={level} />}
               </div>
             );
           })}
