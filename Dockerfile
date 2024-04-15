@@ -18,7 +18,7 @@ RUN pnpm deploy --filter=server --prod /prod/server
 FROM base AS server
 COPY --from=build /prod/server /prod/server
 WORKDIR /prod/server
-EXPOSE 3000
+EXPOSE 3002
 ENV NODE_ENV=production
 
 CMD [ "pnpm", "start:prod" ]
