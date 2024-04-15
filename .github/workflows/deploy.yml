@@ -12,17 +12,39 @@ jobs:
       POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
       POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
       POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+
       DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
-      DOCKER_SERVER_IMAGE: ${{secrets.DOCKER_SERVER_IMAGE}}
+      DOCKER_USER_PASSWORD: ${{secrets.DOCKER_USER_PASSWORD}}
+      DOCKER_IMAGE: ${{secrets.DOCKER_IMAGE}}
+      DOCKER_COMPOSE_PATH: ${{secrets.DOCKER_COMPOSE_PATH}}
+
       REDIS_PASSWORD: ${{secrets.REDIS_PASSWORD}}
-      DATABASE_URL: ${{ secrets.DATABASE_URL }}
       REDIS_URL: ${{ secrets.REDIS_URL }}
-      DOCKER_SERVER_COMPOSE_PATH: ${{secrets.DOCKER_SERVER_COMPOSE_PATH}}
+      REDIS_NAMESPACE: ${{secrets.REDIS_NAMESPACE}}
+
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
+      ACCESS_TOKEN_SECRET: ${{secrets.ACCESS_TOKEN_SECRET}}
+      REFRESH_TOKEN_SECRET: ${{secrets.REFRESH_TOKEN_SECRET}}
+
+      ECS_HOST: ${{ secrets.ECS_HOST }}
+      ECS_USERNAME: ${{ secrets.ECS_USERNAME }}
+      ECS_PASSWORD: ${{ secrets.ECS_PASSWORD }}
+
+      MAIL_FROM: ${{ secrets.MAIL_FROM }}
+      SMTP_URL: ${{secrets.SMTP_URL}}
+
+      QINIU_ACCESS_KEY: ${{ secrets.QINIU_ACCESS_KEY }}
+      QINIU_SECRET_KEY: ${{ secrets.QINIU_SECRET_KEY }}
+      QINIU_BUCKET: ${{ secrets.QINIU_BUCKET }}
+      QINIU_DOMAIN: ${{ secrets.QINIU_DOMAIN }}
+      QINIU_ZONE: ${{secrets.QINIU_ZONE}}
+
+      WEB_APP_URL: ${{ secrets.WEB_APP_URL }}
 
     strategy:
       matrix:
         node-version: [18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
       - uses: actions/checkout@v3
@@ -57,23 +79,44 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_SERVER_IMAGE}}:latest
+          tags: ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_IMAGE}}:latest
 
       - name: Deploy to Aliyun ECS
         uses: appleboy/ssh-action@v1.0.3
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_SERVER_IMAGE: ${{ secrets.DOCKER_SERVER_IMAGE }}
+          DOCKER_IMAGE: ${{ secrets.DOCKER_IMAGE }}
+
           POSTGRES_USER: ${{secrets.POSTGRES_USER}}
           POSTGRES_PASSWORD: ${{secrets.POSTGRES_PASSWORD}}
           POSTGRES_DB: ${{secrets.POSTGRES_DB}}
+
           REDIS_PASSWORD: ${{secrets.REDIS_PASSWORD}}
+          REDIS_URL: ${{ secrets.REDIS_URL }}
+          REDIS_NAMESPACE: ${{secrets.REDIS_NAMESPACE}}
+
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
+          ACCESS_TOKEN_SECRET: ${{secrets.ACCESS_TOKEN_SECRET}}
+          REFRESH_TOKEN_SECRET: ${{secrets.REFRESH_TOKEN_SECRET}}
+
+          MAIL_FROM: ${{ secrets.MAIL_FROM }}
+          SMTP_URL: ${{secrets.SMTP_URL}}
+
+          QINIU_ACCESS_KEY: ${{ secrets.QINIU_ACCESS_KEY }}
+          QINIU_SECRET_KEY: ${{ secrets.QINIU_SECRET_KEY }}
+          QINIU_BUCKET: ${{ secrets.QINIU_BUCKET }}
+          QINIU_DOMAIN: ${{ secrets.QINIU_DOMAIN }}
+          QINIU_ZONE: ${{secrets.QINIU_ZONE}}
+
+          WEB_APP_URL: ${{ secrets.WEB_APP_URL }}
+
         with:
           host: ${{ secrets.ECS_HOST }}
           username: ${{ secrets.ECS_USERNAME }}
           password: ${{ secrets.ECS_PASSWORD }}
-          envs: DOCKER_USERNAME,DOCKER_SERVER_IMAGE,POSTGRES_USER,POSTGRES_PASSWORD,POSTGRES_DB,REDIS_PASSWORD
+          envs: DOCKER_USERNAME,DOCKER_IMAGE,POSTGRES_USER,POSTGRES_PASSWORD,POSTGRES_DB,REDIS_PASSWORD,REDIS_URL,REDIS_NAMESPACE,ACCESS_TOKEN_SECRET,REFRESH_TOKEN_SECRET,MAIL_FROM,SMTP_URL,QINIU_ACCESS_KEY,QINIU_SECRET_KEY,QINIU_BUCKET,QINIU_DOMAIN,QINIU_ZONE,WEB_APP_URL
           script: |
-            cd ${{secrets.DOCKER_SERVER_COMPOSE_PATH}}
+            cd ${{secrets.DOCKER_COMPOSE_PATH}}
             docker-compose pull
             docker-compose -f server.compose.yml up -d

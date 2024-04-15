@@ -20,5 +20,4 @@ COPY --from=build /prod/server /prod/server
 WORKDIR /prod/server
 EXPOSE 3002
 ENV NODE_ENV=production
-
 CMD [ "pnpm", "start:prod" ]
