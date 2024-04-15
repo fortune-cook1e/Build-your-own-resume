@@ -1,4 +1,4 @@
-import { ResumeData } from '@fe-cookie/resume-generator-shared';
+import { ResumeData } from 'shared';
 import { create } from 'zustand';
 
 export interface BoardStore {

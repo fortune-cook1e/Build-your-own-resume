@@ -1,6 +1,6 @@
 import { useBoardStore } from '@/store/board';
 import Section from '@/templates/Ezreal/Section';
-import { Projects as ProjectsType } from '@fe-cookie/resume-generator-shared';
+import { Projects as ProjectsType } from 'shared';
 import { FC } from 'react';
 
 const Projects: FC = () => {

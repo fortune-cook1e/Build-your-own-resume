@@ -1,10 +1,7 @@
 import SectionModal from '@/app/builder/components/Sidebars/left/sections/common/SectionModal';
 import RickEditor from '@/components/RichEditor';
 import { FormControl, FormLabel, Input } from '@chakra-ui/react';
-import {
-  defaultExperience,
-  experienceSchema,
-} from '@fe-cookie/resume-generator-shared';
+import { defaultExperience, experienceSchema } from 'shared';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { values } from 'lodash-es';
 import { FC } from 'react';

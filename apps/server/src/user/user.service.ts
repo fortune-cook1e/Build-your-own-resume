@@ -1,6 +1,6 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { PrismaService } from 'nestjs-prisma';
-import { ErrorMessage } from '@fe-cookie/resume-generator-shared';
+import { ErrorMessage } from 'shared';
 import { Prisma } from '@prisma/client';
 
 @Injectable()

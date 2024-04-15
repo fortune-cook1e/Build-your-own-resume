@@ -1,9 +1,6 @@
 import SectionModal from '@/app/builder/components/Sidebars/left/sections/common/SectionModal';
 import { FormControl, FormLabel, Input } from '@chakra-ui/react';
-import {
-  defaultInterests,
-  interestsSchema,
-} from '@fe-cookie/resume-generator-shared';
+import { defaultInterests, interestsSchema } from 'shared';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';

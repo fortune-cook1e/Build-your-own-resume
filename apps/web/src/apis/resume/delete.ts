@@ -1,7 +1,7 @@
 import { QUERY_KEYS } from '@/constants';
 import { queryClient } from '@/utils/queryClient';
 import request from '@/utils/request';
-import { Resume } from '@fe-cookie/resume-generator-shared';
+import { Resume } from 'shared';
 import { useMutation } from '@tanstack/react-query';
 
 const deleteResume = (id: string): Promise<Resume> =>

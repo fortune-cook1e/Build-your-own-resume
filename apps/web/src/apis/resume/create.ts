@@ -1,7 +1,7 @@
 import { QUERY_KEYS } from '@/constants';
 import { queryClient } from '@/utils/queryClient';
 import request from '@/utils/request';
-import { CreateResumeDto, Resume } from '@fe-cookie/resume-generator-shared';
+import { CreateResumeDto, Resume } from 'shared';
 import { useMutation } from '@tanstack/react-query';
 
 const createResume = async (data: CreateResumeDto): Promise<Resume> =>

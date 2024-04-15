@@ -2,7 +2,7 @@ import { useBoardStore } from '@/store/board';
 import {
   POST_MESSAGES,
   // sampleResume,
-} from '@fe-cookie/resume-generator-shared';
+} from 'shared';
 import { useCallback, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';

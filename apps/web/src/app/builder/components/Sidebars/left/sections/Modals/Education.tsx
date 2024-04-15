@@ -1,10 +1,7 @@
 import SectionModal from '@/app/builder/components/Sidebars/left/sections/common/SectionModal';
 import RickEditor from '@/components/RichEditor';
 import { FormControl, FormLabel, Input } from '@chakra-ui/react';
-import {
-  defaultEducation,
-  educationSchema,
-} from '@fe-cookie/resume-generator-shared';
+import { defaultEducation, educationSchema } from 'shared';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FC } from 'react';
 import { Controller, useForm } from 'react-hook-form';

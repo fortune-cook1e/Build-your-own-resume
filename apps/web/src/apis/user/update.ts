@@ -2,7 +2,7 @@ import { QUERY_KEYS } from '@/constants';
 import { useUserStore } from '@/store/user';
 import { queryClient } from '@/utils/queryClient';
 import request from '@/utils/request';
-import { UpdateUserDto, User } from '@fe-cookie/resume-generator-shared';
+import { UpdateUserDto, User } from 'shared';
 import { useMutation } from '@tanstack/react-query';
 
 const updateUser = (data: UpdateUserDto): Promise<User> =>

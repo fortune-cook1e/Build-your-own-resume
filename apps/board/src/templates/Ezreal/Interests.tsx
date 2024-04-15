@@ -1,6 +1,6 @@
 import { useBoardStore } from '@/store/board';
 import Section from '@/templates/Ezreal/Section';
-import { Interests as InterestsType } from '@fe-cookie/resume-generator-shared';
+import { Interests as InterestsType } from 'shared';
 
 const Interests = () => {
   const data = useBoardStore((state) => state.resume.sections.interests);

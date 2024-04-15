@@ -1,7 +1,7 @@
 import { useBuilderStore } from '@/store/builder';
 import { useResumeStore } from '@/store/resume';
 import { IconButton } from '@chakra-ui/react';
-import { mergeTailwindCss } from '@fe-cookie/resume-generator-shared';
+import { mergeTailwindCss } from 'shared';
 import { HouseSimple, SidebarSimple } from '@phosphor-icons/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';

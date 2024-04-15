@@ -6,10 +6,7 @@ import {
   MenuItem,
   IconButton,
 } from '@chakra-ui/react';
-import {
-  SectionKey,
-  SectionWithItem,
-} from '@fe-cookie/resume-generator-shared';
+import { SectionKey, SectionWithItem } from 'shared';
 import { Eye, List, Plus } from '@phosphor-icons/react';
 import { get } from 'lodash-es';
 import { FC, useMemo } from 'react';

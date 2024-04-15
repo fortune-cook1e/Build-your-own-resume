@@ -1,5 +1,5 @@
 import Ezreal from '@/templates/Ezreal';
-import { Template } from '@fe-cookie/resume-generator-shared';
+import { Template } from 'shared';
 
 export const getTemplate = (template: Template) => {
   switch (template) {

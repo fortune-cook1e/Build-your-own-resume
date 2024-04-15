@@ -1,6 +1,6 @@
 import { QUERY_KEYS } from '@/constants';
 import { useUserStore } from '@/store/user';
-import { User } from '@fe-cookie/resume-generator-shared';
+import { User } from 'shared';
 import request from '@/utils/request';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';

@@ -1,6 +1,6 @@
 import { QUERY_KEYS } from '@/constants';
 import request from '@/utils/request';
-import { Resume } from '@fe-cookie/resume-generator-shared';
+import { Resume } from 'shared';
 import { useQuery } from '@tanstack/react-query';
 
 export const getResumeList = (): Promise<Resume[]> =>

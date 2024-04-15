@@ -1,4 +1,4 @@
-import { Resume } from '@fe-cookie/resume-generator-shared';
+import { Resume } from 'shared';
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 import { devtools } from 'zustand/middleware';

@@ -1,6 +1,6 @@
 import { ConfigModule } from '@/config/config.module';
 import { DatabaseModule } from '@/database/database.module';
-import { userListSchema } from '@fe-cookie/resume-generator-shared';
+import { userListSchema } from 'shared';
 import { UserController } from '@/user/user.controller';
 import { UserService } from '@/user/user.service';
 import { Test, TestingModule } from '@nestjs/testing';

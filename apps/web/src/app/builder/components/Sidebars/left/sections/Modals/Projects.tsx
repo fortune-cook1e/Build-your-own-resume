@@ -2,10 +2,7 @@ import SectionModal from '@/app/builder/components/Sidebars/left/sections/common
 import UrlInput from '@/app/builder/components/Sidebars/left/sections/common/UrlInput';
 import RickEditor from '@/components/RichEditor';
 import { FormControl, FormLabel, Input } from '@chakra-ui/react';
-import {
-  defaultProjects,
-  projectsSchema,
-} from '@fe-cookie/resume-generator-shared';
+import { defaultProjects, projectsSchema } from 'shared';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FC } from 'react';
 import { Controller, useForm } from 'react-hook-form';

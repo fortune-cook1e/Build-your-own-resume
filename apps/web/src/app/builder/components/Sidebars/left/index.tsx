@@ -5,13 +5,7 @@ import SectionIcon from '@/app/builder/components/Sidebars/left/sections/common/
 import { Divider, Flex, IconButton } from '@chakra-ui/react';
 import { HourglassMedium } from '@phosphor-icons/react';
 import { FC, useRef } from 'react';
-import {
-  Education,
-  Experience,
-  Interests,
-  Profile,
-  Projects,
-} from '@fe-cookie/resume-generator-shared';
+import { Education, Experience, Interests, Profile, Projects } from 'shared';
 import Link from 'next/link';
 import Summary from '@/app/builder/components/Sidebars/left/sections/Summary';
 

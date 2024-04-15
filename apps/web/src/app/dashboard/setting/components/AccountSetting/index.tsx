@@ -8,11 +8,7 @@ import {
   Input,
   useToast,
 } from '@chakra-ui/react';
-import {
-  UpdateUserDto,
-  mergeTailwindCss,
-  updateUserSchema,
-} from '@fe-cookie/resume-generator-shared';
+import { UpdateUserDto, mergeTailwindCss, updateUserSchema } from 'shared';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';

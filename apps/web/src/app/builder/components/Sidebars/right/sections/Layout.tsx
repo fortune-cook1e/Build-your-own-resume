@@ -22,7 +22,7 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { mergeTailwindCss } from '@fe-cookie/resume-generator-shared';
+import { mergeTailwindCss } from 'shared';
 import { DotsSixVertical } from '@phosphor-icons/react';
 import { get } from 'lodash-es';
 import { useState } from 'react';

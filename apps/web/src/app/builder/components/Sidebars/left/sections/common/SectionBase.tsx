@@ -6,11 +6,7 @@ import {
 import { getSectionIcon } from '@/app/builder/components/Sidebars/left/sections/common/SectionIcon';
 import SectionOptions from '@/app/builder/components/Sidebars/left/sections/common/SectionOptions';
 import { useResumeStore } from '@/store/resume';
-import {
-  SectionItem,
-  SectionKey,
-  SectionWithItem,
-} from '@fe-cookie/resume-generator-shared';
+import { SectionItem, SectionKey, SectionWithItem } from 'shared';
 import { Button, Flex } from '@chakra-ui/react';
 import get from 'lodash-es/get';
 import { useEffect, useId } from 'react';

@@ -1,6 +1,6 @@
 import { useBoardStore } from '@/store/board';
 import Section from '@/templates/Ezreal/Section';
-import { Experience as ExperienceProps } from '@fe-cookie/resume-generator-shared';
+import { Experience as ExperienceProps } from 'shared';
 
 const Experience = () => {
   const data = useBoardStore((state) => state.resume?.sections.experience);

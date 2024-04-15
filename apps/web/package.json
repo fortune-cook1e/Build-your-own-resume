@@ -1,6 +1,5 @@
 {
   "name": "web",
-  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev -p 8080",
@@ -20,7 +19,6 @@
     "@dnd-kit/utilities": "^3.2.2",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
-    "@fe-cookie/resume-generator-shared": "workspace:^",
     "@hookform/resolvers": "^3.3.4",
     "@paralleldrive/cuid2": "^2.2.2",
     "@phosphor-icons/react": "^2.0.15",
@@ -49,6 +47,7 @@
     "react-hook-form": "^7.50.1",
     "react-json-view": "^1.21.3",
     "react-resizable-panels": "^2.0.11",
+    "shared": "workspace:^",
     "tailwind-merge": "^2.2.1",
     "tailwindcss": "^3.4.1",
     "tailwindcss-animated": "^1.0.1",

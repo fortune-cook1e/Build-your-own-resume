@@ -10,16 +10,9 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
-import {
-  ErrorMessage,
-  UserWithPrivateInfo,
-} from '@fe-cookie/resume-generator-shared';
+import { ErrorMessage, UserWithPrivateInfo } from 'shared';
 import { Response } from 'express';
-import {
-  loginResSchema,
-  jwtPayloadSchema,
-  RegisterDto,
-} from '@fe-cookie/resume-generator-shared';
+import { loginResSchema, jwtPayloadSchema, RegisterDto } from 'shared';
 import { COOKIE_ACCESS_FIELD, COOKIE_REFRESH_FIELD } from '../constants';
 import { getCookieOptions } from './utils/cookie';
 import { LocalGuard } from './guards/local.guard';

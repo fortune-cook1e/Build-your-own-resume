@@ -6,7 +6,7 @@ import { COOKIE_REFRESH_FIELD } from '@/constants';
 import { ConfigService } from '@nestjs/config';
 import { Config } from '@/config/schema';
 import { Request } from 'express';
-import { JwtPayload } from '@fe-cookie/resume-generator-shared';
+import { JwtPayload } from 'shared';
 
 @Injectable()
 export class RefreshStrategy extends PassportStrategy(Strategy, 'refresh') {

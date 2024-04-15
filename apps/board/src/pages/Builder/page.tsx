@@ -1,10 +1,7 @@
 import TemplatePage from '@/components/TemplatePage';
 import { useBoardStore } from '@/store/board';
 import { getTemplate } from '@/templates';
-import {
-  POST_MESSAGES,
-  TemplateLayout,
-} from '@fe-cookie/resume-generator-shared';
+import { POST_MESSAGES, TemplateLayout } from 'shared';
 import { useEffect, useMemo, useRef } from 'react';
 import {
   TransformWrapper,

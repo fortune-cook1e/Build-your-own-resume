@@ -1,6 +1,6 @@
 import { useBoardStore } from '@/store/board';
 import Section from '@/templates/Ezreal/Section';
-import { Education as EducationProps } from '@fe-cookie/resume-generator-shared';
+import { Education as EducationProps } from 'shared';
 
 const Education = () => {
   const data = useBoardStore((state) => state.resume.sections.education);

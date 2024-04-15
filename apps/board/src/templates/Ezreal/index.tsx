@@ -3,7 +3,7 @@ import Experience from '@/templates/Ezreal/Experience';
 import Header from '@/templates/Ezreal/Header';
 import Interests from '@/templates/Ezreal/Interests';
 import Projects from '@/templates/Ezreal/Projects';
-import { SectionKey, TemplateProps } from '@fe-cookie/resume-generator-shared';
+import { SectionKey, TemplateProps } from 'shared';
 import { Fragment } from 'react';
 
 const mapStrToComponent = (str: SectionKey) => {

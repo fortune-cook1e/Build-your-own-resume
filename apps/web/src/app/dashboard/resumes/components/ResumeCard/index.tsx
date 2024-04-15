@@ -1,5 +1,5 @@
 import { mergeTailwindCss } from '@/utils/styles';
-import { Resume } from '@fe-cookie/resume-generator-shared';
+import { Resume } from 'shared';
 import { FC, useState } from 'react';
 
 import dayjs from 'dayjs';

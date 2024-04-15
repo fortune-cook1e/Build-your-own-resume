@@ -1,4 +1,4 @@
-import { User } from '@fe-cookie/resume-generator-shared';
+import { User } from 'shared';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 

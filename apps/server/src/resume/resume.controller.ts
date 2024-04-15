@@ -7,7 +7,7 @@ import {
   ImportResumeDto,
   UpdateResumeDto,
   User,
-} from '@fe-cookie/resume-generator-shared';
+} from 'shared';
 import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
 
 @Controller('resume')

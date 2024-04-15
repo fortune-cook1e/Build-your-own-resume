@@ -4,7 +4,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import { JwtPayload } from '@fe-cookie/resume-generator-shared';
+import { JwtPayload } from 'shared';
 import { COOKIE_ACCESS_FIELD } from '@/constants';
 import { Request } from 'express';
 

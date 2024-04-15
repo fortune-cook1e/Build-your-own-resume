@@ -1,6 +1,6 @@
 import { useBuilderStore } from '@/store/builder';
 import { IconButton, Tooltip } from '@chakra-ui/react';
-import { POST_MESSAGES } from '@fe-cookie/resume-generator-shared';
+import { POST_MESSAGES } from 'shared';
 import {
   MagnifyingGlassMinus,
   MagnifyingGlassPlus,

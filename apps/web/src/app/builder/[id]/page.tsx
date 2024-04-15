@@ -2,7 +2,7 @@
 
 import { useBuilderStore } from '@/store/builder';
 import { useResumeStore } from '@/store/resume';
-import { POST_MESSAGES } from '@fe-cookie/resume-generator-shared';
+import { POST_MESSAGES } from 'shared';
 import { FC, useCallback, useEffect } from 'react';
 
 const Builder: FC = () => {

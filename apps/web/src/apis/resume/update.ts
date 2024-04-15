@@ -1,7 +1,7 @@
 import { QUERY_KEYS } from '@/constants';
 import { queryClient } from '@/utils/queryClient';
 import request from '@/utils/request';
-import { Resume, UpdateResumeDto } from '@fe-cookie/resume-generator-shared';
+import { Resume, UpdateResumeDto } from 'shared';
 import { useMutation } from '@tanstack/react-query';
 import { debounce } from 'lodash-es';
 

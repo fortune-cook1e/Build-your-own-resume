@@ -1,7 +1,7 @@
 import { QUERY_KEYS } from '@/constants';
 import { useUserStore } from '@/store/user';
-import { RegisterDto } from '@fe-cookie/resume-generator-shared';
-import { User } from '@fe-cookie/resume-generator-shared';
+import { RegisterDto } from 'shared';
+import { User } from 'shared';
 import request from '@/utils/request';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';

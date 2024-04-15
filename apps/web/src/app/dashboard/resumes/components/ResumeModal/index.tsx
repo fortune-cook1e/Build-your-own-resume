@@ -28,11 +28,7 @@ import {
   MenuItem,
   MenuList,
 } from '@chakra-ui/react';
-import {
-  createResumeSchema,
-  idSchema,
-  sampleResume,
-} from '@fe-cookie/resume-generator-shared';
+import { createResumeSchema, idSchema, sampleResume } from 'shared';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   ArrowArcRight,

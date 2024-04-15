@@ -17,7 +17,7 @@ import {
   UserWithPrivateInfo,
   userListSchema,
   userSchema,
-} from '@fe-cookie/resume-generator-shared';
+} from 'shared';
 import { UseUser } from '@/user/decorators/user.decorator';
 import { JwtGuard } from '@/auth/guards/jwt.guard';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';

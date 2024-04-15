@@ -1,4 +1,4 @@
-import { URL, mergeTailwindCss } from '@fe-cookie/resume-generator-shared';
+import { URL, mergeTailwindCss } from 'shared';
 import { FC, ReactNode } from 'react';
 
 interface Props {

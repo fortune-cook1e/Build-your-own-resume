@@ -4,7 +4,7 @@ import {
   UpdateResumeDto,
   ImportResumeDto,
   sampleResume,
-} from '@fe-cookie/resume-generator-shared';
+} from 'shared';
 import {
   Injectable,
   InternalServerErrorException,

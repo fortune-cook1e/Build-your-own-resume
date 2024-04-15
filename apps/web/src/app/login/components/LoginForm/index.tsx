@@ -1,5 +1,5 @@
 import { useLogin } from '@/apis/auth/login';
-import { LoginDto } from '@fe-cookie/resume-generator-shared';
+import { LoginDto } from 'shared';
 import {
   FormControl,
   FormLabel,

@@ -1,7 +1,4 @@
-import {
-  SectionItem,
-  SectionWithItem,
-} from '@fe-cookie/resume-generator-shared';
+import { SectionItem, SectionWithItem } from 'shared';
 
 import {
   Button,

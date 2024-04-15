@@ -7,12 +7,7 @@ import {
 } from '@nestjs/common';
 import { UserService } from '../user/user.service';
 import { JwtService } from '@nestjs/jwt';
-import {
-  RegisterDto,
-  ErrorMessage,
-  LoginDto,
-  JwtPayload,
-} from '@fe-cookie/resume-generator-shared';
+import { RegisterDto, ErrorMessage, LoginDto, JwtPayload } from 'shared';
 import { ConfigService } from '@nestjs/config';
 import { Config } from '../config/schema';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';

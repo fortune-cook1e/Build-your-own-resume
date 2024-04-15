@@ -1,10 +1,5 @@
 import Link from '@/templates/Ezreal/Link';
-import {
-  SectionWithItem,
-  URL,
-  isEmptyString,
-  mergeTailwindCss,
-} from '@fe-cookie/resume-generator-shared';
+import { SectionWithItem, URL, isEmptyString, mergeTailwindCss } from 'shared';
 import { get } from 'lodash-es';
 
 interface Props<T> {

@@ -1,6 +1,6 @@
 'use client';
 
-import { mergeTailwindCss } from '@fe-cookie/resume-generator-shared';
+import { mergeTailwindCss } from 'shared';
 import Highlight from '@tiptap/extension-highlight';
 import Image from '@tiptap/extension-image';
 import { Link } from '@tiptap/extension-link';
