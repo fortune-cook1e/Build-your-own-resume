@@ -7,11 +7,14 @@ ARG NODE_VERSION="18.12.1"
 ARG ALPINE_VERSION="3.17"
 
 
+
+
+FROM node:${NODE_VERSION}-alpine${ALPINE_VERSION} AS base
+
 # install OpenSSL 1.1.x, needed for Linux Alpine 3.17+
 RUN apk update \
   && apk add openssl1.1-compat
-
-FROM node:${NODE_VERSION}-alpine${ALPINE_VERSION} AS base
+  
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
