@@ -3,6 +3,12 @@ ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
 
+# change with the Linux Alpine version of your choice
+ARG ALPINE_VERSION="3.17"
+
+# install OpenSSL 1.1.x, needed for Linux Alpine 3.17+
+RUN apk update \
+  && apk add openssl1.1-compat
 
 
 FROM base AS build

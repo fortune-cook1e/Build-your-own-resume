@@ -62,6 +62,11 @@ jobs:
       - name: Install dependencies and build
         run: pnpm install && pnpm run prisma:generate && pnpm run build
 
+      - name: Apply all pending migrations to the database
+        run: pnpm run prisma:deploy
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 

@@ -13,7 +13,7 @@
     "start:prod": "node dist/main",
     "prisma:seed": "npx prisma db seed",
     "prisma:generate": "pnpm exec prisma generate",
-    "prisma:migrate:prod": "pnpm exec prisma migrate deploy",
+    "prisma:deploy": "pnpm exec prisma migrate deploy",
     "prisma:migrate:dev": "pnpm exec prisma migrate dev",
     "prisma:studio": "pnpm exec prisma studio",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",

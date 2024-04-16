@@ -13,7 +13,7 @@
     "build:server": "pnpm --filter server run build",
     "prisma:seed": "pnpm --filter server run prisma:seed",
     "prisma:generate": "pnpm --filter server prisma:generate",
-    "prisma:migrate:prod": "pnpm --filter server prisma:migrate:prod",
+    "prisma:deploy": "pnpm --filter server prisma:deploy",
     "prisma:migrate:dev": "pnpm --filter server prisma:migrate:dev",
     "prisma:studio": "pnpm --filter server prisma:studio",
     "test": "pnpm run -r test",
