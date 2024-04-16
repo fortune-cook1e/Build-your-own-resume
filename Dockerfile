@@ -1,14 +1,20 @@
-FROM node:20-slim AS base
-ENV PNPM_HOME="/pnpm"
-ENV PATH="$PNPM_HOME:$PATH"
-RUN corepack enable
+# Dockerfile for running Prisma on Linux Alpine 3.17+
+
+# change with the Node.js version of your choice
+ARG NODE_VERSION="18.12.1"
 
 # change with the Linux Alpine version of your choice
 ARG ALPINE_VERSION="3.17"
 
+
 # install OpenSSL 1.1.x, needed for Linux Alpine 3.17+
 RUN apk update \
   && apk add openssl1.1-compat
+
+FROM node:${NODE_VERSION}-alpine${ALPINE_VERSION} AS base
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
 
 
 FROM base AS build
