@@ -31,10 +31,8 @@ ENV NODE_ENV=production
 CMD [ "pnpm", "start:prod" ]
 
 
-# FROM nginx:alpine as board
-# COPY --from=build /prod/board /prod/board
-# WORKDIR /prod/board
-# RUN ls
-# COPY nginx.conf /etc/nginx/conf.d/default.conf
-# EXPOSE 80
-# CMD ["nginx", "-g", "daemon off;"]
+FROM nginx:alpine as board
+COPY --from=build /app/apps/board/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

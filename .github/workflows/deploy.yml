@@ -12,6 +12,7 @@ jobs:
       DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
       DOCKER_USER_PASSWORD: ${{secrets.DOCKER_USER_PASSWORD}}
       DOCKER_SERVER_IMAGE: ${{secrets.DOCKER_SERVER_IMAGE}}
+      DOCKER_BOARD_IMAGE: ${{secrets.DOCKER_BOARD_IMAGE}}
       DOCKER_COMPOSE_PATH: ${{secrets.DOCKER_COMPOSE_PATH}}
 
       ECS_HOST: ${{ secrets.ECS_HOST }}
@@ -71,20 +72,16 @@ jobs:
           push: true
           platforms: linux/amd64
           tags: ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_SERVER_IMAGE}}:latest
-      # - name: Build against builder2
-      #   uses: docker/build-push-action@v5
-      #   with:
-      #     builder: ${{ steps.builder2.outputs.name }}
-      #     context: .
-      #     target: server
 
-      # - name: Build and push image
-      #   uses: docker/build-push-action@v5
-      #   with:
-      #     context: .
-      #     push: true
-      #     platforms: linux/amd64
-      #     tags: ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_SERVER_IMAGE}}:latest
+      - name: Build against board
+        uses: docker/build-push-action@v5
+        with:
+          builder: ${{ steps.board.outputs.name }}
+          context: .
+          target: board
+          push: true
+          platforms: linux/amd64
+          tags: ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_BOARD_IMAGE}}:latest
 
       - name: Deploy to Aliyun ECS
         uses: appleboy/ssh-action@v1.0.3
