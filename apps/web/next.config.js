@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  distDir: 'dist',
-  basePath: '/resume-generator-web',
+  basePath: '/resume-generator',
+  output: 'standalone',
   async rewrites() {
     return [
       {
