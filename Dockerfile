@@ -26,7 +26,7 @@ RUN pnpm --filter web --prod deploy /prod/web
 
 FROM base AS server
 WORKDIR /prod/server
-COPY --from=build /prod/server ./
+COPY --from=build /prod/server /prod/server
 EXPOSE 3002
 ENV NODE_ENV=production
 CMD [ "pnpm", "start:prod" ]
