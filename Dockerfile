@@ -26,14 +26,14 @@ RUN pnpm --filter web --prod deploy /prod/web
 
 FROM base AS server
 WORKDIR /prod/server
-COPY --from=build /prod/server /prod/server
+COPY --from=builder /prod/server /prod/server
 EXPOSE 3002
 ENV NODE_ENV=production
 CMD [ "pnpm", "start:prod" ]
 
 
 FROM nginx:alpine as board
-COPY --from=build /app/apps/board/dist /usr/share/nginx/html
+COPY --from=builder /app/apps/board/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
