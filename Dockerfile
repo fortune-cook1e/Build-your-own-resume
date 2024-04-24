@@ -41,10 +41,9 @@ CMD ["nginx", "-g", "daemon off;"]
 
 FROM base AS web
 WORKDIR /prod/web
-COPY --from=builder /app/apps/web/public /prod/web/public
-RUN mkdir .next
-COPY --from=builder /app/apps/web/.next/standalone /prod/web/.next/standalone
-COPY --from=builder /app/apps/web/.next/static /prod/web/.next/static
+COPY --from=builder /app/apps/web/public ./public
+COPY --from=builder /app/apps/web/.next/standalone ./
+COPY --from=builder /app/apps/web/.next/static ./apps/web/.next/static
 EXPOSE 3003
 ENV NODE_ENV=production
-CMD node /prod/web/.next/standalone/apps/web/server.js
+CMD node /prod/web/apps/web/server.js

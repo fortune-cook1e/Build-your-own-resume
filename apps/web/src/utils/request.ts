@@ -84,7 +84,7 @@ const handleAuthError = async () => {
     window.history.replaceState(
       null,
       '',
-      `/resume-generator-web/login?redirect=${window.location.pathname}`,
+      `/resume-generator/login?redirect=${window.location.pathname}`,
     );
     return Promise.reject(e);
   }
@@ -94,7 +94,7 @@ const handleAuthError = async () => {
 const handleRefreshFailed = async () => {
   try {
     queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.user] });
-    window.history.replaceState(null, '', '/resume-generator-web/login');
+    window.history.replaceState(null, '', '/resume-generator/login');
     return Promise.resolve();
   } catch (e) {
     return Promise.reject(e);
