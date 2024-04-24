@@ -8,15 +8,20 @@ const nextConfig = {
     outputFileTracingRoot: path.join(__dirname, '../../'),
   },
   async rewrites() {
+    const isDev = process.env.NODE_ENV === 'development';
     return [
       {
         source: '/api/:path*',
-        destination: process.env.API_PATH,
+        destination: isDev
+          ? 'http://localhost:3000/resume-generator-api/:path*'
+          : 'https://fortunecookie.top/resume-generator-api/:path*',
         basePath: false,
       },
       {
         source: '/resume-generator-board/:path*',
-        destination: process.env.BOARD_PATH,
+        destination: isDev
+          ? 'http://localhost:5173/resume-generator-board/:path*'
+          : 'https://fortunecookie.top/resume-generator-board/:path*',
         basePath: false,
       },
     ];
