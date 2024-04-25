@@ -163,7 +163,12 @@ const ResumeModal = forwardRef<any, Props>(
                 <Button ref={cancelRef} onClick={onClose}>
                   Cancel
                 </Button>
-                <Button colorScheme="red" type="submit" ml={3}>
+                <Button
+                  colorScheme="red"
+                  type="submit"
+                  ml={3}
+                  isLoading={deleteLoading}
+                >
                   Delete
                 </Button>
               </AlertDialogFooter>

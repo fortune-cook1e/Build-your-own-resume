@@ -10,6 +10,7 @@ import ResumeModal, {
   ResumeModalFormValues,
 } from '@/app/dashboard/resumes/components/ResumeModal';
 import { FormMode } from '@/types';
+import { useResumeStore } from '@/store/resume';
 interface Props {
   resume: Resume;
 }
@@ -18,6 +19,7 @@ const ResumeCard: FC<Props> = ({ resume }) => {
   const router = useRouter();
   const [open, setOpen] = useBoolean();
   const { title, updatedAt } = resume;
+  const setResume = useResumeStore((state) => state.setResume);
   const lastUpdated = dayjs(updatedAt).format();
   const [mode, setMode] = useState<FormMode>('create');
 
@@ -28,6 +30,7 @@ const ResumeCard: FC<Props> = ({ resume }) => {
   });
 
   const onResumeClick = () => {
+    setResume(resume);
     router.push(`/builder/${resume.id}`);
   };
 

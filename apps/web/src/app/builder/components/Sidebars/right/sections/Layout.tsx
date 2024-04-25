@@ -201,8 +201,6 @@ const Layout = () => {
     setActiveId(null);
   };
 
-  console.log({ data });
-
   return (
     <SectionBase id="layout">
       <main className="grid gap-y-4">
