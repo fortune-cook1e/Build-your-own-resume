@@ -11,7 +11,7 @@ const nextConfig = {
     const isDev = process.env.NODE_ENV === 'development';
     return [
       {
-        source: '/api/:path*',
+        source: '/resume-generator-api/:path*',
         destination: isDev
           ? 'http://localhost:3000/resume-generator-api/:path*'
           : 'https://fortunecookie.top/resume-generator-api/:path*',

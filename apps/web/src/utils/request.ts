@@ -15,7 +15,7 @@ interface ApiResponse<T> {
 const { toast } = createStandaloneToast();
 
 const request = axios.create({
-  baseURL: '/api',
+  baseURL: '/resume-generator-api',
   timeout: 1000 * 10, // 10s,
 });
 
@@ -65,7 +65,7 @@ request.interceptors.response.use(
 );
 
 const requestForRefresh = axios.create({
-  baseURL: '/api',
+  baseURL: '/resume-generator-api',
   timeout: 1000 * 10, // 10s,
 });
 
