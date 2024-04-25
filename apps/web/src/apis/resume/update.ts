@@ -7,23 +7,18 @@ import { debounce } from 'lodash-es';
 
 const updateResume = async (data: UpdateResumeDto): Promise<Resume> => {
   const res = (await request.post('/resume/update', data)) as Resume;
-  queryClient.setQueryData<Resume>(['resume', { id: res.id }], res);
+  queryClient.setQueryData<Resume>([QUERY_KEYS.resume, { id: res.id }], res);
+
+  queryClient.setQueryData<Resume[]>(QUERY_KEYS.resumeList, (cache) => {
+    if (!cache) return [res];
+    return cache.map((item) => (item.id === res.id ? res : item));
+  });
+
   return res;
 };
 export const useUpdateResume = () => {
   const { isPending: loading, mutateAsync: updateResumeFn } = useMutation({
     mutationFn: updateResume,
-    onSuccess: (data) => {
-      queryClient.setQueryData<Resume>(
-        [QUERY_KEYS.resume, { id: data.id }],
-        data,
-      );
-
-      queryClient.setQueryData<Resume[]>(QUERY_KEYS.resumeList, (cache) => {
-        if (!cache) return [data];
-        return cache.map((item) => (item.id === data.id ? data : item));
-      });
-    },
   });
 
   return {
