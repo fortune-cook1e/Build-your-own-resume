@@ -13,4 +13,6 @@ export enum ErrorMessage {
   EmailAlreadyVerified = 'Email already verified',
   InvalidVerificationToken = 'InvalidVerificationToken',
   InvalidRefreshToken = 'InvalidRefreshToken',
+
+  InvalidBrowserConnection = 'Invalid browser connection',
 }

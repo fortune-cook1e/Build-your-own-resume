@@ -24,7 +24,11 @@ export const configSchema = z.object({
   QINIU_SECRET_KEY: z.string(),
   QINIU_DOMAIN: z.string(),
 
-  WEB_APP_URL: z.string().default('localhost:8080/resume-generator-web'),
+  ROOT_DOMAIN: z.string().default('localhost:8080'),
+
+  CHROME_PORT: z.coerce.number().default(3003),
+  CHROME_TOKEN: z.string(),
+  CHROME_URL: z.string(),
 });
 
 export type Config = z.infer<typeof configSchema>;

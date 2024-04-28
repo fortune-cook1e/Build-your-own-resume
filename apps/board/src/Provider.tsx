@@ -23,6 +23,10 @@ const Provider = () => {
   );
 
   useEffect(() => {
+    // for print
+    const resumeData = window.localStorage.getItem('resume');
+    if (resumeData) return setResume(JSON.parse(resumeData));
+
     window.addEventListener('message', handleMessage);
     return () => {
       window.removeEventListener('message', handleMessage);

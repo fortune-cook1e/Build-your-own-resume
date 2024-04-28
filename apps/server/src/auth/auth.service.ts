@@ -155,7 +155,9 @@ export class AuthService {
     await this.userService.updateByEmail(email, {
       verificationToken,
     });
-    const verificationUrl = `${this.utilsService.getWebAppUrl()}/auth/verify-email?token=${verificationToken}`;
+
+    // verificationUrl is a page of web application
+    const verificationUrl = `${this.utilsService.getRootDomain()}/resume-generator/auth/verify-email?token=${verificationToken}`;
     const subject = 'Verify your email address';
     const text = `Please verify your email address by clicking on the link below:\n\n${verificationUrl}`;
     await this.mailService.sendEmail({ subject, text, to: email });

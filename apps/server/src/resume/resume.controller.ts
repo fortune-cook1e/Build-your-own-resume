@@ -5,14 +5,19 @@ import {
   CreateResumeDto,
   DeleteResumeDto,
   ImportResumeDto,
+  Resume,
   UpdateResumeDto,
   User,
 } from 'shared';
 import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
+import { PrintService } from '@/print/print.service';
 
 @Controller('resume')
 export class ResumeController {
-  constructor(private readonly resume: ResumeService) {}
+  constructor(
+    private readonly resume: ResumeService,
+    private readonly print: PrintService,
+  ) {}
 
   @Post('create')
   @UseGuards(JwtGuard)
@@ -42,6 +47,12 @@ export class ResumeController {
   @UseGuards(JwtGuard)
   async deleteResume(@UseUser() user: User, @Body() data: DeleteResumeDto) {
     return await this.resume.delete(user.id, data.id);
+  }
+
+  @Post('/print/:id')
+  // @UseGuards(JwtGuard)
+  async printResume(@Body() data: Resume) {
+    return await this.print.generateResume(data);
   }
 
   @Get('')

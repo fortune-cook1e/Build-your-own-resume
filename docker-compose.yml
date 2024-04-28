@@ -24,6 +24,21 @@ services:
     env_file:
       - ./apps/server/.env
 
+        # Chrome Browser (for printing and previews)
+  chrome:
+    image: browserless/chrome:1.61.0-puppeteer-21.4.1
+    restart: unless-stopped
+    ports:
+      - ${CHROME_PORT:-3003}:3003
+    env_file:
+      - ./apps/server/.env
+    environment:
+      KEEP_ALIVE: true
+      CONNECTION_TIMEOUT: 10000
+      EXIT_ON_HEALTH_FAILURE: true
+      PRE_REQUEST_HEALTH_CHECK: true
+      TOKEN: ${CHROME_TOKEN:-chrome_token}
+
 volumes:
   postgres:
   redis_data:

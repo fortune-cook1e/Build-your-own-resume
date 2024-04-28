@@ -19,8 +19,8 @@ export class UtilsService {
     );
   }
 
-  getWebAppUrl() {
-    return this.configService.getOrThrow('WEB_APP_URL');
+  getRootDomain(): string {
+    return this.configService.getOrThrow('ROOT_DOMAIN');
   }
 
   async getCacheOrSet<T>(
