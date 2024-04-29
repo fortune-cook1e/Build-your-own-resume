@@ -1,4 +1,4 @@
-import TemplatePage from '@/components/TemplatePage';
+import Page from '@/components/Page';
 import { useBoardStore } from '@/store/board';
 import { getTemplate } from '@/templates';
 import { POST_MESSAGES, TemplateLayout } from 'shared';
@@ -8,6 +8,7 @@ import {
   TransformComponent,
   ReactZoomPanPinchContentRef,
 } from 'react-zoom-pan-pinch';
+import { MM_TO_PX, PAGE_SIZE_MAP } from '@/constants';
 
 const Builder = () => {
   const template = useBoardStore((state) => state.resume.metadata.template);
@@ -50,11 +51,11 @@ const Builder = () => {
       <TransformComponent
         wrapperClass="!w-screen !h-screen"
         contentClass="grid items-start justify-center space-x-12 pointer-events-none"
-        contentStyle={{ width: `${1 * (210 * 3.78 + 42)}px` }}
+        contentStyle={{ width: `${PAGE_SIZE_MAP.a4.width * MM_TO_PX + 42}px` }}
       >
-        <TemplatePage>
+        <Page mode="builder">
           <RenderTemplate layout={layout as TemplateLayout} />
-        </TemplatePage>
+        </Page>
       </TransformComponent>
     </TransformWrapper>
   );

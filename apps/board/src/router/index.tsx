@@ -1,6 +1,7 @@
 import Provider from '@/Provider';
-import Board from '@/pages/Board';
+import Board from '@/pages/Board/page';
 import Builder from '@/pages/Builder/page';
+import Preview from '@/pages/Preview/page';
 import {
   Route,
   createBrowserRouter,
@@ -11,6 +12,7 @@ export const routes = createRoutesFromChildren(
   <Route element={<Provider />}>
     <Route path="resume-generator-board" element={<Board />}>
       <Route path="builder" element={<Builder />} />
+      <Route path="preview" element={<Preview />} />
     </Route>
   </Route>,
 );
