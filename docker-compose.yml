@@ -1,5 +1,4 @@
 
-version: '3.8'
 services:
   postgres:
     image: postgres:15.5
@@ -8,8 +7,10 @@ services:
       - postgres:/var/lib/postgresql/15/data
     ports:
       - '5432:5432'
-    env_file:
-      - ./apps/server/.env
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-mydb}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
 
   # Redis (for cache & server session management)
   redis:
@@ -21,23 +22,21 @@ services:
       - ${REDIS_PORT:-6379}:6379
     volumes:
       - redis_data:/data
-    env_file:
-      - ./apps/server/.env
 
-        # Chrome Browser (for printing and previews)
+
+  # Chrome Browser (for printing and previews)
   chrome:
     image: browserless/chrome:1.61.0-puppeteer-21.4.1
     restart: unless-stopped
     ports:
       - ${CHROME_PORT:-3003}:3003
-    env_file:
-      - ./apps/server/.env
     environment:
       KEEP_ALIVE: true
       CONNECTION_TIMEOUT: 10000
       EXIT_ON_HEALTH_FAILURE: true
       PRE_REQUEST_HEALTH_CHECK: true
       TOKEN: ${CHROME_TOKEN:-chrome_token}
+      PORT: ${CHROME_PORT:-3003}
 
 volumes:
   postgres:
