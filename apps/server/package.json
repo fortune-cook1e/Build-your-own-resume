@@ -50,6 +50,7 @@
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
+    "pdf-lib": "^1.17.1",
     "prisma": "^5.10.2",
     "puppeteer": "^22.7.1",
     "puppeteer-core": "^22.7.1",

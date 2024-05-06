@@ -79,7 +79,6 @@ const handleAuthError = async () => {
     return Promise.resolve();
   } catch (e) {
     console.log('HandleAuth Error:', e);
-    console.log(window.location);
     // FixBug: 这里的跳转由问题 不会自动跳转 需要手动刷新一下
     window.history.replaceState(
       null,
