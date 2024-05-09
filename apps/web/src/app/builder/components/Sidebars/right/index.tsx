@@ -1,3 +1,4 @@
+import Export from '@/app/builder/components/Sidebars/right/sections/Export';
 import Layout from '@/app/builder/components/Sidebars/right/sections/Layout';
 import Page from '@/app/builder/components/Sidebars/right/sections/Page';
 import Theme from '@/app/builder/components/Sidebars/right/sections/Theme';
@@ -16,6 +17,10 @@ const RightSidebar = () => {
         <Divider />
 
         <Layout />
+
+        <Divider />
+
+        <Export />
       </div>
     </div>
   );

@@ -1,1 +1,1 @@
-export type RightPanelSectionKey = 'theme' | 'page' | 'layout';
+export type RightPanelSectionKey = 'theme' | 'page' | 'layout' | 'export';

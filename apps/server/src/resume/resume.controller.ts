@@ -49,10 +49,13 @@ export class ResumeController {
     return await this.resume.delete(user.id, data.id);
   }
 
-  @Post('/print/:id')
-  // @UseGuards(JwtGuard)
+  @Post('/print')
+  @UseGuards(JwtGuard)
   async printResume(@Body() data: Resume) {
-    return await this.print.generateResume(data);
+    const url = await this.print.generateResume(data);
+    return {
+      url,
+    };
   }
 
   @Get('')
