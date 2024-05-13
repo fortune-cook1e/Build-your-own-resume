@@ -30,6 +30,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+
+      - name: free disk space
         run: |
           sudo swapoff -a
           sudo rm -f /swapfile
