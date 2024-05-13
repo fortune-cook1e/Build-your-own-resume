@@ -26,10 +26,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }} and free disk space
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+        run: |
+          sudo swapoff -a
+          sudo rm -f /swapfile
+          sudo apt clean
+          docker rmi $(docker image ls -aq)
+          df -h
 
       - name: Setup pnpm
         uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
