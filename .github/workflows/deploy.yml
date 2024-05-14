@@ -31,14 +31,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: free disk space
-        run: |
-          sudo swapoff -a
-          sudo rm -f /swapfile
-          sudo apt clean
-          docker rmi $(docker image ls -aq)
-          df -h
-
       - name: Setup pnpm
         uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
         with:
