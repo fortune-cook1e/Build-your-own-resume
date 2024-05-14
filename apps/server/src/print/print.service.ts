@@ -122,6 +122,7 @@ export class PrintService {
       return resumeUrl;
     } catch (error: any) {
       this.logger.error(error);
+      this.logger.debug('error url', this.browserURL);
       throw new InternalServerErrorException(error);
     }
   }
