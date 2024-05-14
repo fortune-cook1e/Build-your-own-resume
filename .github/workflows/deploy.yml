@@ -31,6 +31,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: free disk space
+        run: |
+          sudo swapoff -a
+          sudo rm -f /swapfile
+          sudo apt clean
+          # docker rmi $(docker image ls -aq)
+          df -h
+
       - name: Setup pnpm
         uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
         with:
@@ -40,7 +48,7 @@ jobs:
       - name: Install dependencies and build
         run: pnpm install && pnpm run prisma:generate && pnpm run build
 
-      - name: Apply all pending migrations to the database
+      - name: Apply all pending migrations to production's database
         run: pnpm run prisma:deploy
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
@@ -55,20 +63,13 @@ jobs:
       - uses: docker/setup-buildx-action@v3
         id: web
 
-      - name: Builder server name
-        run: echo ${{ steps.server.outputs.name }}
-      - name: Builder board name
-        run: echo ${{ steps.board.outputs.name }}
-      - name: Builder web name
-        run: echo ${{ steps.web.outputs.name }}
-
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_USER_PASSWORD }}
 
-      - name: Build against server
+      - name: Build server application image
         uses: docker/build-push-action@v4
         with:
           builder: ${{ steps.server.outputs.name }}
@@ -78,7 +79,7 @@ jobs:
           platforms: linux/amd64
           tags: ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_SERVER_IMAGE}}:latest
 
-      - name: Build against board
+      - name: Build board application image
         uses: docker/build-push-action@v5
         with:
           builder: ${{ steps.board.outputs.name }}
@@ -88,7 +89,7 @@ jobs:
           platforms: linux/amd64
           tags: ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_BOARD_IMAGE}}:latest
 
-      - name: Build against web
+      - name: Build web application image
         uses: docker/build-push-action@v5
         with:
           builder: ${{ steps.web.outputs.name }}
