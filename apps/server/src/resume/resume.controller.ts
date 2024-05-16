@@ -63,4 +63,9 @@ export class ResumeController {
   async getResume(@Query('id') id: string) {
     return await this.resume.findOneById(id);
   }
+
+  @Get('puppeteer')
+  async testPuppeteer() {
+    return await this.print.testPuppeteer();
+  }
 }

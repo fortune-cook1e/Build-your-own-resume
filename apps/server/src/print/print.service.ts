@@ -26,13 +26,9 @@ export class PrintService {
     this.browserURL = `${chromeUrl}?token=${chromeToken}`;
   }
 
-  async printResume() {
-    console.log('print resume.');
-  }
-
   private async getBrowser() {
     try {
-      this.logger.debug('browserless connect url', this.browserURL);
+      this.logger.log('browserless connect url', this.browserURL);
       return await connect({
         browserWSEndpoint: this.browserURL,
       });
@@ -122,7 +118,21 @@ export class PrintService {
       return resumeUrl;
     } catch (error: any) {
       this.logger.error(error);
-      this.logger.debug('error url', this.browserURL);
+      this.logger.log('error url', this.browserURL);
+      throw new InternalServerErrorException(error);
+    }
+  }
+
+  async testPuppeteer() {
+    try {
+      const browser = await this.getBrowser();
+      const page = await browser.newPage();
+      await page.goto('https://www.google.com');
+      const imageBuffer = await page.screenshot();
+      await browser.close();
+      return imageBuffer;
+    } catch (error: any) {
+      this.logger.error(error);
       throw new InternalServerErrorException(error);
     }
   }
