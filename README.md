@@ -27,7 +27,7 @@ pnpm run build
 # board port: 5173
 # server port: 3000
 # web port: 8080
-# chrome compose: 3003
+# chrome compose: 3004
 
 ```
 
