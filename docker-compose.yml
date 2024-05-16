@@ -26,7 +26,7 @@ services:
 
   # Chrome Browser (for printing and previews)
   chrome:
-    image: browserless/chrome:1.61.0-puppeteer-21.4.1
+    image: browserless/chrome:1-chrome-stable
     restart: unless-stopped
     ports:
       - ${CHROME_PORT:-3004}:3004
