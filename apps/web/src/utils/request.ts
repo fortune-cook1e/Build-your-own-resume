@@ -16,7 +16,7 @@ const { toast } = createStandaloneToast();
 
 const request = axios.create({
   baseURL: '/resume-generator-api',
-  timeout: 1000 * 10, // 10s,
+  timeout: 1000 * 30, // 30s,
 });
 
 request.interceptors.request.use(
@@ -66,7 +66,7 @@ request.interceptors.response.use(
 
 const requestForRefresh = axios.create({
   baseURL: '/resume-generator-api',
-  timeout: 1000 * 10, // 10s,
+  timeout: 1000 * 30, // 30s,
 });
 
 const handleAuthError = async () => {
