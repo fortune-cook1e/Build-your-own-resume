@@ -127,11 +127,12 @@ export class PrintService {
     try {
       const browser = await this.getBrowser();
       const page = await browser.newPage();
-      await page.goto('https://www.google.com', {
+      await page.goto('https://www.baidu.com', {
         waitUntil: 'networkidle0',
       });
       const imageBuffer = await page.screenshot();
-      await browser.close();
+      await page.close();
+      browser.disconnect();
       return imageBuffer;
     } catch (error: any) {
       this.logger.error(error);
