@@ -127,7 +127,9 @@ export class PrintService {
     try {
       const browser = await this.getBrowser();
       const page = await browser.newPage();
-      await page.goto('https://www.google.com');
+      await page.goto('https://www.google.com', {
+        waitUntil: 'networkidle0',
+      });
       const imageBuffer = await page.screenshot();
       await browser.close();
       return imageBuffer;
