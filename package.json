@@ -11,6 +11,8 @@
     "build": "pnpm run -r build",
     "build:shared": "pnpm --filter shared run build",
     "build:server": "pnpm --filter server run build",
+    "build:web": "pnpm --filter web run build",
+    "build:board": "pnpm --filter board run build",
     "prisma:seed": "pnpm --filter server run prisma:seed",
     "prisma:generate": "pnpm --filter server prisma:generate",
     "prisma:deploy": "pnpm --filter server prisma:deploy",
