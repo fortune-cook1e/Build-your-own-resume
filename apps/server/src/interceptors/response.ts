@@ -12,7 +12,7 @@ import { catchError, map } from 'rxjs/operators';
 
 export interface CommonResponse<T> {
   code: ResponseCode;
-  message: string;
+  message?: string;
   data: T | null;
 }
 
@@ -35,7 +35,6 @@ export class ResponseInterceptor<T>
   responseHandler(data: T | null) {
     return {
       code: ResponseCode.Success,
-      message: 'success',
       data,
     };
   }
@@ -54,7 +53,6 @@ export class ResponseInterceptor<T>
     response.status(status).json({
       code: ResponseCode.Error,
       message: exception.message || 'Request failed',
-      data: null,
     });
   }
 }
