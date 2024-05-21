@@ -140,7 +140,6 @@ export class AuthService {
 
   async verifyEmail(userId: string, token: string) {
     const user = await this.userService.findOneById(userId);
-    console.log(user.verificationToken, token);
     if (user.verificationToken !== token) {
       throw new BadRequestException(ErrorMessage.InvalidVerificationToken);
     }

@@ -1,4 +1,3 @@
-import { COOKIE_ACCESS_EXPIRE, COOKIE_REFRESH_EXPIRE } from '@/constants';
 import { CookieOptions } from 'express';
 
 export const getCookieOptions = (type: 'access' | 'refresh'): CookieOptions => {
@@ -8,14 +7,14 @@ export const getCookieOptions = (type: 'access' | 'refresh'): CookieOptions => {
         httpOnly: true,
         sameSite: 'strict',
         secure: true,
-        expires: COOKIE_ACCESS_EXPIRE,
+        expires: new Date(Date.now() + 1000 * 15), // 15mins
       };
     case 'refresh':
       return {
         httpOnly: true,
         sameSite: 'strict',
         secure: true,
-        expires: COOKIE_REFRESH_EXPIRE,
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 2), // 2 days
       };
   }
 };
