@@ -21,7 +21,7 @@ const UNAUTHORIZED_STATUS_CODE = [401, 403];
 
 const request = axios.create({
   baseURL: '/resume-generator-api',
-  timeout: 1000 * 40, // 40s,
+  timeout: 1000 * 10, // 10s,
 });
 
 request.interceptors.request.use(
@@ -76,7 +76,7 @@ request.interceptors.response.use(
 
 const requestForRefresh = axios.create({
   baseURL: '/resume-generator-api',
-  timeout: 1000 * 40, // 40s,
+  timeout: 1000 * 10, // 40s,
 });
 
 const handleAuthError = async () => {
