@@ -7,7 +7,7 @@ export const getCookieOptions = (type: 'access' | 'refresh'): CookieOptions => {
         httpOnly: true,
         sameSite: 'strict',
         secure: true,
-        expires: new Date(Date.now() + 1000 * 15), // 15mins
+        expires: new Date(Date.now() + 1000 * 60 * 15), // 15mins
       };
     case 'refresh':
       return {
