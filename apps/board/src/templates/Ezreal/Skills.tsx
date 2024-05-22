@@ -11,7 +11,7 @@ const Skills = () => {
         <div>
           <div className="font-bold">{item.name}</div>
           <p className="text-sm">{item.level}</p>
-          <p className="text-sm">{item.description}</p>
+          <p className="text-sm">{item.keywords.join(',')}</p>
         </div>
       )}
     </Section>
