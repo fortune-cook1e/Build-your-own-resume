@@ -4,12 +4,12 @@ import { z } from 'zod';
 
 export const interestsSchema = itemSchema.extend({
   name: z.string(),
-  description: z.string(),
+  keywords: z.array(z.string()),
 });
 
 export type Interests = z.infer<typeof interestsSchema>;
 export const defaultInterests: Interests = {
   ...defaultItem,
   name: '',
-  description: '',
+  keywords: [],
 };
