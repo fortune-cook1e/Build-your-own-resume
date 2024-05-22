@@ -85,7 +85,9 @@ const SectionListItem: FC<SectionListItemProps> = ({
         >
           <h4 className="font-medium leading-relaxed">{title}</h4>
           {description && (
-            <p className="text-xs leading-relaxed opacity-50">{description}</p>
+            <p className="text-xs leading-relaxed opacity-50 truncate">
+              {description}
+            </p>
           )}
         </div>
       </ContextMenu>

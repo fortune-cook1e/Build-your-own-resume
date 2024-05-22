@@ -94,7 +94,7 @@ const LeftSidebar: FC = () => {
           <SectionBase<Interests>
             id="interests"
             title={(item) => item.name}
-            description={(item) => item.description}
+            description={(item) => item.keywords.join(',')}
           />
 
           <Divider />
@@ -102,7 +102,7 @@ const LeftSidebar: FC = () => {
           <SectionBase<Skills>
             id="skills"
             title={(item) => item.name}
-            description={(item) => item.description}
+            description={(item) => item.keywords.join(',')}
           ></SectionBase>
         </div>
       </div>
