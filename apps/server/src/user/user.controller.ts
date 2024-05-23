@@ -58,8 +58,8 @@ export class UserController {
           email: data.email,
           avatar: data.avatar,
         });
+        this.authService.sendVerificationEmail(email);
       }
-      this.authService.sendVerificationEmail(email);
       return await this.userService.updateByEmail(email, {
         name: data.name,
         username: data.username,
