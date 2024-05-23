@@ -18,7 +18,7 @@ const Setting = () => {
         </motion.h1>
 
         <div className="h-[calc(100vh-140px)] lg:h-[calc(100vh-88px)]">
-          <div className="space-y-6">
+          <div className="space-y-4">
             <AccountSetting />
             <Divider />
           </div>

@@ -4,7 +4,7 @@ import { useMutation } from '@tanstack/react-query';
 const uploadImage = async (file: File): Promise<string> => {
   const formData = new FormData();
   formData.append('file', file);
-  return request.post('/oss/upload/image', formData, {
+  return request.post('/oss/upload', formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
   });
 };

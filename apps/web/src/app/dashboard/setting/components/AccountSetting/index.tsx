@@ -4,41 +4,38 @@ import {
   FormControl,
   FormHelperText,
   FormLabel,
-  IconButton,
   Input,
   useToast,
 } from '@chakra-ui/react';
 import { UpdateUserDto, mergeTailwindCss, updateUserSchema } from 'shared';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect, useRef } from 'react';
-import { useForm } from 'react-hook-form';
+import { useEffect } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { useUpdateUser } from '@/apis/user/update';
 import UserAvatar from '@/components/UserAvatar';
-import { Check, UploadSimple, Warning } from '@phosphor-icons/react';
-import { useUploadImage } from '@/apis/oss/uploadImage';
+import { Check, Warning } from '@phosphor-icons/react';
 import { useResendEmail } from '@/apis/auth/resend-email';
 
 const AccountSetting = () => {
   const { user } = useUser();
   const toast = useToast();
   const { loading, updateUser } = useUpdateUser();
-  const { loading: uploading, uploadImage } = useUploadImage();
   const { loading: resendLoading, resendEmail } = useResendEmail();
-  const form = useForm<UpdateUserDto>({
-    resolver: zodResolver(updateUserSchema),
-    defaultValues: {
-      name: '',
-      username: '',
-      email: '',
-    },
-  });
-  const uploadInputRef = useRef<HTMLInputElement>(null);
+  const { reset, register, getValues, handleSubmit, formState, control } =
+    useForm<UpdateUserDto>({
+      resolver: zodResolver(updateUserSchema),
+      defaultValues: {
+        name: '',
+        username: '',
+        email: '',
+      },
+    });
 
   const onReset = () => {
     if (!user) return;
-    form.reset({
+    reset({
       ...user,
     });
   };
@@ -46,20 +43,6 @@ const AccountSetting = () => {
   useEffect(() => {
     user && onReset();
   }, [user]);
-
-  const onSelectImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files.length > 0) {
-      const file = event.target.files[0];
-      const avatarUrl = await uploadImage(file);
-      await updateUser({
-        avatar: avatarUrl,
-      });
-      toast({
-        status: 'success',
-        title: 'Upload avatar success',
-      });
-    }
-  };
 
   const onSubmit = async (values: UpdateUserDto) => {
     if (!values) return;
@@ -72,7 +55,7 @@ const AccountSetting = () => {
   };
 
   const onResendEmail = async () => {
-    const email = form.getValues('email');
+    const email = getValues('email');
     if (!email) return;
     await resendEmail(email);
     toast({
@@ -93,53 +76,28 @@ const AccountSetting = () => {
         </p>
       </div>
 
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="grid gap-4 sm:grid-cols-2"
-      >
-        <div className="flex items-end gap-x-4 sm:col-span-2">
-          <UserAvatar />
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <div className="flex justify-between items-center gap-x-4">
+          <Controller
+            name="avatar"
+            control={control}
+            render={({ field }) => <UserAvatar size={50} {...field} />}
+          />
+
           <FormControl className="flex-1">
-            <FormLabel>Avatar</FormLabel>
-            <Input placeholder="http://..." {...form.register('avatar')} />
-            {!user?.avatar && (
-              <>
-                <Input
-                  type="file"
-                  hidden
-                  ref={uploadInputRef}
-                  onChange={onSelectImage}
-                />
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                >
-                  <IconButton
-                    disabled={uploading}
-                    aria-label="select image"
-                    icon={<UploadSimple />}
-                    onClick={() => uploadInputRef.current?.click()}
-                  />
-                </motion.div>
-              </>
-            )}
+            <FormLabel>Name</FormLabel>
+            <Input placeholder="name" {...register('name')} />
+          </FormControl>
+
+          <FormControl className="flex-1">
+            <FormLabel>Username</FormLabel>
+            <Input placeholder="Username" {...register('username')} />
           </FormControl>
         </div>
 
         <FormControl>
-          <FormLabel>Name</FormLabel>
-          <Input placeholder="name" {...form.register('name')} />
-        </FormControl>
-
-        <FormControl>
-          <FormLabel>Username</FormLabel>
-          <Input placeholder="Username" {...form.register('username')} />
-        </FormControl>
-
-        <FormControl>
           <FormLabel>Email</FormLabel>
-          <Input placeholder="email" {...form.register('email')} />
+          <Input placeholder="email" {...register('email')} />
           <FormHelperText
             className={mergeTailwindCss(
               'flex items-center gap-x-1.5 font-medium opacity-100',
@@ -164,7 +122,7 @@ const AccountSetting = () => {
         </FormControl>
 
         <AnimatePresence presenceAffectsLayout>
-          {form.formState.isDirty && (
+          {formState.isDirty && (
             <motion.div
               layout
               initial={{ opacity: 0, x: -10 }}
