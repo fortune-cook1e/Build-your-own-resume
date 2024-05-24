@@ -15,7 +15,7 @@ import RenameInput from '@/app/builder/components/Sidebars/left/sections/common/
 
 interface Props {
   id: SectionKey;
-  onAddClick: () => void;
+  onAddClick?: () => void;
 }
 
 const SectionOptions: FC<Props> = ({ id, onAddClick }) => {
