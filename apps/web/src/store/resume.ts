@@ -32,7 +32,6 @@ export const useResumeStore = create<ResumeStore>()(
           // Tip: lodashset https://lodash.com/docs/4.17.15#set
           state.resume.data = lodashSet(state.resume.data, path, value);
 
-          // Todo: update resume and postmessage to iframe
           debounceUpdateResume(JSON.parse(JSON.stringify(state.resume)));
         });
       },

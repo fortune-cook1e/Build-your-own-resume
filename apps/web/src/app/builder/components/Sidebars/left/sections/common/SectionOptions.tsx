@@ -5,21 +5,25 @@ import {
   MenuList,
   MenuItem,
   IconButton,
+  useDisclosure,
 } from '@chakra-ui/react';
 import { SectionKey, SectionWithItem } from 'shared';
 import { Eye, List, Plus } from '@phosphor-icons/react';
 import { get } from 'lodash-es';
-import { FC, useMemo } from 'react';
+import { FC, useMemo, useState } from 'react';
+import RenameInput from '@/app/builder/components/Sidebars/left/sections/common/RenameInput';
+
 interface Props {
   id: SectionKey;
-  onAddClick?: () => void;
+  onAddClick: () => void;
 }
 
-const SectionOptions: FC<Props> = ({ onAddClick, id }) => {
+const SectionOptions: FC<Props> = ({ id, onAddClick }) => {
   const setValue = useResumeStore((state) => state.setValue);
   const section = useResumeStore((state) =>
     get(state.resume.data.sections, id),
   ) as SectionWithItem;
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const canAddItems = useMemo(() => 'items' in section, [section]);
 
@@ -46,6 +50,15 @@ const SectionOptions: FC<Props> = ({ onAddClick, id }) => {
         )}
         <MenuItem onClick={toggleVisible} icon={<Eye />}>
           {section.visible ? 'Hide' : 'Show'}
+        </MenuItem>
+
+        <MenuItem onClick={onOpen} icon={<Eye />}>
+          <RenameInput
+            id={id}
+            isOpen={isOpen}
+            onOpen={onOpen}
+            onClose={onClose}
+          />
         </MenuItem>
       </MenuList>
     </Menu>
