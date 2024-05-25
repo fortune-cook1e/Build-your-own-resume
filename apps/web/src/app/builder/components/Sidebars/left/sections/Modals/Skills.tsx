@@ -56,7 +56,7 @@ const Skills: FC = () => {
 
         <FormControl>
           <FormLabel>Level</FormLabel>
-          <Select placeholder="skill level" {...form.register('level')}>
+          <Select {...form.register('level')}>
             <option value="Beginner">Beginner</option>
             <option value="Intermediate">Intermediate</option>
             <option value="Proficient">Proficient</option>

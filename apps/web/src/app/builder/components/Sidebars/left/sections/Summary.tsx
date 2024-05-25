@@ -17,7 +17,7 @@ const Summary = () => {
     <section id="summary" className="animate-fade-right animate-once">
       <header className="flex flex-center justify-between mb-5">
         <div className="flex items-center gap-x-4">
-          {getSectionIcon('basics')}
+          {getSectionIcon('summary')}
           <h2 className="line-clamp-1 text-3xl font-bold">Summary</h2>
         </div>
 

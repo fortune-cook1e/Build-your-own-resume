@@ -1,7 +1,17 @@
 import { useResumeStore } from '@/store/resume';
 import { SectionKey } from 'shared';
 import { IconButton, Tooltip } from '@chakra-ui/react';
-import { IconProps, ShareNetwork, Alien } from '@phosphor-icons/react';
+import {
+  IconProps,
+  ShareNetwork,
+  Alien,
+  GameController,
+  Briefcase,
+  GraduationCap,
+  PuzzlePiece,
+  CompassTool,
+  Article,
+} from '@phosphor-icons/react';
 import { User } from '@phosphor-icons/react';
 import { get } from 'lodash-es';
 import { FC, ReactElement } from 'react';
@@ -17,24 +27,27 @@ export const getSectionIcon = (id: SectionKey, props?: IconProps) => {
   switch (id) {
     case 'basics':
       return <User size={18} {...props} />;
+
+    case 'summary':
+      return <Article size={18} {...props} />;
     // Todo: add more icons
     case 'profiles':
       return <ShareNetwork size={18} {...props} />;
 
     case 'experience':
-      return <ShareNetwork size={18} {...props} />;
+      return <Briefcase size={18} {...props} />;
 
     case 'education':
-      return <ShareNetwork size={18} {...props} />;
+      return <GraduationCap size={18} {...props} />;
 
     case 'projects':
-      return <ShareNetwork size={18} {...props} />;
+      return <PuzzlePiece size={18} {...props} />;
 
     case 'interests':
-      return <ShareNetwork size={18} {...props} />;
+      return <GameController size={18} {...props} />;
 
     case 'skills':
-      return <ShareNetwork size={18} {...props} />;
+      return <CompassTool size={18} {...props} />;
 
     default:
       return null;

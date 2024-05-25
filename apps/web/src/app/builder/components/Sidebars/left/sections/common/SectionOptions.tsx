@@ -8,9 +8,9 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { SectionKey, SectionWithItem } from 'shared';
-import { Eye, List, Plus } from '@phosphor-icons/react';
+import { Eye, EyeSlash, List, Pencil, Plus } from '@phosphor-icons/react';
 import { get } from 'lodash-es';
-import { FC, useMemo, useState } from 'react';
+import { FC, useMemo } from 'react';
 import RenameInput from '@/app/builder/components/Sidebars/left/sections/common/RenameInput';
 
 interface Props {
@@ -48,11 +48,14 @@ const SectionOptions: FC<Props> = ({ id, onAddClick }) => {
             Add a new Item
           </MenuItem>
         )}
-        <MenuItem onClick={toggleVisible} icon={<Eye />}>
+        <MenuItem
+          onClick={toggleVisible}
+          icon={section.visible ? <EyeSlash /> : <Eye />}
+        >
           {section.visible ? 'Hide' : 'Show'}
         </MenuItem>
 
-        <MenuItem onClick={onOpen} icon={<Eye />}>
+        <MenuItem onClick={onOpen} icon={<Pencil />}>
           <RenameInput
             id={id}
             isOpen={isOpen}
