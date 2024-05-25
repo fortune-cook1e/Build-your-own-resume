@@ -5,6 +5,10 @@ import { Interests as InterestsType } from 'shared';
 const Interests = () => {
   const data = useBoardStore((state) => state.resume.sections.interests);
 
+  if (!data || !data.visible) {
+    return null;
+  }
+
   return (
     <Section<InterestsType> data={data} className="space-y-0.5">
       {(item) => (

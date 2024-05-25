@@ -4,19 +4,14 @@ import { Projects as ProjectsType } from 'shared';
 import { FC } from 'react';
 
 const Projects: FC = () => {
-  const projects = useBoardStore((state) => state.resume.sections.projects);
+  const data = useBoardStore((state) => state.resume.sections.projects);
 
-  if (!projects) {
-    console.log('Projects no data');
+  if (!data || !data.visible) {
     return null;
   }
 
   return (
-    <Section<ProjectsType>
-      data={projects}
-      urlKey="website"
-      summaryKey="summary"
-    >
+    <Section<ProjectsType> data={data} urlKey="website" summaryKey="summary">
       {(item) => (
         <div className="flex items-start justify-between">
           <div className="text-left">

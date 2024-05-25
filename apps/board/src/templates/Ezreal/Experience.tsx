@@ -5,8 +5,7 @@ import { Experience as ExperienceProps } from 'shared';
 const Experience = () => {
   const data = useBoardStore((state) => state.resume?.sections.experience);
 
-  if (!data) {
-    console.log('Experience no data');
+  if (!data || !data.visible) {
     return null;
   }
 

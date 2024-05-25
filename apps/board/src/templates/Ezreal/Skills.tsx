@@ -5,6 +5,10 @@ import { Skills as SkillsType } from 'shared';
 const Skills = () => {
   const data = useBoardStore((state) => state.resume.sections.skills);
 
+  if (!data || !data.visible) {
+    return null;
+  }
+
   return (
     <Section<SkillsType> data={data} className="space-y-0.5">
       {(item) => (

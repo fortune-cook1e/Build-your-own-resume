@@ -5,8 +5,7 @@ import { Education as EducationProps } from 'shared';
 const Education = () => {
   const data = useBoardStore((state) => state.resume.sections.education);
 
-  if (!data) {
-    console.log('Education no data');
+  if (!data || !data.visible) {
     return null;
   }
 
