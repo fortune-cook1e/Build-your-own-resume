@@ -12,6 +12,10 @@ interface Hanlder {
   setDragging: (dragging: boolean) => void;
 }
 
+interface BuilderActions {
+  setFullscreen: (fullScreen: boolean) => void;
+}
+
 interface BuilderStore {
   iframe: {
     ref: HTMLIFrameElement | null;
@@ -21,62 +25,74 @@ interface BuilderStore {
     left: Panel;
     right: Panel;
   };
+  fullScreen: boolean;
 }
 
-export const useBuilderStore = create<BuilderStore>()((set) => ({
-  iframe: {
-    ref: null,
-    setRef: (ref) => {
-      set((state) => ({ iframe: { ...state.iframe, ref } }));
+export const useBuilderStore = create<BuilderStore & BuilderActions>()(
+  (set) => ({
+    iframe: {
+      ref: null,
+      setRef: (ref) => {
+        set((state) => ({ iframe: { ...state.iframe, ref } }));
+      },
     },
-  },
-  panel: {
-    left: {
-      size: 0,
-      setSize: (size: number) =>
-        set((state) => ({
-          panel: {
-            right: state.panel.right,
-            left: { ...state.panel.left, size },
-          },
-        })),
-      handler: {
-        isDragging: false,
-        setDragging: (dragging) =>
+    panel: {
+      left: {
+        size: 0,
+        setSize: (size: number) =>
           set((state) => ({
             panel: {
-              ...state.panel,
-              left: {
-                ...state.panel.left,
-                handler: { ...state.panel.left.handler, isDragging: dragging },
-              },
+              right: state.panel.right,
+              left: { ...state.panel.left, size },
             },
           })),
+        handler: {
+          isDragging: false,
+          setDragging: (dragging) =>
+            set((state) => ({
+              panel: {
+                ...state.panel,
+                left: {
+                  ...state.panel.left,
+                  handler: {
+                    ...state.panel.left.handler,
+                    isDragging: dragging,
+                  },
+                },
+              },
+            })),
+        },
       },
-    },
-    right: {
-      size: 0,
-      setSize: (size: number) => {
-        set((state) => ({
-          panel: {
-            left: state.panel.left,
-            right: { ...state.panel.right, size },
-          },
-        }));
-      },
-      handler: {
-        isDragging: false,
-        setDragging: (dragging) =>
+      right: {
+        size: 0,
+        setSize: (size: number) => {
           set((state) => ({
             panel: {
-              ...state.panel,
-              right: {
-                ...state.panel.right,
-                handler: { ...state.panel.right.handler, isDragging: dragging },
-              },
+              left: state.panel.left,
+              right: { ...state.panel.right, size },
             },
-          })),
+          }));
+        },
+        handler: {
+          isDragging: false,
+          setDragging: (dragging) =>
+            set((state) => ({
+              panel: {
+                ...state.panel,
+                right: {
+                  ...state.panel.right,
+                  handler: {
+                    ...state.panel.right.handler,
+                    isDragging: dragging,
+                  },
+                },
+              },
+            })),
+        },
       },
+      fullscreen: false,
     },
-  },
-}));
+    fullScreen: true,
+    setFullscreen: (fullScreen) => set({ fullScreen }),
+  }),
+);
