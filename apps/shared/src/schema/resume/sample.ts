@@ -176,6 +176,19 @@ export const sampleResume: ResumeData = {
         },
       ],
     },
+    languages: {
+      name: 'Languages',
+      visible: true,
+      id: 'languages',
+      items: [
+        {
+          id: createId(),
+          visible: true,
+          name: 'English',
+          description: 'Fluent',
+        },
+      ],
+    },
     // awards: {
     //   name: 'Awards',
     //   columns: 1,

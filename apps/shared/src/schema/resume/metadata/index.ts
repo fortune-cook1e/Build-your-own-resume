@@ -1,9 +1,10 @@
+import { SectionEnum } from '@/schema/resume/sections';
 import { z } from 'zod';
 
 // layout
 export const layoutSchema = z.object({
-  main: z.array(z.string()),
-  side: z.array(z.string()),
+  main: z.array(SectionEnum),
+  side: z.array(SectionEnum),
 });
 export type Layout = z.infer<typeof layoutSchema>;
 export const defaultLayout: Layout = {
