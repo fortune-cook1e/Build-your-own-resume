@@ -92,7 +92,7 @@ export const useBuilderStore = create<BuilderStore & BuilderActions>()(
       },
       fullscreen: false,
     },
-    fullScreen: true,
+    fullScreen: false,
     setFullscreen: (fullScreen) => set({ fullScreen }),
   }),
 );

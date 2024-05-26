@@ -8,6 +8,7 @@
   ],
   "rules": {
     "react/no-unescaped-entities":1,
-    "react/display-name":0
+    "react/display-name":0,
+    "react/self-closing-comp":1
   }
 }

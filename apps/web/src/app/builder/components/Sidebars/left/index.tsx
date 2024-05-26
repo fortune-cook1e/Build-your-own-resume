@@ -9,6 +9,7 @@ import {
   Education,
   Experience,
   Interests,
+  Languages,
   Profile,
   Projects,
   Skills,
@@ -65,7 +66,7 @@ const LeftSidebar: FC = () => {
             id="profiles"
             title={(item) => item.network}
             description={(item) => item.username}
-          ></SectionBase>
+          />
 
           <Divider />
 
@@ -73,13 +74,13 @@ const LeftSidebar: FC = () => {
             id="experience"
             title={(item) => item.position}
             description={(item) => item.company}
-          ></SectionBase>
+          />
 
           <SectionBase<Education>
             id="education"
             title={(item) => item.college}
             description={(item) => item.major}
-          ></SectionBase>
+          />
 
           <Divider />
 
@@ -103,7 +104,15 @@ const LeftSidebar: FC = () => {
             id="skills"
             title={(item) => item.name}
             description={(item) => item.keywords.join(',')}
-          ></SectionBase>
+          />
+
+          <Divider />
+
+          <SectionBase<Languages>
+            id="languages"
+            title={(item) => item.name}
+            description={(item) => item.description}
+          />
         </div>
       </div>
     </Flex>

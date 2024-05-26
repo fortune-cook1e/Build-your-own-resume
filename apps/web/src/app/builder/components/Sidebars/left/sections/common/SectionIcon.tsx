@@ -11,6 +11,7 @@ import {
   PuzzlePiece,
   CompassTool,
   Article,
+  Translate,
 } from '@phosphor-icons/react';
 import { User } from '@phosphor-icons/react';
 import { get } from 'lodash-es';
@@ -25,30 +26,25 @@ interface SectionIconProps {
 
 export const getSectionIcon = (id: SectionKey, props?: IconProps) => {
   switch (id) {
+    // Todo: add more icons
     case 'basics':
       return <User size={18} {...props} />;
-
     case 'summary':
       return <Article size={18} {...props} />;
-    // Todo: add more icons
     case 'profiles':
       return <ShareNetwork size={18} {...props} />;
-
     case 'experience':
       return <Briefcase size={18} {...props} />;
-
     case 'education':
       return <GraduationCap size={18} {...props} />;
-
     case 'projects':
       return <PuzzlePiece size={18} {...props} />;
-
     case 'interests':
       return <GameController size={18} {...props} />;
-
     case 'skills':
       return <CompassTool size={18} {...props} />;
-
+    case 'languages':
+      return <Translate size={18} {...props} />;
     default:
       return null;
   }

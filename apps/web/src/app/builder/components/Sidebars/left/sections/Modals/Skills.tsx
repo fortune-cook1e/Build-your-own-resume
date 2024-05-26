@@ -9,7 +9,6 @@ import {
   TagLabel,
 } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Envelope } from '@phosphor-icons/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
