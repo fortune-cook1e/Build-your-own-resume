@@ -22,7 +22,7 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { mergeTailwindCss } from 'shared';
+import { mergeTailwindCss, SectionEnum, SectionEnumType } from 'shared';
 import { DotsSixVertical } from '@phosphor-icons/react';
 import { get } from 'lodash-es';
 import { useState } from 'react';
@@ -155,7 +155,7 @@ const Layout = () => {
       const target = data[containerId as 'main' | 'side'].toSpliced(
         0,
         0,
-        active.id as string,
+        active.id as any,
       );
       const newLayout = {
         [payload.containerId]: current,
@@ -185,7 +185,7 @@ const Layout = () => {
       const target = data[containerId as 'main' | 'side'].toSpliced(
         over.data.current.sortable.index,
         0,
-        active.id as string,
+        active.id as SectionEnumType,
       );
       const newLayout = {
         [payload.containerId]: current,
@@ -212,8 +212,8 @@ const Layout = () => {
           collisionDetection={closestCenter}
         >
           <div className="grid grid-cols-2 gap-x-4">
-            <Column id="main" name="main" items={data.main}></Column>
-            <Column id="side" name="side" items={data.side}></Column>
+            <Column id="main" name="main" items={data.main} />
+            <Column id="side" name="side" items={data.side} />
           </div>
 
           <Portal>

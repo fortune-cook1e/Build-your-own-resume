@@ -76,6 +76,7 @@ export const SectionEnum = z.enum([
   'skills',
   'languages',
 ]);
+export type SectionEnumType = z.infer<typeof SectionEnum>;
 
 // Defaults
 export const defaultSection: Section = {
