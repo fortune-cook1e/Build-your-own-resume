@@ -6,12 +6,13 @@ import Projects from '@/templates/Ezreal/Projects';
 import { SectionKey, TemplateProps } from 'shared';
 import { Fragment } from 'react';
 import Skills from '@/templates/Ezreal/Skills';
+import Languages from '@/templates/Ezreal/Languages';
 
 const mapStrToComponent = (str: SectionKey) => {
   switch (str) {
     case 'education':
       return <Education />;
-    case 'profiles':
+    case 'profiles': // displayed in Header component
       return null;
     case 'experience':
       return <Experience />;
@@ -21,6 +22,8 @@ const mapStrToComponent = (str: SectionKey) => {
       return <Interests />;
     case 'skills':
       return <Skills />;
+    case 'languages':
+      return <Languages />;
     default:
       return null;
   }

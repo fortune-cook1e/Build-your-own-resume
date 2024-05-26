@@ -16,7 +16,7 @@ export const defaultLayout: Layout = {
     'interests',
     'skills',
   ],
-  side: ['profiles', 'languages'],
+  side: ['languages'],
 };
 
 // theme
