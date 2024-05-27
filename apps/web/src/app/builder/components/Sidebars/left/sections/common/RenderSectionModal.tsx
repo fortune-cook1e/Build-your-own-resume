@@ -8,6 +8,7 @@ import { SectionKey } from 'shared';
 import { FC } from 'react';
 import Skills from '@/app/builder/components/Sidebars/left/sections/Modals/Skills';
 import Languages from '@/app/builder/components/Sidebars/left/sections/Modals/Languages';
+import Awards from '@/app/builder/components/Sidebars/left/sections/Modals/Awards';
 
 const RenderSectionModal: FC = () => {
   const { id } = useSectionContext();
@@ -35,6 +36,9 @@ const RenderSectionModal: FC = () => {
 
       case 'languages':
         return <Languages />;
+
+      case 'awards':
+        return <Awards />;
       default:
         return null;
     }

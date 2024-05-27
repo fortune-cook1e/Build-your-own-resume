@@ -30,7 +30,7 @@ import StarterKit from '@tiptap/starter-kit';
 import { forwardRef, useCallback } from 'react';
 import Toolbar from '@/components/RichEditor/Toolbar';
 
-const RickEditor = forwardRef<Editor, RichInputProps>(
+const RichEditor = forwardRef<Editor, RichInputProps>(
   ({ editorClassName, className, content, footer, onChange, ...rest }, ref) => {
     const editor = useEditor({
       extensions: [
@@ -102,4 +102,4 @@ const RickEditor = forwardRef<Editor, RichInputProps>(
   },
 );
 
-export default RickEditor;
+export default RichEditor;

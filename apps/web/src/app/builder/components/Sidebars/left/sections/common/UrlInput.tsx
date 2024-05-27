@@ -47,8 +47,8 @@ const UrlInput = forwardRef<any, Props>(
                   ref={ref}
                   variant="ghost"
                   aria-label="Url label"
-                  icon={<Tag></Tag>}
-                ></IconButton>
+                  icon={<Tag />}
+                />
               </PopoverTrigger>
             </Box>
           </Tooltip>

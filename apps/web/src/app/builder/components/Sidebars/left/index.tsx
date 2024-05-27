@@ -6,6 +6,7 @@ import { Divider, Flex, IconButton } from '@chakra-ui/react';
 import { HourglassMedium } from '@phosphor-icons/react';
 import { FC, useRef } from 'react';
 import {
+  Awards,
   Education,
   Experience,
   Interests,
@@ -112,6 +113,14 @@ const LeftSidebar: FC = () => {
             id="languages"
             title={(item) => item.name}
             description={(item) => item.description}
+          />
+
+          <Divider />
+
+          <SectionBase<Awards>
+            id="awards"
+            title={(item) => item.title}
+            description={(item) => item.awarder}
           />
         </div>
       </div>

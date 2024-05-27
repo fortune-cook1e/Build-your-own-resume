@@ -12,6 +12,7 @@ import {
   CompassTool,
   Article,
   Translate,
+  Medal,
 } from '@phosphor-icons/react';
 import { User } from '@phosphor-icons/react';
 import { get } from 'lodash-es';
@@ -45,6 +46,8 @@ export const getSectionIcon = (id: SectionKey, props?: IconProps) => {
       return <CompassTool size={18} {...props} />;
     case 'languages':
       return <Translate size={18} {...props} />;
+    case 'awards':
+      return <Medal size={18} {...props} />;
     default:
       return null;
   }
@@ -62,7 +65,7 @@ export const SectionIcon: FC<SectionIconProps> = ({
 
   const _name = section ? section.name : name ? name : '';
 
-  const _icon = icon ? icon : getSectionIcon(id) ?? <Alien></Alien>;
+  const _icon = icon ? icon : getSectionIcon(id) ?? <Alien />;
 
   return (
     <Tooltip label={_name}>
@@ -71,7 +74,7 @@ export const SectionIcon: FC<SectionIconProps> = ({
         aria-label="icon button"
         onClick={onClick}
         icon={_icon}
-      ></IconButton>
+      />
     </Tooltip>
   );
 };

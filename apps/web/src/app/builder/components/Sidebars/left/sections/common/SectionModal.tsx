@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { useResumeStore } from '@/store/resume';
 import { get } from 'lodash-es';
-import { FormProvider, UseFormReturn } from 'react-hook-form';
+import { UseFormReturn } from 'react-hook-form';
 import { useSectionContext } from '@/app/builder/components/Sidebars/left/sections/common/SectionContext';
 import { useEffect } from 'react';
 import { createId } from '@paralleldrive/cuid2';
@@ -31,6 +31,7 @@ type Props<T extends SectionItem> = {
 
 const SectionModal = <T extends SectionItem>({
   form,
+  defaultValues,
   children,
 }: Props<T>): JSX.Element => {
   const { id, mode, open, setOpen, payload } = useSectionContext();
@@ -64,13 +65,14 @@ const SectionModal = <T extends SectionItem>({
       );
     }
 
+    form.reset();
     setOpen.off();
   };
 
   const onReset = () => {
     if (isCreate) {
       form.reset({
-        ...form.getValues(),
+        ...defaultValues,
         id: createId(),
       });
     }
@@ -95,7 +97,7 @@ const SectionModal = <T extends SectionItem>({
           {isCreate && `Create an item of ${section.name}`}
           {isUpdate && `Update an item of ${section.name}`}
         </ModalHeader>
-        <ModalCloseButton></ModalCloseButton>
+        <ModalCloseButton />
         <ModalBody>
           <form id="section-form" onSubmit={form.handleSubmit(onSubmit)}>
             {children}
