@@ -5,7 +5,7 @@ interface Props {
 }
 
 const ProfileAvavar: FC<Props> = () => {
-  return <div></div>;
+  return <div />;
 };
 
 export default ProfileAvavar;

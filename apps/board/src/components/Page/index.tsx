@@ -25,7 +25,7 @@ const Page: FC<Props> = ({ mode = 'preview', children }) => {
           style={{
             top: `${PAGE_SIZE_MAP.a4.height * MM_TO_PX}px`,
           }}
-        ></div>
+        />
       )}
     </div>
   );

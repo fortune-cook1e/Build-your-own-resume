@@ -5,6 +5,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
+    'plugin:react/recommended',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs', '*.config.cjs'],
   parser: '@typescript-eslint/parser',
@@ -15,5 +16,6 @@ module.exports = {
       { allowConstantExport: true },
     ],
     'react/self-closing-comp': 1,
+    'react/react-in-jsx-scope': 0,
   },
 };

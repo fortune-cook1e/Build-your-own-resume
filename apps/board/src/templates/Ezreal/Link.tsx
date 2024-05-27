@@ -8,6 +8,7 @@ interface Props {
   classname?: string;
 }
 
+// Tip: // ph ph-bold classes come from https://github.com/phosphor-icons/web
 const Link: FC<Props> = ({ url, icon, label, classname }) => {
   if (!url.link) return null;
 
