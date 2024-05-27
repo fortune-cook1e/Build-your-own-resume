@@ -189,13 +189,25 @@ export const sampleResume: ResumeData = {
         },
       ],
     },
-    // awards: {
-    //   name: 'Awards',
-    //   columns: 1,
-    //   visible: true,
-    //   id: 'awards',
-    //   items: [],
-    // },
+    awards: {
+      name: 'Awards',
+      visible: true,
+      id: 'awards',
+      items: [
+        {
+          id: createId(),
+          visible: true,
+          title: 'Best Performer',
+          date: '2019',
+          awarder: 'Company',
+          summary: '<p>Awarded for outstanding performance in the company.</p>',
+          website: {
+            label: 'Baidu',
+            link: 'https://www.baidu.com',
+          },
+        },
+      ],
+    },
     // certifications: {
     //   name: 'Certifications',
     //   columns: 1,

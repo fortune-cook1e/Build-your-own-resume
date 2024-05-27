@@ -7,6 +7,7 @@ import { projectsSchema } from '@/schema/resume/sections/projects';
 import { interestsSchema } from '@/schema/resume/sections/interests';
 import { skillsSchema } from '@/schema/resume/sections/skills';
 import { languagesSchema } from '@/schema/resume/sections/languages';
+import { awardsSchema } from '@/schema/resume/sections/awards';
 
 export const sectionSchema = z.object({
   name: z.string(),
@@ -54,6 +55,11 @@ export const sectionsSchema = z.object({
     id: z.literal('languages'),
     items: z.array(languagesSchema),
   }),
+
+  awards: sectionSchema.extend({
+    id: z.literal('awards'),
+    items: z.array(awardsSchema),
+  }),
 });
 
 export type Section = z.infer<typeof sectionSchema>;
@@ -75,6 +81,7 @@ export const SectionEnum = z.enum([
   'interests',
   'skills',
   'languages',
+  'awards',
 ]);
 export type SectionEnumType = z.infer<typeof SectionEnum>;
 
@@ -128,6 +135,12 @@ export const defaultSections: Sections = {
     name: 'Languages',
     items: [],
   },
+  awards: {
+    ...defaultSection,
+    id: 'awards',
+    name: 'Awards',
+    items: [],
+  },
 };
 
 export * from './profile';
@@ -138,3 +151,4 @@ export * from './projects';
 export * from './interests';
 export * from './skills';
 export * from './languages';
+export * from './awards';
