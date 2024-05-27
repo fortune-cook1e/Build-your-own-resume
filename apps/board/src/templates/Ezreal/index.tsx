@@ -7,6 +7,7 @@ import { SectionKey, TemplateProps } from 'shared';
 import { Fragment } from 'react';
 import Skills from '@/templates/Ezreal/Skills';
 import Languages from '@/templates/Ezreal/Languages';
+import Awards from '@/templates/Ezreal/Awards';
 
 const mapStrToComponent = (str: SectionKey) => {
   switch (str) {
@@ -24,6 +25,8 @@ const mapStrToComponent = (str: SectionKey) => {
       return <Skills />;
     case 'languages':
       return <Languages />;
+    case 'awards':
+      return <Awards />;
     default:
       return null;
   }
