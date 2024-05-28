@@ -1,5 +1,5 @@
 import { mergeTailwindCss } from '@/utils/styles';
-import React, { FC, ReactNode } from 'react';
+import React, { FC } from 'react';
 import {
   PanelResizeHandle,
   PanelResizeHandleProps as PrimitivePanelResizeHandleProps,

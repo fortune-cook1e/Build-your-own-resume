@@ -10,6 +10,7 @@ import { useBuilderStore } from '@/store/builder';
 import { useParams, useRouter } from 'next/navigation';
 import { ReactNode, useEffect } from 'react';
 import { PanelGroup, Panel } from 'react-resizable-panels';
+import { mergeTailwindCss } from 'shared';
 
 interface Props {
   children: ReactNode;
@@ -34,17 +35,18 @@ const Layout = ({ children }: Props) => {
   return (
     <div className="relative h-full w-full overflow-hidden">
       <PanelGroup direction="horizontal">
-        {!fullScreen && (
-          <Panel
-            defaultSize={30}
-            minSize={30}
-            maxSize={40}
-            onResize={left.setSize}
-            className="z-[1] bg-background"
-          >
-            <LeftSidebar />
-          </Panel>
-        )}
+        <Panel
+          defaultSize={30}
+          minSize={30}
+          maxSize={40}
+          onResize={left.setSize}
+          className={mergeTailwindCss(
+            'z-[1] bg-background',
+            fullScreen ? 'hidden' : 'visible',
+          )}
+        >
+          <LeftSidebar />
+        </Panel>
 
         <PanelResizeHandler
           onDragging={left.handler.setDragging}
@@ -62,17 +64,18 @@ const Layout = ({ children }: Props) => {
           isDragging={right.handler.isDragging}
         />
 
-        {!fullScreen && (
-          <Panel
-            defaultSize={30}
-            minSize={30}
-            maxSize={40}
-            onResize={right.setSize}
-            className="z-[1] bg-background"
-          >
-            <RightSidebar />
-          </Panel>
-        )}
+        <Panel
+          defaultSize={30}
+          minSize={30}
+          maxSize={40}
+          onResize={right.setSize}
+          className={mergeTailwindCss(
+            'z-[1] bg-background',
+            fullScreen ? 'hidden' : 'visible',
+          )}
+        >
+          <RightSidebar />
+        </Panel>
       </PanelGroup>
     </div>
   );
