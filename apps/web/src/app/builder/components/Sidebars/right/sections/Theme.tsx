@@ -28,6 +28,14 @@ const Theme = () => {
     setValue('metadata.theme.primaryColor', e.currentTarget.value);
   };
 
+  const onTextColorChange = (e: FormEvent<HTMLInputElement>) => {
+    setValue('metadata.theme.textColor', e.currentTarget.value);
+  };
+
+  const onbgColorChange = (e: FormEvent<HTMLInputElement>) => {
+    setValue('metadata.theme.backgroundColor', e.currentTarget.value);
+  };
+
   return (
     <SectionBase id="theme">
       <div className="grid grid-cols-5 gap-4 mb-4">
@@ -38,19 +46,39 @@ const Theme = () => {
               style={{ background: item }}
               key={item}
               onClick={() => onPaletteClick(item)}
-            ></div>
+            />
           );
         })}
       </div>
 
-      <FormControl>
-        <FormLabel>Primary color</FormLabel>
-        <Input
-          value={theme.primaryColor}
-          placeholder="Primary color"
-          onChange={onPrimaryColorChange}
-        />
-      </FormControl>
+      <div className="grid grid-cols-1 gap-y-4">
+        <FormControl>
+          <FormLabel>Primary color</FormLabel>
+          <Input
+            value={theme.primaryColor}
+            placeholder="Primary color"
+            onChange={onPrimaryColorChange}
+          />
+        </FormControl>
+
+        <FormControl>
+          <FormLabel>Text color</FormLabel>
+          <Input
+            value={theme.textColor}
+            placeholder="Text color"
+            onChange={onTextColorChange}
+          />
+        </FormControl>
+
+        <FormControl>
+          <FormLabel>Background color</FormLabel>
+          <Input
+            value={theme.backgroundColor}
+            placeholder="Background color"
+            onChange={onbgColorChange}
+          />
+        </FormControl>
+      </div>
     </SectionBase>
   );
 };
