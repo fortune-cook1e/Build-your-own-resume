@@ -8,6 +8,7 @@ import { Fragment } from 'react';
 import Skills from '@/templates/Ezreal/Skills';
 import Languages from '@/templates/Ezreal/Languages';
 import Awards from '@/templates/Ezreal/Awards';
+import Certifications from '@/templates/Ezreal/Certifications';
 
 const mapStrToComponent = (str: SectionKey) => {
   switch (str) {
@@ -27,6 +28,8 @@ const mapStrToComponent = (str: SectionKey) => {
       return <Languages />;
     case 'awards':
       return <Awards />;
+    case 'certifications':
+      return <Certifications />;
     default:
       return null;
   }
