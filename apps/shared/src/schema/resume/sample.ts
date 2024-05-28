@@ -208,38 +208,37 @@ export const sampleResume: ResumeData = {
         },
       ],
     },
-    // certifications: {
-    //   name: 'Certifications',
-    //   columns: 1,
-    //   visible: true,
-    //   id: 'certifications',
-    //   items: [
-    //     {
-    //       id: 'spdhh9rrqi1gvj0yqnbqunlo',
-    //       visible: true,
-    //       name: 'Full-Stack Web Development',
-    //       issuer: 'CodeAcademy',
-    //       date: '2020',
-    //       summary: '',
-    //       url: {
-    //         label: '',
-    //         href: '',
-    //       },
-    //     },
-    //     {
-    //       id: 'n838rddyqv47zexn6cxauwqp',
-    //       visible: true,
-    //       name: 'AWS Certified Developer',
-    //       issuer: 'Amazon Web Services',
-    //       date: '2019',
-    //       summary: '',
-    //       url: {
-    //         label: '',
-    //         href: '',
-    //       },
-    //     },
-    //   ],
-    // },
+    certifications: {
+      name: 'Certifications',
+      visible: true,
+      id: 'certifications',
+      items: [
+        {
+          id: createId(),
+          visible: true,
+          name: 'Full-Stack Web Development',
+          issuer: 'CodeAcademy',
+          date: '2020',
+          summary: '',
+          website: {
+            label: '',
+            link: '',
+          },
+        },
+        {
+          id: createId(),
+          visible: true,
+          name: 'AWS Certified Developer',
+          issuer: 'Amazon Web Services',
+          date: '2019',
+          summary: '',
+          website: {
+            label: '',
+            link: '',
+          },
+        },
+      ],
+    },
     // volunteer: {
     //   name: 'Volunteering',
     //   columns: 1,
