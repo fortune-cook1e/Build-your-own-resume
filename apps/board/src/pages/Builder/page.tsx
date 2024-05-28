@@ -1,7 +1,7 @@
 import Page from '@/components/Page';
 import { useBoardStore } from '@/store/board';
 import { getTemplate } from '@/templates';
-import { POST_MESSAGES, TemplateLayout } from 'shared';
+import { POST_MESSAGES } from 'shared';
 import { useEffect, useMemo, useRef } from 'react';
 import {
   TransformWrapper,
@@ -54,7 +54,7 @@ const Builder = () => {
         contentStyle={{ width: `${PAGE_SIZE_MAP.a4.width * MM_TO_PX + 42}px` }}
       >
         <Page mode="builder">
-          <RenderTemplate layout={layout as TemplateLayout} />
+          <RenderTemplate layout={layout} />
         </Page>
       </TransformComponent>
     </TransformWrapper>

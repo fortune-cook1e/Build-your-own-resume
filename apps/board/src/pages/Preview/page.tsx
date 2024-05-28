@@ -2,7 +2,6 @@ import Page from '@/components/Page';
 import { useBoardStore } from '@/store/board';
 import { getTemplate } from '@/templates';
 import { useMemo } from 'react';
-import { TemplateLayout } from 'shared';
 
 const Preview = () => {
   const layout = useBoardStore((state) => state.resume.metadata.layout);
@@ -12,7 +11,7 @@ const Preview = () => {
 
   return (
     <Page>
-      <Template layout={layout as TemplateLayout} />
+      <Template layout={layout} />
     </Page>
   );
 };

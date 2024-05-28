@@ -23,13 +23,23 @@ const Board = () => {
       '--color-primary',
       `${metadata.theme.primaryColor}`,
     );
+
+    document.documentElement.style.setProperty(
+      '--color-text',
+      `${metadata.theme.textColor}`,
+    );
   }, [metadata]);
 
-  useEffect(() => {
-    document.querySelectorAll(`[data-page]`).forEach((el) => {
-      el.classList.toggle('underline-links', true);
-    });
-  }, [metadata]);
+  document.documentElement.style.setProperty(
+    '--color-background',
+    `${metadata.theme.backgroundColor}`,
+  );
+
+  // useEffect(() => {
+  //   document.querySelectorAll(`[data-page]`).forEach((el) => {
+  //     el.classList.toggle('underline-links', true);
+  //   });
+  // }, [metadata]);
 
   return <Outlet />;
 };

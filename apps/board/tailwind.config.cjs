@@ -5,6 +5,8 @@ export default {
     extend: {
       colors: {
         primary: 'var(--color-primary)',
+        text: 'var(--color-text)',
+        background: 'var(--color-background)',
       },
       lineHeight: {
         tight: 'calc(var(--line-height) - 0.5)',

@@ -9,11 +9,12 @@ interface Props {
 
 const Page: FC<Props> = ({ mode = 'preview', children }) => {
   // Todo: handle dynamic fontfamily
+
   return (
     <div
       id="page"
       className={mergeTailwindCss(
-        'relative bg-white',
+        'relative bg-white text-text bg-background',
         mode === 'builder' && 'shadow-2xl',
       )}
     >
