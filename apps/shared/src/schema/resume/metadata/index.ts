@@ -19,13 +19,24 @@ export const defaultLayout: Layout = {
   side: ['languages', 'awards'],
 };
 
+// template
+export const templateEnum = z.enum(['Ezreal']);
+export type Template = z.infer<typeof templateEnum>;
+export type TemplateProps = {
+  layout: Layout;
+};
+
 // theme
 export const themeSchema = z.object({
   primaryColor: z.string().default('#1890ff'),
+  textColor: z.string().default('#000000'),
+  backgroundColor: z.string().default('#ffffff'),
 });
 export type Theme = z.infer<typeof themeSchema>;
 export const defaultTheme: Theme = {
   primaryColor: '#1890ff',
+  textColor: '#000000',
+  backgroundColor: '#ffffff',
 };
 
 // page
@@ -41,7 +52,7 @@ export const defaultPage: Page = {
 
 export const metadataSchema = z.object({
   layout: layoutSchema,
-  template: z.string().default('Ezreal'),
+  template: templateEnum,
   theme: themeSchema,
   page: pageSchema,
 });

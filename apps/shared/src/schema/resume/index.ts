@@ -7,4 +7,3 @@ export * from './update';
 export * from './import';
 export * from './delete';
 export * from './metadata';
-export * from './template';
