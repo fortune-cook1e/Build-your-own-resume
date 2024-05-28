@@ -9,6 +9,7 @@ import { FC } from 'react';
 import Skills from '@/app/builder/components/Sidebars/left/sections/Modals/Skills';
 import Languages from '@/app/builder/components/Sidebars/left/sections/Modals/Languages';
 import Awards from '@/app/builder/components/Sidebars/left/sections/Modals/Awards';
+import Certifications from '@/app/builder/components/Sidebars/left/sections/Modals/Certifications';
 
 const RenderSectionModal: FC = () => {
   const { id } = useSectionContext();
@@ -39,6 +40,9 @@ const RenderSectionModal: FC = () => {
 
       case 'awards':
         return <Awards />;
+
+      case 'certifications':
+        return <Certifications />;
       default:
         return null;
     }

@@ -7,6 +7,7 @@ import { HourglassMedium } from '@phosphor-icons/react';
 import { FC, useRef } from 'react';
 import {
   Awards,
+  Certifications,
   Education,
   Experience,
   Interests,
@@ -121,6 +122,14 @@ const LeftSidebar: FC = () => {
             id="awards"
             title={(item) => item.title}
             description={(item) => item.awarder}
+          />
+
+          <Divider />
+
+          <SectionBase<Certifications>
+            id="certifications"
+            title={(item) => item.name}
+            description={(item) => item.issuer}
           />
         </div>
       </div>

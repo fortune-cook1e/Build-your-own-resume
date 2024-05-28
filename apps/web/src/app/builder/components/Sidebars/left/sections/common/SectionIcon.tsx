@@ -13,6 +13,7 @@ import {
   Article,
   Translate,
   Medal,
+  Certificate,
 } from '@phosphor-icons/react';
 import { User } from '@phosphor-icons/react';
 import { get } from 'lodash-es';
@@ -48,6 +49,8 @@ export const getSectionIcon = (id: SectionKey, props?: IconProps) => {
       return <Translate size={18} {...props} />;
     case 'awards':
       return <Medal size={18} {...props} />;
+    case 'certifications':
+      return <Certificate size={18} {...props} />;
     default:
       return null;
   }

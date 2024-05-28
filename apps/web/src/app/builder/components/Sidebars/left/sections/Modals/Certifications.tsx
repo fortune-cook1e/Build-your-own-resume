@@ -1,41 +1,39 @@
 import SectionModal from '@/app/builder/components/Sidebars/left/sections/common/SectionModal';
 import UrlInput from '@/app/builder/components/Sidebars/left/sections/common/UrlInput';
-import { FormControl, FormLabel, Input } from '@chakra-ui/react';
-import { defaultProjects, projectsSchema } from 'shared';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { FC } from 'react';
-import { Controller, useForm } from 'react-hook-form';
-import { z } from 'zod';
 import RichEditor from '@/components/RichEditor';
+import { FormControl, FormLabel, Input } from '@chakra-ui/react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Controller, useForm } from 'react-hook-form';
+import { certificationsSchema, defaultCertifications } from 'shared';
+import { z } from 'zod';
 
-const formSchema = projectsSchema;
+const formSchema = certificationsSchema;
 type FormValues = z.infer<typeof formSchema>;
 
-const Projects: FC = () => {
+const Certifications = () => {
   const form = useForm<FormValues>({
-    defaultValues: defaultProjects,
+    defaultValues: defaultCertifications,
     resolver: zodResolver(formSchema),
   });
 
   return (
-    <SectionModal<FormValues> form={form} defaultValues={defaultProjects}>
+    <SectionModal<FormValues> form={form} defaultValues={defaultCertifications}>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <FormControl>
           <FormLabel>Name</FormLabel>
-          <Input placeholder="Project name" {...form.register('name')} />
-        </FormControl>
-
-        <FormControl>
-          <FormLabel>Description</FormLabel>
           <Input
-            placeholder="Project description"
-            {...form.register('description')}
+            placeholder="Full-Stack Developer"
+            {...form.register('name')}
           />
+        </FormControl>
+        <FormControl>
+          <FormLabel>Name</FormLabel>
+          <Input placeholder="CodeAcademy" {...form.register('issuer')} />
         </FormControl>
 
         <FormControl>
           <FormLabel>Date</FormLabel>
-          <Input placeholder="Date range" {...form.register('date')} />
+          <Input placeholder="2019" {...form.register('date')} />
         </FormControl>
 
         <Controller
@@ -49,18 +47,14 @@ const Projects: FC = () => {
           )}
         />
 
-        <div className="sm:col-span-2">
+        <div className="col-span-2">
           <Controller
             control={form.control}
             name="summary"
             render={({ field }) => (
               <FormControl>
                 <FormLabel>Summary</FormLabel>
-                <RichEditor
-                  {...field}
-                  content={field.value}
-                  onChange={(val) => field.onChange(val)}
-                />
+                <RichEditor content={field.value} {...field} />
               </FormControl>
             )}
           />
@@ -70,4 +64,4 @@ const Projects: FC = () => {
   );
 };
 
-export default Projects;
+export default Certifications;
