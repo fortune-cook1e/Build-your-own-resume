@@ -42,10 +42,10 @@ const Ezreal = ({ layout }: TemplateProps) => {
     <div className="p-custom space-y-4">
       <Header />
       {main.map((item) => (
-        <Fragment key={item}>{mapStrToComponent(item)}</Fragment>
+        <Fragment key={item}>{mapStrToComponent(item as SectionKey)}</Fragment>
       ))}
       {side.map((item) => (
-        <Fragment key={item}>{mapStrToComponent(item)}</Fragment>
+        <Fragment key={item}>{mapStrToComponent(item as SectionKey)}</Fragment>
       ))}
     </div>
   );

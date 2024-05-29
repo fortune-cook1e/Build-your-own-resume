@@ -1,5 +1,5 @@
 import { useResumeStore } from '@/store/resume';
-import { SectionKey } from 'shared';
+import { SectionKey, SectionWithItem } from 'shared';
 import { IconButton, Tooltip } from '@chakra-ui/react';
 import {
   IconProps,
@@ -28,7 +28,6 @@ interface SectionIconProps {
 
 export const getSectionIcon = (id: SectionKey, props?: IconProps) => {
   switch (id) {
-    // Todo: add more icons
     case 'basics':
       return <User size={18} {...props} />;
     case 'summary':
@@ -65,9 +64,9 @@ export const SectionIcon: FC<SectionIconProps> = ({
 }) => {
   const section = useResumeStore((state) =>
     get(state.resume.data.sections, id),
-  );
+  ) as SectionWithItem;
 
-  const _name = section ? section.name : name ? name : '';
+  const _name = name ? name : section ? section.name : '';
 
   const _icon = icon ? icon : getSectionIcon(id) ?? <Alien />;
 
