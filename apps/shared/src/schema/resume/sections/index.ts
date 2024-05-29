@@ -9,10 +9,17 @@ import { skillsSchema } from '@/schema/resume/sections/skills';
 import { languagesSchema } from '@/schema/resume/sections/languages';
 import { awardsSchema } from '@/schema/resume/sections/awards';
 import { certificationsSchema } from '@/schema/resume/sections/certifications';
+import { idSchema } from '@/schema/resume/common';
+import { customSchema } from '@/schema/resume/sections/custom';
 
 export const sectionSchema = z.object({
   name: z.string(),
   visible: z.boolean().default(true),
+});
+
+export const customeSectionSchema = sectionSchema.extend({
+  id: idSchema,
+  items: z.array(customSchema),
 });
 
 export const sectionsSchema = z.object({
@@ -66,6 +73,8 @@ export const sectionsSchema = z.object({
     id: z.literal('certifications'),
     items: z.array(certificationsSchema),
   }),
+
+  customs: z.record(z.string(), customeSectionSchema),
 });
 
 export type Section = z.infer<typeof sectionSchema>;
@@ -76,7 +85,12 @@ export type SectionWithItem<T = unknown> = Sections[FilterKeys<
   { items: T[] }
 >];
 export type SectionItem = SectionWithItem['items'][number];
-export type SectionKey = 'basics' | 'summary' | keyof Sections;
+export type SectionKey =
+  | 'basics'
+  | 'summary'
+  | keyof Sections
+  | `customs.${string}`;
+
 export const SectionEnum = z.enum([
   'basics',
   'summary',
@@ -91,6 +105,7 @@ export const SectionEnum = z.enum([
   'certifications',
 ]);
 export type SectionEnumType = z.infer<typeof SectionEnum>;
+export type CustomSection = z.infer<typeof customeSectionSchema>;
 
 // Defaults
 export const defaultSection: Section = {
@@ -154,6 +169,7 @@ export const defaultSections: Sections = {
     name: 'Certifications',
     items: [],
   },
+  customs: {},
 };
 
 export * from './profile';
@@ -166,3 +182,4 @@ export * from './skills';
 export * from './languages';
 export * from './awards';
 export * from './certifications';
+export * from './custom';

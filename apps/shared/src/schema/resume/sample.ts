@@ -239,6 +239,7 @@ export const sampleResume: ResumeData = {
         },
       ],
     },
+    customs: {},
     // volunteer: {
     //   name: 'Volunteering',
     //   columns: 1,

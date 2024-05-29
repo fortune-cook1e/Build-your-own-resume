@@ -3,8 +3,8 @@ import { z } from 'zod';
 
 // layout
 export const layoutSchema = z.object({
-  main: z.array(SectionEnum),
-  side: z.array(SectionEnum),
+  main: z.array(SectionEnum.or(z.string())),
+  side: z.array(SectionEnum.or(z.string())),
 });
 export type Layout = z.infer<typeof layoutSchema>;
 export const defaultLayout: Layout = {
