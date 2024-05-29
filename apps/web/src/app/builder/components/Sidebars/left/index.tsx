@@ -1,13 +1,13 @@
-'use client';
 import Basics from '@/app/builder/components/Sidebars/left/sections/Basics';
 import SectionBase from '@/app/builder/components/Sidebars/left/sections/common/SectionBase';
 import SectionIcon from '@/app/builder/components/Sidebars/left/sections/common/SectionIcon';
-import { Divider, Flex, IconButton } from '@chakra-ui/react';
+import { Button, Divider, Flex, IconButton } from '@chakra-ui/react';
 import { HourglassMedium } from '@phosphor-icons/react';
-import { FC, useRef } from 'react';
+import { FC, useRef, Fragment } from 'react';
 import {
   Awards,
   Certifications,
+  Custom,
   Education,
   Experience,
   Interests,
@@ -18,8 +18,11 @@ import {
 } from 'shared';
 import Link from 'next/link';
 import Summary from '@/app/builder/components/Sidebars/left/sections/Summary';
+import { useResumeStore } from '@/store/resume';
 
 const LeftSidebar: FC = () => {
+  const customs = useResumeStore((state) => state.resume.data.sections.customs);
+  const addCustomSection = useResumeStore((state) => state.addCustomSection);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const scrollIntoView = (selector: string) => {
@@ -131,6 +134,22 @@ const LeftSidebar: FC = () => {
             title={(item) => item.name}
             description={(item) => item.issuer}
           />
+
+          {Object.values(customs).map((item) => (
+            <Fragment key={item.id}>
+              <Divider />
+              <SectionBase<Custom>
+                id={`customs.${item.id}`}
+                title={(item) => item.name}
+                description={(item) => item.description}
+              />
+            </Fragment>
+          ))}
+
+          <Divider />
+          <div className="flex justify-end">
+            <Button onClick={addCustomSection}>Add custom field</Button>
+          </div>
         </div>
       </div>
     </Flex>

@@ -10,12 +10,16 @@ import Skills from '@/app/builder/components/Sidebars/left/sections/Modals/Skill
 import Languages from '@/app/builder/components/Sidebars/left/sections/Modals/Languages';
 import Awards from '@/app/builder/components/Sidebars/left/sections/Modals/Awards';
 import Certifications from '@/app/builder/components/Sidebars/left/sections/Modals/Certifications';
+import Custom from '@/app/builder/components/Sidebars/left/sections/Modals/Custom';
 
 const RenderSectionModal: FC = () => {
   const { id } = useSectionContext();
 
   const getModal = (id: SectionKey) => {
-    // Todo: add more modals
+    if (id.startsWith('customs.')) {
+      return <Custom />;
+    }
+
     switch (id) {
       case 'profiles':
         return <Profiles />;

@@ -1,16 +1,20 @@
-import { Resume } from 'shared';
+import { Custom, CustomSection, Resume } from 'shared';
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 import { devtools } from 'zustand/middleware';
 import { set as lodashSet } from 'lodash-es';
 import { produce } from 'immer';
 import { debounceUpdateResume } from '@/apis/resume/update';
+import { createId } from '@paralleldrive/cuid2';
 interface ResumeStore {
   resume: Resume;
 
   setResume: (resume: Resume) => void;
   setValue: (path: string, value: unknown) => void;
   resetResume: () => void;
+
+  addCustomSection: () => void;
+  removeCustomeSection: (id: string) => void;
 }
 
 export const useResumeStore = create<ResumeStore>()(
@@ -39,6 +43,28 @@ export const useResumeStore = create<ResumeStore>()(
       resetResume: () => {
         set({}, true);
       },
+
+      addCustomSection: () => {
+        const id = createId();
+        const customItem: CustomSection = {
+          id,
+          visible: true,
+          name: 'custom section',
+          items: [],
+        };
+        set((state) => {
+          state.resume.data = lodashSet(
+            state.resume.data,
+            `sections.customs.${id}`,
+            customItem,
+          );
+
+          state.resume.data.metadata.layout.main.push(`customs.${id}`);
+
+          debounceUpdateResume(JSON.parse(JSON.stringify(state.resume)));
+        });
+      },
+      removeCustomeSection: () => {},
     })),
     {
       enabled: process.env.NODE_ENV !== 'production',

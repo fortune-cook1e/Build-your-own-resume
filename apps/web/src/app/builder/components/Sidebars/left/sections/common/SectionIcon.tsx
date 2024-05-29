@@ -51,6 +51,7 @@ export const getSectionIcon = (id: SectionKey, props?: IconProps) => {
       return <Medal size={18} {...props} />;
     case 'certifications':
       return <Certificate size={18} {...props} />;
+
     default:
       return null;
   }
