@@ -5,7 +5,7 @@ import { createZodDto } from '@/utils';
 export const usernameSchema = z
   .string()
   .min(3)
-  .max(255)
+  .max(20)
   .regex(/^[a-z0-9._-]+$/, {
     message:
       'Usernames can only contain lowercase letters, numbers, periods, hyphens, and underscores.',
@@ -13,7 +13,7 @@ export const usernameSchema = z
 
 export const userSchema = z.object({
   id: idSchema,
-  name: z.string().min(1).max(50).describe('User name'),
+  name: z.string().min(2).max(20).describe('User name'),
   username: usernameSchema,
   avatar: z.string(),
   email: z.string().email(),
