@@ -98,7 +98,7 @@ const SectionBase = <T extends SectionItem>({
     <div id={id} className="animate-fade-right animate-once">
       <Flex align="center" justifyContent="space-between" className="mb-5">
         {getSectionIcon(id)}
-        <h2 className="text-3xl font-bold">{section?.name ?? id}</h2>
+        <h2 className="text-3xl font-bold truncate">{section?.name ?? id}</h2>
         <SectionOptions id={id} onAddClick={onAddClick} />
       </Flex>
 
@@ -106,7 +106,7 @@ const SectionBase = <T extends SectionItem>({
 
       {!section.items.length && (
         <Flex justify="right">
-          <Button leftIcon={<Plus />} colorScheme="blue" onClick={onAddClick}>
+          <Button leftIcon={<Plus />} onClick={onAddClick}>
             Create an item
           </Button>
         </Flex>

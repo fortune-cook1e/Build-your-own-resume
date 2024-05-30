@@ -3,6 +3,7 @@ import UrlInput from '@/app/builder/components/Sidebars/left/sections/common/Url
 import RichEditor from '@/components/RichEditor';
 import {
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Input,
   Tag,
@@ -74,9 +75,13 @@ const Custom = () => {
             control={form.control}
             name="website"
             render={({ field }) => (
-              <FormControl>
+              <FormControl isInvalid={!!form.formState.errors.website}>
                 <FormLabel>Website</FormLabel>
                 <UrlInput {...field} />
+                <FormErrorMessage>
+                  {form.formState.errors.website &&
+                    form.formState.errors.website.link?.message}
+                </FormErrorMessage>
               </FormControl>
             )}
           />
@@ -99,7 +104,7 @@ const Custom = () => {
           <FormControl className="mb-4">
             <FormLabel>keyword</FormLabel>
             <Input
-              placeholder="skill keyword"
+              placeholder="keyword"
               value={pendingKeyword}
               onKeyDown={onKeyDown}
               onChange={(e) => setPendingKeyword(e.target.value)}

@@ -32,7 +32,7 @@ const BuilderHeadBar: FC = () => {
             aria-label="Toggle left"
             variant="ghost"
             icon={<SidebarSimple />}
-          ></IconButton>
+          />
         </div>
 
         <div className="flex items-center justify-center gap-x-1 lg:mx-auto">
@@ -40,7 +40,7 @@ const BuilderHeadBar: FC = () => {
             aria-label="Home"
             variant="ghost"
             className="cursor-pointer"
-            onClick={() => router.push('/resumes')}
+            onClick={() => router.push('/dashboard/resumes')}
             icon={<HouseSimple />}
           />
           <span className="mr-2 text-xs opacity-40">/</span>

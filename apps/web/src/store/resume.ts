@@ -59,12 +59,31 @@ export const useResumeStore = create<ResumeStore>()(
             customItem,
           );
 
-          state.resume.data.metadata.layout.main.push(`customs.${id}`);
+          state.resume.data.metadata.layout.side.push(`customs.${id}`);
 
           debounceUpdateResume(JSON.parse(JSON.stringify(state.resume)));
         });
       },
-      removeCustomeSection: () => {},
+      removeCustomeSection: (id: string) => {
+        set((state) => {
+          if (id.startsWith('customs')) {
+            const _id = id.split('.')[1];
+            delete state.resume.data.sections.customs[_id];
+          }
+
+          state.resume.data.metadata.layout.main =
+            state.resume.data.metadata.layout.main.filter(
+              (item) => item !== id,
+            );
+
+          state.resume.data.metadata.layout.side =
+            state.resume.data.metadata.layout.side.filter(
+              (item) => item !== id,
+            );
+
+          debounceUpdateResume(JSON.parse(JSON.stringify(state.resume)));
+        });
+      },
     })),
     {
       enabled: process.env.NODE_ENV !== 'production',

@@ -79,8 +79,8 @@ const RenameInput: FC<Props> = ({ id, isOpen, onClose }) => {
                   {...register('name', {
                     required: true,
                     maxLength: {
-                      value: 10,
-                      message: 'Maximum length should be 10',
+                      value: 20,
+                      message: 'Maximum length should be 20',
                     },
                   })}
                 />

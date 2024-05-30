@@ -2,7 +2,7 @@ import Basics from '@/app/builder/components/Sidebars/left/sections/Basics';
 import SectionBase from '@/app/builder/components/Sidebars/left/sections/common/SectionBase';
 import SectionIcon from '@/app/builder/components/Sidebars/left/sections/common/SectionIcon';
 import { Button, Divider, Flex, IconButton } from '@chakra-ui/react';
-import { HourglassMedium } from '@phosphor-icons/react';
+import { HourglassMedium, Plus } from '@phosphor-icons/react';
 import { FC, useRef, Fragment } from 'react';
 import {
   Awards,
@@ -147,8 +147,10 @@ const LeftSidebar: FC = () => {
           ))}
 
           <Divider />
-          <div className="flex justify-end">
-            <Button onClick={addCustomSection}>Add custom field</Button>
+          <div className="flex justify-end relative z-0">
+            <Button onClick={addCustomSection} leftIcon={<Plus />}>
+              Add custom field
+            </Button>
           </div>
         </div>
       </div>
