@@ -43,12 +43,6 @@ const Header = () => {
             </div>
           )}
           <Link url={basics.url} />
-          {/* {basics.customFields.map((item) => (
-            <div key={item.id} className="flex items-center gap-x-1.5">
-              <i className={cn(`ph ph-bold ph-${item.icon}`, 'text-primary')} />
-              <span>{[item.name, item.value].filter(Boolean).join(': ')}</span>
-            </div>
-          ))} */}
         </div>
       </div>
 

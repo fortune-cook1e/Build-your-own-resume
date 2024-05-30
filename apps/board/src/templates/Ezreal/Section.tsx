@@ -1,13 +1,20 @@
 import Link from '@/templates/Ezreal/Link';
-import { SectionWithItem, URL, isEmptyString, mergeTailwindCss } from 'shared';
+import {
+  CustomSection,
+  SectionWithItem,
+  URL,
+  isEmptyString,
+  mergeTailwindCss,
+} from 'shared';
 import { get } from 'lodash-es';
 
 interface Props<T> {
-  data: SectionWithItem<T>;
+  data: SectionWithItem<T> | CustomSection;
   children?: (item: T) => React.ReactNode;
   className?: string;
   urlKey?: keyof T;
   summaryKey?: keyof T;
+  keywordsKey?: keyof T;
 }
 
 const Section = <T,>({
@@ -16,6 +23,7 @@ const Section = <T,>({
   children,
   urlKey,
   summaryKey,
+  keywordsKey,
 }: Props<T>) => {
   return (
     <section id={data.id} className="grid">
@@ -34,6 +42,10 @@ const Section = <T,>({
               | string
               | undefined;
 
+            const keywords = (keywordsKey && get(item, keywordsKey, [])) as
+              | string[]
+              | undefined;
+
             return (
               <div
                 key={item.id}
@@ -49,6 +61,10 @@ const Section = <T,>({
                     className="wysiwyg"
                     dangerouslySetInnerHTML={{ __html: summary }}
                   />
+                )}
+
+                {keywords && keywords.length > 0 && (
+                  <p className="text-sm">{keywords.join(',')}</p>
                 )}
               </div>
             );

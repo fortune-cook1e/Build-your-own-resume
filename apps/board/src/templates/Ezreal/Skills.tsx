@@ -10,12 +10,15 @@ const Skills = () => {
   }
 
   return (
-    <Section<SkillsType> data={data} className="space-y-0.5">
+    <Section<SkillsType>
+      data={data}
+      className="space-y-0.5"
+      keywordsKey="keywords"
+    >
       {(item) => (
         <div>
           <div className="font-bold">{item.name}</div>
           <p className="text-sm">{item.level}</p>
-          <p className="text-sm">{item.keywords.join(',')}</p>
         </div>
       )}
     </Section>

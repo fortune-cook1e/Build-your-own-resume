@@ -9,6 +9,7 @@ import Skills from '@/templates/Ezreal/Skills';
 import Languages from '@/templates/Ezreal/Languages';
 import Awards from '@/templates/Ezreal/Awards';
 import Certifications from '@/templates/Ezreal/Certifications';
+import Custom from '@/templates/Ezreal/Custom';
 
 const mapStrToComponent = (str: SectionKey) => {
   switch (str) {
@@ -31,6 +32,12 @@ const mapStrToComponent = (str: SectionKey) => {
     case 'certifications':
       return <Certifications />;
     default:
+      {
+        if (str.startsWith('customs.')) {
+          const id = str.split('.')[1];
+          return <Custom id={id} />;
+        }
+      }
       return null;
   }
 };
