@@ -68,7 +68,6 @@ request.interceptors.response.use(
       });
     }
 
-    // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
     return Promise.reject(error);
   },
@@ -76,7 +75,7 @@ request.interceptors.response.use(
 
 const requestForRefresh = axios.create({
   baseURL: '/resume-generator-api',
-  timeout: 1000 * 10, // 40s,
+  timeout: 1000 * 10, // 10s,
 });
 
 const handleAuthError = async () => {
@@ -88,7 +87,6 @@ const handleAuthError = async () => {
     await refresh(requestForRefresh);
     return Promise.resolve();
   } catch (e) {
-    console.log('HandleAuth Error:', e);
     queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.user] });
     toast({
       title: 'Oops, something wrong on the server',
