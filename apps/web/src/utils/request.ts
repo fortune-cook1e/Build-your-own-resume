@@ -87,7 +87,7 @@ const handleAuthError = async () => {
     await refresh(requestForRefresh);
     return Promise.resolve();
   } catch (e) {
-    queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.user] });
+    queryClient.invalidateQueries({ queryKey: QUERY_KEYS.user });
     toast({
       title: 'Oops, something wrong on the server',
       description: 'Login please',
@@ -108,7 +108,7 @@ const handleAuthError = async () => {
 // Interceptor to handle expired refresh token errors
 const handleRefreshFailed = async () => {
   try {
-    queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.user] });
+    queryClient.invalidateQueries({ queryKey: QUERY_KEYS.user });
     window.history.replaceState(
       null,
       '',

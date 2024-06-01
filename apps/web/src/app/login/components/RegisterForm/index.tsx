@@ -47,7 +47,7 @@ const RegisterForm: FC<Props> = ({ onLoginClick }) => {
       description:
         'You have successfully registered, redirecting to dashboard...',
       status: 'success',
-      duration: 1000,
+      duration: 3000,
       isClosable: true,
       position: 'top',
     });
@@ -56,7 +56,7 @@ const RegisterForm: FC<Props> = ({ onLoginClick }) => {
   return (
     <Box>
       <header className="mb-4">
-        <h3 className="text-3xl font-bold">Sign up to </h3>
+        <h3 className="text-3xl font-bold">Sign up to resume generator </h3>
       </header>
 
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">

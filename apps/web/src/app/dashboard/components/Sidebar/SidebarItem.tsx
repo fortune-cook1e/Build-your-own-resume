@@ -1,5 +1,5 @@
 import { mergeTailwindCss } from '@/utils/styles';
-import { Button, Flex } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FC, ReactNode } from 'react';
@@ -30,15 +30,20 @@ const SidebarItem: FC<Props> = ({ path, name, icon, onClick }) => {
   const isActive = usePathname() === path;
 
   return (
-    <Button onClick={onClick} justifyContent="start" variant="ghost">
-      <Link href={path} className="w-full">
-        <Flex alignItems="center">
+    <Link href={path} className="w-full">
+      <Button
+        onClick={onClick}
+        justifyContent="start"
+        variant="ghost"
+        className="w-full"
+      >
+        <div className="flex items-center w-full">
           <div className="mr-3">{icon}</div>
           <span>{name}</span>
           {isActive && <ActiveIndicator classname="ml-auto" />}
-        </Flex>
-      </Link>
-    </Button>
+        </div>
+      </Button>
+    </Link>
   );
 };
 

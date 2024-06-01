@@ -46,6 +46,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.50.1",
     "react-json-view": "^1.21.3",
+    "react-parallax-tilt": "^1.7.227",
     "react-resizable-panels": "^2.0.11",
     "shared": "workspace:^",
     "sharp": "^0.33.3",

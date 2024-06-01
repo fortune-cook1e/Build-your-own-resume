@@ -3,7 +3,6 @@ import { useResumeStore } from '@/store/resume';
 import { IconButton } from '@chakra-ui/react';
 import { mergeTailwindCss } from 'shared';
 import { HouseSimple, SidebarSimple } from '@phosphor-icons/react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { FC } from 'react';
 

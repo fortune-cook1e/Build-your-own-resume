@@ -43,7 +43,7 @@ const LeftSidebar: FC = () => {
           variant="ghost"
           size="14"
           icon={
-            <Link href="/dashboard/resumes">
+            <Link href="/dashboard/resumes" prefetch>
               <HourglassMedium />
             </Link>
           }

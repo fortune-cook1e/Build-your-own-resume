@@ -57,12 +57,9 @@ const VerifyEmailPage = () => {
         </AlertDescription>
       </Alert>
 
-      <Button>
-        <Link href="/dashboard">
-          Go to Dashboard
-          <ArrowRight className="ml-2" />
-        </Link>
-      </Button>
+      <Link href="/dashboard" prefetch>
+        <Button leftIcon={<ArrowRight />}>Go to Dashboard</Button>
+      </Link>
     </div>
   );
 };

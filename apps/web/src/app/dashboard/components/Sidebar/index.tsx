@@ -26,7 +26,7 @@ const Sidebar = () => {
           variant="ghost"
           aria-label="home button"
           icon={
-            <Link href="/dashboard/resumes">
+            <Link href="/">
               <Bank />
             </Link>
           }

@@ -434,6 +434,9 @@ importers:
       react-json-view:
         specifier: ^1.21.3
         version: 1.21.3(@types/react@18.2.65)(react-dom@18.2.0)(react@18.2.0)
+      react-parallax-tilt:
+        specifier: ^1.7.227
+        version: 1.7.227(react-dom@18.2.0)(react@18.2.0)
       react-resizable-panels:
         specifier: ^2.0.11
         version: 2.0.11(react-dom@18.2.0)(react@18.2.0)
@@ -12480,6 +12483,16 @@ packages:
     peerDependencies:
       react: ^15.5.x || ^16.x || ^17.x || ^18.x
       react-dom: ^15.5.x || ^16.x || ^17.x || ^18.x
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /react-parallax-tilt@1.7.227(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-fud+f/Y9pdJiu7CQFgP/8V/wZzWj48PMyCrBgJF0QUHAwwc7wMzHIp9MrMIiVz4jGbu+nRPKA3O9P4IP3bSnFA==}
+    peerDependencies:
+      react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
