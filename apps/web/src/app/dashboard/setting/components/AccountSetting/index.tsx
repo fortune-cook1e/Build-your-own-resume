@@ -61,6 +61,10 @@ const AccountSetting = () => {
     toast({
       status: 'success',
       title: 'Resend email success',
+      description: 'We have sent you a new email verification link',
+      isClosable: true,
+      duration: 2000,
+      position: 'top',
     });
   };
 

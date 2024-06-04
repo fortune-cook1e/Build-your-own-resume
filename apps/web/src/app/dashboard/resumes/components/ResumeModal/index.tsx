@@ -30,12 +30,7 @@ import {
 } from '@chakra-ui/react';
 import { createResumeSchema, idSchema, sampleResume } from 'shared';
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  ArrowArcRight,
-  ArrowBendDoubleUpLeft,
-  ListBullets,
-  Plus,
-} from '@phosphor-icons/react';
+import { ArrowDown } from '@phosphor-icons/react';
 import { forwardRef, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -207,7 +202,7 @@ const ResumeModal = forwardRef<any, Props>(
 
             <ModalFooter gap={4}>
               <Button onClick={onClose}>Close</Button>
-              <ButtonGroup isAttached colorScheme="blue">
+              <ButtonGroup isAttached>
                 <Button
                   type="submit"
                   isLoading={updateLoading || createLoading || importLoading}
@@ -216,7 +211,7 @@ const ResumeModal = forwardRef<any, Props>(
                   {isUpdate && 'Update'}
                 </Button>
                 <Menu>
-                  <MenuButton as={IconButton} icon={<ListBullets />}>
+                  <MenuButton as={IconButton} icon={<ArrowDown />}>
                     Actions
                   </MenuButton>
                   <MenuList>

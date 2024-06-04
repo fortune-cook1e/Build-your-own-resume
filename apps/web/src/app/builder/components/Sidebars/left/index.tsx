@@ -1,8 +1,8 @@
 import Basics from '@/app/builder/components/Sidebars/left/sections/Basics';
 import SectionBase from '@/app/builder/components/Sidebars/left/sections/common/SectionBase';
 import SectionIcon from '@/app/builder/components/Sidebars/left/sections/common/SectionIcon';
-import { Button, Divider, Flex, IconButton } from '@chakra-ui/react';
-import { HourglassMedium, Plus } from '@phosphor-icons/react';
+import { Button, Divider, IconButton } from '@chakra-ui/react';
+import { House, Plus } from '@phosphor-icons/react';
 import { FC, useRef, Fragment } from 'react';
 import {
   Awards,
@@ -31,32 +31,27 @@ const LeftSidebar: FC = () => {
   };
 
   return (
-    <Flex>
-      <Flex
-        flexDir="column"
-        justify="space-between"
-        align="center"
-        className="hidden basis-12 bg-secondary-accent/30 py-4 px-2 sm:flex"
-      >
+    <div className="flex">
+      <div className="flex flex-col justify-between items-center basis-12 bg-secondary-accent/30 py-4 px-2 sm:flex">
         <IconButton
           aria-label="home button"
           variant="ghost"
           size="14"
           icon={
             <Link href="/dashboard/resumes" prefetch>
-              <HourglassMedium />
+              <IconButton isRound icon={<House />} aria-label="home" />
             </Link>
           }
         />
-
-        <Flex flex="1" flexDir="column" justify="center" gap={2}>
+        {/* 
+        <div className="flex flex-1 flex-col justify-center gap-2">
           <SectionIcon id="basics" onClick={() => scrollIntoView('#basics')} />
           <SectionIcon
             id="profiles"
             onClick={() => scrollIntoView('#profiles')}
           />
-        </Flex>
-      </Flex>
+        </div> */}
+      </div>
       <div className="h-screen pb-16 overflow-scroll">
         <div ref={containerRef} className="grid gap-y-6 p-6">
           <Basics />
@@ -154,7 +149,7 @@ const LeftSidebar: FC = () => {
           </div>
         </div>
       </div>
-    </Flex>
+    </div>
   );
 };
 

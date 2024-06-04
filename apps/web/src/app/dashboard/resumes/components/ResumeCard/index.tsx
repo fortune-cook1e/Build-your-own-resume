@@ -11,6 +11,7 @@ import ResumeModal, {
 } from '@/app/dashboard/resumes/components/ResumeModal';
 import { FormMode } from '@/types';
 import { useResumeStore } from '@/store/resume';
+import BaseCard from '@/app/dashboard/resumes/components/BaseCard';
 interface Props {
   resume: Resume;
 }
@@ -20,7 +21,7 @@ const ResumeCard: FC<Props> = ({ resume }) => {
   const [open, setOpen] = useBoolean();
   const { title, updatedAt } = resume;
   const setResume = useResumeStore((state) => state.setResume);
-  const lastUpdated = dayjs(updatedAt).format();
+  const lastUpdated = dayjs(updatedAt).format('YYYY-MM-DD HH:mm');
   const [mode, setMode] = useState<FormMode>('create');
 
   const [payload, setPayload] = useState<ResumeModalFormValues>({
@@ -53,39 +54,44 @@ const ResumeCard: FC<Props> = ({ resume }) => {
   };
 
   return (
-    <ContextMenu
-      renderMenu={() => (
-        <MenuList>
-          <MenuItem onClick={onRenameClick}>Rename</MenuItem>
-          <MenuItem onClick={onResumeClick}>Edit</MenuItem>
-          <MenuItem textColor="red" onClick={onDeleteClick}>
-            Delete
-          </MenuItem>
-        </MenuList>
-      )}
-    >
-      <ResumeModal
-        open={open}
-        onClose={setOpen.off}
-        payload={payload}
-        mode={mode}
-      />
-
-      <div
-        onClick={onResumeClick}
-        className="relative flex aspect-[1/1.4142] scale-100 space-y-0 cursor-pointer items-center justify-center bg-secondary/50 p-0 transition-transform active:scale-95"
+    <BaseCard onClick={onResumeClick}>
+      <ContextMenu
+        renderMenu={() => (
+          <MenuList>
+            <MenuItem onClick={onRenameClick}>Rename</MenuItem>
+            <MenuItem onClick={onResumeClick}>Edit</MenuItem>
+            <MenuItem textColor="red" onClick={onDeleteClick}>
+              Delete
+            </MenuItem>
+          </MenuList>
+        )}
       >
+        <ResumeModal
+          open={open}
+          onClose={setOpen.off}
+          payload={payload}
+          mode={mode}
+        />
+
+        {/* <div className="absolute top-0 bottom-0">
+          <Image
+            src={resumeImage}
+            className="size-full object-contain"
+            alt={resume.title}
+          />
+        </div> */}
+
         <div
           className={mergeTailwindCss(
-            'absolute inset-x-0 bottom-0 z-10 flex flex-col justify-end space-y-0.5 p-4 pt-12',
+            'absolute inset-x-0 bottom-0 z-10 p-4 pt-12',
             'bg-gradient-to-t from-background/80 to-transparent',
           )}
         >
           <h4 className="line-clamp-2 font-medium">{title}</h4>
           <p className="line-clamp-1 text-xs opacity-75">{`Last updated ${lastUpdated}`}</p>
         </div>
-      </div>
-    </ContextMenu>
+      </ContextMenu>
+    </BaseCard>
   );
 };
 
