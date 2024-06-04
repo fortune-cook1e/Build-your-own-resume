@@ -1,4 +1,4 @@
-import { mergeTailwindCss } from '@/utils/styles';
+import { mergeTailwindCss } from 'shared';
 import React, { FC } from 'react';
 import {
   PanelResizeHandle,

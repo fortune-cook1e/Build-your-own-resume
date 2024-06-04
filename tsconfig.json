@@ -12,6 +12,6 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "declaration": true,
-    "declarationMap": true,
-  },
+    "declarationMap": true
+  }
 }

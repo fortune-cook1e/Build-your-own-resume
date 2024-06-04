@@ -1,4 +1,4 @@
-import { mergeTailwindCss } from '@/utils/styles';
+import { mergeTailwindCss } from 'shared';
 import { Resume } from 'shared';
 import { FC, useState } from 'react';
 

@@ -1,4 +1,4 @@
-import { mergeTailwindCss } from '@/utils/styles';
+import { mergeTailwindCss } from 'shared';
 import { Button } from '@chakra-ui/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';

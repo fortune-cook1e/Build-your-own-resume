@@ -22,7 +22,6 @@
     "@hookform/resolvers": "^3.3.4",
     "@paralleldrive/cuid2": "^2.2.2",
     "@phosphor-icons/react": "^2.0.15",
-    "@tailwindcss/typography": "^0.5.10",
     "@tanstack/react-query": "^5.24.1",
     "@tanstack/react-query-devtools": "^5.24.1",
     "@tiptap/extension-highlight": "^2.2.4",
@@ -50,9 +49,6 @@
     "react-resizable-panels": "^2.0.11",
     "shared": "workspace:^",
     "sharp": "^0.33.3",
-    "tailwind-merge": "^2.2.1",
-    "tailwindcss": "^3.4.1",
-    "tailwindcss-animated": "^1.0.1",
     "zod": "^3.22.4",
     "zustand": "^4.5.1"
   },

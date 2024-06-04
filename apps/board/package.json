@@ -14,7 +14,6 @@
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
     "@phosphor-icons/react": "^2.0.15",
-    "@tailwindcss/typography": "^0.5.10",
     "framer-motion": "^11.0.8",
     "lodash-es": "^4.17.21",
     "react": "^18.2.0",
@@ -22,7 +21,6 @@
     "react-router-dom": "^6.22.3",
     "react-zoom-pan-pinch": "^3.4.3",
     "shared": "workspace:^",
-    "tailwindcss": "^3.4.1",
     "zustand": "^4.5.1"
   },
   "devDependencies": {
@@ -34,13 +32,11 @@
     "@typescript-eslint/parser": "^7.1.1",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.17",
-    "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "postcss": "^8.4.35",
     "postcss-import": "^16.0.1",
-    "typescript": "^5.2.2",
     "vite": "^5.1.6"
   }
 }
