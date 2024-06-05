@@ -39,17 +39,37 @@ export const defaultTheme: Theme = {
   backgroundColor: '#ffffff',
 };
 
+// font
+export const fontSchema = z.object({
+  family: z.string().default('Open Sans'),
+  subset: z.string().default('latin'),
+  size: z.number().default(14),
+  lineHeight: z.number().default(1.6),
+  variants: z.array(z.string()).default(['regular']),
+});
+
+export type Font = z.infer<typeof fontSchema>;
+export const defaultFont: Font = {
+  family: 'Open Sans',
+  size: 14,
+  subset: 'latin',
+  lineHeight: 1.6,
+  variants: ['regular'],
+};
+
 // page
 export const pageSchema = z.object({
   spacing: z.number().default(10),
-  lineHeight: z.number().default(1.6),
+  font: fontSchema,
 });
+
 export type Page = z.infer<typeof pageSchema>;
 export const defaultPage: Page = {
   spacing: 26,
-  lineHeight: 1.5,
+  font: defaultFont,
 };
 
+// metadata
 export const metadataSchema = z.object({
   layout: layoutSchema,
   template: templateEnum,
