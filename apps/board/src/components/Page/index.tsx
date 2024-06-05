@@ -1,4 +1,5 @@
 import { MM_TO_PX, PAGE_SIZE_MAP } from '@/constants';
+import { useBoardStore } from '@/store/board';
 import { FC, ReactNode } from 'react';
 import { mergeTailwindCss } from 'shared';
 
@@ -8,11 +9,14 @@ interface Props {
 }
 
 const Page: FC<Props> = ({ mode = 'preview', children }) => {
-  // Todo: handle dynamic fontfamily
+  const font = useBoardStore((state) => state.resume.metadata.page.font);
 
   return (
     <div
       id="page"
+      style={{
+        fontFamily: font.family,
+      }}
       className={mergeTailwindCss(
         'relative bg-white text-text bg-background',
         mode === 'builder' && 'shadow-2xl',

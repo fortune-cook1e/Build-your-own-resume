@@ -1,14 +1,29 @@
 import { useBoardStore } from '@/store/board';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { Outlet } from 'react-router-dom';
+import webFontLoader from 'webfontloader';
 
 const Board = () => {
   const metadata = useBoardStore((state) => state.resume.metadata);
+  const font = metadata.page.font;
+
+  const fontFamily = useMemo(() => {
+    return `${font.family}:${font.variants.join(',')}:${font.subset}`;
+  }, [font.variants, font.subset, font.family]);
 
   useEffect(() => {
+    webFontLoader.load({
+      google: {
+        families: [fontFamily],
+      },
+    });
+  }, [fontFamily]);
+
+  useEffect(() => {
+    // page
     document.documentElement.style.setProperty(
       'line-height',
-      `${metadata.page.lineHeight}`,
+      `${metadata.page.font.lineHeight}`,
     );
     document.documentElement.style.setProperty(
       '--spacing',
@@ -16,9 +31,15 @@ const Board = () => {
     );
     document.documentElement.style.setProperty(
       '--line-height',
-      `${metadata.page.lineHeight}`,
+      `${metadata.page.font.lineHeight}`,
     );
 
+    document.documentElement.style.setProperty(
+      'font-size',
+      `${metadata.page.font.size}px`,
+    );
+
+    // theme
     document.documentElement.style.setProperty(
       '--color-primary',
       `${metadata.theme.primaryColor}`,
@@ -28,12 +49,12 @@ const Board = () => {
       '--color-text',
       `${metadata.theme.textColor}`,
     );
-  }, [metadata]);
 
-  document.documentElement.style.setProperty(
-    '--color-background',
-    `${metadata.theme.backgroundColor}`,
-  );
+    document.documentElement.style.setProperty(
+      '--color-background',
+      `${metadata.theme.backgroundColor}`,
+    );
+  }, [metadata]);
 
   // useEffect(() => {
   //   document.querySelectorAll(`[data-page]`).forEach((el) => {

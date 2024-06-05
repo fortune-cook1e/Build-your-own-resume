@@ -81,6 +81,9 @@ importers:
       shared:
         specifier: workspace:^
         version: link:../shared
+      webfontloader:
+        specifier: ^1.6.28
+        version: 1.6.28
       zustand:
         specifier: ^4.5.1
         version: 4.5.1(@types/react@18.2.65)(immer@10.0.3)(react@18.2.0)
@@ -97,6 +100,9 @@ importers:
       '@types/react-router-dom':
         specifier: ^5.3.3
         version: 5.3.3
+      '@types/webfontloader':
+        specifier: ^1.6.38
+        version: 1.6.38
       '@typescript-eslint/eslint-plugin':
         specifier: ^7.1.1
         version: 7.2.0(@typescript-eslint/parser@7.2.0)(eslint@8.57.0)(typescript@5.3.3)
@@ -447,6 +453,9 @@ importers:
       sharp:
         specifier: ^0.33.3
         version: 0.33.3
+      webfontloader:
+        specifier: ^1.6.28
+        version: 1.6.28
       zod:
         specifier: ^3.22.4
         version: 3.22.4
@@ -481,6 +490,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.2.19
         version: 18.2.19
+      '@types/webfontloader':
+        specifier: ^1.6.38
+        version: 1.6.38
       autoprefixer:
         specifier: ^10.4.17
         version: 10.4.17(postcss@8.4.35)
@@ -4763,6 +4775,10 @@ packages:
 
   /@types/tough-cookie@4.0.5:
     resolution: {integrity: sha512-/Ad8+nIOV7Rl++6f1BdKxFSMgmoqEoYbHRpPcx3JEfv8VRsQe9Z4mCXeJBzxs7mbHY/XOZZuXlRNfhpVPbs6ZA==}
+    dev: true
+
+  /@types/webfontloader@1.6.38:
+    resolution: {integrity: sha512-kUaF72Fv202suFx6yBrwXqeVRMx7hGtJTesyESZgn9sEPCUeDXm2p0SiyS1MTqW74nQP4p7JyrOCwZ7pNFns4w==}
     dev: true
 
   /@types/yargs-parser@21.0.3:
@@ -14581,6 +14597,10 @@ packages:
       valid-data-url: 3.0.1
     transitivePeerDependencies:
       - encoding
+    dev: false
+
+  /webfontloader@1.6.28:
+    resolution: {integrity: sha512-Egb0oFEga6f+nSgasH3E0M405Pzn6y3/9tOVanv/DLfa1YBIgcv90L18YyWnvXkRbIM17v5Kv6IT2N6g1x5tvQ==}
     dev: false
 
   /webidl-conversions@3.0.1:

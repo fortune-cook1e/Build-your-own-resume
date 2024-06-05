@@ -1,8 +1,5 @@
 import { useBoardStore } from '@/store/board';
-import {
-  POST_MESSAGES,
-  // sampleResume,
-} from 'shared';
+import { POST_MESSAGES } from 'shared';
 import { useCallback, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
