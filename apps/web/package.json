@@ -49,6 +49,7 @@
     "react-resizable-panels": "^2.0.11",
     "shared": "workspace:^",
     "sharp": "^0.33.3",
+    "webfontloader": "^1.6.28",
     "zod": "^3.22.4",
     "zustand": "^4.5.1"
   },
@@ -62,6 +63,7 @@
     "@types/react": "^18.2.65",
     "@types/react-datepicker": "^6.0.3",
     "@types/react-dom": "^18.2.19",
+    "@types/webfontloader": "^1.6.38",
     "autoprefixer": "^10.4.17",
     "eslint": "^8.57.0",
     "eslint-config-next": "14.0.4",

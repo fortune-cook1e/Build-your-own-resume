@@ -34,12 +34,11 @@ const LeftSidebar: FC = () => {
     <div className="flex">
       <div className="flex flex-col justify-between items-center basis-12 bg-secondary-accent/30 py-4 px-2 sm:flex">
         <IconButton
+          isRound
           aria-label="home button"
-          variant="ghost"
-          size="14"
           icon={
             <Link href="/dashboard/resumes" prefetch>
-              <IconButton isRound icon={<House />} aria-label="home" />
+              <House />
             </Link>
           }
         />
