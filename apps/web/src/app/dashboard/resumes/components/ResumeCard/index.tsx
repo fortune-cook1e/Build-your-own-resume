@@ -35,7 +35,8 @@ const ResumeCard: FC<Props> = ({ resume }) => {
     router.push(`/builder/${resume.id}`);
   };
 
-  const onRenameClick = () => {
+  const onRenameClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
     setMode('update');
     setPayload({
       ...payload,
@@ -44,7 +45,8 @@ const ResumeCard: FC<Props> = ({ resume }) => {
     setOpen.on();
   };
 
-  const onDeleteClick = () => {
+  const onDeleteClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
     setMode('delete');
     setPayload({
       ...payload,
@@ -66,14 +68,15 @@ const ResumeCard: FC<Props> = ({ resume }) => {
           </MenuList>
         )}
       >
-        <ResumeModal
-          open={open}
-          onClose={setOpen.off}
-          payload={payload}
-          mode={mode}
-        />
+        <div className="size-full">
+          <ResumeModal
+            open={open}
+            onClose={setOpen.off}
+            payload={payload}
+            mode={mode}
+          />
 
-        {/* <div className="absolute top-0 bottom-0">
+          {/* <div className="absolute top-0 bottom-0">
           <Image
             src={resumeImage}
             className="size-full object-contain"
@@ -81,14 +84,15 @@ const ResumeCard: FC<Props> = ({ resume }) => {
           />
         </div> */}
 
-        <div
-          className={mergeTailwindCss(
-            'absolute inset-x-0 bottom-0 z-10 p-4 pt-12',
-            'bg-gradient-to-t from-background/80 to-transparent',
-          )}
-        >
-          <h4 className="line-clamp-2 font-medium">{title}</h4>
-          <p className="line-clamp-1 text-xs opacity-75">{`Last updated ${lastUpdated}`}</p>
+          <div
+            className={mergeTailwindCss(
+              'absolute inset-x-0 bottom-0 z-10 p-4 pt-12',
+              'bg-gradient-to-t from-background/80 to-transparent',
+            )}
+          >
+            <h4 className="line-clamp-2 font-medium">{title}</h4>
+            <p className="line-clamp-1 text-xs opacity-75">{`Last updated ${lastUpdated}`}</p>
+          </div>
         </div>
       </ContextMenu>
     </BaseCard>
