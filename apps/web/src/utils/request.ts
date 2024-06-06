@@ -5,7 +5,6 @@ import axios, {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from 'axios';
-import { redirect } from 'next/navigation';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
 import { refresh } from '@/apis/auth/refresh';
 import { queryClient } from '@/utils/queryClient';
@@ -45,7 +44,11 @@ request.interceptors.response.use(
       }
       // Todo: handle jwt token expired situation
       case ResponseCode.InvalidCredentials: {
-        return redirect('/login');
+        return window.history.replaceState(
+          null,
+          '',
+          `/resume-generator/login?redirect=${window.location.pathname}`,
+        );
       }
       default: {
         return data.data;
