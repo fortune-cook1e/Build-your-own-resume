@@ -5,10 +5,12 @@ import {
   Logger,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { ErrorMessage, Resume } from 'shared';
+import { ErrorMessage, Resume, getFontUrls } from 'shared';
 import { connect } from 'puppeteer';
 import { UtilsService } from '@/utils/utils.service';
 import { PDFDocument } from 'pdf-lib';
+import * as fontkit from '@pdf-lib/fontkit';
+import axios from 'axios';
 import { OssService } from '@/oss/oss.service';
 @Injectable()
 export class PrintService {
@@ -52,13 +54,6 @@ export class PrintService {
       // for development, puppeteer is running in a docker container
       if (isDev) {
         rootDomain = rootDomain.replace('localhost', 'host.docker.internal');
-        // await page.setRequestInterception(true);
-        // page.on('request', (request) => {
-        //   const modifiedUrl = request
-        //     .url()
-        //     .replace('localhost', `host.docker.internal`);
-        //   request.continue({ url: modifiedUrl });
-        // });
       }
 
       await page.evaluateOnNewDocument((data) => {
@@ -101,6 +96,19 @@ export class PrintService {
       await processPage();
 
       const pdf = await PDFDocument.create();
+      pdf.registerFontkit(fontkit);
+
+      const fontData = resume.data.metadata.page.font;
+      const fontUrls = getFontUrls(fontData.family, fontData.variants);
+
+      const responses = await Promise.all(
+        fontUrls.map((url) => axios.get(url, { responseType: 'arraybuffer' })),
+      );
+
+      const fontBuffer = responses.map((res) => res.data);
+
+      await Promise.all(fontBuffer.map((buffer) => pdf.embedFont(buffer)));
+
       const pdfPage = await PDFDocument.load(pageBuffer[0]);
       const [copiedPage] = await pdf.copyPages(pdfPage, [0]);
       pdf.addPage(copiedPage);
