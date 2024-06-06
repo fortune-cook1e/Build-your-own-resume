@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import '../styles/main.css';
-import 'react-datepicker/dist/react-datepicker.css';
 import Provider from './Provider';
 import '@/utils/dayjs';
 
