@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "jsx": "react-jsx",
+    "allowJs": false,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "types": ["vite/client", "vitest"],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": [],
+  "references": [{ "path": "./tsconfig.lib.json" }]
+}
