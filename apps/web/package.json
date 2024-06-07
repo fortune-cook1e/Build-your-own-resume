@@ -47,6 +47,7 @@
     "react-resizable-panels": "^2.0.11",
     "shared": "workspace:^",
     "sharp": "^0.33.3",
+    "ui": "workspace:^",
     "webfontloader": "^1.6.28",
     "zod": "^3.22.4",
     "zustand": "^4.5.1"

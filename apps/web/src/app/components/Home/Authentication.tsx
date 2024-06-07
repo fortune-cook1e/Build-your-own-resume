@@ -1,6 +1,7 @@
 import { useLogout } from '@/apis/auth/logout';
 import { useUserStore } from '@/store/user';
-import { Button, useToast } from '@chakra-ui/react';
+import { useToast } from '@chakra-ui/react';
+import { Button } from 'ui';
 import { House, SignIn, SignOut } from '@phosphor-icons/react';
 import Link from 'next/link';
 
@@ -24,16 +25,9 @@ const Authentication = () => {
     return (
       <div className="flex gap-x-4">
         <Link href="/dashboard" prefetch>
-          <Button variant="ghost" leftIcon={<House />}>
-            Dashboard
-          </Button>
+          <Button leftIcon={<House />}>Dashboard</Button>
         </Link>
-        <Button
-          variant="ghost"
-          leftIcon={<SignOut />}
-          onClick={onLogout}
-          isLoading={loading}
-        >
+        <Button onClick={onLogout} loading={loading} leftIcon={<SignOut />}>
           Loggout
         </Button>
       </div>
