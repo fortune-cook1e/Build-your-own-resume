@@ -23,7 +23,7 @@ const Export = () => {
           isLoading={loading}
           loadingText="printing resume..."
         >
-          Output to pdf
+          Download
         </Button>
       </div>
     </SectionBase>
