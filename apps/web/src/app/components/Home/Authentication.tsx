@@ -1,23 +1,20 @@
 import { useLogout } from '@/apis/auth/logout';
 import { useUserStore } from '@/store/user';
-import { useToast } from '@chakra-ui/react';
-import { Button } from 'ui';
+import { Button, useToast } from 'ui';
 import { House, SignIn, SignOut } from '@phosphor-icons/react';
 import Link from 'next/link';
 
 const Authentication = () => {
   const isLogin = useUserStore((state) => !!state.user);
   const { loading, logout } = useLogout();
-  const toast = useToast();
+  const { toast } = useToast();
 
   const onLogout = async () => {
     await logout();
     toast({
       title: 'Logout success',
-      status: 'success',
-      duration: 1000,
-      isClosable: true,
-      position: 'top',
+      description: 'You have been successfully logged out.',
+      duration: 2000,
     });
   };
 
