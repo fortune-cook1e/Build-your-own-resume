@@ -1,6 +1,4 @@
-const path = require('node:path');
-
-module.exports = {
+export default {
   plugins: {
     'postcss-import': {},
     tailwindcss: {},
