@@ -1,8 +1,7 @@
 {
-  "env": {
-    "jest": true
-  },
+  "root": true,
   "extends": [
+    "../../.eslintrc.js",
     "next/core-web-vitals",
     "plugin:@tanstack/eslint-plugin-query/recommended"
   ],
