@@ -12,20 +12,31 @@ export type LoginRes = z.infer<typeof loginResSchema>;
 
 export const loginDtoSchema = z
   .object({
-    identifier: z.string().min(2),
+    identifier: z.string().min(6),
     password: z.string().min(6),
   })
-  .refine(
-    (value) => {
-      if (value.identifier.includes('@')) {
-        return z.string().email().parse(value.identifier);
-      } else {
-        return usernameSchema.parse(value.identifier);
+  .superRefine((data, ctx) => {
+    if (data.identifier.includes('@')) {
+      const emailResult = z.string().email().min(10).safeParse(data.identifier);
+      if (!emailResult.success) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: emailResult.error.errors[0]?.message || 'Invalid email',
+          path: ['identifier'],
+        });
       }
-    },
-    {
-      message: ErrorMessage.InvalidCredentials,
-    },
-  );
+    } else {
+      const usernameResult = usernameSchema.safeParse(data.identifier);
+      if (!usernameResult.success) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message:
+            usernameResult.error.errors[0]?.message ||
+            ErrorMessage.InvalidCredentials,
+          path: ['identifier'],
+        });
+      }
+    }
+  });
 
 export class LoginDto extends createZodDto(loginDtoSchema) {}
