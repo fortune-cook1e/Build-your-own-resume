@@ -5,10 +5,8 @@ import AddResumeCard from '@/app/dashboard/resumes/components/AddResumeCard';
 import ResumeCard from '@/app/dashboard/resumes/components/ResumeCard';
 import AuthGuard from '@/components/AuthGuard';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useRouter } from 'next/navigation';
 
 const Resumes = () => {
-  const router = useRouter();
   const { loading, resumeList } = useResumeList();
 
   return (

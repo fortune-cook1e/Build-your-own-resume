@@ -20,7 +20,6 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  useToast,
   IconButton,
   ButtonGroup,
   Menu,
@@ -34,6 +33,7 @@ import { ArrowDown } from '@phosphor-icons/react';
 import { forwardRef, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { useToast } from 'ui';
 
 const formSchema = createResumeSchema.extend({
   id: idSchema.optional(),
@@ -51,7 +51,7 @@ interface Props {
 
 const ResumeModal = forwardRef<any, Props>(
   ({ open, onClose, onSuccess, payload, mode }, ref) => {
-    const toast = useToast();
+    const { toast } = useToast();
     const form = useForm<ResumeModalFormValues>({
       resolver: zodResolver(formSchema),
       defaultValues: {

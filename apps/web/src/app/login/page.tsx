@@ -1,35 +1,60 @@
 'use client';
 
-import LoginDiscussImg from '@/assets/images/login-discuss.png';
-import LoginForm from '@/app/login/components/LoginForm';
-import RegisterForm from '@/app/login/components/RegisterForm';
-import Image from 'next/image';
 import { useState } from 'react';
-import { LoginMode } from '@/app/login/shared';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from 'ui';
+import LoginForm from '@/app/login/LoginForm';
+import RegisterForm from '@/app/login/RegisterForm';
 
 const Login = () => {
-  const [mode, setMode] = useState<LoginMode>(LoginMode.Login);
+  const [mode, setMode] = useState<'login' | 'register'>('login');
 
-  const toggleMode = (mode: LoginMode) => {
-    setMode(mode);
-  };
+  const isLoginMode = mode === 'login';
 
   return (
-    <div className="h-screen">
-      {/* <Box mb={53} paddingInlineStart={42} paddingTop={31}>
-        <h3>Your Logo</h3>
-      </Box> */}
-
-      <div className="h-full flex items-center justify-center animate-fade-right animate-once">
-        <section className="w-full max-w-xl p-12 border border-solid rounded-md">
-          <h3 className="text-xl mb-[29px]">Welcome!</h3>
-          {mode === LoginMode.Login ? (
-            <LoginForm onRegisterClick={() => toggleMode(LoginMode.Register)} />
-          ) : (
-            <RegisterForm onLoginClick={() => toggleMode(LoginMode.Login)} />
-          )}
-        </section>
-      </div>
+    <div className="h-screen w-full flex items-center justify-center">
+      <Card className="w-1/3">
+        <CardHeader>
+          <CardTitle>Welcome</CardTitle>
+          <CardDescription>
+            Please {isLoginMode ? 'sign in' : 'sign up'} resume generator
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="pt-0">
+          {isLoginMode ? <LoginForm /> : <RegisterForm />}
+        </CardContent>
+        <CardFooter>
+          <div className="w-full text-center">
+            {isLoginMode ? (
+              <p className="text-[#7D7D7D]">
+                Don’t have an Account ?
+                <span
+                  className="text-black cursor-pointer ml-2"
+                  onClick={() => setMode('register')}
+                >
+                  Register
+                </span>
+              </p>
+            ) : (
+              <p className="text-[#7D7D7D]">
+                Already have an Account ?
+                <span
+                  className="text-black cursor-pointer ml-2"
+                  onClick={() => setMode('login')}
+                >
+                  Login
+                </span>
+              </p>
+            )}
+          </div>
+        </CardFooter>
+      </Card>
     </div>
   );
 };

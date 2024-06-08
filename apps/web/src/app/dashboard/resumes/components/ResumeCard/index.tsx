@@ -1,17 +1,23 @@
-import { mergeTailwindCss } from 'shared';
 import { Resume } from 'shared';
 import { FC, useState } from 'react';
 
 import dayjs from 'dayjs';
 import { useRouter } from 'next/navigation';
-import { ContextMenu } from '@/components/ContextMenu';
-import { MenuItem, MenuList, useBoolean } from '@chakra-ui/react';
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuTrigger,
+  cn,
+  useBoolean,
+} from 'ui';
 import ResumeModal, {
   ResumeModalFormValues,
 } from '@/app/dashboard/resumes/components/ResumeModal';
 import { FormMode } from '@/types';
 import { useResumeStore } from '@/store/resume';
 import BaseCard from '@/app/dashboard/resumes/components/BaseCard';
+import { File, Pencil, Trash } from '@phosphor-icons/react';
 interface Props {
   resume: Resume;
 }
@@ -35,7 +41,7 @@ const ResumeCard: FC<Props> = ({ resume }) => {
     router.push(`/builder/${resume.id}`);
   };
 
-  const onRenameClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const onRenameClick = (event: React.MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
     setMode('update');
     setPayload({
@@ -45,7 +51,7 @@ const ResumeCard: FC<Props> = ({ resume }) => {
     setOpen.on();
   };
 
-  const onDeleteClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const onDeleteClick = (event: React.MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
     setMode('delete');
     setPayload({
@@ -57,35 +63,25 @@ const ResumeCard: FC<Props> = ({ resume }) => {
 
   return (
     <BaseCard onClick={onResumeClick}>
-      <ContextMenu
-        renderMenu={() => (
-          <MenuList>
-            <MenuItem onClick={onRenameClick}>Rename</MenuItem>
-            <MenuItem onClick={onResumeClick}>Edit</MenuItem>
-            <MenuItem textColor="red" onClick={onDeleteClick}>
-              Delete
-            </MenuItem>
-          </MenuList>
-        )}
-      >
-        <div className="size-full">
-          <ResumeModal
-            open={open}
-            onClose={setOpen.off}
-            payload={payload}
-            mode={mode}
-          />
+      <ResumeModal
+        open={open}
+        onClose={setOpen.off}
+        payload={payload}
+        mode={mode}
+      />
 
+      <ContextMenu>
+        <ContextMenuTrigger className="size-full">
           {/* <div className="absolute top-0 bottom-0">
-          <Image
-            src={resumeImage}
-            className="size-full object-contain"
-            alt={resume.title}
-          />
-        </div> */}
+              <Image
+                src={resumeImage}
+                className="size-full object-contain"
+                alt={resume.title}
+              />
+            </div> */}
 
           <div
-            className={mergeTailwindCss(
+            className={cn(
               'absolute inset-x-0 bottom-0 z-10 p-4 pt-12',
               'bg-gradient-to-t from-background/80 to-transparent',
             )}
@@ -93,7 +89,23 @@ const ResumeCard: FC<Props> = ({ resume }) => {
             <h4 className="line-clamp-2 font-medium">{title}</h4>
             <p className="line-clamp-1 text-xs opacity-75">{`Last updated ${lastUpdated}`}</p>
           </div>
-        </div>
+        </ContextMenuTrigger>
+
+        <ContextMenuContent>
+          <ContextMenuItem onClick={onRenameClick} className="cursor-pointer">
+            <Pencil className="mr-2" />
+            <span>Rename</span>
+          </ContextMenuItem>
+          <ContextMenuItem onClick={onResumeClick} className="cursor-pointer">
+            <File className="mr-2" /> <span>Edit</span>
+          </ContextMenuItem>
+          <ContextMenuItem
+            onClick={onDeleteClick}
+            className="text-error cursor-pointer"
+          >
+            <Trash className="mr-2" /> <span>Delete</span>
+          </ContextMenuItem>
+        </ContextMenuContent>
       </ContextMenu>
     </BaseCard>
   );
