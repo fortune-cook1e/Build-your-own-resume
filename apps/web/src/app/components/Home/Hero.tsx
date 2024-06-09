@@ -6,16 +6,16 @@ import Authentication from '@/app/components/Home/Authentication';
 
 const Hero = () => {
   return (
-    <section id="hero" className="relative">
+    <section id="hero" className="relative dark:bg-slate-900">
       <div className="px-6 lg:flex lg:h-screen lg:items-center lg:px-12">
         <motion.div
-          className="mt-48 mb-12 shrink-0 lg:mx-0 lg:mt-0 lg:pt-8"
+          className="mb-12 mt-48 shrink-0 lg:mx-0 lg:mt-0 lg:pt-8"
           viewport={{ once: true }}
           initial={{ opacity: 0, x: -100 }}
           whileInView={{ opacity: 1, x: 0 }}
         >
           <div className="mt-10 space-y-2">
-            <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
+            <h1 className="text-4xl font-bold tracking-tight dark:text-white sm:text-6xl">
               Build your own resumes
             </h1>
           </div>
