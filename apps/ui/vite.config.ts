@@ -29,7 +29,7 @@ export default defineConfig({
   },
 
   build: {
-    // emptyOutDir: true,
+    emptyOutDir: true,
     outDir: 'dist',
     lib: {
       entry: resolve(__dirname, './src/index.ts'),
