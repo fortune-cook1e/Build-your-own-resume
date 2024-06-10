@@ -37,7 +37,7 @@ const SidebarItem: FC<Props> = ({ path, name, icon, onClick }) => {
         variant="ghost"
         className="w-full"
       >
-        <div className="flex items-center w-full">
+        <div className="flex w-full items-center text-foreground">
           <div className="mr-3">{icon}</div>
           <span>{name}</span>
           {isActive && <ActiveIndicator classname="ml-auto" />}

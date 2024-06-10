@@ -9,7 +9,7 @@ const LINKS = [
       <Button
         variant="ghost"
         size="icon"
-        className="rounded-xl dark:text-white"
+        className="rounded-xl text-foreground"
       >
         <GithubLogo size={18} />
       </Button>

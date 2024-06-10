@@ -80,12 +80,7 @@ const ResumeCard: FC<Props> = ({ resume }) => {
               />
             </div> */}
 
-          <div
-            className={cn(
-              'absolute inset-x-0 bottom-0 z-10 p-4 pt-12',
-              'bg-gradient-to-t from-background/80 to-transparent',
-            )}
-          >
+          <div className={cn('absolute inset-x-0 bottom-0 z-10 p-4 pt-12')}>
             <h4 className="line-clamp-2 font-medium">{title}</h4>
             <p className="line-clamp-1 text-xs opacity-75">{`Last updated ${lastUpdated}`}</p>
           </div>
@@ -101,7 +96,7 @@ const ResumeCard: FC<Props> = ({ resume }) => {
           </ContextMenuItem>
           <ContextMenuItem
             onClick={onDeleteClick}
-            className="text-error cursor-pointer"
+            className="cursor-pointer text-error"
           >
             <Trash className="mr-2" /> <span>Delete</span>
           </ContextMenuItem>
