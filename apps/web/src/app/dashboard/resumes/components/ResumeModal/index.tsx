@@ -38,7 +38,6 @@ import {
   AlertDialogTitle,
   cn,
 } from 'ui';
-import PropagationStopper from '@/components/PropagationStopper';
 
 const formSchema = createResumeSchema.extend({
   id: idSchema.optional(),
@@ -145,136 +144,123 @@ const ResumeModal = forwardRef<any, Props>(
 
     if (isDelete) {
       return (
-        <PropagationStopper>
-          <AlertDialog open={open} onOpenChange={toggle}>
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)}>
-                <AlertDialogContent>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle>
-                      Delete {payload?.title} resume
-                    </AlertDialogTitle>
-                    <AlertDialogDescription>
-                      Are you sure? You can't undo this action afterwards.
-                    </AlertDialogDescription>
-                  </AlertDialogHeader>
+        <AlertDialog open={open} onOpenChange={toggle}>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)}>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>
+                    Delete {payload?.title} resume
+                  </AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Are you sure? You can't undo this action afterwards.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
 
-                  <AlertDialogFooter>
-                    <div className="flex items-center gap-x-4">
-                      <Button ref={cancelRef} onClick={onClose}>
-                        Cancel
-                      </Button>
-                      <Button
-                        variant="destructive"
-                        onClick={form.handleSubmit(onSubmit)}
-                        disabled={deleteLoading}
-                        loading={deleteLoading}
-                      >
-                        Delete
-                      </Button>
-                    </div>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </form>
-            </Form>
-          </AlertDialog>
-        </PropagationStopper>
+                <AlertDialogFooter>
+                  <div className="flex items-center gap-x-4">
+                    <Button ref={cancelRef} onClick={onClose}>
+                      Cancel
+                    </Button>
+                    <Button
+                      variant="destructive"
+                      onClick={form.handleSubmit(onSubmit)}
+                      disabled={deleteLoading}
+                      loading={deleteLoading}
+                    >
+                      Delete
+                    </Button>
+                  </div>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </form>
+          </Form>
+        </AlertDialog>
       );
     }
 
     return (
-      <PropagationStopper>
-        <Dialog open={open} onOpenChange={toggle}>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>
-                {isCreate && 'Create Resume'}
-                {isUpdate && 'Update Resume'}
-              </DialogTitle>
-              <DialogDescription>
-                Make changes to your resume here. Click save when you're done.
-              </DialogDescription>
-            </DialogHeader>
+      <Dialog open={open} onOpenChange={toggle}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>
+              {isCreate && 'Create Resume'}
+              {isUpdate && 'Update Resume'}
+            </DialogTitle>
+            <DialogDescription>
+              Make changes to your resume here. Click save when you're done.
+            </DialogDescription>
+          </DialogHeader>
 
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-4"
-              >
-                <FormField
-                  name="title"
-                  control={form.control}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Title</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Input your title" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <FormField
+                name="title"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Title</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Input your title" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                name="description"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Description</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Input your description" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <DialogFooter>
+                <div className="flex items-center">
+                  <Button
+                    onClick={onClose}
+                    variant="ghost"
+                    className="mr-4 text-foreground"
+                  >
+                    Close
+                  </Button>
+                  <Button
+                    disabled={isSaving}
+                    loading={isSaving}
+                    type="submit"
+                    className={cn(isCreate && 'rounded-r-none')}
+                  >
+                    Save
+                  </Button>
+
+                  {isCreate && (
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button size="icon" className="rounded-l-none border-l">
+                          <CaretDown />
+                        </Button>
+                      </DropdownMenuTrigger>
+
+                      <DropdownMenuContent side="right" align="center">
+                        <DropdownMenuItem onClick={onCreateFromSample}>
+                          Created from sample
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                   )}
-                />
-
-                <FormField
-                  name="description"
-                  control={form.control}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Description</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="Input your description"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <DialogFooter>
-                  <div className="flex items-center">
-                    <Button
-                      onClick={onClose}
-                      variant="ghost"
-                      className="mr-4 text-foreground"
-                    >
-                      Close
-                    </Button>
-                    <Button
-                      disabled={isSaving}
-                      loading={isSaving}
-                      onClick={form.handleSubmit(onSubmit)}
-                      className={cn(isCreate && 'rounded-r-none')}
-                    >
-                      Save
-                    </Button>
-
-                    {isCreate && (
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button
-                            size="icon"
-                            className="rounded-l-none border-l"
-                          >
-                            <CaretDown />
-                          </Button>
-                        </DropdownMenuTrigger>
-
-                        <DropdownMenuContent side="right" align="center">
-                          <DropdownMenuItem onClick={onCreateFromSample}>
-                            Created from sample
-                          </DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    )}
-                  </div>
-                </DialogFooter>
-              </form>
-            </Form>
-          </DialogContent>
-        </Dialog>
-      </PropagationStopper>
+                </div>
+              </DialogFooter>
+            </form>
+          </Form>
+        </DialogContent>
+      </Dialog>
     );
   },
 );
