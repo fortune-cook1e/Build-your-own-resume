@@ -3,37 +3,42 @@ import { useDeleteResume } from '@/apis/resume/delete';
 import { useImportResume } from '@/apis/resume/import';
 import { useUpdateResume } from '@/apis/resume/update';
 import { FormMode } from '@/types';
-import {
-  AlertDialog,
-  AlertDialogOverlay,
-  AlertDialogContent,
-  AlertDialogBody,
-  AlertDialogHeader,
-  AlertDialogFooter,
-  Button,
-  FormControl,
-  FormLabel,
-  Input,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  IconButton,
-  ButtonGroup,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-} from '@chakra-ui/react';
+
 import { createResumeSchema, idSchema, sampleResume } from 'shared';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ArrowDown } from '@phosphor-icons/react';
+import { CaretDown } from '@phosphor-icons/react';
 import { forwardRef, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { useToast } from 'ui';
+import {
+  useToast,
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  Button,
+  Form,
+  Input,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  cn,
+} from 'ui';
+import PropagationStopper from '@/components/PropagationStopper';
 
 const formSchema = createResumeSchema.extend({
   id: idSchema.optional(),
@@ -44,13 +49,14 @@ export type ResumeModalFormValues = z.infer<typeof formSchema>;
 interface Props {
   open: boolean;
   onClose: () => void;
+  toggle: (boolean: boolean) => void;
   onSuccess?: () => void;
   mode: FormMode;
   payload?: ResumeModalFormValues;
 }
 
 const ResumeModal = forwardRef<any, Props>(
-  ({ open, onClose, onSuccess, payload, mode }, ref) => {
+  ({ open, onClose, onSuccess, payload, mode, toggle }, ref) => {
     const { toast } = useToast();
     const form = useForm<ResumeModalFormValues>({
       resolver: zodResolver(formSchema),
@@ -65,6 +71,8 @@ const ResumeModal = forwardRef<any, Props>(
     const { createResume, loading: createLoading } = useCreateResume();
     const { deleteResume, loading: deleteLoading } = useDeleteResume();
     const { importResume, loading: importLoading } = useImportResume();
+
+    const isSaving = updateLoading || createLoading || importLoading;
 
     const isCreate = mode === 'create';
     const isUpdate = mode === 'update';
@@ -137,94 +145,136 @@ const ResumeModal = forwardRef<any, Props>(
 
     if (isDelete) {
       return (
-        <AlertDialog
-          isOpen={open}
-          onClose={onClose}
-          leastDestructiveRef={cancelRef}
-        >
-          <AlertDialogOverlay />
+        <PropagationStopper>
+          <AlertDialog open={open} onOpenChange={toggle}>
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)}>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>
+                      Delete {payload?.title} resume
+                    </AlertDialogTitle>
+                    <AlertDialogDescription>
+                      Are you sure? You can't undo this action afterwards.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
 
-          <AlertDialogContent>
-            <form onSubmit={form.handleSubmit(onSubmit)}>
-              <AlertDialogHeader fontSize="lg" fontWeight="bold">
-                Delete {payload?.title} resume
-              </AlertDialogHeader>
-
-              <AlertDialogBody>
-                Are you sure? You can't undo this action afterwards.
-              </AlertDialogBody>
-
-              <AlertDialogFooter>
-                <Button ref={cancelRef} onClick={onClose}>
-                  Cancel
-                </Button>
-                <Button
-                  colorScheme="red"
-                  type="submit"
-                  ml={3}
-                  isLoading={deleteLoading}
-                >
-                  Delete
-                </Button>
-              </AlertDialogFooter>
-            </form>
-          </AlertDialogContent>
-        </AlertDialog>
+                  <AlertDialogFooter>
+                    <div className="flex items-center gap-x-4">
+                      <Button ref={cancelRef} onClick={onClose}>
+                        Cancel
+                      </Button>
+                      <Button
+                        variant="destructive"
+                        onClick={form.handleSubmit(onSubmit)}
+                        disabled={deleteLoading}
+                        loading={deleteLoading}
+                      >
+                        Delete
+                      </Button>
+                    </div>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </form>
+            </Form>
+          </AlertDialog>
+        </PropagationStopper>
       );
     }
 
     return (
-      <Modal isOpen={open} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
-            <ModalHeader>
-              {isCreate && 'Create Resume'}
-              {isUpdate && 'Update Resume'}
-            </ModalHeader>
-            <ModalBody>
-              <FormControl className="mb-4">
-                <FormLabel>Title</FormLabel>
-                <Input
-                  placeholder="Input your title"
-                  {...form.register('title')}
-                />
-              </FormControl>
+      <PropagationStopper>
+        <Dialog open={open} onOpenChange={toggle}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>
+                {isCreate && 'Create Resume'}
+                {isUpdate && 'Update Resume'}
+              </DialogTitle>
+              <DialogDescription>
+                Make changes to your resume here. Click save when you're done.
+              </DialogDescription>
+            </DialogHeader>
 
-              <FormControl>
-                <FormLabel>Description</FormLabel>
-                <Input
-                  placeholder="Input your description"
-                  {...form.register('description')}
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-4"
+              >
+                <FormField
+                  name="title"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Title</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Input your title" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </FormControl>
-            </ModalBody>
 
-            <ModalFooter gap={4}>
-              <Button onClick={onClose}>Close</Button>
-              <ButtonGroup isAttached>
-                <Button
-                  type="submit"
-                  isLoading={updateLoading || createLoading || importLoading}
-                >
-                  {isCreate && 'Create'}
-                  {isUpdate && 'Update'}
-                </Button>
-                <Menu>
-                  <MenuButton as={IconButton} icon={<ArrowDown />}>
-                    Actions
-                  </MenuButton>
-                  <MenuList>
-                    <MenuItem onClick={onCreateFromSample}>
-                      Create from sample
-                    </MenuItem>
-                  </MenuList>
-                </Menu>
-              </ButtonGroup>
-            </ModalFooter>
-          </form>
-        </ModalContent>
-      </Modal>
+                <FormField
+                  name="description"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Description</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Input your description"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <DialogFooter>
+                  <div className="flex items-center">
+                    <Button
+                      onClick={onClose}
+                      variant="ghost"
+                      className="mr-4 text-foreground"
+                    >
+                      Close
+                    </Button>
+                    <Button
+                      disabled={isSaving}
+                      loading={isSaving}
+                      onClick={form.handleSubmit(onSubmit)}
+                      className={cn(isCreate && 'rounded-r-none')}
+                    >
+                      Save
+                    </Button>
+
+                    {isCreate && (
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button
+                            size="icon"
+                            className="rounded-l-none border-l"
+                          >
+                            <CaretDown />
+                          </Button>
+                        </DropdownMenuTrigger>
+
+                        <DropdownMenuContent side="right" align="center">
+                          <DropdownMenuItem onClick={onCreateFromSample}>
+                            Created from sample
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    )}
+                  </div>
+                </DialogFooter>
+              </form>
+            </Form>
+          </DialogContent>
+        </Dialog>
+      </PropagationStopper>
     );
   },
 );

@@ -12,7 +12,12 @@ const AddResumeCard = () => {
 
   return (
     <BaseCard onClick={onClick}>
-      <ResumeModal open={open} onClose={setOpen.off} mode="create" />
+      <ResumeModal
+        open={open}
+        toggle={setOpen.toggle}
+        onClose={setOpen.off}
+        mode="create"
+      />
       <Plus size={40} />
     </BaseCard>
   );

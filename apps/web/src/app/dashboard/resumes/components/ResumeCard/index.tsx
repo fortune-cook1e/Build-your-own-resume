@@ -65,6 +65,7 @@ const ResumeCard: FC<Props> = ({ resume }) => {
     <BaseCard onClick={onResumeClick}>
       <ResumeModal
         open={open}
+        toggle={setOpen.toggle}
         onClose={setOpen.off}
         payload={payload}
         mode={mode}
