@@ -7,6 +7,16 @@ const nextConfig = {
   experimental: {
     outputFileTracingRoot: path.join(__dirname, '../../'),
   },
+
+  async redirects() {
+    return [
+      {
+        source: '/dashboard',
+        destination: '/dashboard/resumes',
+        permanent: true,
+      },
+    ];
+  },
   async rewrites() {
     const isDev = process.env.NODE_ENV === 'development';
     return [
