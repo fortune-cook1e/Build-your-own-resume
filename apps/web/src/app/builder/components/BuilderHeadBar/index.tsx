@@ -1,12 +1,11 @@
 import { useBuilderStore } from '@/store/builder';
 import { useResumeStore } from '@/store/resume';
-import { IconButton } from '@chakra-ui/react';
 import { mergeTailwindCss } from 'shared';
 import { HouseSimple, SidebarSimple } from '@phosphor-icons/react';
 import { useRouter } from 'next/navigation';
-import { FC } from 'react';
+import { Button } from 'ui';
 
-const BuilderHeadBar: FC = () => {
+const BuilderHeadBar = () => {
   const router = useRouter();
   const leftPanelSize = useBuilderStore((state) => state.panel.left.size);
   const rightPanelSize = useBuilderStore((state) => state.panel.right.size);
@@ -27,21 +26,21 @@ const BuilderHeadBar: FC = () => {
     >
       <div className="flex h-full items-center justify-between px-4">
         <div className="lg:hidden">
-          <IconButton
-            aria-label="Toggle left"
-            variant="ghost"
-            icon={<SidebarSimple />}
-          />
+          <Button size="icon" aria-label="Toggle left" variant="ghost">
+            <SidebarSimple />
+          </Button>
         </div>
 
         <div className="flex items-center justify-center gap-x-1 lg:mx-auto">
-          <IconButton
+          <Button
+            size="icon"
             aria-label="Home"
             variant="ghost"
             className="cursor-pointer"
             onClick={() => router.push('/dashboard/resumes')}
-            icon={<HouseSimple />}
-          />
+          >
+            <HouseSimple />
+          </Button>
           <span className="mr-2 text-xs opacity-40">/</span>
 
           <h1 className="font-medium">{title}</h1>

@@ -1,5 +1,5 @@
 const Builder = () => {
-  return <div>builder page</div>;
+  return null;
 };
 
 export default Builder;

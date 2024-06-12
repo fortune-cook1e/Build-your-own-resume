@@ -1,5 +1,4 @@
 import { useBuilderStore } from '@/store/builder';
-import { Icon, IconButton, Tooltip } from '@chakra-ui/react';
 import { POST_MESSAGES } from 'shared';
 import {
   MagnifyingGlassMinus,
@@ -7,11 +6,11 @@ import {
   ClockClockwise,
   CornersIn,
   CornersOut,
+  CubeFocus,
 } from '@phosphor-icons/react';
-import { CubeFocus } from '@phosphor-icons/react/dist/ssr';
-import { FC } from 'react';
+import { Button, Tooltip } from 'ui';
 
-const BuilderToolBar: FC = () => {
+const BuilderToolBar = () => {
   const iframeRef = useBuilderStore((state) => state.iframe.ref);
   const fullScreen = useBuilderStore((state) => state.fullScreen);
   const setFullScreen = useBuilderStore((state) => state.setFullscreen);
@@ -39,49 +38,49 @@ const BuilderToolBar: FC = () => {
   return (
     <div className="fixed inset-x-0 bottom-0 mx-auto py-6 text-center">
       <div className="inline-flex items-center justify-center rounded-full bg-background px-4 shadow-xl">
-        <Tooltip label="Zoom in">
-          <IconButton
+        <Tooltip content="Zoom in">
+          <Button
             aria-label="zoom in"
             variant="ghost"
-            icon={<MagnifyingGlassPlus />}
             onClick={onZoomIn}
-          />
+            size="icon"
+          >
+            <MagnifyingGlassPlus />
+          </Button>
         </Tooltip>
 
-        <Tooltip label="zoom out">
-          <IconButton
-            variant="ghost"
-            aria-label="zoom out"
-            icon={<MagnifyingGlassMinus />}
-            onClick={onZoomOut}
-          />
+        <Tooltip content="zoom out">
+          <Button variant="ghost" aria-label="zoom out" onClick={onZoomOut}>
+            <MagnifyingGlassMinus />
+          </Button>
         </Tooltip>
 
-        <Tooltip label="Center">
-          <IconButton
+        <Tooltip content="Center">
+          <Button aria-label="center" variant="ghost" onClick={onCenter}>
+            <CubeFocus />
+          </Button>
+        </Tooltip>
+
+        <Tooltip content="Reset">
+          <Button
             aria-label="center"
             variant="ghost"
-            icon={<CubeFocus />}
-            onClick={onCenter}
-          />
-        </Tooltip>
-
-        <Tooltip label="Reset">
-          <IconButton
-            aria-label="center"
-            variant="ghost"
-            icon={<ClockClockwise />}
+            size="icon"
             onClick={onReset}
-          />
+          >
+            <ClockClockwise />
+          </Button>
         </Tooltip>
 
-        <Tooltip label={fullScreen ? 'Exit full screen' : 'Full screen'}>
-          <IconButton
+        <Tooltip content={fullScreen ? 'Exit full screen' : 'Full screen'}>
+          <Button
             aria-label={fullScreen ? 'Exit full screen' : 'Full screen'}
             variant="ghost"
-            icon={fullScreen ? <CornersIn /> : <CornersOut />}
             onClick={() => setFullScreen(!fullScreen)}
-          />
+            size="icon"
+          >
+            {fullScreen ? <CornersIn /> : <CornersOut />}
+          </Button>
         </Tooltip>
       </div>
     </div>
