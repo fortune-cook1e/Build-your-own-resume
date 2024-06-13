@@ -14,10 +14,11 @@ export class AllExceptionsFilter implements ExceptionFilter {
     const response = ctx.getResponse();
     const status = exception.getStatus();
 
-    console.log('Exception caught:', exception);
+    console.log('Exception Filter caught:', exception);
 
     response.status(status).json({
       code: ResponseCode.Error,
+      data: null,
       message: exception.message,
     });
   }

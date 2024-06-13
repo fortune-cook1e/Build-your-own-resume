@@ -6,7 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { DatabaseModule } from './database/database.module';
 import { APP_FILTER, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { ZodValidationPipe } from 'nestjs-zod';
-import { ResponseInterceptor } from './interceptors/response';
+import { ResponseInterceptor } from './interceptors/response.interceptor';
 import { MailModule } from './mail/mail.module';
 import { AllExceptionsFilter } from './filters/exception.filter';
 import { HealthModule } from '@/health/health.module';

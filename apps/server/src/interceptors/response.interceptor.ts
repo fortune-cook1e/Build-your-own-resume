@@ -9,6 +9,7 @@ import {
 import { ResponseCode } from '../constants/index';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { ZodValidationException } from 'nestjs-zod';
 
 export interface CommonResponse<T> {
   code: ResponseCode;
@@ -39,20 +40,31 @@ export class ResponseInterceptor<T>
     };
   }
 
-  errorHandler(exception: HttpException, context: ExecutionContext) {
+  errorHandler(
+    exception: HttpException | ZodValidationException,
+    context: ExecutionContext,
+  ) {
     const ctx = context.switchToHttp();
     const response = ctx.getResponse();
 
-    console.log('Response Exception Caught:', exception);
-    const status =
-      exception instanceof HttpException
-        ? exception.getStatus()
-        : HttpStatus.INTERNAL_SERVER_ERROR;
+    console.log('Response Interceptor ErrorHandler Caught:', exception);
+
+    const isHttpException = exception instanceof HttpException;
+    const isZodValidtionPipeError = exception instanceof ZodValidationException;
+
+    const status = isHttpException
+      ? exception.getStatus()
+      : HttpStatus.BAD_REQUEST;
+
+    const message = isZodValidtionPipeError
+      ? exception.getZodError().errors[0].message
+      : exception.message;
 
     // Todo: 这里要区分 Invalid Credentials 情况
     response.status(status).json({
       code: ResponseCode.Error,
-      message: exception.message || 'Request failed',
+      data: null,
+      message: message || 'Request failed',
     });
   }
 }

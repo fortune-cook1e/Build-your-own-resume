@@ -13,13 +13,9 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     logger:
       process.env.NODE_ENV === 'development'
-        ? ['debug']
+        ? ['debug', 'error', 'warn']
         : ['error', 'warn', 'log'],
   });
-
-  const env = process.env.NODE_ENV;
-
-  console.log('current NODE_ENV', { env });
 
   const configService = app.get(ConfigService<Config>);
 

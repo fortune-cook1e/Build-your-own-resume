@@ -1,4 +1,4 @@
-import { z } from 'nestjs-zod/z';
+import { z } from 'zod';
 
 export const configSchema = z.object({
   REDIS_URL: z.string().url().startsWith('redis://').optional(),
