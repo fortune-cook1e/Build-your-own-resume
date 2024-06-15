@@ -14,3 +14,5 @@ export * from './Slider';
 export * from './Tooltip';
 export * from './Select';
 export * from './Card';
+export * from './Command';
+export * from './Combobox';
