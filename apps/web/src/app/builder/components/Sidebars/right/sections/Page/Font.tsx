@@ -1,8 +1,8 @@
 import { useResumeStore } from '@/store/resume';
-import { Button, FormControl, FormLabel, Select } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { fonts } from 'shared';
 import webFontLoader from 'webfontloader';
+import { Button, Label, Combobox, ComboboxOption } from 'ui';
 
 const FONT_FAMILYS = [
   'Open Sans',
@@ -19,8 +19,8 @@ const Font = () => {
     (state) => state.resume.data.metadata.page.font,
   );
   const setValue = useResumeStore((state) => state.setValue);
-  const [subsetOptions, setSubsetOptions] = useState<string[]>([]);
-  const [variantsOptions, setVariantsOptions] = useState<string[]>([]);
+  const [subsetOptions, setSubsetOptions] = useState<ComboboxOption[]>([]);
+  const [variantsOptions, setVariantsOptions] = useState<ComboboxOption[]>([]);
 
   useEffect(() => {
     for (const font of FONT_FAMILYS) {
@@ -35,10 +35,15 @@ const Font = () => {
 
   useEffect(() => {
     const subsets =
-      fonts.find((item) => item.family === fontValue.family)?.subsets ?? [];
-    setSubsetOptions(subsets);
+      fonts
+        .find((item) => item.family === fontValue.family)
+        ?.subsets.map((item) => ({ label: item, value: item })) ?? [];
     const variants =
-      fonts.find((item) => item.family === fontValue.family)?.variants ?? [];
+      fonts
+        .find((item) => item.family === fontValue.family)
+        ?.variants.map((item) => ({ label: item, value: item })) ?? [];
+
+    setSubsetOptions(subsets);
     setVariantsOptions(variants);
   }, [fontValue.family]);
 
@@ -49,9 +54,8 @@ const Font = () => {
         {FONT_FAMILYS.map((item) => (
           <Button
             key={item}
-            variant="outline"
-            fontFamily={item}
-            isActive={fontValue.family === item}
+            variant={fontValue.family === item ? 'default' : 'outline'}
+            style={{ fontFamily: item }}
             onClick={() => {
               if (fontValue.family === item) return;
               setValue('metadata.page.font.family', item);
@@ -65,44 +69,30 @@ const Font = () => {
       </div>
 
       <div className="grid grid-cols-1 gap-4">
-        <FormControl>
-          <FormLabel>
-            <span className="font-bold">Font Subset</span>
-          </FormLabel>
-          <Select
+        <div className="space-y-4">
+          <Label className="font-bold">Font Subset</Label>
+          <Combobox
+            options={subsetOptions}
             value={fontValue.subset}
-            onChange={(e) => {
-              setValue('metadata.page.font.subset', e.target.value);
-            }}
-          >
-            {subsetOptions.map((item) => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </Select>
-        </FormControl>
+            searchPlaceholder="Search for a font subset"
+            onValueChange={(value) =>
+              setValue('metadata.page.font.subset', value)
+            }
+          />
+        </div>
 
-        {/* // Todo: add font variants */}
-        {/* <FormControl>
-          <FormLabel>
-            <span className="font-bold">Font Variants</span>
-          </FormLabel>
-          <Select
+        <div className="space-y-4">
+          <Label className="font-bold">Font Variants</Label>
+          <Combobox
             multiple
+            options={variantsOptions}
             value={fontValue.variants}
-            onChange={(e) => {
-              console.log(e.target.value);
-              setValue('metadata.page.font.variants', e.target.value);
-            }}
-          >
-            {variantsOptions.map((item) => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </Select>
-        </FormControl> */}
+            searchPlaceholder="Search for a font variant"
+            onValueChange={(value) =>
+              setValue('metadata.page.font.variants', value)
+            }
+          />
+        </div>
       </div>
     </div>
   );

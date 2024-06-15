@@ -1,7 +1,7 @@
 import { usePrintResume } from '@/apis/resume/print';
 import SectionBase from '@/app/builder/components/Sidebars/right/common/SectionBase';
 import { useResumeStore } from '@/store/resume';
-import { Button } from '@chakra-ui/react';
+import { Button } from 'ui';
 import { FilePdf } from '@phosphor-icons/react';
 
 const Export = () => {
@@ -20,7 +20,7 @@ const Export = () => {
           onClick={onPDfExport}
           leftIcon={<FilePdf size={22} />}
           aria-label="pdf"
-          isLoading={loading}
+          loading={loading}
           loadingText="printing resume..."
         >
           Download

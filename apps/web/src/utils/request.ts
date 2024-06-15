@@ -119,6 +119,11 @@ const handleRefreshFailed = async () => {
     );
     return Promise.resolve();
   } catch (e) {
+    window.history.replaceState(
+      null,
+      '',
+      `/resume-generator/login?redirect=${window.location.pathname}`,
+    );
     return Promise.reject(e);
   }
 };

@@ -1,6 +1,5 @@
 import SectionBase from '@/app/builder/components/Sidebars/right/common/SectionBase';
 import { useResumeStore } from '@/store/resume';
-import { Portal } from '@chakra-ui/react';
 import {
   DndContext,
   DragEndEvent,
@@ -21,8 +20,9 @@ import {
   useSortable,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
+import { cn } from 'ui';
 import { CSS } from '@dnd-kit/utilities';
-import { mergeTailwindCss, SectionEnum, SectionEnumType } from 'shared';
+import { SectionEnumType } from 'shared';
 import { DotsSixVertical } from '@phosphor-icons/react';
 import { get } from 'lodash-es';
 import { useState } from 'react';
@@ -41,7 +41,7 @@ const Column = ({ id, name, items }: ColumnProps) => {
       strategy={verticalListSortingStrategy}
     >
       <div className="relative">
-        <div className="absolute inset-0 w-3/4 rounded bg-secondary/50" />
+        <div className="absolute inset-0 w-full rounded bg-secondary/50" />
 
         <div className="relative z-10 p-3 pb-8">
           <p className="mb-3 text-xs font-bold">{name}</p>
@@ -69,7 +69,7 @@ const Section = ({ id, isDragging = false }: SectionProps) => {
 
   return (
     <div
-      className={mergeTailwindCss(
+      className={cn(
         'cursor-grab rounded bg-primary p-2 text-primary-foreground transition-colors hover:bg-primary-accent',
         isDragging && 'cursor-grabbing',
       )}
@@ -216,11 +216,9 @@ const Layout = () => {
             <Column id="side" name="side" items={data.side} />
           </div>
 
-          <Portal>
-            <DragOverlay>
-              {activeId && <Section id={activeId} isDragging />}
-            </DragOverlay>
-          </Portal>
+          <DragOverlay>
+            {activeId && <Section id={activeId} isDragging />}
+          </DragOverlay>
         </DndContext>
       </main>
     </SectionBase>

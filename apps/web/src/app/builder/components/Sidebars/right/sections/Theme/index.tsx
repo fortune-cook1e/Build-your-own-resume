@@ -1,7 +1,7 @@
 import SectionBase from '@/app/builder/components/Sidebars/right/common/SectionBase';
 import { useResumeStore } from '@/store/resume';
-import { FormControl, FormLabel, Input } from '@chakra-ui/react';
 import { FormEvent } from 'react';
+import { Label, Input } from 'ui';
 
 const Palettes = [
   '#9253a1',
@@ -38,11 +38,11 @@ const Theme = () => {
 
   return (
     <SectionBase id="theme">
-      <div className="grid grid-cols-5 gap-4 mb-4">
+      <div className="mb-4 grid grid-cols-5 gap-4">
         {Palettes.map((item) => {
           return (
             <div
-              className="w-10 h-10 rounded-md cursor-pointer"
+              className="h-10 w-10 cursor-pointer rounded-md"
               style={{ background: item }}
               key={item}
               onClick={() => onPaletteClick(item)}
@@ -52,32 +52,32 @@ const Theme = () => {
       </div>
 
       <div className="grid grid-cols-1 gap-y-4">
-        <FormControl>
-          <FormLabel>Primary color</FormLabel>
+        <div>
+          <Label>Primary color</Label>
           <Input
             value={theme.primaryColor}
             placeholder="Primary color"
             onChange={onPrimaryColorChange}
           />
-        </FormControl>
+        </div>
 
-        <FormControl>
-          <FormLabel>Text color</FormLabel>
+        <div>
+          <Label>Text color</Label>
           <Input
             value={theme.textColor}
             placeholder="Text color"
             onChange={onTextColorChange}
           />
-        </FormControl>
+        </div>
 
-        <FormControl>
-          <FormLabel>Background color</FormLabel>
+        <div>
+          <Label>Background color</Label>
           <Input
             value={theme.backgroundColor}
             placeholder="Background color"
             onChange={onbgColorChange}
           />
-        </FormControl>
+        </div>
       </div>
     </SectionBase>
   );

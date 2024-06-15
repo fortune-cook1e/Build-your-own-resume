@@ -1,51 +1,27 @@
 import { useResumeStore } from '@/store/resume';
-import {
-  FormControl,
-  FormLabel,
-  Slider,
-  SliderTrack,
-  SliderFilledTrack,
-  Tooltip,
-  SliderThumb,
-} from '@chakra-ui/react';
-import { useState } from 'react';
+import { Label, Slider } from 'ui';
 
 const LineHeight = () => {
   const pageValue = useResumeStore((state) => state.resume.data.metadata.page);
   const setValue = useResumeStore((state) => state.setValue);
 
-  const onLineHeightChange = (value: number) => {
-    setValue('metadata.page.font.lineHeight', value);
+  const onLineHeightChange = (value: number[]) => {
+    setValue('metadata.page.font.lineHeight', value[0]);
   };
 
-  const [showTooltip, setShowTooltip] = useState(false);
-
   return (
-    <FormControl>
-      <FormLabel>Lineheight</FormLabel>
-      <Slider
-        value={pageValue.font.lineHeight}
-        onChange={onLineHeightChange}
-        max={3}
-        step={0.05}
-        onMouseEnter={() => setShowTooltip(true)}
-        onMouseLeave={() => setShowTooltip(false)}
-      >
-        <SliderTrack>
-          <SliderFilledTrack />
-        </SliderTrack>
-        <Tooltip
-          hasArrow
-          bg="blue.500"
-          color="white"
-          placement="top"
-          isOpen={showTooltip}
-          label={pageValue.font.lineHeight}
-        >
-          <SliderThumb />
-        </Tooltip>
-      </Slider>
-    </FormControl>
+    <div className="space-y-4">
+      <Label className="font-bold">LineHeight</Label>
+      <div className="flex justify-between gap-x-4">
+        <Slider
+          value={[pageValue.font.lineHeight]}
+          max={3}
+          step={0.05}
+          onValueChange={onLineHeightChange}
+        />
+        <Label className="font-bold">{pageValue.font.lineHeight}</Label>
+      </div>
+    </div>
   );
 };
 
