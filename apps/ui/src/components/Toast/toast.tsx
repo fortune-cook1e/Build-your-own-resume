@@ -5,6 +5,8 @@ import { X } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 
+export type ToastStatus = 'success' | 'error' | 'warning' | 'info' | 'loading';
+
 const ToastProvider = ToastPrimitives.Provider;
 
 const ToastViewport = React.forwardRef<
