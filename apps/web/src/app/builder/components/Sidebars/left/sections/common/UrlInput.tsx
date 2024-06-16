@@ -1,18 +1,14 @@
-import {
-  Flex,
-  IconButton,
-  Input,
-  Popover,
-  PopoverBody,
-  PopoverContent,
-  PopoverTrigger,
-  Tooltip,
-  FormLabel,
-  Box,
-} from '@chakra-ui/react';
 import { urlSchema, URL } from 'shared';
 import { Tag } from '@phosphor-icons/react';
 import { forwardRef } from 'react';
+import {
+  Button,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  Tooltip,
+  Input,
+} from 'ui';
 
 interface Props {
   onChange: (value: URL) => void;
@@ -25,7 +21,7 @@ const UrlInput = forwardRef<any, Props>(
   ({ value, onChange, domId, placeholder }, ref) => {
     const isInvalid = urlSchema.safeParse(value).success === false;
     return (
-      <Flex gap="2" alignItems="end">
+      <div className="flex items-end gap-2">
         <Input
           id={domId}
           value={value.link}
@@ -39,36 +35,34 @@ const UrlInput = forwardRef<any, Props>(
           }
         />
         <Popover>
-          <Tooltip label="Url label" aria-label="tooltip">
+          <Tooltip content="Url label">
             {/* Tip: add Box to fix the bug that tooltip not showing  */}
-            <Box>
-              <PopoverTrigger>
-                <IconButton
-                  ref={ref}
-                  variant="ghost"
-                  aria-label="Url label"
-                  icon={<Tag />}
-                />
-              </PopoverTrigger>
-            </Box>
+            <PopoverTrigger asChild>
+              <Button
+                ref={ref}
+                variant="ghost"
+                aria-label="Url label"
+                size="icon"
+              >
+                <Tag />
+              </Button>
+            </PopoverTrigger>
           </Tooltip>
 
           <PopoverContent>
-            <PopoverBody>
-              <Input
-                value={value.label}
-                placeholder="Label"
-                onChange={(event) =>
-                  onChange({
-                    ...value,
-                    label: event.target.value,
-                  })
-                }
-              />
-            </PopoverBody>
+            <Input
+              value={value.label}
+              placeholder="Label"
+              onChange={(event) =>
+                onChange({
+                  ...value,
+                  label: event.target.value,
+                })
+              }
+            />
           </PopoverContent>
         </Popover>
-      </Flex>
+      </div>
     );
   },
 );

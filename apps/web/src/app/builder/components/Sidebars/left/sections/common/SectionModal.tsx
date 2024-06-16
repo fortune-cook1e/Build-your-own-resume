@@ -2,14 +2,13 @@ import { SectionItem, SectionWithItem } from 'shared';
 
 import {
   Button,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
-  ModalFooter,
-} from '@chakra-ui/react';
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+  Form,
+} from 'ui';
 import { useResumeStore } from '@/store/resume';
 import { get } from 'lodash-es';
 import { UseFormReturn } from 'react-hook-form';
@@ -65,7 +64,6 @@ const SectionModal = <T extends SectionItem>({
       );
     }
 
-    form.reset();
     setOpen.off();
   };
 
@@ -89,31 +87,32 @@ const SectionModal = <T extends SectionItem>({
   }, [open, form]);
 
   return (
-    <Modal isOpen={open} onClose={setOpen.off}>
-      <ModalOverlay />
+    <Dialog open={open} onOpenChange={setOpen.toggle}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>
+            {isCreate && `Create an item of ${section.name}`}
+            {isUpdate && `Update an item of ${section.name}`}
+          </DialogTitle>
+        </DialogHeader>
 
-      <ModalContent>
-        <ModalHeader>
-          {isCreate && `Create an item of ${section.name}`}
-          {isUpdate && `Update an item of ${section.name}`}
-        </ModalHeader>
-        <ModalCloseButton />
-        <ModalBody>
-          <form id="section-form" onSubmit={form.handleSubmit(onSubmit)}>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} id="section-form">
             {children}
           </form>
-        </ModalBody>
-        <ModalFooter>
-          <Button variant="ghost" mr={3} onClick={setOpen.off}>
+        </Form>
+
+        <DialogFooter>
+          <Button variant="ghost" className="mr-3" onClick={setOpen.off}>
             Close
           </Button>
-          <Button colorScheme="blue" type="submit" form="section-form">
+          <Button type="submit" form="section-form">
             {isCreate && 'Create an item'}
             {isUpdate && 'Update item'}
           </Button>
-        </ModalFooter>
-      </ModalContent>
-    </Modal>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 };
 

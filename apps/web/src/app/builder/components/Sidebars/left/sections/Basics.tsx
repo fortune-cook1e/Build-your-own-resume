@@ -2,10 +2,9 @@ import { getSectionIcon } from '@/app/builder/components/Sidebars/left/sections/
 import UrlInput from '@/app/builder/components/Sidebars/left/sections/common/UrlInput';
 import { useResumeStore } from '@/store/resume';
 import { basicsSchema } from 'shared';
-import { FormControl, Input, FormLabel } from '@chakra-ui/react';
-import { FC } from 'react';
+import { Label, Input } from 'ui';
 
-const Basics: FC = () => {
+const Basics = () => {
   const setValue = useResumeStore((state) => state.setValue);
   const basics = useResumeStore((state) => state.resume.data.basics);
 
@@ -19,8 +18,8 @@ const Basics: FC = () => {
       </header>
 
       <main className="grid gap-4 sm:grid-cols-2">
-        <FormControl className="sm:col-span-2">
-          <FormLabel htmlFor="basics.name">Full Name</FormLabel>
+        <div className="space-y-4 sm:col-span-2">
+          <Label htmlFor="basics.name">Full Name</Label>
           <Input
             id="basics.name"
             value={basics.name}
@@ -31,10 +30,10 @@ const Basics: FC = () => {
             }
             onChange={(event) => setValue('basics.name', event.target.value)}
           />
-        </FormControl>
+        </div>
 
-        <FormControl className="sm:col-span-2">
-          <FormLabel htmlFor="basics.headline">Headline</FormLabel>
+        <div className="space-y-4 sm:col-span-2">
+          <Label htmlFor="basics.headline">Headline</Label>
           <Input
             id="basics.headline"
             value={basics.headline}
@@ -42,10 +41,10 @@ const Basics: FC = () => {
               setValue('basics.headline', event.target.value)
             }
           />
-        </FormControl>
+        </div>
 
-        <FormControl>
-          <FormLabel htmlFor="basics.email">Email</FormLabel>
+        <div className="space-y-4">
+          <Label htmlFor="basics.email">Email</Label>
           <Input
             id="basics.email"
             placeholder="john.doe@example.com"
@@ -57,10 +56,10 @@ const Basics: FC = () => {
             }
             onChange={(event) => setValue('basics.email', event.target.value)}
           />
-        </FormControl>
+        </div>
 
-        <FormControl>
-          <FormLabel htmlFor="basics.phone">Phone</FormLabel>
+        <div className="space-y-4">
+          <Label htmlFor="basics.phone">Phone</Label>
           <Input
             id="basics.phone"
             placeholder="Phone Number"
@@ -72,10 +71,10 @@ const Basics: FC = () => {
             }
             onChange={(event) => setValue('basics.phone', event.target.value)}
           />
-        </FormControl>
+        </div>
 
-        <FormControl>
-          <FormLabel htmlFor="basics.location">Location</FormLabel>
+        <div className="space-y-4">
+          <Label htmlFor="basics.location">Location</Label>
           <Input
             id="basics.location"
             placeholder="Your Location"
@@ -89,16 +88,16 @@ const Basics: FC = () => {
               setValue('basics.location', event.target.value)
             }
           />
-        </FormControl>
+        </div>
 
-        <FormControl>
-          <FormLabel>Website</FormLabel>
+        <div className="space-y-4">
+          <Label>Website</Label>
           <UrlInput
             value={basics.url}
             onChange={(value) => setValue('basics.url', value)}
             placeholder="Your website URL"
           />
-        </FormControl>
+        </div>
       </main>
     </section>
   );

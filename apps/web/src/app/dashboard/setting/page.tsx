@@ -2,8 +2,8 @@
 
 import AccountSetting from '@/app/dashboard/setting/components/AccountSetting';
 import AuthGuard from '@/components/AuthGuard';
-import { Divider } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
+import { Separator } from 'ui';
 
 const Setting = () => {
   return (
@@ -20,7 +20,7 @@ const Setting = () => {
         <div className="h-[calc(100vh-140px)] lg:h-[calc(100vh-88px)]">
           <div className="space-y-4">
             <AccountSetting />
-            <Divider />
+            <Separator />
           </div>
         </div>
       </div>

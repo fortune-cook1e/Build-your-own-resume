@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import 'ui/style.css';
 import '../styles/main.css';
 import Provider from './Provider';
 import '@/utils/dayjs';

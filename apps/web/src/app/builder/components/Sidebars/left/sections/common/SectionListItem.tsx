@@ -1,10 +1,19 @@
-import { ContextMenu } from '@/components/ContextMenu';
-import { mergeTailwindCss } from 'shared';
-import { Flex, MenuItem, MenuList } from '@chakra-ui/react';
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuTrigger,
+  cn,
+} from 'ui';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { DotsSix, Eye, EyeClosed, TrashSimple } from '@phosphor-icons/react';
-import { PencilSimple } from '@phosphor-icons/react/dist/ssr';
+import {
+  DotsSix,
+  Eye,
+  EyeClosed,
+  TrashSimple,
+  PencilSimple,
+} from '@phosphor-icons/react';
 import { FC } from 'react';
 
 interface SectionListItemProps {
@@ -45,15 +54,15 @@ const SectionListItem: FC<SectionListItemProps> = ({
   };
 
   return (
-    <Flex
+    <div
       ref={setNodeRef}
       style={style}
-      className="border-x border-t bg-secondary/10 first-of-type:rounded-t last-of-type:rounded-b last-of-type:border-b"
+      className="flex border-x border-t bg-secondary/10 first-of-type:rounded-t last-of-type:rounded-b last-of-type:border-b"
     >
       <div
         {...attributes}
         {...listeners}
-        className={mergeTailwindCss(
+        className={cn(
           'flex w-5 cursor-move items-center justify-center',
           !isDragging && 'hover:bg-secondary',
         )}
@@ -61,37 +70,36 @@ const SectionListItem: FC<SectionListItemProps> = ({
         <DotsSix weight="bold" size={12} />
       </div>
 
-      <ContextMenu
-        renderMenu={() => (
-          <MenuList>
-            <MenuItem
-              onClick={onVisible}
-              icon={visible ? <EyeClosed /> : <Eye />}
-            >
-              Visible
-            </MenuItem>
-            <MenuItem onClick={onEdit} icon={<PencilSimple />}>
-              Edit
-            </MenuItem>
-            <MenuItem onClick={onDelete} icon={<TrashSimple />} textColor="red">
-              Delete
-            </MenuItem>
-          </MenuList>
-        )}
-      >
-        <div
-          className="flex-1 p-4 hover:bg-secondary-accent cursor-pointer"
-          onClick={onEdit}
-        >
-          <h4 className="font-medium leading-relaxed">{title}</h4>
-          {description && (
-            <p className="text-xs leading-relaxed opacity-50 truncate">
-              {description}
-            </p>
-          )}
-        </div>
+      <ContextMenu>
+        <ContextMenuTrigger className="flex-1">
+          <div
+            className="w-full cursor-pointer p-4 hover:bg-secondary-accent"
+            onClick={onEdit}
+          >
+            <h4 className="font-medium leading-relaxed">{title}</h4>
+            {description && (
+              <p className="truncate text-xs leading-relaxed opacity-50">
+                {description}
+              </p>
+            )}
+          </div>
+        </ContextMenuTrigger>
+        <ContextMenuContent>
+          <ContextMenuItem onClick={onVisible}>
+            <span className="mr-2">{visible ? <EyeClosed /> : <Eye />}</span>
+            Visible
+          </ContextMenuItem>
+          <ContextMenuItem onClick={onEdit}>
+            <PencilSimple className="mr-2" />
+            Edit
+          </ContextMenuItem>
+          <ContextMenuItem onClick={onDelete} className="text-error">
+            <TrashSimple className="mr-2" />
+            Delete
+          </ContextMenuItem>
+        </ContextMenuContent>
       </ContextMenu>
-    </Flex>
+    </div>
   );
 };
 

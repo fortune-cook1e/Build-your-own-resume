@@ -1,6 +1,6 @@
 import { useUser } from '@/apis/user/user';
 
-import { UpdateUserDto, mergeTailwindCss, updateUserSchema } from 'shared';
+import { UpdateUserDto, updateUserSchema } from 'shared';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -20,6 +20,7 @@ import {
   FormItem,
   Input,
   FormLabel,
+  cn,
 } from 'ui';
 
 const AccountSetting = () => {
@@ -134,7 +135,7 @@ const AccountSetting = () => {
                   <Input placeholder="email" {...field} />
                 </FormControl>
                 <FormDescription
-                  className={mergeTailwindCss(
+                  className={cn(
                     'flex items-center gap-x-1.5 font-medium opacity-100',
                     user?.emailVerified
                       ? 'text-success-accent'

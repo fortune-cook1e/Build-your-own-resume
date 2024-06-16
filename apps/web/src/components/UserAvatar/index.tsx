@@ -1,10 +1,8 @@
 import { useUploadImage } from '@/apis/oss/uploadImage';
 import { useUpdateUser } from '@/apis/user/update';
 import { useUser } from '@/apis/user/user';
-import { Input, useToast } from '@chakra-ui/react';
-import Image from 'next/image';
-import { FC, ReactNode, forwardRef, useRef } from 'react';
-import { mergeTailwindCss } from 'shared';
+import { forwardRef, useRef } from 'react';
+import { useToast, Input, cn, Avatar, AvatarImage, AvatarFallback } from 'ui';
 
 interface Props {
   size?: number;
@@ -14,16 +12,14 @@ interface Props {
 }
 
 const UserAvatar = forwardRef<any, Props>(
-  ({ size = 36, className, value, onChange }, ref: any) => {
+  ({ size = 36, className, value, onChange }) => {
     const { user } = useUser();
     const { uploadImage } = useUploadImage();
     const { updateUser } = useUpdateUser();
-    const toast = useToast();
+    const { toast } = useToast();
     const uploadInputRef = useRef<HTMLInputElement>(null);
 
     if (!user) return null;
-
-    let picture: ReactNode = null;
 
     const onSelectImage = async (
       event: React.ChangeEvent<HTMLInputElement>,
@@ -42,33 +38,14 @@ const UserAvatar = forwardRef<any, Props>(
       }
     };
 
-    if (value) {
-      picture = (
-        <div style={{ width: size, height: size }}>
-          <Image
-            alt={user.name}
-            src={value}
-            width={size}
-            height={size}
-            className="rounded-full w-[50px] h-[50px]"
-          />
-        </div>
-      );
-    } else {
-      const name = user.username.slice(0, 1).toUpperCase();
-      picture = (
-        <div
-          style={{ width: size, height: size }}
-          className="flex items-center justify-center rounded-full bg-secondary text-center text-[10px] font-semibold text-secondary-foreground"
-        >
-          {name}
-        </div>
-      );
-    }
+    const name = user.username.slice(0, 1).toUpperCase();
 
     return (
-      <div className={mergeTailwindCss(className, 'cursor-pointer')}>
-        <div onClick={() => uploadInputRef.current?.click()}>{picture}</div>
+      <div className={cn(className, 'cursor-pointer')}>
+        <Avatar onClick={() => uploadInputRef.current?.click()}>
+          <AvatarImage src={value} />
+          <AvatarFallback>{name}</AvatarFallback>
+        </Avatar>
         <Input
           type="file"
           hidden

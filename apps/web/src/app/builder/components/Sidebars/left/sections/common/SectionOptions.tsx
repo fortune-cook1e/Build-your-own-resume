@@ -1,20 +1,5 @@
 import { useResumeStore } from '@/store/resume';
-import {
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  IconButton,
-  useDisclosure,
-  Portal,
-  AlertDialog,
-  AlertDialogBody,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogContent,
-  AlertDialogOverlay,
-  Button,
-} from '@chakra-ui/react';
+
 import { SectionKey, SectionWithItem } from 'shared';
 import {
   Eye,
@@ -25,8 +10,24 @@ import {
   Trash,
 } from '@phosphor-icons/react';
 import { get } from 'lodash-es';
-import { FC, useMemo, useRef } from 'react';
-import RenameInput from '@/app/builder/components/Sidebars/left/sections/common/RenameInput';
+import { FC, useMemo } from 'react';
+import Rename from '@/app/builder/components/Sidebars/left/sections/common/Rename';
+import {
+  useBoolean,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  Button,
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from 'ui';
 
 interface Props {
   id: SectionKey;
@@ -41,19 +42,12 @@ const SectionOptions: FC<Props> = ({ id, onAddClick }) => {
   const onRemoveCustomSection = useResumeStore(
     (state) => state.removeCustomeSection,
   );
-  const {
-    isOpen: renameOpen,
-    onOpen: renameOnOpen,
-    onClose: renameOnClose,
-  } = useDisclosure();
 
-  const {
-    isOpen: removeOpen,
-    onOpen: removeOnOpen,
-    onClose: removeOnClose,
-  } = useDisclosure();
+  const [renameOpen, { toggle: renameToggle, on: renameOn, off: renameOff }] =
+    useBoolean();
 
-  const removeCancelRef = useRef(null);
+  const [removeOpen, { on: removeOnOpen, toggle: removeToggle }] = useBoolean();
+
   const canAddItems = useMemo(() => 'items' in section, [section]);
 
   const toggleVisible = () => {
@@ -66,77 +60,64 @@ const SectionOptions: FC<Props> = ({ id, onAddClick }) => {
   if (!section) return null;
 
   return (
-    <Menu placement="bottom-end">
-      <MenuButton
-        as={IconButton}
-        aria-label="Options"
-        icon={<List />}
-        variant="outline"
-      />
-      <Portal>
-        <MenuList>
+    <>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button size="icon" variant="outline">
+            <List />
+          </Button>
+        </DropdownMenuTrigger>
+
+        <DropdownMenuContent>
           {canAddItems && (
-            <MenuItem onClick={onAddClick} icon={<Plus />}>
-              Add a new Item
-            </MenuItem>
+            <DropdownMenuItem onClick={onAddClick}>
+              <Plus className="mr-2" /> Add a new Item
+            </DropdownMenuItem>
           )}
-          <MenuItem
-            onClick={toggleVisible}
-            icon={section.visible ? <EyeSlash /> : <Eye />}
-          >
+
+          <DropdownMenuItem onClick={toggleVisible}>
+            {section.visible ? (
+              <EyeSlash className="mr-2" />
+            ) : (
+              <Eye className="mr-2" />
+            )}
             {section.visible ? 'Hide' : 'Show'}
-          </MenuItem>
+          </DropdownMenuItem>
 
-          <MenuItem onClick={renameOnOpen} icon={<Pencil />}>
-            <RenameInput
-              id={id}
-              isOpen={renameOpen}
-              onOpen={renameOnOpen}
-              onClose={renameOnClose}
-            />
-          </MenuItem>
+          <DropdownMenuItem onClick={renameOn}>
+            <Pencil className="mr-2" /> Rename
+          </DropdownMenuItem>
 
-          <MenuItem
-            isDisabled={!isCustomSection}
-            icon={<Trash className="text-red-500" />}
-            onClick={removeOnOpen}
-          >
-            <span className="text-red-500">Remove</span>
+          <DropdownMenuItem onClick={removeOnOpen} disabled={!isCustomSection}>
+            <Trash className="mr-2 text-error" /> Remove
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
 
-            <AlertDialog
-              isOpen={removeOpen}
-              leastDestructiveRef={removeCancelRef}
-              onClose={removeOnClose}
-            >
-              <AlertDialogOverlay>
-                <AlertDialogContent>
-                  <AlertDialogHeader fontSize="lg" fontWeight="bold">
-                    Delete Custom Section
-                  </AlertDialogHeader>
+      <Rename
+        id={id}
+        open={renameOpen}
+        onClose={renameOff}
+        toggle={renameToggle}
+      />
 
-                  <AlertDialogBody>
-                    Are you sure? You can't undo this action afterwards.
-                  </AlertDialogBody>
-
-                  <AlertDialogFooter>
-                    <Button ref={removeCancelRef} onClick={removeOnClose}>
-                      Cancel
-                    </Button>
-                    <Button
-                      colorScheme="red"
-                      onClick={() => onRemoveCustomSection(id)}
-                      ml={3}
-                    >
-                      Delete
-                    </Button>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialogOverlay>
-            </AlertDialog>
-          </MenuItem>
-        </MenuList>
-      </Portal>
-    </Menu>
+      <AlertDialog open={removeOpen} onOpenChange={removeToggle}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete Custom Section</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure? You can't undo this action afterwards.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={() => onRemoveCustomSection(id)}>
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </>
   );
 };
 

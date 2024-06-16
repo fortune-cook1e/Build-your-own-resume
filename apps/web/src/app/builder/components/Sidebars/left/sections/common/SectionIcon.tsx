@@ -1,6 +1,5 @@
 import { useResumeStore } from '@/store/resume';
 import { SectionKey, SectionWithItem } from 'shared';
-import { IconButton, Tooltip } from '@chakra-ui/react';
 import {
   IconProps,
   ShareNetwork,
@@ -14,10 +13,11 @@ import {
   Translate,
   Medal,
   Certificate,
+  User,
 } from '@phosphor-icons/react';
-import { User } from '@phosphor-icons/react';
 import { get } from 'lodash-es';
 import { FC, ReactElement } from 'react';
+import { Button, Tooltip } from 'ui';
 
 interface SectionIconProps {
   id: SectionKey;
@@ -71,13 +71,10 @@ export const SectionIcon: FC<SectionIconProps> = ({
   const _icon = icon ? icon : getSectionIcon(id) ?? <Alien />;
 
   return (
-    <Tooltip label={_name}>
-      <IconButton
-        isRound
-        aria-label="icon button"
-        onClick={onClick}
-        icon={_icon}
-      />
+    <Tooltip content={_name}>
+      <Button isRound size="icon" aria-label="icon button" onClick={onClick}>
+        {_icon}
+      </Button>
     </Tooltip>
   );
 };

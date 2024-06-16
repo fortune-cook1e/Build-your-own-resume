@@ -5,14 +5,13 @@ import Profiles from '@/app/builder/components/Sidebars/left/sections/Modals/Pro
 import Projects from '@/app/builder/components/Sidebars/left/sections/Modals/Projects';
 import { useSectionContext } from '@/app/builder/components/Sidebars/left/sections/common/SectionContext';
 import { SectionKey } from 'shared';
-import { FC } from 'react';
 import Skills from '@/app/builder/components/Sidebars/left/sections/Modals/Skills';
 import Languages from '@/app/builder/components/Sidebars/left/sections/Modals/Languages';
 import Awards from '@/app/builder/components/Sidebars/left/sections/Modals/Awards';
 import Certifications from '@/app/builder/components/Sidebars/left/sections/Modals/Certifications';
 import Custom from '@/app/builder/components/Sidebars/left/sections/Modals/Custom';
 
-const RenderSectionModal: FC = () => {
+const RenderSectionModal = () => {
   const { id } = useSectionContext();
 
   const getModal = (id: SectionKey) => {

@@ -7,9 +7,9 @@ import { getSectionIcon } from '@/app/builder/components/Sidebars/left/sections/
 import SectionOptions from '@/app/builder/components/Sidebars/left/sections/common/SectionOptions';
 import { useResumeStore } from '@/store/resume';
 import { SectionItem, SectionKey, SectionWithItem } from 'shared';
-import { Button, Flex } from '@chakra-ui/react';
 import get from 'lodash-es/get';
 import { useEffect, useId } from 'react';
+import { Button } from 'ui';
 
 import {
   DndContext,
@@ -96,20 +96,20 @@ const SectionBase = <T extends SectionItem>({
 
   return (
     <div id={id} className="animate-fade-right animate-once">
-      <Flex align="center" justifyContent="space-between" className="mb-5">
+      <div className="mb-5 flex items-center justify-between">
         {getSectionIcon(id)}
-        <h2 className="text-3xl font-bold truncate">{section?.name ?? id}</h2>
+        <h2 className="truncate text-3xl font-bold">{section?.name ?? id}</h2>
         <SectionOptions id={id} onAddClick={onAddClick} />
-      </Flex>
+      </div>
 
       <RenderSectionModal />
 
       {!section.items.length && (
-        <Flex justify="right">
+        <div className="flex justify-end">
           <Button leftIcon={<Plus />} onClick={onAddClick}>
             Create an item
           </Button>
-        </Flex>
+        </div>
       )}
 
       <DndContext

@@ -18,6 +18,7 @@ interface SectionActions {
   setOpen: {
     on: () => void;
     off: () => void;
+    toggle: (open: boolean) => void;
   };
   setCreateMode: () => void;
   setUpdateMode: () => void;
@@ -39,6 +40,7 @@ const createSectionStore = () =>
       setOpen: {
         on: () => set((state) => ({ ...state, open: true })),
         off: () => set((state) => ({ ...state, open: false })),
+        toggle: (open: boolean) => set((state) => ({ ...state, open })),
       },
 
       setCreateMode: () => set((state) => ({ ...state, mode: 'create' })),

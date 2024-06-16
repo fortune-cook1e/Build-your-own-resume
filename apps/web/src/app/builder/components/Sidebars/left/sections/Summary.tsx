@@ -6,28 +6,29 @@ import { get } from 'lodash-es';
 
 const Summary = () => {
   const setValue = useResumeStore((state) => state.setValue);
-  const content = useResumeStore((state) =>
-    get(state.resume.data.sections.summary, 'content', ''),
-  );
+
   const onContentChange = (value: string) => {
     setValue('sections.summary.content', value);
   };
+  const summary = useResumeStore((state) =>
+    get(state.resume.data.sections, 'summary'),
+  );
 
   return (
     <section id="summary" className="animate-fade-right animate-once">
-      <header className="flex flex-center justify-between mb-5">
+      <header className="flex-center mb-5 flex justify-between">
         <div className="flex items-center gap-x-4">
           {getSectionIcon('summary')}
-          <h2 className="line-clamp-1 text-3xl font-bold">Summary</h2>
+          <h2 className="line-clamp-1 text-3xl font-bold">{summary.name}</h2>
         </div>
 
-        <div className="flex items-center ">
+        <div className="flex items-center">
           <SectionOptions id="summary" />
         </div>
       </header>
 
       <main>
-        <RickEditor onChange={onContentChange} content={content} />
+        <RickEditor onChange={onContentChange} content={summary.content} />
       </main>
     </section>
   );
