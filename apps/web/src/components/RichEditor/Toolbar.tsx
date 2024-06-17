@@ -1,12 +1,5 @@
-import {
-  IconButton,
-  Popover,
-  Tooltip,
-  PopoverTrigger,
-  PopoverContent,
-  Portal,
-  Box,
-} from '@chakra-ui/react';
+import { Button, Tooltip, Popover, PopoverContent, PopoverTrigger } from 'ui';
+
 import { Editor } from '@tiptap/react';
 import {
   ArrowClockwise,
@@ -35,11 +28,10 @@ import {
   TextOutdent,
   TextStrikethrough,
 } from '@phosphor-icons/react';
-import { FC, forwardRef, useCallback, useEffect, useRef } from 'react';
+import { forwardRef, useCallback } from 'react';
 import ImageForm from '@/components/RichEditor/ImageForm';
 
 const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
-  const popoverContentRef = useRef<HTMLElement>(null);
   const setLink = useCallback(() => {
     const previousUrl = editor.getAttributes('link').href;
     const url = window.prompt('URL', previousUrl);
@@ -61,8 +53,8 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
   }, [editor]);
   return (
     <div className="flex flex-wrap gap-0.5 border p-1">
-      <Tooltip label="Bold">
-        <IconButton
+      <Tooltip content="Bold">
+        <Button
           size="sm"
           variant="ghost"
           onClick={() => editor.chain().focus().toggleBold().run()}
@@ -71,8 +63,8 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
         />
       </Tooltip>
 
-      <Tooltip label="Italic">
-        <IconButton
+      <Tooltip content="Italic">
+        <Button
           size="sm"
           variant="ghost"
           onClick={() => editor.chain().focus().toggleItalic().run()}
@@ -81,8 +73,8 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
         />
       </Tooltip>
 
-      <Tooltip label="Strikethrough">
-        <IconButton
+      <Tooltip content="Strikethrough">
+        <Button
           size="sm"
           variant="ghost"
           onClick={() => editor.chain().focus().toggleStrike().run()}
@@ -91,8 +83,8 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
         />
       </Tooltip>
 
-      <Tooltip label="Underline">
-        <IconButton
+      <Tooltip content="Underline">
+        <Button
           size="sm"
           variant="ghost"
           onClick={() => editor.chain().focus().toggleUnderline().run()}
@@ -101,8 +93,8 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
         />
       </Tooltip>
 
-      <Tooltip label="Highlight">
-        <IconButton
+      <Tooltip content="Highlight">
+        <Button
           size="sm"
           variant="ghost"
           onClick={() => editor.chain().focus().toggleHighlight().run()}
@@ -111,8 +103,8 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
         />
       </Tooltip>
 
-      <Tooltip label="Hyperlink">
-        <IconButton
+      <Tooltip content="Hyperlink">
+        <Button
           size="sm"
           variant="ghost"
           onClick={setLink}
@@ -121,8 +113,8 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
         />
       </Tooltip>
 
-      <Tooltip label="Inline Code">
-        <IconButton
+      <Tooltip content="Inline Code">
+        <Button
           size="sm"
           variant="ghost"
           onClick={() => editor.chain().focus().toggleCode().run()}
@@ -131,8 +123,8 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
         />
       </Tooltip>
 
-      <Tooltip label="Code Block">
-        <IconButton
+      <Tooltip content="Code Block">
+        <Button
           size="sm"
           variant="ghost"
           onClick={() => editor.chain().focus().toggleCodeBlock().run()}
@@ -141,8 +133,8 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
         />
       </Tooltip>
 
-      <Tooltip label="Heading 1">
-        <IconButton
+      <Tooltip content="Heading 1">
+        <Button
           size="sm"
           variant="ghost"
           onClick={() =>
@@ -153,8 +145,8 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
         />
       </Tooltip>
 
-      <Tooltip label="Heading 2">
-        <IconButton
+      <Tooltip content="Heading 2">
+        <Button
           size="sm"
           variant="ghost"
           onClick={() =>
@@ -165,8 +157,8 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
         />
       </Tooltip>
 
-      <Tooltip label="Heading 3">
-        <IconButton
+      <Tooltip content="Heading 3">
+        <Button
           size="sm"
           variant="ghost"
           onClick={() =>
@@ -177,8 +169,8 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
         />
       </Tooltip>
 
-      <Tooltip label="Paragraph">
-        <IconButton
+      <Tooltip content="Paragraph">
+        <Button
           size="sm"
           variant="ghost"
           onClick={() => editor.chain().focus().setParagraph().run()}
@@ -187,8 +179,8 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
         />
       </Tooltip>
 
-      <Tooltip label="Align Left">
-        <IconButton
+      <Tooltip content="Align Left">
+        <Button
           size="sm"
           variant="ghost"
           onClick={() => editor.chain().focus().setTextAlign('left').run()}
@@ -197,8 +189,8 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
         />
       </Tooltip>
 
-      <Tooltip label="Align Center">
-        <IconButton
+      <Tooltip content="Align Center">
+        <Button
           size="sm"
           variant="ghost"
           onClick={() =>
@@ -209,8 +201,8 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
         />
       </Tooltip>
 
-      <Tooltip label="Align Right">
-        <IconButton
+      <Tooltip content="Align Right">
+        <Button
           size="sm"
           variant="ghost"
           onClick={() => editor.chain().focus().setTextAlign('right').run()}
@@ -219,8 +211,8 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
         />
       </Tooltip>
 
-      <Tooltip label="Align Justify">
-        <IconButton
+      <Tooltip content="Align Justify">
+        <Button
           size="sm"
           variant="ghost"
           onClick={() => editor.chain().focus().setTextAlign('justify').run()}
@@ -229,8 +221,8 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
         />
       </Tooltip>
 
-      <Tooltip label="Bullet List">
-        <IconButton
+      <Tooltip content="Bullet List">
+        <Button
           size="sm"
           variant="ghost"
           onClick={() => editor.chain().focus().toggleBulletList().run()}
@@ -239,8 +231,8 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
         />
       </Tooltip>
 
-      <Tooltip label="Numbered List">
-        <IconButton
+      <Tooltip content="Numbered List">
+        <Button
           size="sm"
           variant="ghost"
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
@@ -249,8 +241,8 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
         />
       </Tooltip>
 
-      <Tooltip label="Outdent">
-        <IconButton
+      <Tooltip content="Outdent">
+        <Button
           size="sm"
           variant="ghost"
           onClick={() => editor.chain().focus().liftListItem('listItem').run()}
@@ -259,8 +251,8 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
         />
       </Tooltip>
 
-      <Tooltip label="Indent">
-        <IconButton
+      <Tooltip content="Indent">
+        <Button
           size="sm"
           variant="ghost"
           onClick={() => editor.chain().focus().sinkListItem('listItem').run()}
@@ -269,38 +261,24 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
         />
       </Tooltip>
 
-      <Popover
-        onOpen={() => {
-          // FixBug: ImageForm covered by previous modal
-          if (popoverContentRef.current?.parentElement) {
-            popoverContentRef.current?.parentElement.classList.add('!z-[1999]');
-          }
-        }}
-      >
-        <Tooltip label="Insert Image">
-          <Box>
-            <PopoverTrigger>
-              <IconButton
-                size="sm"
-                aria-label="Image Icon"
-                variant="ghost"
-                icon={<ImageIcon />}
-              ></IconButton>
-            </PopoverTrigger>
-          </Box>
-        </Tooltip>
-
-        <Portal appendToParentPortal={false}>
-          <PopoverContent className="p-6" ref={popoverContentRef}>
-            <ImageForm
-              onInsert={(props) => editor.chain().focus().setImage(props).run()}
-            />
-          </PopoverContent>
-        </Portal>
+      <Popover>
+        <PopoverTrigger>
+          <Button
+            size="sm"
+            aria-label="Image Icon"
+            variant="ghost"
+            icon={<ImageIcon />}
+          />
+        </PopoverTrigger>
+        <PopoverContent className="p-6">
+          <ImageForm
+            onInsert={(props) => editor.chain().focus().setImage(props).run()}
+          />
+        </PopoverContent>
       </Popover>
 
-      <Tooltip label="Insert Break Line">
-        <IconButton
+      <Tooltip content="Insert Break Line">
+        <Button
           size="sm"
           variant="ghost"
           onClick={() => editor.chain().focus().setHardBreak().run()}
@@ -309,8 +287,8 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
         />
       </Tooltip>
 
-      <Tooltip label="Insert Horizontal Rule">
-        <IconButton
+      <Tooltip content="Insert Horizontal Rule">
+        <Button
           size="sm"
           variant="ghost"
           onClick={() => editor.chain().focus().setHorizontalRule().run()}
@@ -319,8 +297,8 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
         />
       </Tooltip>
 
-      <Tooltip label="Undo">
-        <IconButton
+      <Tooltip content="Undo">
+        <Button
           size="sm"
           variant="ghost"
           onClick={() => editor.chain().focus().undo().run()}
@@ -329,8 +307,8 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
         />
       </Tooltip>
 
-      <Tooltip label="Redo">
-        <IconButton
+      <Tooltip content="Redo">
+        <Button
           size="sm"
           variant="ghost"
           onClick={() => editor.chain().focus().redo().run()}

@@ -1,13 +1,7 @@
 'use client';
 
 import { useVerifyEmail } from '@/apis/auth/verify-email';
-import {
-  Alert,
-  AlertTitle,
-  AlertDescription,
-  Button,
-  useToast,
-} from '@chakra-ui/react';
+import { Alert, AlertTitle, AlertDescription, Button, useToast } from 'ui';
 import { ArrowRight, Info } from '@phosphor-icons/react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
@@ -17,7 +11,7 @@ const VerifyEmailPage = () => {
   const params = useSearchParams();
   const token = params.get('token');
   const { verifyEmail } = useVerifyEmail();
-  const toast = useToast();
+  const { toast } = useToast();
 
   const handleVerifyEmail = async (token: string) => {
     await verifyEmail(token);
@@ -25,7 +19,6 @@ const VerifyEmailPage = () => {
       title: 'Email verified successfully',
       description: 'You can now go to your dashboard',
       status: 'success',
-      isClosable: true,
     });
   };
 

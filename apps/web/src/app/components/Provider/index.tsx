@@ -1,7 +1,6 @@
 'use client';
 
 import { FC } from 'react';
-import { ChakraProvider } from '@chakra-ui/react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Toaster } from 'ui';
@@ -25,9 +24,7 @@ const Provider: FC<Props> = ({ children }) => {
         enableSystem
         disableTransitionOnChange
       >
-        <ChakraProvider toastOptions={{ defaultOptions: { position: 'top' } }}>
-          {children}
-        </ChakraProvider>
+        {children}
       </ThemeProvider>
       <Toaster />
     </QueryClientProvider>

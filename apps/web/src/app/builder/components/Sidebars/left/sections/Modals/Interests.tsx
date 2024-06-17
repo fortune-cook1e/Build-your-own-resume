@@ -1,18 +1,14 @@
 import SectionModal from '@/app/builder/components/Sidebars/left/sections/common/SectionModal';
-import {
-  FormControl,
-  FormLabel,
-  Input,
-  Tag,
-  TagLabel,
-  TagCloseButton,
-} from '@chakra-ui/react';
+
+import { FormItem, Input, FormControl, FormField, FormLabel, Badge } from 'ui';
+
 import { defaultInterests, interestsSchema } from 'shared';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { AnimatePresence, motion } from 'framer-motion';
+import { X } from '@phosphor-icons/react';
 
 const formSchema = interestsSchema;
 type FormValues = z.infer<typeof formSchema>;
@@ -47,20 +43,32 @@ const Interests: FC = () => {
   return (
     <SectionModal<FormValues> form={form} defaultValues={defaultInterests}>
       <div className="grid grid-cols-1 gap-4">
-        <FormControl>
-          <FormLabel>Name</FormLabel>
-          <Input placeholder="Tennis" {...form.register('name')} />
-        </FormControl>
-        <FormControl>
+        <FormField
+          name="name"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Name</FormLabel>
+              <FormControl>
+                <Input placeholder="Tennis" {...field} />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+
+        <FormItem>
           <FormLabel>keyword</FormLabel>
-          <Input
-            placeholder="skill keyword"
-            value={pendingKeyword}
-            onKeyDown={onKeyDown}
-            onChange={(e) => setPendingKeyword(e.target.value)}
-          />
-        </FormControl>
-        <div className="flex flex-wrap items-center gap-y-2 gap-x-2">
+          <FormControl>
+            <Input
+              placeholder="skill keyword"
+              value={pendingKeyword}
+              onKeyDown={onKeyDown}
+              onChange={(e) => setPendingKeyword(e.target.value)}
+            />
+          </FormControl>
+        </FormItem>
+
+        <div className="flex flex-wrap items-center gap-2">
           <AnimatePresence>
             {watchKeywords.map((item, index) => {
               return (
@@ -75,10 +83,13 @@ const Interests: FC = () => {
                   }}
                   exit={{ opacity: 0, x: -50 }}
                 >
-                  <Tag key={item}>
-                    <TagLabel>{item}</TagLabel>
-                    <TagCloseButton onClick={() => onRemoveKeyword(item)} />
-                  </Tag>
+                  <Badge
+                    key={item}
+                    className="flex cursor-pointer items-center gap-2"
+                  >
+                    <span>{item}</span>
+                    <X onClick={() => onRemoveKeyword(item)} />
+                  </Badge>
                 </motion.div>
               );
             })}

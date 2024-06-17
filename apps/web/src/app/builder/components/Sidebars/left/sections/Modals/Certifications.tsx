@@ -1,11 +1,11 @@
 import SectionModal from '@/app/builder/components/Sidebars/left/sections/common/SectionModal';
 import UrlInput from '@/app/builder/components/Sidebars/left/sections/common/UrlInput';
 import RichEditor from '@/components/RichEditor';
-import { FormControl, FormLabel, Input } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
 import { certificationsSchema, defaultCertifications } from 'shared';
 import { z } from 'zod';
+import { FormItem, Input, FormControl, FormField, FormLabel } from 'ui';
 
 const formSchema = certificationsSchema;
 type FormValues = z.infer<typeof formSchema>;
@@ -19,43 +19,69 @@ const Certifications = () => {
   return (
     <SectionModal<FormValues> form={form} defaultValues={defaultCertifications}>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <FormControl>
-          <FormLabel>Name</FormLabel>
-          <Input
-            placeholder="Full-Stack Developer"
-            {...form.register('name')}
-          />
-        </FormControl>
-        <FormControl>
-          <FormLabel>Name</FormLabel>
-          <Input placeholder="CodeAcademy" {...form.register('issuer')} />
-        </FormControl>
-
-        <FormControl>
-          <FormLabel>Date</FormLabel>
-          <Input placeholder="2019" {...form.register('date')} />
-        </FormControl>
-
-        <Controller
+        <FormField
+          name="name"
           control={form.control}
-          name="website"
           render={({ field }) => (
-            <FormControl>
+            <FormItem>
+              <FormLabel>Name</FormLabel>
+              <FormControl>
+                <Input placeholder="Full-Stack Developer" {...field} />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          name="issuer"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Issuer</FormLabel>
+              <FormControl>
+                <Input placeholder="CodeAcademy" {...field} />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          name="date"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Date</FormLabel>
+              <FormControl>
+                <Input placeholder="2019" {...field} />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          name="website"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
               <FormLabel>Website</FormLabel>
-              <UrlInput {...field} />
-            </FormControl>
+              <FormControl>
+                <UrlInput {...field} />
+              </FormControl>
+            </FormItem>
           )}
         />
 
         <div className="col-span-2">
-          <Controller
-            control={form.control}
+          <FormField
             name="summary"
+            control={form.control}
             render={({ field }) => (
-              <FormControl>
+              <FormItem>
                 <FormLabel>Summary</FormLabel>
-                <RichEditor content={field.value} {...field} />
-              </FormControl>
+                <FormControl>
+                  <RichEditor content={field.value} {...field} />
+                </FormControl>
+              </FormItem>
             )}
           />
         </div>

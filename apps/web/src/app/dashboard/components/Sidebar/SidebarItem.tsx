@@ -1,5 +1,5 @@
 import { mergeTailwindCss } from 'shared';
-import { Button } from '@chakra-ui/react';
+import { Button } from 'ui';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FC, ReactNode } from 'react';
@@ -31,12 +31,7 @@ const SidebarItem: FC<Props> = ({ path, name, icon, onClick }) => {
 
   return (
     <Link href={path} className="w-full">
-      <Button
-        onClick={onClick}
-        justifyContent="start"
-        variant="ghost"
-        className="w-full"
-      >
+      <Button onClick={onClick} variant="ghost" className="w-full">
         <div className="flex w-full items-center text-foreground">
           <div className="mr-3">{icon}</div>
           <span>{name}</span>

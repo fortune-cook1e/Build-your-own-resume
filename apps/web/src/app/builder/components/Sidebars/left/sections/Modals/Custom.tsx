@@ -1,21 +1,24 @@
 import SectionModal from '@/app/builder/components/Sidebars/left/sections/common/SectionModal';
 import UrlInput from '@/app/builder/components/Sidebars/left/sections/common/UrlInput';
 import RichEditor from '@/components/RichEditor';
-import {
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Input,
-  Tag,
-  TagCloseButton,
-  TagLabel,
-} from '@chakra-ui/react';
+
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { customSchema, defaultCustom } from 'shared';
 import { z } from 'zod';
 import { AnimatePresence, motion } from 'framer-motion';
+import { X } from '@phosphor-icons/react';
+
+import {
+  FormItem,
+  Input,
+  FormControl,
+  FormField,
+  FormLabel,
+  Badge,
+  FormMessage,
+} from 'ui';
 
 const formSchema = customSchema;
 type FormValues = z.infer<typeof formSchema>;
@@ -50,28 +53,74 @@ const Custom = () => {
   return (
     <SectionModal<FormValues> form={form} defaultValues={defaultCustom}>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <FormControl>
-          <FormLabel>Name</FormLabel>
-          <Input placeholder="name" {...form.register('name')} />
-        </FormControl>
+        <FormField
+          name="name"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Name</FormLabel>
+              <FormControl>
+                <Input placeholder="name" {...field} />
+              </FormControl>
+            </FormItem>
+          )}
+        />
 
-        <FormControl>
-          <FormLabel>Description</FormLabel>
-          <Input placeholder="description" {...form.register('description')} />
-        </FormControl>
+        <FormField
+          name="description"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Description</FormLabel>
+              <FormControl>
+                <Input placeholder="description" {...field} />
+              </FormControl>
+            </FormItem>
+          )}
+        />
 
-        <FormControl>
-          <FormLabel>Date</FormLabel>
-          <Input placeholder="date" {...form.register('date')} />
-        </FormControl>
+        <FormField
+          name="date"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Date</FormLabel>
+              <FormControl>
+                <Input placeholder="date" {...field} />
+              </FormControl>
+            </FormItem>
+          )}
+        />
 
-        <FormControl>
-          <FormLabel>Location</FormLabel>
-          <Input placeholder="location" {...form.register('location')} />
-        </FormControl>
+        <FormField
+          name="location"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Location</FormLabel>
+              <FormControl>
+                <Input placeholder="Company Location" {...field} />
+              </FormControl>
+            </FormItem>
+          )}
+        />
 
         <div className="col-span-2">
-          <Controller
+          <FormField
+            name="website"
+            control={form.control}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Website</FormLabel>
+                <FormControl>
+                  <UrlInput {...field} />
+                </FormControl>
+                {/* <FormMessage>Invalid website url</FormMessage> */}
+              </FormItem>
+            )}
+          />
+
+          {/* <Controller
             control={form.control}
             name="website"
             render={({ field }) => (
@@ -84,33 +133,38 @@ const Custom = () => {
                 </FormErrorMessage>
               </FormControl>
             )}
-          />
+          /> */}
         </div>
 
         <div className="sm:col-span-2">
-          <Controller
-            control={form.control}
+          <FormField
             name="summary"
+            control={form.control}
             render={({ field }) => (
-              <FormControl>
+              <FormItem>
                 <FormLabel>Summary</FormLabel>
-                <RichEditor {...field} content={field.value} />
-              </FormControl>
+                <FormControl>
+                  <RichEditor content={field.value} {...field} />
+                </FormControl>
+              </FormItem>
             )}
           />
         </div>
 
         <div className="col-span-2">
-          <FormControl className="mb-4">
+          <FormItem>
             <FormLabel>keyword</FormLabel>
-            <Input
-              placeholder="keyword"
-              value={pendingKeyword}
-              onKeyDown={onKeyDown}
-              onChange={(e) => setPendingKeyword(e.target.value)}
-            />
-          </FormControl>
-          <div className="flex flex-wrap items-center gap-y-2 gap-x-2">
+            <FormControl>
+              <Input
+                placeholder="keyword"
+                value={pendingKeyword}
+                onKeyDown={onKeyDown}
+                onChange={(e) => setPendingKeyword(e.target.value)}
+              />
+            </FormControl>
+          </FormItem>
+
+          <div className="flex flex-wrap items-center gap-2">
             <AnimatePresence>
               {watchKeywords.map((item, index) => {
                 return (
@@ -125,10 +179,13 @@ const Custom = () => {
                     }}
                     exit={{ opacity: 0, x: -50 }}
                   >
-                    <Tag key={item}>
-                      <TagLabel>{item}</TagLabel>
-                      <TagCloseButton onClick={() => onRemoveKeyword(item)} />
-                    </Tag>
+                    <Badge
+                      key={item}
+                      className="flex cursor-pointer items-center gap-2"
+                    >
+                      <span>{item}</span>
+                      <X onClick={() => onRemoveKeyword(item)} />
+                    </Badge>
                   </motion.div>
                 );
               })}

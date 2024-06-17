@@ -1,11 +1,11 @@
 import SectionModal from '@/app/builder/components/Sidebars/left/sections/common/SectionModal';
 import RickEditor from '@/components/RichEditor';
-import { FormControl, FormLabel, Input } from '@chakra-ui/react';
 import { defaultEducation, educationSchema } from 'shared';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FC } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { FormItem, Input, FormControl, FormField, FormLabel } from 'ui';
 
 const formSchema = educationSchema;
 type formValues = z.infer<typeof formSchema>;
@@ -19,43 +19,73 @@ const Education: FC = () => {
   return (
     <SectionModal<formValues> form={form} defaultValues={defaultEducation}>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <FormControl>
-          <FormLabel>College</FormLabel>
-          <Input placeholder="Your college" {...form.register('college')} />
-        </FormControl>
-
-        <FormControl>
-          <FormLabel>Area</FormLabel>
-          <Input placeholder="Your Area" {...form.register('area')} />
-        </FormControl>
-
-        <div className="sm:col-span-2">
-          <FormControl>
-            <FormLabel>Major</FormLabel>
-            <Input placeholder="computer science" {...form.register('major')} />
-          </FormControl>
-        </div>
-
-        <div className="sm:col-span-2">
-          <FormControl>
-            <FormLabel>Date</FormLabel>
-            <Input placeholder="Start and end" {...form.register('date')} />
-          </FormControl>
-        </div>
-
-        <div className="sm:col-span-2">
-          <Controller
-            control={form.control}
-            name="summary"
-            render={({ field }) => (
+        <FormField
+          name="college"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>College</FormLabel>
               <FormControl>
-                <FormLabel>Summary</FormLabel>
-                <RickEditor
-                  {...field}
-                  content={field.value}
-                  onChange={(val) => field.onChange(val)}
-                />
+                <Input placeholder="Your college" {...field} />
               </FormControl>
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          name="area"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Area</FormLabel>
+              <FormControl>
+                <Input placeholder="Your Area" {...field} />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+
+        <div className="sm:col-span-2">
+          <FormField
+            name="major"
+            control={form.control}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Major</FormLabel>
+                <FormControl>
+                  <Input placeholder="computer science" {...field} />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+        </div>
+
+        <div className="sm:col-span-2">
+          <FormField
+            name="date"
+            control={form.control}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Date</FormLabel>
+                <FormControl>
+                  <Input placeholder="Date" {...field} />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+        </div>
+
+        <div className="sm:col-span-2">
+          <FormField
+            name="summary"
+            control={form.control}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Summary</FormLabel>
+                <FormControl>
+                  <RickEditor content={field.value} {...field} />
+                </FormControl>
+              </FormItem>
             )}
           />
         </div>

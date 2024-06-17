@@ -1,7 +1,7 @@
 import SidebarItem, {
   SidebarItemProps,
 } from '@/app/dashboard/components/Sidebar/SidebarItem';
-import { Divider, IconButton } from '@chakra-ui/react';
+import { Separator, Button } from 'ui';
 import { List, Bank } from '@phosphor-icons/react';
 import Link from 'next/link';
 
@@ -22,7 +22,7 @@ const Sidebar = () => {
   return (
     <div className="flex- h-full flex-col gap-y-4">
       <div className="mb-4 ml-12 flex justify-center lg:ml-0">
-        <IconButton
+        <Button
           variant="ghost"
           aria-label="home button"
           icon={
@@ -33,7 +33,7 @@ const Sidebar = () => {
         />
       </div>
 
-      <Divider />
+      <Separator />
 
       <div className="mt-4 grid gap-y-2">
         {sidebarItems.map((item) => (

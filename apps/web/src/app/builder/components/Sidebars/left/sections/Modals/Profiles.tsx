@@ -2,11 +2,11 @@ import IconInput from '@/app/builder/components/Sidebars/left/sections/common/Ic
 import SectionModal from '@/app/builder/components/Sidebars/left/sections/common/SectionModal';
 import UrlInput from '@/app/builder/components/Sidebars/left/sections/common/UrlInput';
 import { defaultProfile, profileSchema } from 'shared';
-import { FormControl, FormLabel, Input } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { FC } from 'react';
+import { FormItem, Input, FormControl, FormField, FormLabel } from 'ui';
 
 const formSchema = profileSchema;
 type FormValues = z.infer<typeof formSchema>;
@@ -20,40 +20,60 @@ const Profiles: FC = () => {
   return (
     <SectionModal<FormValues> form={form} defaultValues={defaultProfile}>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <FormControl>
-          <FormLabel>Network</FormLabel>
-          <Input placeholder="Your network" {...form.register('network')} />
-        </FormControl>
+        <FormField
+          name="network"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Network</FormLabel>
+              <FormControl>
+                <Input placeholder="Your network" {...field} />
+              </FormControl>
+            </FormItem>
+          )}
+        />
 
-        <FormControl>
-          <FormLabel>Username</FormLabel>
-          <Input placeholder="Your username" {...form.register('username')} />
-        </FormControl>
+        <FormField
+          name="username"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Username</FormLabel>
+              <FormControl>
+                <Input placeholder="Your username" {...field} />
+              </FormControl>
+            </FormItem>
+          )}
+        />
 
         <div className="sm:col-span-2">
-          <Controller
-            control={form.control}
+          <FormField
             name="url"
+            control={form.control}
             render={({ field }) => (
-              <FormControl>
+              <FormItem>
                 <FormLabel>Website</FormLabel>
-                <UrlInput {...field} />
-              </FormControl>
+                <FormControl>
+                  <UrlInput {...field} />
+                </FormControl>
+              </FormItem>
             )}
-          ></Controller>
+          />
         </div>
 
         <div className="sm:col-span-2">
-          <Controller
-            control={form.control}
+          <FormField
             name="icon"
+            control={form.control}
             render={({ field }) => (
-              <FormControl>
-                <FormLabel>Icon</FormLabel>
-                <IconInput {...field} />
-              </FormControl>
+              <FormItem>
+                <FormLabel>Website</FormLabel>
+                <FormControl>
+                  <IconInput {...field} />
+                </FormControl>
+              </FormItem>
             )}
-          ></Controller>
+          />
         </div>
       </div>
     </SectionModal>

@@ -1,5 +1,4 @@
 import { ResponseCode } from '@/constants/code';
-import { createStandaloneToast } from '@chakra-ui/react';
 import axios, {
   AxiosError,
   AxiosResponse,
@@ -9,13 +8,13 @@ import createAuthRefreshInterceptor from 'axios-auth-refresh';
 import { refresh } from '@/apis/auth/refresh';
 import { queryClient } from '@/utils/queryClient';
 import { QUERY_KEYS } from '@/constants';
+import { toast } from 'ui';
 
 interface ApiResponse<T> {
   data: T;
   code: ResponseCode;
   message?: string;
 }
-const { toast } = createStandaloneToast();
 const UNAUTHORIZED_STATUS_CODE = [401, 403];
 
 const request = axios.create({
@@ -35,6 +34,7 @@ request.interceptors.request.use(
 request.interceptors.response.use(
   function (response: AxiosResponse<ApiResponse<any>>) {
     const { data } = response;
+
     switch (data.code) {
       case ResponseCode.Success: {
         return data.data;

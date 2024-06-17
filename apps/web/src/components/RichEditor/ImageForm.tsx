@@ -1,4 +1,12 @@
-import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
+import {
+  Button,
+  FormItem,
+  FormControl,
+  FormLabel,
+  Input,
+  Form,
+  FormField,
+} from 'ui';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { forwardRef } from 'react';
 import { useForm } from 'react-hook-form';
@@ -30,23 +38,42 @@ const ImageForm = forwardRef<any, Props>(({ onInsert }, ref) => {
   };
 
   return (
-    <form
-      onSubmit={(e) => {
-        e.stopPropagation();
-        form.handleSubmit(onSubmit)(e);
-      }}
-      className="space-y-3"
-    >
-      <FormControl>
-        <FormLabel>Image Url</FormLabel>
-        <Input placeholder="Image url" {...form.register('src')} />
-      </FormControl>
-      <FormControl>
-        <FormLabel>Image Alt</FormLabel>
-        <Input placeholder="Image alt" {...form.register('alt')} />
-      </FormControl>
-      <Button type="submit">Insert Image</Button>
-    </form>
+    <Form {...form}>
+      <form
+        onSubmit={(e) => {
+          e.stopPropagation();
+          form.handleSubmit(onSubmit)(e);
+        }}
+        className="space-y-4"
+      >
+        <FormField
+          name="src"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Image Url</FormLabel>
+              <FormControl>
+                <Input placeholder="Image url" {...field} />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          name="alt"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Image Alt</FormLabel>
+              <FormControl>
+                <Input placeholder="Image alt" {...field} />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+        <Button type="submit">Insert Image</Button>
+      </form>
+    </Form>
   );
 });
 
