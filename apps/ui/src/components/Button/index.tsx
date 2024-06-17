@@ -40,6 +40,7 @@ export interface ButtonProps
   loading?: boolean;
   loadingText?: string;
   leftIcon?: React.ReactNode;
+  icon?: React.ReactNode;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -52,6 +53,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       loading = false,
       loadingText,
       leftIcon,
+      icon = null,
       ...props
     },
     ref,
@@ -66,6 +68,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
         {loading && loadingText}
         {leftIcon && <span className="mr-2">{leftIcon}</span>}
+        {icon}
         {props.children}
       </Comp>
     );

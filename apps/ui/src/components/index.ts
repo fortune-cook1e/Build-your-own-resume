@@ -17,3 +17,5 @@ export * from './Card';
 export * from './Command';
 export * from './Combobox';
 export * from './Avatar';
+export * from './Badge';
+export * from './Alert';
