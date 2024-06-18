@@ -262,7 +262,7 @@ const Toolbar = forwardRef<any, { editor: Editor }>(({ editor }, ref) => {
       </Tooltip>
 
       <Popover>
-        <PopoverTrigger>
+        <PopoverTrigger asChild>
           <Button
             size="sm"
             aria-label="Image Icon"
