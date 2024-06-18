@@ -162,6 +162,7 @@ const ResumeModal = forwardRef<any, Props>(
                     <Button ref={cancelRef} onClick={onClose}>
                       Cancel
                     </Button>
+
                     <Button
                       variant="destructive"
                       onClick={form.handleSubmit(onSubmit)}
@@ -224,13 +225,13 @@ const ResumeModal = forwardRef<any, Props>(
 
               <DialogFooter>
                 <div className="flex items-center">
-                  <Button
-                    onClick={onClose}
+                  {/* <Button
+                    onClick={handleClose}
                     variant="ghost"
                     className="mr-4 text-foreground"
                   >
                     Close
-                  </Button>
+                  </Button> */}
                   <Button
                     disabled={isSaving}
                     loading={isSaving}

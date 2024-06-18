@@ -48,9 +48,9 @@ const UserAvatar = forwardRef<any, Props>(
         </Avatar>
         <Input
           type="file"
-          hidden
           ref={uploadInputRef}
           onChange={onSelectImage}
+          className="hidden"
         />
       </div>
     );

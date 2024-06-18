@@ -21,7 +21,7 @@ const Export = () => {
           leftIcon={<FilePdf size={22} />}
           aria-label="pdf"
           loading={loading}
-          loadingText="printing resume..."
+          disabled={loading}
         >
           Download
         </Button>

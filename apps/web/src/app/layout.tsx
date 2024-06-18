@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import '../styles/main.css';
-// import 'ui/style.css';
 import Provider from './Provider';
 import '@/utils/dayjs';
+
+// import 'ui/style.css';
 
 export const metadata: Metadata = {
   title: 'Resume Generator',

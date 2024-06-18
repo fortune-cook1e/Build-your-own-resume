@@ -1,5 +1,6 @@
 @import url(./colors.css);
 @import url(./theme.css);
+/* @import 'ui/dist/style.css'; */
 
 @tailwind base;
 @tailwind components;
