@@ -66,8 +66,7 @@ request.interceptors.response.use(
       toast({
         title: 'Oops, something wrong on the server',
         description: errorMsg,
-        status: 'error',
-        position: 'top',
+        variant: 'destructive',
       });
     }
 
@@ -94,8 +93,7 @@ const handleAuthError = async () => {
     toast({
       title: 'Oops, something wrong on the server',
       description: 'Login please',
-      status: 'warning',
-      position: 'top',
+      variant: 'warning',
     });
     // FixBug: 这里的跳转由问题 不会自动跳转 需要手动刷新一下
     window.history.replaceState(

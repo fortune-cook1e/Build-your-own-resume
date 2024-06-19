@@ -5,18 +5,39 @@ import { X } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 
+type ToastViewportProps = React.ComponentPropsWithoutRef<
+  typeof ToastPrimitives.Viewport
+> & {
+  position?:
+    | 'top-left'
+    | 'top-center'
+    | 'top-right'
+    | 'bottom-left'
+    | 'bottom-right';
+};
+
+const positionStyles = {
+  'top-left': 'top-0 left-0 sm:top-0 sm:left-0',
+  'top-center':
+    'top-0 left-1/2 transform -translate-x-1/2 sm:top-0 sm:left-1/2 sm:transform sm:-translate-x-1/2',
+  'top-right': 'top-0 right-0 sm:top-0 sm:right-0',
+  'bottom-left': 'bottom-0 left-0 sm:bottom-0 sm:left-0',
+  'bottom-right': 'bottom-0 right-0 sm:bottom-0 sm:right-0',
+};
+
 export type ToastStatus = 'success' | 'error' | 'warning' | 'info' | 'loading';
 
 const ToastProvider = ToastPrimitives.Provider;
 
 const ToastViewport = React.forwardRef<
   React.ElementRef<typeof ToastPrimitives.Viewport>,
-  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Viewport>
->(({ className, ...props }, ref) => (
+  ToastViewportProps
+>(({ className, position = 'top-right', ...props }, ref) => (
   <ToastPrimitives.Viewport
     ref={ref}
     className={cn(
-      'fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]',
+      'fixed z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:flex-col md:max-w-[420px]',
+      positionStyles[position],
       className,
     )}
     {...props}
@@ -32,10 +53,13 @@ const toastVariants = cva(
         default: 'border bg-background text-foreground',
         destructive:
           'destructive group border-destructive bg-destructive text-destructive-foreground',
+        success: 'border group border-green-500 bg-green-700 text-white',
+        info: 'border group border-blue-500 bg-sky-600 text-white',
+        warning: 'border group border-yellow-500 bg-orange-600 text-white',
       },
     },
     defaultVariants: {
-      variant: 'default',
+      variant: 'warning',
     },
   },
 );

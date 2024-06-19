@@ -6,16 +6,23 @@ import {
   ToastTitle,
   ToastViewport,
 } from '@/components/Toast/toast';
-import { useToast } from '@/components/Toast/use-toast';
+import { TOAST_REMOVE_DELAY, useToast } from '@/components/Toast/use-toast';
 
 export function Toaster() {
   const { toasts } = useToast();
 
   return (
-    <ToastProvider>
-      {toasts.map(function ({ id, title, description, action, ...props }) {
+    <ToastProvider duration={TOAST_REMOVE_DELAY}>
+      {toasts.map(function ({
+        id,
+        title,
+        description,
+        action,
+        duration = 3 * 1000,
+        ...props
+      }) {
         return (
-          <Toast key={id} {...props}>
+          <Toast key={id} duration={duration} {...props}>
             <div className="grid gap-1">
               {title && <ToastTitle>{title}</ToastTitle>}
               {description && (
