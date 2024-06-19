@@ -18,7 +18,7 @@ const AddResumeCard = () => {
         onClose={setOpen.off}
         mode="create"
       />
-      <Plus size={40} />
+      <Plus size={40} className="text-black" />
     </BaseCard>
   );
 };
