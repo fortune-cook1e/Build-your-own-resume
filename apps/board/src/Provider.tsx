@@ -2,7 +2,6 @@ import { useBoardStore } from '@/store/board';
 import { POST_MESSAGES } from 'shared';
 import { useCallback, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
-import { ChakraProvider } from '@chakra-ui/react';
 
 const Provider = () => {
   const resume = useBoardStore((state) => state.resume);
@@ -37,11 +36,7 @@ const Provider = () => {
 
   if (!resume.basics) return null;
 
-  return (
-    <ChakraProvider>
-      <Outlet />
-    </ChakraProvider>
-  );
+  return <Outlet />;
 };
 
 export default Provider;
