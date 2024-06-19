@@ -59,7 +59,7 @@ const toastVariants = cva(
       },
     },
     defaultVariants: {
-      variant: 'warning',
+      variant: 'default',
     },
   },
 );
