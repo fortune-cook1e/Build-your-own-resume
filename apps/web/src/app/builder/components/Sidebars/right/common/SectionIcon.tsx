@@ -1,5 +1,5 @@
 import { RightPanelSectionKey } from '@/types/rightPanel';
-import { Article, DownloadSimple, Palette } from '@phosphor-icons/react';
+import { Article, DownloadSimple, Palette, Share } from '@phosphor-icons/react';
 
 const SectionIcon = ({ id, ...rest }: { id: RightPanelSectionKey }) => {
   switch (id) {
@@ -9,6 +9,8 @@ const SectionIcon = ({ id, ...rest }: { id: RightPanelSectionKey }) => {
       return <Palette size={20} {...rest} />;
     case 'export':
       return <DownloadSimple size={20} {...rest} />;
+    case 'share':
+      return <Share size={20} {...rest} />;
     default:
       return null;
   }

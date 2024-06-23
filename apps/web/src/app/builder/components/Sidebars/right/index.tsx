@@ -1,6 +1,7 @@
 import Export from '@/app/builder/components/Sidebars/right/sections/Export';
 import Layout from '@/app/builder/components/Sidebars/right/sections/Layout';
 import Page from '@/app/builder/components/Sidebars/right/sections/Page';
+import Share from '@/app/builder/components/Sidebars/right/sections/Share';
 import Theme from '@/app/builder/components/Sidebars/right/sections/Theme';
 import { Separator } from 'ui';
 
@@ -21,6 +22,10 @@ const RightSidebar = () => {
         <Separator />
 
         <Export />
+
+        <Separator />
+
+        <Share />
       </div>
     </div>
   );
