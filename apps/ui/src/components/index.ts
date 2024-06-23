@@ -19,3 +19,4 @@ export * from './Combobox';
 export * from './Avatar';
 export * from './Badge';
 export * from './Alert';
+export * from './Switch';

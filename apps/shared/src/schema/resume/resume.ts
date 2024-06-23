@@ -26,7 +26,7 @@ export const resumeSchema = z.object({
   title: z.string(),
   data: resumeDataSchema.default(defaultResumeData),
   description: z.string(),
-  visibility: z.enum(['public', 'private']).default('public'),
+  visibility: z.enum(['public', 'private']).default('private'),
   userId: idSchema,
   user: userSchema.optional(),
   createdAt: z.date().or(z.string()),
