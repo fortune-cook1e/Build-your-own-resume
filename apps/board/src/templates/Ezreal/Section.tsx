@@ -1,12 +1,7 @@
 import Link from '@/templates/Ezreal/Link';
-import {
-  CustomSection,
-  SectionWithItem,
-  URL,
-  isEmptyString,
-  mergeTailwindCss,
-} from 'shared';
+import { CustomSection, SectionWithItem, URL, isEmptyString } from 'shared';
 import { get } from 'lodash-es';
+import { cn } from 'ui';
 
 interface Props<T> {
   data: SectionWithItem<T> | CustomSection;
@@ -47,10 +42,7 @@ const Section = <T,>({
               | undefined;
 
             return (
-              <div
-                key={item.id}
-                className={mergeTailwindCss('space-y-2', className)}
-              >
+              <div key={item.id} className={cn('space-y-2', className)}>
                 <div>
                   {children?.(item as T)}
                   {url !== undefined && <Link url={url} />}

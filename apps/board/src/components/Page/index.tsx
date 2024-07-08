@@ -1,8 +1,7 @@
 import { MM_TO_PX, PAGE_SIZE_MAP } from '@/constants';
 import { useBoardStore } from '@/store/board';
 import { FC, ReactNode } from 'react';
-import { mergeTailwindCss } from 'shared';
-
+import { cn } from 'ui';
 interface Props {
   mode?: 'builder' | 'preview';
   children: ReactNode;
@@ -17,8 +16,8 @@ const Page: FC<Props> = ({ mode = 'preview', children }) => {
       style={{
         fontFamily: font.family,
       }}
-      className={mergeTailwindCss(
-        'relative bg-white text-text bg-background',
+      className={cn(
+        'text-text relative bg-background bg-white',
         mode === 'builder' && 'shadow-2xl',
       )}
     >

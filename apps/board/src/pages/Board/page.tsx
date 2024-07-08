@@ -1,6 +1,7 @@
 import { useBoardStore } from '@/store/board';
 import { useEffect, useMemo } from 'react';
 import { Outlet } from 'react-router-dom';
+import { POST_MESSAGES } from 'shared';
 import webFontLoader from 'webfontloader';
 
 const Board = () => {
@@ -15,6 +16,20 @@ const Board = () => {
     webFontLoader.load({
       google: {
         families: [fontFamily],
+      },
+
+      // set iframe width and height in web application's preview page
+      active() {
+        const width = window.document.body.offsetWidth;
+        const height = window.document.body.offsetHeight;
+        const message = {
+          type: POST_MESSAGES.pageLoaded,
+          payload: {
+            width,
+            height,
+          },
+        };
+        window.postMessage(message, '*');
       },
     });
   }, [fontFamily]);

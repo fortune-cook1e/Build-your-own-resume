@@ -11,7 +11,8 @@
   },
   "dependencies": {
     "react-router-dom": "^6.22.3",
-    "shared": "workspace:^"
+    "shared": "workspace:^",
+    "ui": "workspace:^"
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.3.3"

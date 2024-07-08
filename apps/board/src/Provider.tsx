@@ -2,6 +2,7 @@ import { useBoardStore } from '@/store/board';
 import { POST_MESSAGES } from 'shared';
 import { useCallback, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
+import { Toaster, TooltipProvider } from 'ui';
 
 const Provider = () => {
   const resume = useBoardStore((state) => state.resume);
@@ -36,7 +37,12 @@ const Provider = () => {
 
   if (!resume.basics) return null;
 
-  return <Outlet />;
+  return (
+    <TooltipProvider>
+      <Outlet />
+      <Toaster />
+    </TooltipProvider>
+  );
 };
 
 export default Provider;

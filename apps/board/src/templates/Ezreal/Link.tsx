@@ -1,5 +1,6 @@
-import { URL, mergeTailwindCss } from 'shared';
+import { URL } from 'shared';
 import { FC, ReactNode } from 'react';
+import { cn } from 'ui';
 
 interface Props {
   url: URL;
@@ -19,7 +20,7 @@ const Link: FC<Props> = ({ url, icon, label, classname }) => {
         href={url.link}
         target="_blank"
         rel="noreferrer noopener nofollow"
-        className={mergeTailwindCss('inline-block', classname)}
+        className={cn('inline-block', classname)}
       >
         {label || url.label || url.link}
       </a>
