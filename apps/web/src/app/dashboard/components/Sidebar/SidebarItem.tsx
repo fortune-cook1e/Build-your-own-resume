@@ -1,5 +1,4 @@
-import { mergeTailwindCss } from 'shared';
-import { Button } from 'ui';
+import { Button, cn } from 'ui';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FC, ReactNode } from 'react';
@@ -19,7 +18,7 @@ const ActiveIndicator = ({ classname }: { classname?: string }) => (
   <motion.div
     initial={{ opacity: 0, x: -20 }}
     animate={{ opacity: 1, x: 0 }}
-    className={mergeTailwindCss(
+    className={cn(
       'size-1.5 animate-pulse rounded-full bg-info shadow-[0_0_12px] shadow-info',
       classname,
     )}

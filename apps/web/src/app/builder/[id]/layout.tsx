@@ -10,7 +10,7 @@ import { useBuilderStore } from '@/store/builder';
 import { useParams, useRouter } from 'next/navigation';
 import { ReactNode, useEffect } from 'react';
 import { PanelGroup, Panel } from 'react-resizable-panels';
-import { mergeTailwindCss } from 'shared';
+import { cn } from 'ui';
 
 interface Props {
   children: ReactNode;
@@ -40,7 +40,7 @@ const Layout = ({ children }: Props) => {
           minSize={30}
           maxSize={40}
           onResize={left.setSize}
-          className={mergeTailwindCss(
+          className={cn(
             'z-[1] bg-background',
             fullScreen ? 'hidden' : 'visible',
           )}
@@ -69,7 +69,7 @@ const Layout = ({ children }: Props) => {
           minSize={30}
           maxSize={40}
           onResize={right.setSize}
-          className={mergeTailwindCss(
+          className={cn(
             'z-[1] bg-background',
             fullScreen ? 'hidden' : 'visible',
           )}

@@ -2,8 +2,9 @@
 
 import { useBuilderStore } from '@/store/builder';
 import { useResumeStore } from '@/store/resume';
-import { POST_MESSAGES, mergeTailwindCss } from 'shared';
+import { POST_MESSAGES } from 'shared';
 import { FC, useCallback, useEffect } from 'react';
+import { cn } from 'ui';
 
 const Builder: FC = () => {
   const iframeRef = useBuilderStore((state) => state.iframe.ref);
@@ -39,7 +40,7 @@ const Builder: FC = () => {
       ref={setIFrameRef}
       title={resume.id}
       src="/resume-generator-board/builder"
-      className={mergeTailwindCss('w-screen', !fullScreen && 'mt-16')}
+      className={cn('w-screen', !fullScreen && 'mt-16')}
       style={{ height: `calc(100vh - 64px)` }}
     />
   );

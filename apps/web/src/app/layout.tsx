@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 import '../styles/main.css';
 import Provider from './Provider';
-import '@/utils/dayjs';
+import NextTopLoader from 'nextjs-toploader';
 
-// import 'ui/style.css';
+import '@/utils/dayjs';
 
 export const metadata: Metadata = {
   title: 'Resume Generator',
-  description: 'Build your own resume online',
+  description: 'Build your own resumes online',
 };
 
 export default function RootLayout({
@@ -18,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <NextTopLoader />
         <Provider>{children}</Provider>
       </body>
     </html>

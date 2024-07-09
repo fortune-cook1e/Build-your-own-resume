@@ -1,6 +1,5 @@
 'use client';
 
-import { mergeTailwindCss } from 'shared';
 import Highlight from '@tiptap/extension-highlight';
 import Image from '@tiptap/extension-image';
 import { Link } from '@tiptap/extension-link';
@@ -29,6 +28,7 @@ interface RichInputProps
 import StarterKit from '@tiptap/starter-kit';
 import { forwardRef, useCallback } from 'react';
 import Toolbar from '@/components/RichEditor/Toolbar';
+import { cn } from 'ui';
 
 const RichEditor = forwardRef<Editor, RichInputProps>(
   ({ editorClassName, className, content, footer, onChange, ...rest }, ref) => {
@@ -50,7 +50,7 @@ const RichEditor = forwardRef<Editor, RichInputProps>(
       ],
       editorProps: {
         attributes: {
-          class: mergeTailwindCss(
+          class: cn(
             'prose prose-sm prose-zinc max-h-[200px] max-w-none overflow-y-scroll dark:prose-invert focus:outline-none [&_*]:my-2',
             editorClassName,
           ),
@@ -91,7 +91,7 @@ const RichEditor = forwardRef<Editor, RichInputProps>(
         <Toolbar editor={editor} />
         <EditorContent
           editor={editor}
-          className={mergeTailwindCss(
+          className={cn(
             'grid min-h-[160px] w-full rounded-sm border bg-transparent px-3 py-2 text-sm placeholder:opacity-80 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary disabled:cursor-not-allowed disabled:opacity-50',
             className,
           )}

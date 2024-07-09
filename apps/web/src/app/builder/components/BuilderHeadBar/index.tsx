@@ -1,9 +1,8 @@
 import { useBuilderStore } from '@/store/builder';
 import { useResumeStore } from '@/store/resume';
-import { mergeTailwindCss } from 'shared';
 import { HouseSimple, SidebarSimple } from '@phosphor-icons/react';
 import { useRouter } from 'next/navigation';
-import { Button } from 'ui';
+import { Button, cn } from 'ui';
 
 const BuilderHeadBar = () => {
   const router = useRouter();
@@ -19,7 +18,7 @@ const BuilderHeadBar = () => {
   return (
     <div
       style={{ left: `${leftPanelSize}%`, right: `${rightPanelSize}%` }}
-      className={mergeTailwindCss(
+      className={cn(
         'fixed inset-x-0 top-0 z-[1] h-16 bg-secondary-accent/50 backdrop-blur-lg',
         isDragging && 'transition-[left,right]',
       )}
