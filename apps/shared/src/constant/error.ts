@@ -15,4 +15,8 @@ export enum ErrorMessage {
   InvalidRefreshToken = 'InvalidRefreshToken',
 
   InvalidBrowserConnection = 'Invalid browser connection',
+
+  // resume
+  ResumeNotFound = 'Resume not found',
+  ResumeIsPrivate = 'Resume is private',
 }

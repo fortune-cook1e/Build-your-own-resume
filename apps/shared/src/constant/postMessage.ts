@@ -5,4 +5,6 @@ export const POST_MESSAGES = {
   zoomOut: 'zoomOut',
   centerView: 'centerView',
   resetView: 'resetView',
+
+  pageLoaded: 'pageLoaded',
 };
