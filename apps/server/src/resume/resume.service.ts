@@ -4,6 +4,7 @@ import {
   UpdateResumeDto,
   ImportResumeDto,
   sampleResume,
+  ErrorMessage,
 } from 'shared';
 import {
   Injectable,
@@ -17,19 +18,29 @@ import * as deepmerge from 'deepmerge';
 export class ResumeService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async findOneById(id: string) {
-    const resume = await this.prismaService.resume.findUnique({
-      where: { id },
-    });
-    if (!resume) {
-      throw new InternalServerErrorException('resume not found');
+  async findOneById(resumeId: string, userId?: string) {
+    if (userId) {
+      return this.prismaService.resume.findUniqueOrThrow({
+        where: {
+          userId_id: {
+            userId,
+            id: resumeId,
+          },
+        },
+      });
+    } else {
+      const resume = await this.prismaService.resume.findUnique({
+        where: { id: resumeId },
+      });
+      if (!resume) {
+        throw new InternalServerErrorException(ErrorMessage.ResumeNotFound);
+      }
+      return resume;
     }
-
-    return resume;
   }
 
   async create(userId: string, createResumeDto: CreateResumeDto) {
-    const { title, visibility, description } = createResumeDto;
+    const { title, visibility = 'private', description } = createResumeDto;
     const { name, email } = await this.prismaService.user.findUniqueOrThrow({
       where: { id: userId },
       select: {
@@ -69,7 +80,7 @@ export class ResumeService {
         title: importResumeDto.title || 'Sample Title',
         description: importResumeDto.description || 'Sample Description',
         data: importResumeDto.data || sampleResume,
-        visibility: 'public',
+        visibility: 'private',
       },
     });
     return resume;

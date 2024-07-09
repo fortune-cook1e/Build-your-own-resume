@@ -9,8 +9,9 @@ import {
   UpdateResumeDto,
   User,
 } from 'shared';
-import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { PrintService } from '@/print/print.service';
+import { ResumeGuard } from '@/resume/guards/resume.guard';
 
 @Controller('resume')
 export class ResumeController {
@@ -58,9 +59,15 @@ export class ResumeController {
     };
   }
 
-  @Get('')
+  @Get(':id')
   @UseGuards(JwtGuard)
-  async getResume(@Query('id') id: string) {
+  async getResume(@Param('id') id: string) {
+    return await this.resume.findOneById(id);
+  }
+
+  @Get('/preview/:id')
+  @UseGuards(ResumeGuard)
+  async previewResume(@Param('id') id: string) {
     return await this.resume.findOneById(id);
   }
 
