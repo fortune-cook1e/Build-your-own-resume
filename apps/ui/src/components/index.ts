@@ -20,3 +20,4 @@ export * from './Avatar';
 export * from './Badge';
 export * from './Alert';
 export * from './Switch';
+export * from './Dock';
