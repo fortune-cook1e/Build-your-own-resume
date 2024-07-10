@@ -21,3 +21,6 @@ export * from './Badge';
 export * from './Alert';
 export * from './Switch';
 export * from './Dock';
+export * from './AnimatedList';
+export * from './Skeleton';
+export * from './Tabs';
