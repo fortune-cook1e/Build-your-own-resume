@@ -8,7 +8,7 @@ import {
   CornersOut,
   CubeFocus,
 } from '@phosphor-icons/react';
-import { Button, Tooltip } from 'ui';
+import { Button, Dock, DockIcon, Tooltip } from 'ui';
 
 const BuilderToolBar = () => {
   const iframeRef = useBuilderStore((state) => state.iframe.ref);
@@ -37,52 +37,62 @@ const BuilderToolBar = () => {
 
   return (
     <div className="fixed inset-x-0 bottom-0 mx-auto py-6 text-center">
-      <div className="inline-flex items-center justify-center rounded-full bg-background px-4 shadow-xl">
-        <Tooltip content="Zoom in">
-          <Button
-            aria-label="zoom in"
-            variant="ghost"
-            onClick={onZoomIn}
-            size="icon"
-          >
-            <MagnifyingGlassPlus />
-          </Button>
-        </Tooltip>
+      <Dock direction="middle">
+        <DockIcon>
+          <Tooltip content="Zoom in">
+            <Button
+              aria-label="zoom in"
+              variant="ghost"
+              onClick={onZoomIn}
+              size="icon"
+            >
+              <MagnifyingGlassPlus />
+            </Button>
+          </Tooltip>
+        </DockIcon>
 
-        <Tooltip content="zoom out">
-          <Button variant="ghost" aria-label="zoom out" onClick={onZoomOut}>
-            <MagnifyingGlassMinus />
-          </Button>
-        </Tooltip>
+        <DockIcon>
+          <Tooltip content="zoom out">
+            <Button variant="ghost" aria-label="zoom out" onClick={onZoomOut}>
+              <MagnifyingGlassMinus />
+            </Button>
+          </Tooltip>
+        </DockIcon>
 
-        <Tooltip content="Center">
-          <Button aria-label="center" variant="ghost" onClick={onCenter}>
-            <CubeFocus />
-          </Button>
-        </Tooltip>
+        <DockIcon>
+          <Tooltip content="Center">
+            <Button aria-label="center" variant="ghost" onClick={onCenter}>
+              <CubeFocus />
+            </Button>
+          </Tooltip>
+        </DockIcon>
 
-        <Tooltip content="Reset">
-          <Button
-            aria-label="center"
-            variant="ghost"
-            size="icon"
-            onClick={onReset}
-          >
-            <ClockClockwise />
-          </Button>
-        </Tooltip>
+        <DockIcon>
+          <Tooltip content="Reset">
+            <Button
+              aria-label="center"
+              variant="ghost"
+              size="icon"
+              onClick={onReset}
+            >
+              <ClockClockwise />
+            </Button>
+          </Tooltip>
+        </DockIcon>
 
-        <Tooltip content={fullScreen ? 'Exit full screen' : 'Full screen'}>
-          <Button
-            aria-label={fullScreen ? 'Exit full screen' : 'Full screen'}
-            variant="ghost"
-            onClick={() => setFullScreen(!fullScreen)}
-            size="icon"
-          >
-            {fullScreen ? <CornersIn /> : <CornersOut />}
-          </Button>
-        </Tooltip>
-      </div>
+        <DockIcon>
+          <Tooltip content={fullScreen ? 'Exit full screen' : 'Full screen'}>
+            <Button
+              aria-label={fullScreen ? 'Exit full screen' : 'Full screen'}
+              variant="ghost"
+              onClick={() => setFullScreen(!fullScreen)}
+              size="icon"
+            >
+              {fullScreen ? <CornersIn /> : <CornersOut />}
+            </Button>
+          </Tooltip>
+        </DockIcon>
+      </Dock>
     </div>
   );
 };

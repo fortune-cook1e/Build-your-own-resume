@@ -9,7 +9,6 @@ import {
   FormLabel,
   FormMessage,
   Input,
-  useToast,
   FormDescription,
 } from 'ui';
 import { z } from 'zod';
@@ -20,7 +19,6 @@ const formSchema = loginDtoSchema;
 type FormValues = z.infer<typeof formSchema>;
 
 const LoginForm = () => {
-  const { toast } = useToast();
   const { loading, login } = useLogin();
 
   const form = useForm<FormValues>({
@@ -33,12 +31,6 @@ const LoginForm = () => {
 
   const onSubmit = async (data: FormValues) => {
     await login(data);
-    toast({
-      title: 'Login successful',
-      description:
-        "You've successfully logged in to your account, redirecting to dashboard",
-      duration: 3000,
-    });
   };
 
   return (

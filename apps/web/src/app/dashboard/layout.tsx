@@ -18,7 +18,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
         </div>
       </motion.div>
 
-      <main className="mx-6 h-screen w-full bg-background pt-4 lg:mx-8 lg:pl-[320px]">
+      <main className="h-screen w-full bg-background px-8 pt-4 lg:pl-[320px]">
         {children}
       </main>
     </AuthGuard>
