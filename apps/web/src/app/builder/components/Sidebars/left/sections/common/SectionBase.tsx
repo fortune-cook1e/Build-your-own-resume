@@ -9,7 +9,7 @@ import { useResumeStore } from '@/store/resume';
 import { SectionItem, SectionKey, SectionWithItem } from 'shared';
 import get from 'lodash-es/get';
 import { useEffect, useId } from 'react';
-import { Button } from 'ui';
+import { Button, CoolMode } from 'ui';
 
 import {
   DndContext,
@@ -106,9 +106,11 @@ const SectionBase = <T extends SectionItem>({
 
       {!section.items.length && (
         <div className="flex justify-end">
-          <Button leftIcon={<Plus />} onClick={onAddClick}>
-            Create an item
-          </Button>
+          <CoolMode>
+            <Button leftIcon={<Plus />} onClick={onAddClick}>
+              Create an item
+            </Button>
+          </CoolMode>
         </div>
       )}
 

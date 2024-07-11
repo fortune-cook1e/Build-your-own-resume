@@ -10,6 +10,7 @@ import {
   FormMessage,
   Input,
   FormDescription,
+  CoolMode,
 } from 'ui';
 import { z } from 'zod';
 import { loginDtoSchema } from 'shared';
@@ -69,9 +70,11 @@ const LoginForm = () => {
           )}
         />
 
-        <Button className="w-full" type="submit" loading={loading}>
-          Login
-        </Button>
+        <CoolMode>
+          <Button className="w-full" type="submit" loading={loading}>
+            Login
+          </Button>
+        </CoolMode>
       </form>
     </Form>
   );

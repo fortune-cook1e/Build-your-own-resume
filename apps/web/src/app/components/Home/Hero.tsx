@@ -1,41 +1,38 @@
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Tilt from 'react-parallax-tilt';
 import BuilderScreenshot from '../../../assets/images/builder.png';
 import Authentication from '@/app/components/Home/Authentication';
+import { BlurFade, GradualSpacing } from 'ui';
 
 const Hero = () => {
   return (
     <section id="hero" className="relative bg-background">
       <div className="px-6 lg:flex lg:h-screen lg:items-center lg:px-12">
-        <motion.div
+        <BlurFade
+          inView
           className="mb-12 mt-48 shrink-0 lg:mx-0 lg:mt-0 lg:pt-8"
-          viewport={{ once: true }}
-          initial={{ opacity: 0, x: -100 }}
-          whileInView={{ opacity: 1, x: 0 }}
         >
           <div className="mt-10 space-y-2">
-            <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
-              Build your own resumes
-            </h1>
-          </div>
+            <GradualSpacing
+              className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl"
+              text="Build your own resume"
+            />
 
-          <p className="prose prose-base prose-zinc mt-2 text-lg leading-8 dark:prose-invert">
-            Creating, updating and sharing your resumes.
-          </p>
+            <GradualSpacing
+              containerClassName="justify-start"
+              className="text-lg leading-8 tracking-tight text-foreground dark:prose-invert"
+              text="Creating, updating and sharing your resumes."
+            />
 
-          <div className="mt-2 flex items-center gap-x-8">
-            <Authentication />
+            <div className="flex items-center">
+              <Authentication />
+            </div>
           </div>
-        </motion.div>
+        </BlurFade>
 
         <div className="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-20">
           <div className="flex-none sm:max-w-5xl lg:max-w-none">
-            <motion.div
-              viewport={{ once: true }}
-              initial={{ opacity: 0, x: 100 }}
-              whileInView={{ opacity: 1, x: 0 }}
-            >
+            <BlurFade>
               <Tilt
                 scale={1.05}
                 tiltMaxAngleX={8}
@@ -53,7 +50,7 @@ const Hero = () => {
                   className="w-[76rem] rounded-lg bg-background/5 shadow-2xl ring-1 ring-foreground/10"
                 />
               </Tilt>
-            </motion.div>
+            </BlurFade>
           </div>
         </div>
       </div>

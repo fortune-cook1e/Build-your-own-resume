@@ -46,5 +46,6 @@ export const useTheme = () => {
   return {
     onThemeSelect,
     toggleTheme,
+    theme,
   };
 };

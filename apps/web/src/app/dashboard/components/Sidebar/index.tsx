@@ -2,7 +2,7 @@ import SidebarItem, {
   SidebarItemProps,
 } from '@/app/dashboard/components/Sidebar/SidebarItem';
 import { Separator, Button } from 'ui';
-import { List, Bank } from '@phosphor-icons/react';
+import { List, HouseSimple } from '@phosphor-icons/react';
 import Link from 'next/link';
 
 const sidebarItems: SidebarItemProps[] = [
@@ -27,7 +27,7 @@ const Sidebar = () => {
           aria-label="home button"
           icon={
             <Link href="/">
-              <Bank className="text-foreground" />
+              <HouseSimple className="text-foreground" />
             </Link>
           }
         />

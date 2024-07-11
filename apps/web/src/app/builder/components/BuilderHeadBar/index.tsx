@@ -1,6 +1,6 @@
 import { useBuilderStore } from '@/store/builder';
 import { useResumeStore } from '@/store/resume';
-import { HouseSimple, SidebarSimple } from '@phosphor-icons/react';
+import { House, SidebarSimple } from '@phosphor-icons/react';
 import { useRouter } from 'next/navigation';
 import { Button, cn } from 'ui';
 
@@ -38,7 +38,7 @@ const BuilderHeadBar = () => {
             className="cursor-pointer"
             onClick={() => router.push('/dashboard/resumes')}
           >
-            <HouseSimple />
+            <House />
           </Button>
           <span className="mr-2 text-xs opacity-40">/</span>
 

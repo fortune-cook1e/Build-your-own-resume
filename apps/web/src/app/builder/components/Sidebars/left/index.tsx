@@ -18,7 +18,7 @@ import {
 import Link from 'next/link';
 import Summary from '@/app/builder/components/Sidebars/left/sections/Summary';
 import { useResumeStore } from '@/store/resume';
-import { Separator, Button } from 'ui';
+import { Separator, Button, CoolMode } from 'ui';
 
 const LeftSidebar: FC = () => {
   const customs = useResumeStore((state) => state.resume.data.sections.customs);
@@ -39,8 +39,10 @@ const LeftSidebar: FC = () => {
           variant="ghost"
           className="rounded-full"
         >
-          <Link href="/dashboard/resumes" prefetch>
-            <House />
+          <Link href="/dashboard/resumes">
+            <CoolMode>
+              <House />
+            </CoolMode>
           </Link>
         </Button>
         {/* 

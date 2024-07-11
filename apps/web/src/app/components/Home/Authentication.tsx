@@ -1,6 +1,6 @@
 import { useLogout } from '@/apis/auth/logout';
 import { useUserStore } from '@/store/user';
-import { Button, useToast } from 'ui';
+import { Button, CoolMode, useToast } from 'ui';
 import { House, SignIn, SignOut } from '@phosphor-icons/react';
 import Link from 'next/link';
 
@@ -13,6 +13,7 @@ const Authentication = () => {
     await logout();
     toast({
       title: 'Logout success',
+      variant: 'success',
       description: 'You have been successfully logged out.',
       duration: 2000,
     });
@@ -22,18 +23,24 @@ const Authentication = () => {
     return (
       <div className="flex gap-x-4">
         <Link href="/dashboard" prefetch>
-          <Button leftIcon={<House />}>Dashboard</Button>
+          <CoolMode>
+            <Button leftIcon={<House />}>Dashboard</Button>
+          </CoolMode>
         </Link>
-        <Button onClick={onLogout} loading={loading} leftIcon={<SignOut />}>
-          Loggout
-        </Button>
+        <CoolMode>
+          <Button onClick={onLogout} loading={loading} leftIcon={<SignOut />}>
+            Loggout
+          </Button>
+        </CoolMode>
       </div>
     );
   }
 
   return (
     <Link href="/login" prefetch>
-      <Button leftIcon={<SignIn />}>Login</Button>
+      <CoolMode>
+        <Button leftIcon={<SignIn />}>Login</Button>
+      </CoolMode>
     </Link>
   );
 };

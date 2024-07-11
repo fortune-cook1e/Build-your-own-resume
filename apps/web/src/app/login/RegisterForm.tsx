@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import {
   Button,
+  CoolMode,
   Form,
   FormControl,
   FormField,
@@ -124,9 +125,11 @@ const RegisterForm = () => {
           )}
         />
 
-        <Button className="w-full" type="submit" loading={loading}>
-          Register
-        </Button>
+        <CoolMode>
+          <Button className="w-full" type="submit" loading={loading}>
+            Register
+          </Button>
+        </CoolMode>
       </form>
     </Form>
   );
