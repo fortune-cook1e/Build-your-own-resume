@@ -33,18 +33,18 @@ const LeftSidebar: FC = () => {
   return (
     <div className="flex">
       <div className="flex basis-12 flex-col items-center justify-between bg-secondary-accent/30 px-2 py-4 sm:flex">
-        <Button
-          size="icon"
-          aria-label="home button"
-          variant="ghost"
-          className="rounded-full"
-        >
-          <Link href="/dashboard/resumes">
+        <Link href="/dashboard/resumes">
+          <Button
+            size="icon"
+            aria-label="home button"
+            variant="ghost"
+            className="rounded-full"
+          >
             <CoolMode>
               <House />
             </CoolMode>
-          </Link>
-        </Button>
+          </Button>
+        </Link>
         {/* 
         <div className="flex flex-1 flex-col justify-center gap-2">
           <SectionIcon id="basics" onClick={() => scrollIntoView('#basics')} />
