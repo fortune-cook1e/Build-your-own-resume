@@ -30,3 +30,5 @@ export * from './FadeText';
 export * from './CoolMode';
 export * from './BlurFade';
 export * from './Particles';
+export * from './Table';
+export * from './Heading';
