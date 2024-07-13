@@ -16,7 +16,6 @@ export class RefreshGuard extends AuthGuard('refresh') {
   }
 
   handleRequest(err: any, user: any, info: any) {
-    console.log({ err, user });
     if (err || !user) {
       if (err instanceof TokenExpiredError) {
         throw new UnauthorizedException('Refresh Token expired');

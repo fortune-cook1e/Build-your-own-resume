@@ -1,52 +1,61 @@
 'use client';
 
 import { useResumeList } from '@/apis/resume/list';
-import AddResumeCard from '@/app/dashboard/resumes/components/AddResumeCard';
-import ResumeCard from '@/app/dashboard/resumes/components/ResumeCard';
 import AuthGuard from '@/components/AuthGuard';
-import { AnimatePresence, motion } from 'framer-motion';
-import { SkeletonCard } from 'ui';
+import {
+  Heading,
+  SkeletonCard,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from 'ui';
+import TableList from '@/app/dashboard/resumes/components/TableList';
+import { CardList } from '@/app/dashboard/resumes/components/CardList';
+import { Cards, Table } from '@phosphor-icons/react';
+
+export type ListType = 'card' | 'table';
 
 const Resumes = () => {
   const { loading, resumeList } = useResumeList();
 
   return (
     <AuthGuard>
-      <div className="grid grid-cols-3 gap-8 sm:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+      <div className="w-full space-y-4">
         {loading ? (
-          <>
-            {new Array(3).fill(0).map((item, index) => (
-              <SkeletonCard key={index} />
-            ))}
-          </>
+          new Array(3).fill(0).map((item) => (
+            <div className="flex gap-4" key={item}>
+              <SkeletonCard />
+              <SkeletonCard />
+              <SkeletonCard />
+            </div>
+          ))
         ) : (
-          <>
-            <AddResumeCard />
+          <Tabs defaultValue="table">
+            <TabsList className="flex justify-between bg-background">
+              <Heading
+                className="pt-1"
+                title={`Resumes (${resumeList?.length || 0})`}
+              />
+              <div>
+                <TabsTrigger value="card">
+                  <Cards className="mr-2 h-4 w-4" />
+                  Card
+                </TabsTrigger>
+                <TabsTrigger value="table">
+                  <Table className="mr-2 h-4 w-4" />
+                  Table
+                </TabsTrigger>
+              </div>
+            </TabsList>
 
-            {resumeList && (
-              <AnimatePresence>
-                {resumeList.map((resume, index) => (
-                  <motion.div
-                    layout
-                    key={resume.id}
-                    initial={{ opacity: 0, x: -50 }}
-                    animate={{
-                      opacity: 1,
-                      x: 0,
-                      transition: { delay: (index + 2) * 0.1 },
-                    }}
-                    exit={{
-                      opacity: 0,
-                      filter: 'blur(8px)',
-                      transition: { duration: 0.5 },
-                    }}
-                  >
-                    <ResumeCard resume={resume} />
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-            )}
-          </>
+            <TabsContent value="card">
+              <CardList resumeList={resumeList} />
+            </TabsContent>
+            <TabsContent value="table">
+              <TableList resumeList={resumeList} />
+            </TabsContent>
+          </Tabs>
         )}
       </div>
     </AuthGuard>

@@ -47,7 +47,7 @@ request.interceptors.response.use(
         return window.history.replaceState(
           null,
           '',
-          `/resume-generator/login?redirect=${window.location.pathname}`,
+          `/resume-generator/auth/login?redirect=${window.location.pathname}`,
         );
       }
       default: {
@@ -99,7 +99,7 @@ const handleAuthError = async () => {
     window.history.replaceState(
       null,
       '',
-      `/resume-generator/login?redirect=${window.location.pathname}`,
+      `/resume-generator/auth/login?redirect=${window.location.pathname}`,
     );
 
     return Promise.reject(e);
@@ -113,14 +113,14 @@ const handleRefreshFailed = async () => {
     window.history.replaceState(
       null,
       '',
-      `/resume-generator/login?redirect=${window.location.pathname}`,
+      `/resume-generator/auth/login?redirect=${window.location.pathname}`,
     );
     return Promise.resolve();
   } catch (e) {
     window.history.replaceState(
       null,
       '',
-      `/resume-generator/login?redirect=${window.location.pathname}`,
+      `/resume-generator/auth/login?redirect=${window.location.pathname}`,
     );
     return Promise.reject(e);
   }

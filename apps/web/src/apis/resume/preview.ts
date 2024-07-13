@@ -10,7 +10,11 @@ export const getPreviewResume = (id: string): Promise<Resume> =>
 export const usePreviewResume = (id: string) => {
   const setResume = useResumeStore((state) => state.setResume);
 
-  const { isPending: loading, data: resume } = useQuery({
+  const {
+    isPending: loading,
+    data: resume,
+    error,
+  } = useQuery({
     queryKey: [QUERY_KEYS.resume, { id }],
     queryFn: async () => {
       const resume = await getPreviewResume(id);
@@ -22,5 +26,6 @@ export const usePreviewResume = (id: string) => {
   return {
     resume,
     loading,
+    error,
   };
 };

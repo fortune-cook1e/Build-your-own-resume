@@ -11,8 +11,8 @@ import {
   TabsList,
   TabsTrigger,
 } from 'ui';
-import LoginForm from '@/app/login/LoginForm';
-import RegisterForm from '@/app/login/RegisterForm';
+import LoginForm from './LoginForm';
+import RegisterForm from './RegisterForm';
 import HeaderToolsBar from '@/components/HeaderToolsBar';
 
 const Login = () => {

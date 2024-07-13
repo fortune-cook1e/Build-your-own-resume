@@ -44,6 +44,11 @@ const formSchema = createResumeSchema.extend({
 });
 
 export type ResumeModalFormValues = z.infer<typeof formSchema>;
+export const defaultResumeModalValues: ResumeModalFormValues = {
+  title: '',
+  description: '',
+  visibility: 'private',
+};
 
 interface Props {
   open: boolean;
@@ -188,9 +193,11 @@ const ResumeModal = forwardRef<any, Props>(
               {isCreate && 'Create Resume'}
               {isUpdate && 'Update Resume'}
             </DialogTitle>
-            <DialogDescription>
-              Make changes to your resume here. Click save when you're done.
-            </DialogDescription>
+            {isUpdate && (
+              <DialogDescription>
+                Make changes to your resume here. Click save when you're done.
+              </DialogDescription>
+            )}
           </DialogHeader>
 
           <Form {...form}>

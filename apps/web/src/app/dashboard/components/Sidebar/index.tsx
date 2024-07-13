@@ -20,17 +20,15 @@ const sidebarItems: SidebarItemProps[] = [
 
 const Sidebar = () => {
   return (
-    <div className="flex- h-full flex-col gap-y-4">
-      <div className="mb-4 ml-12 flex justify-center lg:ml-0">
-        <Button
-          variant="ghost"
-          aria-label="home button"
-          icon={
-            <Link href="/">
-              <HouseSimple className="text-foreground" />
-            </Link>
-          }
-        />
+    <div className="flex h-full flex-col gap-y-4">
+      <div className="ml-12 flex justify-center lg:ml-0">
+        <Link href="/">
+          <Button
+            variant="ghost"
+            aria-label="home button"
+            icon={<HouseSimple className="text-foreground" />}
+          />
+        </Link>
       </div>
 
       <Separator />

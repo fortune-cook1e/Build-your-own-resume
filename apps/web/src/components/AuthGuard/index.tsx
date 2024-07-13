@@ -17,7 +17,7 @@ const AuthGuard: FC<Props> = ({ children }) => {
   if (loading) return null;
 
   if (!user) {
-    router.replace(`/login?redirect=${pathname}`);
+    router.replace(`/auth/login?redirect=${pathname}`);
     return null;
   }
 

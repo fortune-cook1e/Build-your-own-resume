@@ -37,7 +37,7 @@ const Authentication = () => {
   }
 
   return (
-    <Link href="/login" prefetch>
+    <Link href="/auth/login" prefetch>
       <CoolMode>
         <Button leftIcon={<SignIn />}>Login</Button>
       </CoolMode>

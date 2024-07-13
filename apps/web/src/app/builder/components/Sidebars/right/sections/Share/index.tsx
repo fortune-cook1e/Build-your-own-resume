@@ -39,7 +39,7 @@ const Share = () => {
           />
           <div className="flex flex-col gap-1">
             <Label htmlFor="visibility" className="font-bold">
-              {visibility.slice(0, 1).toUpperCase() + visibility.slice(1)}
+              Public
             </Label>
             <p className="text-xs">Anyone can view and download the resume</p>
           </div>

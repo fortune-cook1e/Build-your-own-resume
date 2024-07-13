@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Tilt from 'react-parallax-tilt';
-import BuilderScreenshot from '../../../assets/images/builder.png';
-import Authentication from '@/app/components/Home/Authentication';
+import BuilderScreenshot from '../../assets/images/builder.png';
+import Authentication from '@/components/Home/Authentication';
 import { BlurFade, GradualSpacing } from 'ui';
 
 const Hero = () => {
