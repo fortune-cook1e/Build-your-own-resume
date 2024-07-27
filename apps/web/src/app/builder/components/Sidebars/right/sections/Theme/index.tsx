@@ -1,7 +1,8 @@
 import SectionBase from '@/app/builder/components/Sidebars/right/common/SectionBase';
 import { useResumeStore } from '@/store/resume';
 import { FormEvent } from 'react';
-import { Label, Input } from 'ui';
+import { Label, Input, cn, Popover, PopoverContent, PopoverTrigger } from 'ui';
+import { HexColorPicker } from 'react-colorful';
 
 const Palettes = [
   '#9253a1',
@@ -36,10 +37,14 @@ const Theme = () => {
     setValue('metadata.theme.backgroundColor', e.currentTarget.value);
   };
 
+  const onCustomColorChange = (color: string) => {
+    setValue('metadata.theme.primaryColor', color);
+  };
+
   return (
     <SectionBase id="theme">
       <div className="mb-4 grid grid-cols-5 gap-4">
-        {Palettes.map((item) => {
+        {Palettes.slice(1).map((item) => {
           return (
             <div
               className="h-10 w-10 cursor-pointer rounded-md"
@@ -49,6 +54,32 @@ const Theme = () => {
             />
           );
         })}
+
+        <Popover>
+          <PopoverTrigger asChild>
+            <div className="flex h-10 w-10 cursor-pointer flex-wrap rounded-md">
+              {Palettes.slice(1).map((item, index) => (
+                <div
+                  className={cn(
+                    'h-1/3 w-1/3',
+                    index === 0 && 'rounded-tl-md',
+                    index === 2 && 'rounded-tr-md',
+                    index === 6 && 'rounded-bl-md',
+                    index === 8 && 'rounded-br-md',
+                  )}
+                  style={{ background: item }}
+                  key={item}
+                />
+              ))}
+            </div>
+          </PopoverTrigger>
+          <PopoverContent className="w-full">
+            <HexColorPicker
+              color={theme.primaryColor}
+              onChange={onCustomColorChange}
+            />
+          </PopoverContent>
+        </Popover>
       </div>
 
       <div className="grid grid-cols-1 gap-y-4">
