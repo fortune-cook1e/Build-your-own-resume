@@ -9,6 +9,7 @@ import { refresh } from '@/apis/auth/refresh';
 import { queryClient } from '@/utils/queryClient';
 import { QUERY_KEYS } from '@/constants';
 import { toast } from 'ui';
+import { CONFIG } from '@/utils/config';
 
 interface ApiResponse<T> {
   data: T;
@@ -47,7 +48,7 @@ request.interceptors.response.use(
         return window.history.replaceState(
           null,
           '',
-          `/build-your-own-resume/auth/login?redirect=${window.location.pathname}`,
+          `${CONFIG.basePath}/auth/login?redirect=${window.location.pathname}`,
         );
       }
       default: {
@@ -99,7 +100,7 @@ const handleAuthError = async () => {
     window.history.replaceState(
       null,
       '',
-      `/build-your-own-resume/auth/login?redirect=${window.location.pathname}`,
+      `${CONFIG.basePath}/auth/login?redirect=${window.location.pathname}`,
     );
 
     return Promise.reject(e);
@@ -113,14 +114,14 @@ const handleRefreshFailed = async () => {
     window.history.replaceState(
       null,
       '',
-      `/build-your-own-resume/auth/login?redirect=${window.location.pathname}`,
+      `${CONFIG.basePath}/auth/login?redirect=${window.location.pathname}`,
     );
     return Promise.resolve();
   } catch (e) {
     window.history.replaceState(
       null,
       '',
-      `/build-your-own-resume/auth/login?redirect=${window.location.pathname}`,
+      `${CONFIG.basePath}/auth/login?redirect=${window.location.pathname}`,
     );
     return Promise.reject(e);
   }
